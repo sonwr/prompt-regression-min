@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 
 from .core import run_regression
@@ -28,7 +29,12 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.command == "run":
-        report = run_regression(args.dataset, args.baseline, args.candidate)
+        try:
+            report = run_regression(args.dataset, args.baseline, args.candidate)
+        except (OSError, ValueError) as exc:
+            print(f"error: {exc}", file=sys.stderr)
+            raise SystemExit(2)
+
         summary = report["summary"]
 
         print("prompt-regression-min summary")
