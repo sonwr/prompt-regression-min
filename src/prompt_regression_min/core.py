@@ -95,8 +95,16 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
         if cid not in candidate_by_id:
             raise ValueError(f"Missing candidate output for id={cid}")
 
-        b_out = str(baseline_by_id[cid].get("output", ""))
-        c_out = str(candidate_by_id[cid].get("output", ""))
+        baseline_row = baseline_by_id[cid]
+        candidate_row = candidate_by_id[cid]
+
+        if "output" not in baseline_row:
+            raise ValueError(f"Missing output field in baseline id={cid}")
+        if "output" not in candidate_row:
+            raise ValueError(f"Missing output field in candidate id={cid}")
+
+        b_out = str(baseline_row["output"])
+        c_out = str(candidate_row["output"])
 
         b_pass = _score(b_out, expected)
         c_pass = _score(c_out, expected)
