@@ -5,6 +5,7 @@ import json
 import sys
 from pathlib import Path
 
+from . import __version__
 from .core import run_regression
 
 
@@ -13,6 +14,7 @@ def _build_parser() -> argparse.ArgumentParser:
         prog="prm",
         description="Minimal prompt/workflow regression checker",
     )
+    parser.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
     sub = parser.add_subparsers(dest="command", required=True)
 
     run_cmd = sub.add_parser("run", help="Run regression check")
@@ -65,3 +67,7 @@ def main() -> None:
 
         if summary["regressions"] > 0:
             raise SystemExit(1)
+
+
+if __name__ == "__main__":
+    main()
