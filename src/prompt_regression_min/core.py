@@ -183,8 +183,11 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
     baseline_passes = sum(1 for r in results if r.baseline_pass)
     candidate_passes = sum(1 for r in results if r.candidate_pass)
 
-    regressions = sum(1 for r in results if r.baseline_pass and not r.candidate_pass)
-    improved = sum(1 for r in results if not r.baseline_pass and r.candidate_pass)
+    regression_ids = [r.id for r in results if r.baseline_pass and not r.candidate_pass]
+    improved_ids = [r.id for r in results if not r.baseline_pass and r.candidate_pass]
+
+    regressions = len(regression_ids)
+    improved = len(improved_ids)
     unchanged = len(results) - regressions - improved
 
     baseline_pass_rate = round(baseline_passes / len(results), 4) if results else 0.0
@@ -201,6 +204,8 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
         "regressions": regressions,
         "improved": improved,
         "unchanged": unchanged,
+        "regression_ids": regression_ids,
+        "improved_ids": improved_ids,
     }
 
     return {

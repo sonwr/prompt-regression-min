@@ -115,7 +115,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `contains_all`
 - Produces:
   - terminal summary
-  - machine-readable JSON report
+  - machine-readable JSON report (including `summary.regression_ids` / `summary.improved_ids`)
 - Exits with non-zero status when regressions are detected (CI-friendly)
 
 ---
