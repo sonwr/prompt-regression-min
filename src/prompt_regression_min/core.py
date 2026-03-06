@@ -38,7 +38,9 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
         needle = str(expected.get("value", ""))
         return needle in output
     if kind == "contains_all":
-        values = expected.get("values", [])
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("contains_all expectation requires a list in expected.values")
         return all(str(v) in output for v in values)
     raise ValueError(f"Unsupported expectation type: {kind}")
 
