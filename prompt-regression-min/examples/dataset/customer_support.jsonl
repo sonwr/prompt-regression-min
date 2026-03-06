@@ -1,0 +1,3 @@
+{"id":"case-1","input":"How do I reset my password?","expected":{"type":"contains_all","values":["reset","email"]}}
+{"id":"case-2","input":"Can I cancel after trial?","expected":{"type":"substring","value":"cancel"}}
+{"id":"case-3","input":"What is your refund policy?","expected":{"type":"contains_all","values":["refund","14 days"]}}
