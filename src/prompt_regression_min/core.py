@@ -21,6 +21,8 @@ def _load_jsonl(path: Path) -> list[dict[str, Any]]:
     with path.open("r", encoding="utf-8") as f:
         for line_no, line in enumerate(f, start=1):
             stripped = line.strip()
+            if line_no == 1:
+                stripped = stripped.lstrip("\ufeff")
             if not stripped:
                 continue
             try:
