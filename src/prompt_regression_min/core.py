@@ -64,6 +64,21 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
     baseline_by_id = _index_rows_by_id(baseline_rows, "baseline")
     candidate_by_id = _index_rows_by_id(candidate_rows, "candidate")
 
+    dataset_ids = set(dataset_by_id)
+    extra_baseline_ids = sorted(set(baseline_by_id) - dataset_ids)
+    if extra_baseline_ids:
+        preview = ", ".join(extra_baseline_ids[:5])
+        if len(extra_baseline_ids) > 5:
+            preview += ", ..."
+        raise ValueError(f"Baseline has unknown ids not present in dataset: {preview}")
+
+    extra_candidate_ids = sorted(set(candidate_by_id) - dataset_ids)
+    if extra_candidate_ids:
+        preview = ", ".join(extra_candidate_ids[:5])
+        if len(extra_candidate_ids) > 5:
+            preview += ", ..."
+        raise ValueError(f"Candidate has unknown ids not present in dataset: {preview}")
+
     results: list[CaseResult] = []
 
     for cid, case in dataset_by_id.items():
