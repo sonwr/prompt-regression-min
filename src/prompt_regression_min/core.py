@@ -6,6 +6,9 @@ from pathlib import Path
 from typing import Any
 
 
+SUPPORTED_EXPECTED_TYPES = ("exact", "substring", "contains_all")
+
+
 @dataclass
 class CaseResult:
     id: str
@@ -49,7 +52,8 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
         if not isinstance(values, list):
             raise ValueError("contains_all expectation requires a list in expected.values")
         return all(str(v) in output for v in values)
-    raise ValueError(f"Unsupported expectation type: {kind}")
+    supported = ", ".join(SUPPORTED_EXPECTED_TYPES)
+    raise ValueError(f"Unsupported expectation type: {kind}. Supported types: {supported}")
 
 
 def _index_rows_by_id(rows: list[dict[str, Any]], label: str) -> dict[str, dict[str, Any]]:
@@ -99,7 +103,10 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
             )
         return
 
-    raise ValueError(f"Unsupported expected.type in dataset id={case_id}: {kind}")
+    supported = ", ".join(SUPPORTED_EXPECTED_TYPES)
+    raise ValueError(
+        f"Unsupported expected.type in dataset id={case_id}: {kind}. Supported types: {supported}"
+    )
 
 
 def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -> dict[str, Any]:
