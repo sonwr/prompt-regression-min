@@ -156,8 +156,15 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
         if "output" not in candidate_row:
             raise ValueError(f"Missing output field in candidate id={cid}")
 
-        b_out = str(baseline_row["output"])
-        c_out = str(candidate_row["output"])
+        b_raw = baseline_row["output"]
+        c_raw = candidate_row["output"]
+        if not isinstance(b_raw, str):
+            raise ValueError(f"Invalid output field in baseline id={cid}: must be a string")
+        if not isinstance(c_raw, str):
+            raise ValueError(f"Invalid output field in candidate id={cid}: must be a string")
+
+        b_out = b_raw
+        c_out = c_raw
 
         b_pass = _score(b_out, expected)
         c_pass = _score(c_out, expected)
