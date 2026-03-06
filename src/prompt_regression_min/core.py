@@ -106,6 +106,20 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
             preview += ", ..."
         raise ValueError(f"Candidate has unknown ids not present in dataset: {preview}")
 
+    missing_baseline_ids = sorted(dataset_ids - set(baseline_by_id))
+    if missing_baseline_ids:
+        preview = ", ".join(missing_baseline_ids[:5])
+        if len(missing_baseline_ids) > 5:
+            preview += ", ..."
+        raise ValueError(f"Baseline is missing ids present in dataset: {preview}")
+
+    missing_candidate_ids = sorted(dataset_ids - set(candidate_by_id))
+    if missing_candidate_ids:
+        preview = ", ".join(missing_candidate_ids[:5])
+        if len(missing_candidate_ids) > 5:
+            preview += ", ..."
+        raise ValueError(f"Candidate is missing ids present in dataset: {preview}")
+
     results: list[CaseResult] = []
 
     for cid, case in dataset_by_id.items():
@@ -115,11 +129,6 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
         if not isinstance(expected, dict):
             raise ValueError(f"Invalid expected field in dataset id={cid}: must be an object")
         _validate_expected(expected, cid)
-
-        if cid not in baseline_by_id:
-            raise ValueError(f"Missing baseline output for id={cid}")
-        if cid not in candidate_by_id:
-            raise ValueError(f"Missing candidate output for id={cid}")
 
         baseline_row = baseline_by_id[cid]
         candidate_row = candidate_by_id[cid]
