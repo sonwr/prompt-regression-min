@@ -2,3 +2,13 @@ __pycache__/
 *.pyc
 .venv/
 report.json
+
+# local OpenClaw workspace files (not part of prompt-regression-min)
+AGENTS.md
+BOOTSTRAP.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md
+.openclaw/
