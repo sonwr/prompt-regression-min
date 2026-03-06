@@ -53,8 +53,14 @@ def main() -> None:
 
         if args.report:
             report_path = Path(args.report)
-            report_path.parent.mkdir(parents=True, exist_ok=True)
-            report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+            try:
+                report_path.parent.mkdir(parents=True, exist_ok=True)
+                report_path.write_text(
+                    json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
+                )
+            except OSError as exc:
+                print(f"error: failed to write report to {report_path}: {exc}", file=sys.stderr)
+                raise SystemExit(2)
             print(f"- report: {report_path}")
 
         if summary["regressions"] > 0:
