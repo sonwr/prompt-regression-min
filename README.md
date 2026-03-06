@@ -127,7 +127,15 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -e .
 
+# either CLI entrypoint
 prm run \
+  --dataset examples/dataset/customer_support.jsonl \
+  --baseline examples/outputs/customer_support.baseline.jsonl \
+  --candidate examples/outputs/customer_support.candidate.jsonl \
+  --report report.json
+
+# or module execution
+python -m prompt_regression_min run \
   --dataset examples/dataset/customer_support.jsonl \
   --baseline examples/outputs/customer_support.baseline.jsonl \
   --candidate examples/outputs/customer_support.candidate.jsonl \
