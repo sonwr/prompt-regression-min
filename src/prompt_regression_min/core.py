@@ -73,6 +73,10 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
             raise ValueError(
                 f"Invalid expected.values for type=contains_all in dataset id={case_id}: must be a list"
             )
+        if not values:
+            raise ValueError(
+                f"Invalid expected.values for type=contains_all in dataset id={case_id}: must be non-empty"
+            )
         return
 
     raise ValueError(f"Unsupported expected.type in dataset id={case_id}: {kind}")

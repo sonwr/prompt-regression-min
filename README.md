@@ -175,7 +175,7 @@ Supported `expected.type` values:
   ```json
   { "type": "substring", "value": "..." }
   ```
-- `contains_all`:
+- `contains_all` (requires a non-empty `values` list):
   ```json
   { "type": "contains_all", "values": ["a", "b"] }
   ```
