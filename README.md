@@ -167,7 +167,7 @@ Each line:
 
 Supported `expected.type` values:
 
-- `exact` (`value` must be a string):
+- `exact` (`value` must be a string; leading/trailing whitespace is ignored on both expected and output):
   ```json
   { "type": "exact", "value": "..." }
   ```
