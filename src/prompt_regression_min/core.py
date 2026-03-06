@@ -24,9 +24,14 @@ def _load_jsonl(path: Path) -> list[dict[str, Any]]:
             if not stripped:
                 continue
             try:
-                rows.append(json.loads(stripped))
+                parsed = json.loads(stripped)
             except json.JSONDecodeError as exc:
                 raise ValueError(f"Invalid JSONL at {path}:{line_no}: {exc}") from exc
+            if not isinstance(parsed, dict):
+                raise ValueError(
+                    f"Invalid JSONL row at {path}:{line_no}: expected a JSON object per line"
+                )
+            rows.append(parsed)
     return rows
 
 
