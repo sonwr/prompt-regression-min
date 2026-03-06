@@ -222,6 +222,7 @@ prompt-regression-min summary
 - cases: 3
 - baseline: 3 (100.0%)
 - candidate: 2 (66.7%)
+- delta: -1 (-33.33pp)
 - regressions: 1
 - improved: 0
 - unchanged: 2

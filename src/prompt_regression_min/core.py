@@ -187,12 +187,17 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
     improved = sum(1 for r in results if not r.baseline_pass and r.candidate_pass)
     unchanged = len(results) - regressions - improved
 
+    baseline_pass_rate = round(baseline_passes / len(results), 4) if results else 0.0
+    candidate_pass_rate = round(candidate_passes / len(results), 4) if results else 0.0
+
     summary = {
         "cases": len(results),
         "baseline_passes": baseline_passes,
         "candidate_passes": candidate_passes,
-        "baseline_pass_rate": round(baseline_passes / len(results), 4) if results else 0.0,
-        "candidate_pass_rate": round(candidate_passes / len(results), 4) if results else 0.0,
+        "baseline_pass_rate": baseline_pass_rate,
+        "candidate_pass_rate": candidate_pass_rate,
+        "delta_passes": candidate_passes - baseline_passes,
+        "delta_pass_rate_pp": round((candidate_pass_rate - baseline_pass_rate) * 100, 2),
         "regressions": regressions,
         "improved": improved,
         "unchanged": unchanged,

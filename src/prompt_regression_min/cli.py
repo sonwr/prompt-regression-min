@@ -49,6 +49,10 @@ def main() -> None:
             f"- candidate: {summary['candidate_passes']} "
             f"({summary['candidate_pass_rate'] * 100:.1f}%)"
         )
+        print(
+            f"- delta: {summary['delta_passes']} "
+            f"({summary['delta_pass_rate_pp']:+.2f}pp)"
+        )
         print(f"- regressions: {summary['regressions']}")
         print(f"- improved: {summary['improved']}")
         print(f"- unchanged: {summary['unchanged']}")
