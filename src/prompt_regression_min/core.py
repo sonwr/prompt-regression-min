@@ -43,18 +43,30 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
     raise ValueError(f"Unsupported expectation type: {kind}")
 
 
+def _index_rows_by_id(rows: list[dict[str, Any]], label: str) -> dict[str, dict[str, Any]]:
+    by_id: dict[str, dict[str, Any]] = {}
+    for idx, row in enumerate(rows, start=1):
+        if "id" not in row:
+            raise ValueError(f"Missing id field in {label} row #{idx}")
+        rid = str(row["id"])
+        if rid in by_id:
+            raise ValueError(f"Duplicate id in {label}: {rid}")
+        by_id[rid] = row
+    return by_id
+
+
 def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -> dict[str, Any]:
     dataset_rows = _load_jsonl(Path(dataset_path))
     baseline_rows = _load_jsonl(Path(baseline_path))
     candidate_rows = _load_jsonl(Path(candidate_path))
 
-    baseline_by_id = {r["id"]: r for r in baseline_rows}
-    candidate_by_id = {r["id"]: r for r in candidate_rows}
+    dataset_by_id = _index_rows_by_id(dataset_rows, "dataset")
+    baseline_by_id = _index_rows_by_id(baseline_rows, "baseline")
+    candidate_by_id = _index_rows_by_id(candidate_rows, "candidate")
 
     results: list[CaseResult] = []
 
-    for case in dataset_rows:
-        cid = case["id"]
+    for cid, case in dataset_by_id.items():
         expected = case["expected"]
         if cid not in baseline_by_id:
             raise ValueError(f"Missing baseline output for id={cid}")
