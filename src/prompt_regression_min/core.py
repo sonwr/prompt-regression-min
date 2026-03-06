@@ -72,9 +72,14 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
     if kind in {"exact", "substring"}:
         if "value" not in expected:
             raise ValueError(f"Missing expected.value for type={kind} in dataset id={case_id}")
-        if not isinstance(expected.get("value"), str):
+        value = expected.get("value")
+        if not isinstance(value, str):
             raise ValueError(
                 f"Invalid expected.value for type={kind} in dataset id={case_id}: must be a string"
+            )
+        if kind == "substring" and not value.strip():
+            raise ValueError(
+                f"Invalid expected.value for type=substring in dataset id={case_id}: must be a non-empty string"
             )
         return
 

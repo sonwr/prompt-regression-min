@@ -171,7 +171,7 @@ Supported `expected.type` values:
   ```json
   { "type": "exact", "value": "..." }
   ```
-- `substring` (`value` must be a string):
+- `substring` (`value` must be a non-empty string):
   ```json
   { "type": "substring", "value": "..." }
   ```
