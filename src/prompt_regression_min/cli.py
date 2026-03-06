@@ -61,6 +61,11 @@ def main() -> None:
             print(f"- improved_ids: {', '.join(summary['improved_ids'])}")
         print(f"- unchanged: {summary['unchanged']}")
 
+        if summary["regressions"] > 0:
+            print("- status: FAIL (regressions detected)")
+        else:
+            print("- status: PASS")
+
         if args.report:
             report_path = Path(args.report)
             try:
