@@ -167,15 +167,15 @@ Each line:
 
 Supported `expected.type` values:
 
-- `exact`:
+- `exact` (`value` must be a string):
   ```json
   { "type": "exact", "value": "..." }
   ```
-- `substring`:
+- `substring` (`value` must be a string):
   ```json
   { "type": "substring", "value": "..." }
   ```
-- `contains_all` (requires a non-empty `values` list):
+- `contains_all` (requires a non-empty `values` list of non-empty strings):
   ```json
   { "type": "contains_all", "values": ["a", "b"] }
   ```
