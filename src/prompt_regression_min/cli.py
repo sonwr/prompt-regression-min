@@ -18,10 +18,10 @@ def _build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     run_cmd = sub.add_parser("run", help="Run regression check")
-    run_cmd.add_argument("--dataset", required=True, help="Path to dataset JSONL")
-    run_cmd.add_argument("--baseline", required=True, help="Path to baseline outputs JSONL")
-    run_cmd.add_argument("--candidate", required=True, help="Path to candidate outputs JSONL")
-    run_cmd.add_argument("--report", required=False, help="Write full JSON report to file")
+    run_cmd.add_argument("-d", "--dataset", required=True, help="Path to dataset JSONL")
+    run_cmd.add_argument("-b", "--baseline", required=True, help="Path to baseline outputs JSONL")
+    run_cmd.add_argument("-c", "--candidate", required=True, help="Path to candidate outputs JSONL")
+    run_cmd.add_argument("-r", "--report", required=False, help="Write full JSON report to file")
 
     return parser
 

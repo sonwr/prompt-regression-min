@@ -205,6 +205,8 @@ prm run \
   --baseline <baseline.jsonl> \
   --candidate <candidate.jsonl> \
   [--report report.json]
+
+# short aliases: -d, -b, -c, -r
 ```
 
 ### Exit codes
