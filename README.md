@@ -193,6 +193,8 @@ Each line:
 
 Both baseline and candidate output files must contain the same IDs used in the dataset.
 
+Dataset files must be non-empty (at least one valid JSONL case).
+
 ---
 
 ## CLI Reference

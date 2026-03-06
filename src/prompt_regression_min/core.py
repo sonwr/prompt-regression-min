@@ -87,6 +87,9 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
     baseline_rows = _load_jsonl(Path(baseline_path))
     candidate_rows = _load_jsonl(Path(candidate_path))
 
+    if not dataset_rows:
+        raise ValueError("Dataset is empty: provide at least one case")
+
     dataset_by_id = _index_rows_by_id(dataset_rows, "dataset")
     baseline_by_id = _index_rows_by_id(baseline_rows, "baseline")
     candidate_by_id = _index_rows_by_id(candidate_rows, "candidate")
