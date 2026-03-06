@@ -54,7 +54,11 @@ def main() -> None:
             f"({summary['delta_pass_rate_pp']:+.2f}pp)"
         )
         print(f"- regressions: {summary['regressions']}")
+        if summary["regression_ids"]:
+            print(f"- regression_ids: {', '.join(summary['regression_ids'])}")
         print(f"- improved: {summary['improved']}")
+        if summary["improved_ids"]:
+            print(f"- improved_ids: {', '.join(summary['improved_ids'])}")
         print(f"- unchanged: {summary['unchanged']}")
 
         if args.report:
