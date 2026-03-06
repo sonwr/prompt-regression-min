@@ -82,7 +82,14 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
     results: list[CaseResult] = []
 
     for cid, case in dataset_by_id.items():
+        if "expected" not in case:
+            raise ValueError(f"Missing expected field in dataset id={cid}")
         expected = case["expected"]
+        if not isinstance(expected, dict):
+            raise ValueError(f"Invalid expected field in dataset id={cid}: must be an object")
+        if "type" not in expected:
+            raise ValueError(f"Missing expected.type in dataset id={cid}")
+
         if cid not in baseline_by_id:
             raise ValueError(f"Missing baseline output for id={cid}")
         if cid not in candidate_by_id:
