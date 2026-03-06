@@ -57,6 +57,27 @@ def _index_rows_by_id(rows: list[dict[str, Any]], label: str) -> dict[str, dict[
     return by_id
 
 
+def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
+    kind = expected.get("type")
+    if not isinstance(kind, str):
+        raise ValueError(f"Invalid expected.type in dataset id={case_id}: must be a string")
+
+    if kind in {"exact", "substring"}:
+        if "value" not in expected:
+            raise ValueError(f"Missing expected.value for type={kind} in dataset id={case_id}")
+        return
+
+    if kind == "contains_all":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError(
+                f"Invalid expected.values for type=contains_all in dataset id={case_id}: must be a list"
+            )
+        return
+
+    raise ValueError(f"Unsupported expected.type in dataset id={case_id}: {kind}")
+
+
 def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -> dict[str, Any]:
     dataset_rows = _load_jsonl(Path(dataset_path))
     baseline_rows = _load_jsonl(Path(baseline_path))
@@ -89,8 +110,7 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
         expected = case["expected"]
         if not isinstance(expected, dict):
             raise ValueError(f"Invalid expected field in dataset id={cid}: must be an object")
-        if "type" not in expected:
-            raise ValueError(f"Missing expected.type in dataset id={cid}")
+        _validate_expected(expected, cid)
 
         if cid not in baseline_by_id:
             raise ValueError(f"Missing baseline output for id={cid}")
