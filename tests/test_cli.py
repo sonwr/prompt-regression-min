@@ -2593,3 +2593,61 @@ class PromptRegressionCliTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+    def test_cli_summary_markdown_lists_changed_and_filtered_ids(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_markdown = tmp_path / "summary.md"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "keep-pass", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "filtered-out", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "keep-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "ok"},
+                    {"id": "filtered-out", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "keep-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "bad"},
+                    {"id": "filtered-out", "output": "ok"},
+                ],
+            )
+
+            with self.assertRaises(SystemExit) as exc:
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm",
+                        "run",
+                        "-d",
+                        str(dataset),
+                        "-b",
+                        str(baseline),
+                        "-c",
+                        str(candidate),
+                        "--exclude-id-regex",
+                        "^filtered-",
+                        "--summary-markdown",
+                        str(summary_markdown),
+                    ],
+                ):
+                    cli.main()
+            self.assertEqual(exc.exception.code, 1)
+            rendered = summary_markdown.read_text(encoding="utf-8")
+            self.assertIn("- Changed IDs: `reg-1`", rendered)
+            self.assertIn("- Filtered-out IDs: `filtered-out`", rendered)
