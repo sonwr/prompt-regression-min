@@ -2221,10 +2221,12 @@ class PromptRegressionCliTests(unittest.TestCase):
 
         self.assertIn("## prompt-regression-min summary", pass_md)
         self.assertIn("- Summary schema version: `1`", pass_md)
+        self.assertIn("- Required schema version gate: `1`", pass_md)
         self.assertIn("- Status: **PASS**", pass_md)
 
         self.assertIn("## prompt-regression-min summary", fail_md)
         self.assertIn("- Summary schema version: `1`", fail_md)
+        self.assertIn("- Required schema version gate: `1`", fail_md)
         self.assertIn("- Status: **FAIL**", fail_md)
 
     def test_cli_writes_summary_markdown_file(self) -> None:
@@ -2259,7 +2261,42 @@ class PromptRegressionCliTests(unittest.TestCase):
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("## prompt-regression-min summary", markdown)
             self.assertIn("- Summary schema version: `1`", markdown)
+            self.assertIn("- Required schema version gate: _not set_", markdown)
             self.assertIn("- Status: **PASS**", markdown)
+
+    def test_cli_summary_markdown_includes_required_schema_version_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_md = tmp_path / "artifacts" / "summary.md"
+
+            _write_jsonl(dataset, [{"id": "a", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "a", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "a", "output": "ok"}])
+
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-markdown",
+                    str(summary_md),
+                    "--require-summary-schema-version",
+                    "1",
+                ],
+            ):
+                cli.main()
+
+            markdown = summary_md.read_text(encoding="utf-8")
+            self.assertIn("- Required schema version gate: `1`", markdown)
 
     def test_cli_summary_markdown_includes_fail_reasons(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

@@ -599,6 +599,11 @@ def main() -> None:
                 "## prompt-regression-min summary",
                 "",
                 "- Summary schema version: `1`",
+                (
+                    f"- Required schema version gate: `{args.require_summary_schema_version}`"
+                    if args.require_summary_schema_version is not None
+                    else "- Required schema version gate: _not set_"
+                ),
                 f"- Status: **{status}**",
                 (
                     f"- Cases: {summary['cases']} "

@@ -13,6 +13,7 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
   -c examples/outputs/walkthrough_pass_artifact_demo.candidate.jsonl \
   --summary-json "$ARTIFACT_DIR/walkthrough-pass.summary.json" \
   --summary-markdown "$ARTIFACT_DIR/walkthrough-pass.summary.md" \
+  --require-summary-schema-version 1 \
   --quiet
 
 set +e
@@ -23,6 +24,7 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
   --max-regressions 0 \
   --summary-json "$ARTIFACT_DIR/walkthrough-fail.summary.json" \
   --summary-markdown "$ARTIFACT_DIR/walkthrough-fail.summary.md" \
+  --require-summary-schema-version 1 \
   --quiet
 status=$?
 set -e

@@ -493,6 +493,7 @@ Use `--summary-json` for CI parsers:
 - `--summary-json artifacts/summary.json`: write JSON payload to file
 - `--summary-json-pretty`: pretty-print summary JSON (`indent=2`) for stdout/file outputs
 - `--summary-markdown artifacts/summary.md`: write a compact markdown summary for PR comments/release notes
+  - Markdown summaries now echo `Required schema version gate` so reviewers can see whether the artifact was generated under an explicit compatibility contract or free-run mode.
 - `--quiet`: suppress all human-readable summary lines (including baseline/candidate/delta and outcome rollups) so CI logs can keep only JSON/artifact paths
 - In CI, persist `.tmp/` summary artifacts (JSON + Markdown) with `actions/upload-artifact` so failed gates stay reviewable after the job exits.
 
