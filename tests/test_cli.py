@@ -89,7 +89,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertEqual(exc.exception.code, 1)
         markdown = output.getvalue()
         self.assertIn("## word-count release-note gate", markdown)
-        self.assertIn("- Regression IDs: `release-note-bullets`, `release-note-short`", markdown)
+        self.assertIn("- Regression IDs (2): `release-note-bullets`, `release-note-short`", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
     def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
         root = Path(__file__).resolve().parents[1]
@@ -177,8 +177,8 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Coverage watch: selected=2, active=2, skipped=0, filtered_out=0", markdown)
             self.assertIn("- Regression rate: 50.00% of active cases", markdown)
             self.assertIn("- Improvement rate: 0.00% of active cases", markdown)
-            self.assertIn("- Unchanged pass IDs: `stable-pass`", markdown)
-            self.assertIn("- Regression IDs: `reg-1`", markdown)
+            self.assertIn("- Unchanged pass IDs (1): `stable-pass`", markdown)
+            self.assertIn("- Regression IDs (1): `reg-1`", markdown)
 
 
     def test_summary_markdown_includes_changed_case_budget_usage_when_gate_is_set(self) -> None:
@@ -525,9 +525,9 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("  - max_unchanged_pass=disabled", rendered)
             self.assertIn("  - min_stability_rate=disabled", rendered)
             self.assertIn("  - require_summary_schema_version=disabled", rendered)
-            self.assertIn("- Regression IDs: `reg-1`", rendered)
-            self.assertIn("- Improved IDs: `imp-1`", rendered)
-            self.assertIn("- Changed IDs: `imp-1`, `reg-1`", rendered)
+            self.assertIn("- Regression IDs (1): `reg-1`", rendered)
+            self.assertIn("- Improved IDs (1): `imp-1`", rendered)
+            self.assertIn("- Changed IDs (2): `imp-1`, `reg-1`", rendered)
             self.assertIn("- Changed-case rate: 66.67%", rendered)
             self.assertNotIn("prompt-regression-min summary\n- cases:", rendered)
 
@@ -3018,11 +3018,11 @@ class PromptRegressionCliTests(unittest.TestCase):
                 cli.main()
 
             markdown = summary_md.read_text(encoding="utf-8")
-            self.assertIn("- Filtered-out IDs: `billing-out`", markdown)
+            self.assertIn("- Filtered-out IDs (1): `billing-out`", markdown)
             self.assertIn("- Scope reduction: 33.33% of source cases removed by filters", markdown)
-            self.assertIn("- Skipped IDs: `ops-skip`", markdown)
+            self.assertIn("- Skipped IDs (1): `ops-skip`", markdown)
             self.assertIn("- Skipped-case rate: 100.00% of active cases", markdown)
-            self.assertIn("- Unchanged fail IDs: `auth-keep`", markdown)
+            self.assertIn("- Unchanged fail IDs (1): `auth-keep`", markdown)
 
     def test_cli_summary_markdown_includes_fail_reasons(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -3137,8 +3137,8 @@ class PromptRegressionCliTests(unittest.TestCase):
                     ):
                         cli.main()
             markdown = output.getvalue()
-            self.assertIn("- Unchanged pass IDs: `stable-pass`", markdown)
-            self.assertIn("- Regression IDs: `reg-1`", markdown)
+            self.assertIn("- Unchanged pass IDs (1): `stable-pass`", markdown)
+            self.assertIn("- Regression IDs (1): `reg-1`", markdown)
 
             self.assertIn("- Fail reasons:", markdown)
 

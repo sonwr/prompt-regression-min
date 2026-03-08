@@ -46,8 +46,8 @@
   - require_summary_schema_version=disabled
 - Selected dataset IDs: `release-note-bullets`, `release-note-short`
 - Active case IDs: `release-note-bullets`, `release-note-short`
-- Regression IDs: `release-note-bullets`, `release-note-short`
-- Changed IDs: `release-note-bullets`, `release-note-short`
+- Regression IDs (2): `release-note-bullets`, `release-note-short`
+- Changed IDs (2): `release-note-bullets`, `release-note-short`
 - Changed-case rate: 100.00%
 - Fail reasons:
   - regressions 2 exceeded max 0

@@ -46,7 +46,7 @@
   - require_summary_schema_version=1
 - Selected dataset IDs: `checkout-copy`, `policy-note`
 - Active case IDs: `checkout-copy`, `policy-note`
-- Improved IDs: `checkout-copy`
-- Changed IDs: `checkout-copy`
+- Improved IDs (1): `checkout-copy`
+- Changed IDs (1): `checkout-copy`
 - Changed-case rate: 50.00%
-- Unchanged pass IDs: `policy-note`
+- Unchanged pass IDs (1): `policy-note`

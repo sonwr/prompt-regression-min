@@ -46,9 +46,9 @@
   - require_summary_schema_version=1
 - Selected dataset IDs: `auth-login`, `checkout-copy`
 - Active case IDs: `auth-login`, `checkout-copy`
-- Regression IDs: `auth-login`
-- Changed IDs: `auth-login`
+- Regression IDs (1): `auth-login`
+- Changed IDs (1): `auth-login`
 - Changed-case rate: 50.00%
-- Unchanged pass IDs: `checkout-copy`
+- Unchanged pass IDs (1): `checkout-copy`
 - Fail reasons:
   - regressions 1 exceeded max 0

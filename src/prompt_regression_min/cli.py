@@ -801,11 +801,11 @@ def main() -> None:
                 )
             if regression_ids:
                 markdown_lines.append(
-                    "- Regression IDs: " + ", ".join(f"`{case_id}`" for case_id in regression_ids)
+                    f"- Regression IDs ({len(regression_ids)}): " + ", ".join(f"`{case_id}`" for case_id in regression_ids)
                 )
             if improved_ids:
                 markdown_lines.append(
-                    "- Improved IDs: " + ", ".join(f"`{case_id}`" for case_id in improved_ids)
+                    f"- Improved IDs ({len(improved_ids)}): " + ", ".join(f"`{case_id}`" for case_id in improved_ids)
                 )
             if args.include_id_regex or args.exclude_id_regex:
                 markdown_lines.append(
@@ -816,14 +816,14 @@ def main() -> None:
                 )
             if summary.get("changed_ids"):
                 markdown_lines.append(
-                    "- Changed IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["changed_ids"])
+                    f"- Changed IDs ({len(summary['changed_ids'])}): " + ", ".join(f"`{case_id}`" for case_id in summary["changed_ids"])
                 )
                 markdown_lines.append(
                     f"- Changed-case rate: {summary.get('changed_rate', 0.0) * 100:.2f}%"
                 )
             if summary.get("filtered_out_ids"):
                 markdown_lines.append(
-                    "- Filtered-out IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"])
+                    f"- Filtered-out IDs ({len(summary['filtered_out_ids'])}): " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"])
                 )
                 markdown_lines.append(
                     f"- Filtered-out rate: {summary.get('filtered_out_rate', 0.0) * 100:.2f}% of source cases"
@@ -833,18 +833,18 @@ def main() -> None:
                 )
             if summary.get("skipped_ids"):
                 markdown_lines.append(
-                    "- Skipped IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"])
+                    f"- Skipped IDs ({len(summary['skipped_ids'])}): " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"])
                 )
                 markdown_lines.append(
                     f"- Skipped-case rate: {summary.get('skipped_rate', 0.0) * 100:.2f}% of active cases"
                 )
             if summary.get("unchanged_pass_ids"):
                 markdown_lines.append(
-                    "- Unchanged pass IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_pass_ids"])
+                    f"- Unchanged pass IDs ({len(summary['unchanged_pass_ids'])}): " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_pass_ids"])
                 )
             if summary.get("unchanged_fail_ids"):
                 markdown_lines.append(
-                    "- Unchanged fail IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_fail_ids"])
+                    f"- Unchanged fail IDs ({len(summary['unchanged_fail_ids'])}): " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_fail_ids"])
                 )
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
