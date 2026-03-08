@@ -77,6 +77,32 @@ jobs:
         env:
           PYTHONPATH: src
 
+      - name: Smoke test stdout markdown summary piping
+        run: |
+          set -euo pipefail
+          mkdir -p .tmp
+          if python -m prompt_regression_min run \
+            -d examples/dataset/walkthrough_fail_artifact_demo.jsonl \
+            -b examples/outputs/walkthrough_fail_artifact_demo.baseline.jsonl \
+            -c examples/outputs/walkthrough_fail_artifact_demo.candidate.jsonl \
+            --max-regressions 0 \
+            --summary-markdown - \
+            --quiet > .tmp/stdout-summary.md; then
+            echo 'expected walkthrough_fail_artifact_demo stdout markdown smoke to fail gate evaluation' >&2
+            exit 1
+          fi
+          python - <<'PY'
+          from pathlib import Path
+
+          rendered = Path('.tmp/stdout-summary.md').read_text(encoding='utf-8')
+          assert '## prompt-regression-min summary' in rendered
+          assert '- Status: **FAIL**' in rendered
+          assert '- Regression IDs: `auth-login`' in rendered
+          print('stdout markdown summary piping: PASS')
+          PY
+        env:
+          PYTHONPATH: src
+
       - name: Smoke test fail payload gate fixture (expected FAIL)
         run: |
           set -euo pipefail
