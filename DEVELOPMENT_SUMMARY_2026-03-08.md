@@ -26,6 +26,27 @@
 ### Next
 - Add a fixture-driven example for `--require-pass-rate-trend` (flat-only policy) under `examples/`.
 
+## Run @ 23:11 UTC (cron)
+
+### Plan
+- Close a README drift where the summary schema gate note was stranded away from the summary-output docs.
+- Re-run unit tests after the documentation cleanup.
+
+### Changes
+- Moved `--require-summary-schema-version` guidance into a dedicated `Summary schema compatibility gate` subsection near the summary-output documentation in `README.md`.
+- Added a copy-paste CLI example that emits summary JSON while enforcing schema version `1`.
+- Restored `## License` as a proper closing section after the reviewer workflow guidance.
+
+### Verification
+- `python3 -m unittest tests.test_core tests.test_cli`
+- Result: **PASS**
+
+### Blockers
+- `pytest` is unavailable in host PATH (`pytest: command not found`), so validation continues with `unittest`.
+
+### Next
+- Add a committed summary-schema walkthrough artifact so docs can point at a stable PASS payload alongside the CLI example.
+
 ## Run @ 05:23 UTC (cron)
 
 ### Plan

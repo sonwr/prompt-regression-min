@@ -790,12 +790,21 @@ Yes. Any workflow producing text outputs can be compared via baseline/candidate 
 
 ---
 
-## License
+### Summary schema compatibility gate
 
-MIT
+Use `--require-summary-schema-version <n>` when downstream CI or PR bots depend on a fixed summary contract.
 
-- `--require-summary-schema-version <n>`: fail if the emitted summary JSON schema version drifts from the version your downstream parser expects.
+```bash
+python3 -m prompt_regression_min run \
+  -d examples/dataset/walkthrough_pass_artifact_demo.jsonl \
+  -b examples/outputs/walkthrough_pass_artifact_demo.baseline.jsonl \
+  -c examples/outputs/walkthrough_pass_artifact_demo.candidate.jsonl \
+  --summary-json - \
+  --require-summary-schema-version 1 \
+  --quiet
+```
 
+This fails fast if the emitted `summary_schema_version` drifts from the parser expectation, which makes CI handoff breakage visible before a bot posts stale review output.
 
 ## Reviewer-oriented shard workflow
 
@@ -807,3 +816,7 @@ When a PR only touches one feature area, prefer a shard run that still makes ski
 4. Use a markdown or PR-comment summary so reviewers do not need raw JSON to see scope loss.
 
 This keeps shard runs deterministic while preserving reviewer trust in what was, and was not, exercised.
+
+## License
+
+MIT
