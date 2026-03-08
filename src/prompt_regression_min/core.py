@@ -3,10 +3,55 @@ from __future__ import annotations
 from dataclasses import dataclass, asdict
 import json
 from pathlib import Path
+import re
 from typing import Any
 
 
-SUPPORTED_EXPECTED_TYPES = ("exact", "substring", "contains_all")
+SUPPORTED_EXPECTED_TYPES = (
+    "exact",
+    "exact_ci",
+    "not_exact",
+    "not_exact_ci",
+    "substring",
+    "substring_ci",
+    "not_substring",
+    "not_substring_ci",
+    "starts_with",
+    "starts_with_ci",
+    "not_starts_with",
+    "not_starts_with_ci",
+    "ends_with",
+    "ends_with_ci",
+    "not_ends_with",
+    "not_ends_with_ci",
+    "equals_any",
+    "equals_any_ci",
+    "contains_all",
+    "contains_all_ci",
+    "contains_any",
+    "contains_any_ci",
+    "not_contains",
+    "not_contains_ci",
+    "contains_none",
+    "contains_none_ci",
+    "regex",
+    "regex_ci",
+    "regex_fullmatch",
+    "not_regex",
+    "not_regex_ci",
+    "not_regex_fullmatch",
+)
+REGEX_FLAG_MAP = {
+    "IGNORECASE": re.IGNORECASE,
+    "MULTILINE": re.MULTILINE,
+    "DOTALL": re.DOTALL,
+}
+
+
+def _normalize_regex_flag_name(flag_name: Any) -> str:
+    if not isinstance(flag_name, str):
+        return ""
+    return flag_name.strip().upper()
 
 
 @dataclass
@@ -14,6 +59,7 @@ class CaseResult:
     id: str
     baseline_pass: bool
     candidate_pass: bool
+    outcome: str
     baseline_output: str
     candidate_output: str
     expectation: dict[str, Any]
@@ -44,14 +90,137 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
     kind = expected.get("type")
     if kind == "exact":
         return output.strip() == str(expected.get("value", "")).strip()
+    if kind == "exact_ci":
+        return output.strip().lower() == str(expected.get("value", "")).strip().lower()
+    if kind == "not_exact":
+        return output.strip() != str(expected.get("value", "")).strip()
+    if kind == "not_exact_ci":
+        return output.strip().lower() != str(expected.get("value", "")).strip().lower()
     if kind == "substring":
         needle = str(expected.get("value", ""))
         return needle in output
+    if kind == "substring_ci":
+        needle = str(expected.get("value", ""))
+        return needle.lower() in output.lower()
+    if kind == "not_substring":
+        needle = str(expected.get("value", ""))
+        return needle not in output
+    if kind == "not_substring_ci":
+        needle = str(expected.get("value", ""))
+        return needle.lower() not in output.lower()
+    if kind == "starts_with":
+        prefix = str(expected.get("value", ""))
+        return output.startswith(prefix)
+    if kind == "starts_with_ci":
+        prefix = str(expected.get("value", ""))
+        return output.lower().startswith(prefix.lower())
+    if kind == "not_starts_with":
+        prefix = str(expected.get("value", ""))
+        return not output.startswith(prefix)
+    if kind == "not_starts_with_ci":
+        prefix = str(expected.get("value", ""))
+        return not output.lower().startswith(prefix.lower())
+    if kind == "ends_with":
+        suffix = str(expected.get("value", ""))
+        return output.endswith(suffix)
+    if kind == "ends_with_ci":
+        suffix = str(expected.get("value", ""))
+        return output.lower().endswith(suffix.lower())
+    if kind == "not_ends_with":
+        suffix = str(expected.get("value", ""))
+        return not output.endswith(suffix)
+    if kind == "not_ends_with_ci":
+        suffix = str(expected.get("value", ""))
+        return not output.lower().endswith(suffix.lower())
+    if kind == "equals_any":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("equals_any expectation requires a list in expected.values")
+        normalized_output = output.strip()
+        return any(normalized_output == str(v).strip() for v in values)
+    if kind == "equals_any_ci":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("equals_any_ci expectation requires a list in expected.values")
+        normalized_output = output.strip().lower()
+        return any(normalized_output == str(v).strip().lower() for v in values)
     if kind == "contains_all":
         values = expected.get("values")
         if not isinstance(values, list):
             raise ValueError("contains_all expectation requires a list in expected.values")
         return all(str(v) in output for v in values)
+    if kind == "contains_all_ci":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("contains_all_ci expectation requires a list in expected.values")
+        output_lower = output.lower()
+        return all(str(v).lower() in output_lower for v in values)
+    if kind == "contains_any":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("contains_any expectation requires a list in expected.values")
+        return any(str(v) in output for v in values)
+    if kind == "contains_any_ci":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("contains_any_ci expectation requires a list in expected.values")
+        output_lower = output.lower()
+        return any(str(v).lower() in output_lower for v in values)
+    if kind == "not_contains":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("not_contains expectation requires a list in expected.values")
+        return all(str(v) not in output for v in values)
+    if kind == "not_contains_ci":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("not_contains_ci expectation requires a list in expected.values")
+        output_lower = output.lower()
+        return all(str(v).lower() not in output_lower for v in values)
+    if kind == "contains_none":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("contains_none expectation requires a list in expected.values")
+        return all(str(v) not in output for v in values)
+    if kind == "contains_none_ci":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("contains_none_ci expectation requires a list in expected.values")
+        output_lower = output.lower()
+        return all(str(v).lower() not in output_lower for v in values)
+    if kind in {"regex", "regex_ci", "regex_fullmatch", "not_regex", "not_regex_ci", "not_regex_fullmatch"}:
+        pattern = expected.get("pattern")
+        if not isinstance(pattern, str):
+            raise ValueError(f"{kind} expectation requires expected.pattern as a string")
+
+        raw_flags = expected.get("flags", [])
+        if not isinstance(raw_flags, list):
+            raise ValueError(f"{kind} expectation requires expected.flags as a list")
+
+        flags = 0
+        for raw_flag_name in raw_flags:
+            flag_name = _normalize_regex_flag_name(raw_flag_name)
+            if flag_name not in REGEX_FLAG_MAP:
+                supported_flags = ", ".join(REGEX_FLAG_MAP)
+                raise ValueError(
+                    f"Unsupported regex flag: {raw_flag_name}. Supported flags: {supported_flags}"
+                )
+            flags |= REGEX_FLAG_MAP[flag_name]
+
+        if kind in {"regex_ci", "not_regex_ci"}:
+            flags |= re.IGNORECASE
+
+        try:
+            compiled = re.compile(pattern, flags=flags)
+        except re.error as exc:
+            raise ValueError(f"Invalid regex pattern: {exc}") from exc
+        if kind == "regex_fullmatch":
+            return compiled.fullmatch(output) is not None
+        if kind in {"not_regex", "not_regex_ci"}:
+            return compiled.search(output) is None
+        if kind == "not_regex_fullmatch":
+            return compiled.fullmatch(output) is None
+        return compiled.search(output) is not None
     supported = ", ".join(SUPPORTED_EXPECTED_TYPES)
     raise ValueError(f"Unsupported expectation type: {kind}. Supported types: {supported}")
 
@@ -62,6 +231,8 @@ def _index_rows_by_id(rows: list[dict[str, Any]], label: str) -> dict[str, dict[
         if "id" not in row:
             raise ValueError(f"Missing id field in {label} row #{idx}")
         rid = str(row["id"])
+        if not rid.strip():
+            raise ValueError(f"Invalid empty id in {label} row #{idx}")
         if rid in by_id:
             raise ValueError(f"Duplicate id in {label}: {rid}")
         by_id[rid] = row
@@ -73,7 +244,24 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
     if not isinstance(kind, str):
         raise ValueError(f"Invalid expected.type in dataset id={case_id}: must be a string")
 
-    if kind in {"exact", "substring"}:
+    if kind in {
+        "exact",
+        "exact_ci",
+        "not_exact",
+        "not_exact_ci",
+        "substring",
+        "substring_ci",
+        "not_substring",
+        "not_substring_ci",
+        "starts_with",
+        "starts_with_ci",
+        "not_starts_with",
+        "not_starts_with_ci",
+        "ends_with",
+        "ends_with_ci",
+        "not_ends_with",
+        "not_ends_with_ci",
+    }:
         if "value" not in expected:
             raise ValueError(f"Missing expected.value for type={kind} in dataset id={case_id}")
         value = expected.get("value")
@@ -81,26 +269,124 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
             raise ValueError(
                 f"Invalid expected.value for type={kind} in dataset id={case_id}: must be a string"
             )
-        if kind == "substring" and not value.strip():
+        if kind in {
+            "substring",
+            "substring_ci",
+            "not_substring",
+            "not_substring_ci",
+            "starts_with",
+            "starts_with_ci",
+            "not_starts_with",
+            "not_starts_with_ci",
+            "ends_with",
+            "ends_with_ci",
+            "not_ends_with",
+            "not_ends_with_ci",
+        } and not value.strip():
             raise ValueError(
-                f"Invalid expected.value for type=substring in dataset id={case_id}: must be a non-empty string"
+                f"Invalid expected.value for type={kind} in dataset id={case_id}: must be a non-empty string"
             )
         return
 
-    if kind == "contains_all":
+    if kind in {"equals_any", "equals_any_ci"}:
         values = expected.get("values")
         if not isinstance(values, list):
             raise ValueError(
-                f"Invalid expected.values for type=contains_all in dataset id={case_id}: must be a list"
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: must be a list"
             )
         if not values:
             raise ValueError(
-                f"Invalid expected.values for type=contains_all in dataset id={case_id}: must be non-empty"
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: must be non-empty"
             )
         if any(not isinstance(v, str) or not v.strip() for v in values):
             raise ValueError(
-                f"Invalid expected.values for type=contains_all in dataset id={case_id}: every item must be a non-empty string"
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: every item must be a non-empty string"
             )
+        return
+
+    if kind in {"contains_all", "contains_all_ci"}:
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError(
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: must be a list"
+            )
+        if not values:
+            raise ValueError(
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: must be non-empty"
+            )
+        if any(not isinstance(v, str) or not v.strip() for v in values):
+            raise ValueError(
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: every item must be a non-empty string"
+            )
+        return
+
+    if kind in {"contains_any", "contains_any_ci"}:
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError(
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: must be a list"
+            )
+        if not values:
+            raise ValueError(
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: must be non-empty"
+            )
+        if any(not isinstance(v, str) or not v.strip() for v in values):
+            raise ValueError(
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: every item must be a non-empty string"
+            )
+        return
+
+    if kind in {"not_contains", "not_contains_ci", "contains_none", "contains_none_ci"}:
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError(
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: must be a list"
+            )
+        if not values:
+            raise ValueError(
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: must be non-empty"
+            )
+        if any(not isinstance(v, str) or not v.strip() for v in values):
+            raise ValueError(
+                f"Invalid expected.values for type={kind} in dataset id={case_id}: every item must be a non-empty string"
+            )
+        return
+
+    if kind in {"regex", "regex_ci", "regex_fullmatch", "not_regex", "not_regex_ci", "not_regex_fullmatch"}:
+        pattern = expected.get("pattern")
+        if not isinstance(pattern, str) or not pattern.strip():
+            raise ValueError(
+                f"Invalid expected.pattern for type={kind} in dataset id={case_id}: must be a non-empty string"
+            )
+
+        flags = expected.get("flags", [])
+        if not isinstance(flags, list):
+            raise ValueError(
+                f"Invalid expected.flags for type={kind} in dataset id={case_id}: must be a list"
+            )
+        normalized_flags: list[str] = []
+        for raw_flag_name in flags:
+            flag_name = _normalize_regex_flag_name(raw_flag_name)
+            if flag_name not in REGEX_FLAG_MAP:
+                supported_flags = ", ".join(REGEX_FLAG_MAP)
+                raise ValueError(
+                    f"Unsupported regex flag in dataset id={case_id}: {raw_flag_name}. Supported flags: {supported_flags}"
+                )
+            normalized_flags.append(flag_name)
+
+        flags_value = 0
+        for flag_name in normalized_flags:
+            flags_value |= REGEX_FLAG_MAP[flag_name]
+
+        if kind in {"regex_ci", "not_regex_ci"}:
+            flags_value |= re.IGNORECASE
+
+        try:
+            re.compile(pattern, flags=flags_value)
+        except re.error as exc:
+            raise ValueError(
+                f"Invalid expected.pattern for type={kind} in dataset id={case_id}: {exc}"
+            ) from exc
         return
 
     supported = ", ".join(SUPPORTED_EXPECTED_TYPES)
@@ -109,7 +395,32 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
     )
 
 
-def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -> dict[str, Any]:
+def _derive_outcome(baseline_pass: bool, candidate_pass: bool) -> str:
+    if baseline_pass and not candidate_pass:
+        return "regressed"
+    if not baseline_pass and candidate_pass:
+        return "improved"
+    if baseline_pass and candidate_pass:
+        return "unchanged_pass"
+    return "unchanged_fail"
+
+
+def _is_dataset_case_disabled(case: dict[str, Any], case_id: str) -> bool:
+    raw_disabled = case.get("disabled", False)
+    if not isinstance(raw_disabled, bool):
+        raise ValueError(
+            f"Invalid disabled field in dataset id={case_id}: must be a boolean"
+        )
+    return raw_disabled
+
+
+def run_regression(
+    dataset_path: str,
+    baseline_path: str,
+    candidate_path: str,
+    include_id_regex: str | None = None,
+    exclude_id_regex: str | None = None,
+) -> dict[str, Any]:
     dataset_rows = _load_jsonl(Path(dataset_path))
     baseline_rows = _load_jsonl(Path(baseline_path))
     candidate_rows = _load_jsonl(Path(candidate_path))
@@ -117,11 +428,38 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
     if not dataset_rows:
         raise ValueError("Dataset is empty: provide at least one case")
 
+    source_dataset_case_count = len(dataset_rows)
+
+    include_pattern = re.compile(include_id_regex) if include_id_regex else None
+    exclude_pattern = re.compile(exclude_id_regex) if exclude_id_regex else None
+
+    filtered_out_ids: list[str] = []
+    if include_pattern is not None or exclude_pattern is not None:
+        filtered_dataset_rows: list[dict[str, Any]] = []
+        for row in dataset_rows:
+            case_id = str(row.get("id", ""))
+            include_ok = include_pattern.search(case_id) is not None if include_pattern else True
+            exclude_hit = exclude_pattern.search(case_id) is not None if exclude_pattern else False
+            if include_ok and not exclude_hit:
+                filtered_dataset_rows.append(row)
+            else:
+                filtered_out_ids.append(case_id)
+        dataset_rows = filtered_dataset_rows
+
+    if not dataset_rows:
+        raise ValueError("Dataset selection is empty after applying id filters")
+
     dataset_by_id = _index_rows_by_id(dataset_rows, "dataset")
     baseline_by_id = _index_rows_by_id(baseline_rows, "baseline")
     candidate_by_id = _index_rows_by_id(candidate_rows, "candidate")
 
     dataset_ids = set(dataset_by_id)
+
+    id_filters_enabled = include_id_regex is not None or exclude_id_regex is not None
+    if id_filters_enabled:
+        baseline_by_id = {cid: row for cid, row in baseline_by_id.items() if cid in dataset_ids}
+        candidate_by_id = {cid: row for cid, row in candidate_by_id.items() if cid in dataset_ids}
+
     extra_baseline_ids = sorted(set(baseline_by_id) - dataset_ids)
     if extra_baseline_ids:
         preview = ", ".join(extra_baseline_ids[:5])
@@ -151,8 +489,13 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
         raise ValueError(f"Candidate is missing ids present in dataset: {preview}")
 
     results: list[CaseResult] = []
+    skipped_ids: list[str] = []
 
     for cid, case in dataset_by_id.items():
+        if _is_dataset_case_disabled(case, cid):
+            skipped_ids.append(cid)
+            continue
+
         if "expected" not in case:
             raise ValueError(f"Missing expected field in dataset id={cid}")
         expected = case["expected"]
@@ -186,10 +529,16 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
                 id=cid,
                 baseline_pass=b_pass,
                 candidate_pass=c_pass,
+                outcome=_derive_outcome(b_pass, c_pass),
                 baseline_output=b_out,
                 candidate_output=c_out,
                 expectation=expected,
             )
+        )
+
+    if not results:
+        raise ValueError(
+            "No active dataset cases to evaluate: every case is disabled"
         )
 
     baseline_passes = sum(1 for r in results if r.baseline_pass)
@@ -197,27 +546,72 @@ def run_regression(dataset_path: str, baseline_path: str, candidate_path: str) -
 
     regression_ids = [r.id for r in results if r.baseline_pass and not r.candidate_pass]
     improved_ids = [r.id for r in results if not r.baseline_pass and r.candidate_pass]
+    unchanged_fail_ids = [r.id for r in results if not r.baseline_pass and not r.candidate_pass]
 
     regressions = len(regression_ids)
     improved = len(improved_ids)
     unchanged = len(results) - regressions - improved
+    changed = regressions + improved
+    regression_rate = round(regressions / len(results), 4)
+    changed_rate = round(changed / len(results), 4)
 
     baseline_pass_rate = round(baseline_passes / len(results), 4) if results else 0.0
     candidate_pass_rate = round(candidate_passes / len(results), 4) if results else 0.0
 
+    outcome_counts = {
+        "regressed": sum(1 for r in results if r.outcome == "regressed"),
+        "improved": sum(1 for r in results if r.outcome == "improved"),
+        "unchanged_pass": sum(1 for r in results if r.outcome == "unchanged_pass"),
+        "unchanged_fail": sum(1 for r in results if r.outcome == "unchanged_fail"),
+    }
+
+    unchanged_pass = outcome_counts["unchanged_pass"]
+    unchanged_fail = outcome_counts["unchanged_fail"]
+    unchanged_fail_rate = round(unchanged_fail / len(results), 4)
+    stability_rate = round(unchanged / len(results), 4)
+
+    selected_dataset_case_count = len(dataset_rows)
+    filtered_out_rate = round(len(filtered_out_ids) / source_dataset_case_count, 4)
+
+    pass_rate_trend = "flat"
+    if candidate_pass_rate > baseline_pass_rate:
+        pass_rate_trend = "improving"
+    elif candidate_pass_rate < baseline_pass_rate:
+        pass_rate_trend = "regressing"
+
     summary = {
+        "dataset_cases": source_dataset_case_count,
+        "selected_dataset_cases": selected_dataset_case_count,
         "cases": len(results),
+        "id_filter_include_regex": include_id_regex,
+        "id_filter_exclude_regex": exclude_id_regex,
+        "filtered_out_cases": len(filtered_out_ids),
+        "filtered_out_rate": filtered_out_rate,
+        "filtered_out_ids": sorted(filtered_out_ids),
+        "active_cases": len(results),
+        "skipped_cases": len(skipped_ids),
+        "skipped_ids": sorted(skipped_ids),
         "baseline_passes": baseline_passes,
         "candidate_passes": candidate_passes,
         "baseline_pass_rate": baseline_pass_rate,
         "candidate_pass_rate": candidate_pass_rate,
         "delta_passes": candidate_passes - baseline_passes,
         "delta_pass_rate_pp": round((candidate_pass_rate - baseline_pass_rate) * 100, 2),
+        "pass_rate_trend": pass_rate_trend,
         "regressions": regressions,
+        "regression_rate": regression_rate,
         "improved": improved,
+        "changed": changed,
+        "changed_rate": changed_rate,
         "unchanged": unchanged,
-        "regression_ids": regression_ids,
-        "improved_ids": improved_ids,
+        "stability_rate": stability_rate,
+        "unchanged_pass": unchanged_pass,
+        "unchanged_fail": unchanged_fail,
+        "unchanged_fail_rate": unchanged_fail_rate,
+        "regression_ids": sorted(regression_ids),
+        "improved_ids": sorted(improved_ids),
+        "unchanged_fail_ids": sorted(unchanged_fail_ids),
+        "outcome_counts": outcome_counts,
     }
 
     return {

@@ -1,0 +1,2 @@
+{"id":"improved-1","input":"hello","expected":{"type":"substring","value":"done"}}
+{"id":"stable-pass-1","input":"status","expected":{"type":"substring","value":"ok"}}

@@ -1,0 +1,2 @@
+{"id": "checkout-copy", "input": "Explain checkout status", "expected": {"type": "contains_all", "values": ["checkout", "receipt"]}}
+{"id": "policy-note", "input": "Summarize the policy note", "expected": {"type": "contains_all", "values": ["policy", "approved"]}}

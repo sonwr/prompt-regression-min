@@ -1,0 +1,181 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run unit tests
+        run: |
+          python -m unittest discover -s tests -p "test_*.py" -v
+      - name: Smoke test CLI module entry
+        run: |
+          python -m prompt_regression_min --help
+        env:
+          PYTHONPATH: src
+      - name: Smoke test improved-band policy fixture
+        run: |
+          python -m prompt_regression_min run \
+            -d examples/dataset/improved_band_demo.jsonl \
+            -b examples/outputs/improved_band_demo.baseline.jsonl \
+            -c examples/outputs/improved_band_demo.candidate.jsonl \
+            --max-regressions 0 \
+            --min-improved 1 \
+            --max-improved 1 \
+            --summary-json
+        env:
+          PYTHONPATH: src
+      - name: Smoke test compact vs pretty summary serializer parity
+        run: |
+          mkdir -p .tmp
+          python -m prompt_regression_min run \
+            -d examples/dataset/mixed_expectations.jsonl \
+            -b examples/outputs/mixed_expectations.baseline.jsonl \
+            -c examples/outputs/mixed_expectations.candidate.jsonl \
+            --summary-json .tmp/summary.compact.json \
+            --quiet
+          python -m prompt_regression_min run \
+            -d examples/dataset/mixed_expectations.jsonl \
+            -b examples/outputs/mixed_expectations.baseline.jsonl \
+            -c examples/outputs/mixed_expectations.candidate.jsonl \
+            --summary-json .tmp/summary.pretty.json \
+            --summary-json-pretty \
+            --quiet
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          compact = json.loads(Path('.tmp/summary.compact.json').read_text(encoding='utf-8'))
+          pretty = json.loads(Path('.tmp/summary.pretty.json').read_text(encoding='utf-8'))
+          if compact != pretty:
+              raise SystemExit('compact/pretty summary payload mismatch')
+          pretty_text = Path('.tmp/summary.pretty.json').read_text(encoding='utf-8')
+          if '\n  ' not in pretty_text:
+              raise SystemExit('pretty summary output is not indented')
+          print('serializer parity: PASS')
+          PY
+        env:
+          PYTHONPATH: src
+
+      - name: Smoke test filtered-out coverage gate fixture
+        run: |
+          python -m prompt_regression_min run \
+            -d examples/dataset/filtered_out_band_demo.jsonl \
+            -b examples/outputs/filtered_out_band_demo.baseline.jsonl \
+            -c examples/outputs/filtered_out_band_demo.candidate.jsonl \
+            --include-id-regex '^auth-' \
+            --max-filtered-out-cases 2 \
+            --max-filtered-out-rate 0.5 \
+            --summary-json
+        env:
+          PYTHONPATH: src
+
+      - name: Smoke test fail payload gate fixture (expected FAIL)
+        run: |
+          set -euo pipefail
+          mkdir -p .tmp
+          if python -m prompt_regression_min run \
+            -d examples/dataset/fail_payload_gate_demo.jsonl \
+            -b examples/outputs/fail_payload_gate_demo.baseline.jsonl \
+            -c examples/outputs/fail_payload_gate_demo.candidate.jsonl \
+            --max-unchanged-fail 0 \
+            --summary-json .tmp/fail-summary.json \
+            --summary-markdown .tmp/fail-summary.md; then
+            echo 'expected fail_payload_gate_demo fixture to fail gate evaluation' >&2
+            exit 1
+          fi
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('.tmp/fail-summary.json').read_text(encoding='utf-8'))
+          assert payload['status'] == 'FAIL'
+          assert payload['fail_reasons'], 'fail_reasons should be non-empty'
+          md = Path('.tmp/fail-summary.md').read_text(encoding='utf-8')
+          assert 'Status: **FAIL**' in md
+          assert '- Fail reasons:' in md
+          print('expected FAIL artifacts: PASS')
+          PY
+        env:
+          PYTHONPATH: src
+
+      - name: Smoke test walkthrough fixture artifacts stay aligned with docs
+        run: |
+          set -euo pipefail
+          mkdir -p .tmp
+          python -m prompt_regression_min run \
+            -d examples/dataset/walkthrough_pass_artifact_demo.jsonl \
+            -b examples/outputs/walkthrough_pass_artifact_demo.baseline.jsonl \
+            -c examples/outputs/walkthrough_pass_artifact_demo.candidate.jsonl \
+            --summary-json .tmp/walkthrough-pass.json \
+            --summary-markdown .tmp/walkthrough-pass.md \
+            --quiet
+
+          if python -m prompt_regression_min run \
+            -d examples/dataset/walkthrough_fail_artifact_demo.jsonl \
+            -b examples/outputs/walkthrough_fail_artifact_demo.baseline.jsonl \
+            -c examples/outputs/walkthrough_fail_artifact_demo.candidate.jsonl \
+            --max-regressions 0 \
+            --summary-json .tmp/walkthrough-fail.json \
+            --summary-markdown .tmp/walkthrough-fail.md \
+            --quiet; then
+            echo 'expected walkthrough_fail_artifact_demo to fail gate evaluation' >&2
+            exit 1
+          fi
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          pass_payload = json.loads(Path('.tmp/walkthrough-pass.json').read_text(encoding='utf-8'))
+          fail_payload = json.loads(Path('.tmp/walkthrough-fail.json').read_text(encoding='utf-8'))
+
+          assert pass_payload['status'] == 'PASS'
+          assert pass_payload['summary']['improved_ids'] == ['checkout-copy']
+          assert fail_payload['status'] == 'FAIL'
+          assert fail_payload['summary']['regression_ids'] == ['auth-login']
+
+          fail_md = Path('.tmp/walkthrough-fail.md').read_text(encoding='utf-8')
+          assert 'auth-login' in fail_md
+          print('walkthrough fixture artifact alignment: PASS')
+          PY
+        env:
+          PYTHONPATH: src
+
+      - name: Smoke test committed walkthrough artifact snapshots stay current
+        run: |
+          set -euo pipefail
+          chmod +x scripts/regenerate_walkthrough_artifacts.sh
+          ./scripts/regenerate_walkthrough_artifacts.sh
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          pass_payload = json.loads(Path('examples/artifacts/walkthrough-pass.summary.json').read_text(encoding='utf-8'))
+          fail_payload = json.loads(Path('examples/artifacts/walkthrough-fail.summary.json').read_text(encoding='utf-8'))
+          assert pass_payload['status'] == 'PASS'
+          assert pass_payload['summary']['improved_ids'] == ['checkout-copy']
+          assert fail_payload['status'] == 'FAIL'
+          assert fail_payload['summary']['regression_ids'] == ['auth-login']
+          fail_md = Path('examples/artifacts/walkthrough-fail.summary.md').read_text(encoding='utf-8')
+          assert 'Status: **FAIL**' in fail_md
+          assert 'regressions 1 exceeded max 0' in fail_md
+          print('committed walkthrough artifact snapshots: PASS')
+          PY
+        env:
+          PYTHONPATH: src
+
+      - name: Upload regression summary artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prompt-regression-min-ci-artifacts
+          path: .tmp/
+          if-no-files-found: ignore

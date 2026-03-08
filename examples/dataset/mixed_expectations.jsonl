@@ -1,0 +1,4 @@
+{"id":"mx-1","input":"Classify moderation state","expected":{"type":"equals_any","values":["ALLOW","REVIEW"]}}
+{"id":"mx-2","input":"Return canonical ticket id format","expected":{"type":"regex_fullmatch","pattern":"TICKET-[0-9]{4}"}}
+{"id":"mx-3","input":"Mention one support channel","expected":{"type":"contains_any","values":["chat","email"]}}
+{"id":"mx-4","input":"No sensitive identifiers","expected":{"type":"not_contains_ci","values":["ssn","credit card"]}}

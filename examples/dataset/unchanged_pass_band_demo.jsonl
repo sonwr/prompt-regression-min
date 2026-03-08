@@ -1,0 +1,3 @@
+{"id":"band-1","input":"status","expected":{"type":"exact","value":"OK"}}
+{"id":"band-2","input":"region","expected":{"type":"equals_any","values":["US","EU"]}}
+{"id":"band-3","input":"policy","expected":{"type":"not_contains","values":["forbidden"]}}

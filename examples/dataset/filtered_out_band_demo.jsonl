@@ -1,0 +1,4 @@
+{"id":"auth-login","input":"Return auth status","expected":{"type":"substring","value":"ok"}}
+{"id":"auth-logout","input":"Return auth status","expected":{"type":"substring","value":"ok"}}
+{"id":"billing-invoice","input":"Return billing status","expected":{"type":"substring","value":"ok"}}
+{"id":"search-query","input":"Return search status","expected":{"type":"substring","value":"ok"}}

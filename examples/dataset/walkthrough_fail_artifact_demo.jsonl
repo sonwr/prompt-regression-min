@@ -1,0 +1,2 @@
+{"id": "auth-login", "input": "Confirm login flow", "expected": {"type": "contains_all", "values": ["login", "success"]}}
+{"id": "checkout-copy", "input": "Explain checkout status", "expected": {"type": "contains_all", "values": ["checkout", "receipt"]}}
