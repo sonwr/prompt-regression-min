@@ -4,14 +4,15 @@ set -euo pipefail
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT_DIR"
 
-mkdir -p examples/artifacts
+ARTIFACT_DIR="${PRM_WALKTHROUGH_ARTIFACT_DIR:-examples/artifacts}"
+mkdir -p "$ARTIFACT_DIR"
 
 PYTHONPATH=src python3 -m prompt_regression_min run \
   -d examples/dataset/walkthrough_pass_artifact_demo.jsonl \
   -b examples/outputs/walkthrough_pass_artifact_demo.baseline.jsonl \
   -c examples/outputs/walkthrough_pass_artifact_demo.candidate.jsonl \
-  --summary-json examples/artifacts/walkthrough-pass.summary.json \
-  --summary-markdown examples/artifacts/walkthrough-pass.summary.md \
+  --summary-json "$ARTIFACT_DIR/walkthrough-pass.summary.json" \
+  --summary-markdown "$ARTIFACT_DIR/walkthrough-pass.summary.md" \
   --quiet
 
 set +e
@@ -20,8 +21,8 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
   -b examples/outputs/walkthrough_fail_artifact_demo.baseline.jsonl \
   -c examples/outputs/walkthrough_fail_artifact_demo.candidate.jsonl \
   --max-regressions 0 \
-  --summary-json examples/artifacts/walkthrough-fail.summary.json \
-  --summary-markdown examples/artifacts/walkthrough-fail.summary.md \
+  --summary-json "$ARTIFACT_DIR/walkthrough-fail.summary.json" \
+  --summary-markdown "$ARTIFACT_DIR/walkthrough-fail.summary.md" \
   --quiet
 status=$?
 set -e

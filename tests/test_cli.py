@@ -5,6 +5,7 @@ import io
 import json
 import sys
 import tempfile
+import subprocess
 import unittest
 from unittest import mock
 from pathlib import Path
@@ -2066,6 +2067,20 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(payload["status"], "PASS")
             self.assertEqual(payload["gates"]["require_pass_rate_trend"], "improving")
 
+
+
+    def test_walkthrough_artifact_drift_helper_passes_for_committed_snapshots(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        result = subprocess.run(
+            [sys.executable, str(root / "scripts" / "check_walkthrough_artifact_drift.py")],
+            cwd=root,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
+        self.assertIn("walkthrough artifact drift: PASS", result.stdout)
+        self.assertIn("summary_schema_version=1", result.stdout)
 
     def test_cli_writes_summary_markdown_file(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
