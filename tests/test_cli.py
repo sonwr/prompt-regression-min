@@ -2337,6 +2337,65 @@ class PromptRegressionCliTests(unittest.TestCase):
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("- Case filters: include=`^auth-`, exclude=`-canary$`", markdown)
 
+    def test_cli_summary_markdown_includes_filtered_skipped_and_unchanged_fail_ids(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_md = tmp_path / "artifacts" / "summary.md"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "auth-keep", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "ops-skip", "disabled": True, "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "billing-out", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "auth-keep", "output": "bad"},
+                    {"id": "ops-skip", "output": "bad"},
+                    {"id": "billing-out", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "auth-keep", "output": "still bad"},
+                    {"id": "ops-skip", "output": "bad"},
+                    {"id": "billing-out", "output": "ok"},
+                ],
+            )
+
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-markdown",
+                    str(summary_md),
+                    "--include-id-regex",
+                    "^auth-|^ops-",
+                    "--max-unchanged-fail",
+                    "1",
+                ],
+            ):
+                cli.main()
+
+            markdown = summary_md.read_text(encoding="utf-8")
+            self.assertIn("- Filtered-out IDs: `billing-out`", markdown)
+            self.assertIn("- Skipped IDs: `ops-skip`", markdown)
+            self.assertIn("- Unchanged fail IDs: `auth-keep`", markdown)
+
     def test_cli_summary_markdown_includes_fail_reasons(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

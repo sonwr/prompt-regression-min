@@ -642,6 +642,18 @@ def main() -> None:
                     + ", exclude="
                     + (f"`{args.exclude_id_regex}`" if args.exclude_id_regex else "_none_")
                 )
+            if summary.get("filtered_out_ids"):
+                markdown_lines.append(
+                    "- Filtered-out IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"])
+                )
+            if summary.get("skipped_ids"):
+                markdown_lines.append(
+                    "- Skipped IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"])
+                )
+            if summary.get("unchanged_fail_ids"):
+                markdown_lines.append(
+                    "- Unchanged fail IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_fail_ids"])
+                )
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
                 markdown_lines.extend([f"  - {reason}" for reason in fail_reasons])
