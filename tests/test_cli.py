@@ -20,6 +20,35 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
 
 
 class PromptRegressionCliTests(unittest.TestCase):
+    def test_summary_markdown_stdout_word_count_range_fixture_surfaces_regression_id(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            with self.assertRaises(SystemExit) as exc:
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm",
+                        "run",
+                        "--dataset",
+                        str(root / "examples" / "dataset" / "word_count_range_release_notes.jsonl"),
+                        "--baseline",
+                        str(root / "examples" / "outputs" / "word_count_range_release_notes.baseline.jsonl"),
+                        "--candidate",
+                        str(root / "examples" / "outputs" / "word_count_range_release_notes.candidate.jsonl"),
+                        "--summary-markdown",
+                        "-",
+                        "--summary-markdown-title",
+                        "word-count release-note gate",
+                    ],
+                ):
+                    cli.main()
+        self.assertEqual(exc.exception.code, 1)
+        markdown = output.getvalue()
+        self.assertIn("## word-count release-note gate", markdown)
+        self.assertIn("- Regression IDs: `release-note-bullets`, `release-note-short`", markdown)
+        self.assertIn("- Status: **FAIL**", markdown)
+
     def test_cli_allows_configurable_regression_budget(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

@@ -1,0 +1,34 @@
+## word-count release-note gate
+
+- Tool version: `0.1.0`
+- Summary schema version: `1`
+- Required schema version gate: _not set_
+- Status: **FAIL**
+- Dataset scope: source=2, selected=2, active=2
+- Cases: 2 (active=2, skipped=0, filtered_out=0)
+- Pass rate: baseline 100.0% -> candidate 0.0% (delta -100.00pp)
+- Pass-rate trend: `regressing`
+- Stability rate: 0.00%
+- Outcomes: regressions=2, improved=0, unchanged_pass=0, unchanged_fail=0
+- Gate snapshot:
+  - max_regressions=0
+  - max_regression_rate=disabled
+  - min_candidate_pass_rate=0.0
+  - max_unchanged_fail=-1
+  - max_unchanged_fail_rate=disabled
+  - forbid_unchanged_fail_id_regex=disabled
+  - max_skipped_cases=-1
+  - max_changed_cases=disabled
+  - max_changed_rate=disabled
+  - max_filtered_out_cases=disabled
+  - max_filtered_out_rate=disabled
+  - min_active_cases=1
+  - min_improved=0
+  - max_improved=disabled
+  - max_improved_rate=disabled
+  - min_stability_rate=disabled
+  - require_pass_rate_trend=disabled
+- Regression IDs: `release-note-bullets`, `release-note-short`
+- Changed IDs: `release-note-bullets`, `release-note-short`
+- Fail reasons:
+  - regressions 2 exceeded max 0

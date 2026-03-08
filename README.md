@@ -177,6 +177,7 @@ python -m prompt_regression_min run \
 ```
 
 For a copyable length-budget smoke test, see `examples/word_count_range_walkthrough.md`.
+Committed reviewer-facing markdown output for the same fixture lives at `examples/artifacts/word-count-range.summary.md`.
 
 ---
 
