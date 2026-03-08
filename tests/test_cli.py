@@ -242,6 +242,8 @@ class PromptRegressionCliTests(unittest.TestCase):
             lines = [line for line in output.getvalue().splitlines() if line.strip()]
             summary_payload = json.loads(lines[-1])
             self.assertEqual(summary_payload["status"], "PASS")
+            self.assertEqual(summary_payload["summary_schema_version"], 1)
+            self.assertEqual(summary_payload["tool_version"], cli.__version__)
             self.assertIn("summary", summary_payload)
             self.assertIn("unchanged_fail", summary_payload["summary"])
             self.assertIn("gates", summary_payload)

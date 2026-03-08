@@ -604,6 +604,11 @@ Regenerate those committed walkthrough snapshots with one command:
 ./scripts/regenerate_walkthrough_artifacts.sh
 ```
 
+Summary JSON now includes explicit parser metadata:
+
+- `summary_schema_version`: stable schema marker for downstream CI parsers
+- `tool_version`: package version that produced the artifact
+
 Use the generated report and fail deployment when regressions exceed your tolerance.
 
 Example policy:

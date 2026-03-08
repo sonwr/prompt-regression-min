@@ -138,8 +138,12 @@ jobs:
           fail_payload = json.loads(Path('.tmp/walkthrough-fail.json').read_text(encoding='utf-8'))
 
           assert pass_payload['status'] == 'PASS'
+          assert pass_payload['summary_schema_version'] == 1
+          assert 'tool_version' in pass_payload
           assert pass_payload['summary']['improved_ids'] == ['checkout-copy']
           assert fail_payload['status'] == 'FAIL'
+          assert fail_payload['summary_schema_version'] == 1
+          assert 'tool_version' in fail_payload
           assert fail_payload['summary']['regression_ids'] == ['auth-login']
 
           fail_md = Path('.tmp/walkthrough-fail.md').read_text(encoding='utf-8')
@@ -161,8 +165,12 @@ jobs:
           pass_payload = json.loads(Path('examples/artifacts/walkthrough-pass.summary.json').read_text(encoding='utf-8'))
           fail_payload = json.loads(Path('examples/artifacts/walkthrough-fail.summary.json').read_text(encoding='utf-8'))
           assert pass_payload['status'] == 'PASS'
+          assert pass_payload['summary_schema_version'] == 1
+          assert 'tool_version' in pass_payload
           assert pass_payload['summary']['improved_ids'] == ['checkout-copy']
           assert fail_payload['status'] == 'FAIL'
+          assert fail_payload['summary_schema_version'] == 1
+          assert 'tool_version' in fail_payload
           assert fail_payload['summary']['regression_ids'] == ['auth-login']
           fail_md = Path('examples/artifacts/walkthrough-fail.summary.md').read_text(encoding='utf-8')
           assert 'Status: **FAIL**' in fail_md

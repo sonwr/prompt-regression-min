@@ -549,6 +549,8 @@ def main() -> None:
             }
             payload = {
                 "status": status,
+                "summary_schema_version": 1,
+                "tool_version": __version__,
                 "fail_reasons": fail_reasons,
                 "summary": summary,
                 "gates": gates,
