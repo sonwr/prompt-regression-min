@@ -638,6 +638,7 @@ The walkthrough now points at copyable fixture pairs (`walkthrough_pass_artifact
 
 It also ships stable snapshot filenames under `examples/artifacts/` so docs can reference concrete PASS/FAIL artifact paths without depending on CI-only `.tmp/` names.
 Both committed markdown snapshots retain `Summary schema version: 1` so reviewer-facing artifacts expose the same contract marker as JSON outputs.
+The drift checker also verifies expected markdown headings (including custom review titles like `## word-count release-note gate`) so docs-ready artifacts do not silently fall back to the default summary heading.
 
 Regenerate those committed walkthrough snapshots with one command:
 

@@ -18,6 +18,11 @@ EXPECTED_FILES = {
     "word-count-range.summary.md": "FAIL",
 }
 
+EXPECTED_MARKDOWN_TITLES = {
+    "walkthrough-pass.summary.md": "## prompt-regression-min summary",
+    "walkthrough-fail.summary.md": "## prompt-regression-min summary",
+    "word-count-range.summary.md": "## word-count release-note gate",
+}
 
 REQUIRED_MARKDOWN_MARKERS = (
     "- Summary schema version: `1`",
@@ -84,6 +89,12 @@ def main() -> int:
                         diffs.append(f'{name}: committed markdown missing marker {marker!r}')
                     if marker not in regenerated_text:
                         diffs.append(f'{name}: regenerated markdown missing marker {marker!r}')
+                expected_title = EXPECTED_MARKDOWN_TITLES.get(name)
+                if expected_title is not None:
+                    if expected_title not in committed_text:
+                        diffs.append(f'{name}: committed markdown missing title {expected_title!r}')
+                    if expected_title not in regenerated_text:
+                        diffs.append(f'{name}: regenerated markdown missing title {expected_title!r}')
                 status_marker = f'- Status: **{expected_status}**'
                 if status_marker not in committed_text:
                     diffs.append(f'{name}: committed markdown missing status marker {status_marker!r}')

@@ -2312,6 +2312,12 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Required schema version gate: `1`", fail_md)
         self.assertIn("- Status: **FAIL**", fail_md)
 
+        word_count_md = (root / "examples" / "artifacts" / "word-count-range.summary.md").read_text(encoding="utf-8")
+        self.assertIn("## word-count release-note gate", word_count_md)
+        self.assertIn(f"- Tool version: `{cli.__version__}`", word_count_md)
+        self.assertIn("- Summary schema version: `1`", word_count_md)
+        self.assertIn("- Status: **FAIL**", word_count_md)
+
     def test_cli_writes_summary_markdown_file_with_custom_title(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
