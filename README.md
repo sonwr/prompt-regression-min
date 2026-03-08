@@ -20,6 +20,7 @@ Minimal, deterministic regression checks for prompt and workflow changes in LLM-
 - [Data Format](#data-format)
 - [CLI Reference](#cli-reference)
 - [Example Output](#example-output)
+- [PR Comment Tips](#pr-comment-tips)
 - [CI/CD Integration](#cicd-integration)
 - [Development Direction](#development-direction)
 - [Quality and Contribution Guidelines](#quality-and-contribution-guidelines)
@@ -599,6 +600,24 @@ prompt-regression-min summary
 - unchanged: 2
 - report: report.json
 ```
+
+---
+
+## PR Comment Tips
+
+Use `--summary-markdown-title` when the generated markdown needs a repo- or workflow-specific heading.
+
+```bash
+prm run \
+  --dataset examples/dataset/customer_support.jsonl \
+  --baseline examples/outputs/customer_support.baseline.jsonl \
+  --candidate examples/outputs/customer_support.candidate.jsonl \
+  --summary-markdown - \
+  --summary-markdown-title "checkout release gate" \
+  --quiet
+```
+
+This keeps the body deterministic while making pasted PR comments easier to scan.
 
 ---
 

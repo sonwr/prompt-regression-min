@@ -110,6 +110,14 @@ def _build_parser() -> argparse.ArgumentParser:
         ),
     )
     run_cmd.add_argument(
+        "--summary-markdown-title",
+        default="prompt-regression-min summary",
+        help=(
+            "Heading text used for --summary-markdown output. "
+            "Useful for PR comments that need repo- or workflow-specific titles."
+        ),
+    )
+    run_cmd.add_argument(
         "--require-summary-schema-version",
         type=int,
         default=None,
@@ -596,7 +604,7 @@ def main() -> None:
 
         if args.summary_markdown:
             markdown_lines = [
-                "## prompt-regression-min summary",
+                f"## {args.summary_markdown_title}",
                 "",
                 f"- Tool version: `{__version__}`",
                 "- Summary schema version: `1`",
