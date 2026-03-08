@@ -619,6 +619,7 @@ prm run \
 ```
 
 This keeps the body deterministic while making pasted PR comments easier to scan.
+The same title override is preserved when `--summary-markdown <path>` writes a file, so CI artifacts and pasted PR comments can keep the same workflow-specific heading.
 
 ---
 

@@ -2277,6 +2277,41 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Required schema version gate: `1`", fail_md)
         self.assertIn("- Status: **FAIL**", fail_md)
 
+    def test_cli_writes_summary_markdown_file_with_custom_title(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_md = tmp_path / "artifacts" / "summary.custom.md"
+
+            _write_jsonl(dataset, [{"id": "a", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "a", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "a", "output": "ok"}])
+
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-markdown",
+                    str(summary_md),
+                    "--summary-markdown-title",
+                    "nightly reviewer handoff",
+                ],
+            ):
+                cli.main()
+
+            markdown = summary_md.read_text(encoding="utf-8")
+            self.assertIn("## nightly reviewer handoff", markdown)
+            self.assertNotIn("## prompt-regression-min summary", markdown)
+
     def test_cli_writes_summary_markdown_file(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
