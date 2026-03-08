@@ -114,7 +114,7 @@ def _build_parser() -> argparse.ArgumentParser:
         default="prompt-regression-min summary",
         help=(
             "Heading text used for --summary-markdown output. "
-            "Useful for PR comments that need repo- or workflow-specific titles."
+            "Useful for repo- or workflow-specific markdown handoff titles."
         ),
     )
     run_cmd.add_argument(
@@ -123,6 +123,14 @@ def _build_parser() -> argparse.ArgumentParser:
         help=(
             "Write a compact reviewer-note markdown snapshot to file (for PR comments). "
             "Use '-' to print the PR-comment snapshot to stdout. File paths are always overwritten."
+        ),
+    )
+    run_cmd.add_argument(
+        "--summary-pr-comment-title",
+        default="prompt-regression-min summary",
+        help=(
+            "Heading text used for --summary-pr-comment output. "
+            "Lets reviewer-note snapshots use a different title than --summary-markdown."
         ),
     )
     run_cmd.add_argument(
@@ -856,7 +864,7 @@ def main() -> None:
 
         if args.summary_pr_comment:
             pr_comment_lines = [
-                f"## {args.summary_markdown_title}",
+                f"## {args.summary_pr_comment_title}",
                 f"- Status: **{status}**",
                 "- Summary schema version: `1`",
                 f"- Pass-rate trend: `{summary.get('pass_rate_trend', 'flat')}`",

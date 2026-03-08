@@ -49,7 +49,7 @@ class PromptRegressionCliTests(unittest.TestCase):
                         str(candidate_path),
                         "--summary-pr-comment",
                         "-",
-                        "--summary-markdown-title",
+                        "--summary-pr-comment-title",
                         "release gate reviewer note",
                         "--quiet",
                     ],
@@ -2648,7 +2648,7 @@ class PromptRegressionCliTests(unittest.TestCase):
                     str(candidate),
                     "--summary-pr-comment",
                     str(pr_comment),
-                    "--summary-markdown-title",
+                    "--summary-pr-comment-title",
                     "review snapshot",
                 ],
             ):
@@ -2661,6 +2661,48 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Pass-rate trend: `flat`", rendered)
             self.assertIn("- Stable IDs: `a`", rendered)
             self.assertIn("approval-ready", rendered)
+
+
+    def test_cli_allows_custom_summary_pr_comment_title_without_changing_markdown_title(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_md = tmp_path / "summary.md"
+            pr_comment = tmp_path / "summary.pr-comment.md"
+
+            _write_jsonl(dataset, [{"id": "a", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "a", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "a", "output": "ok"}])
+
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-markdown",
+                    str(summary_md),
+                    "--summary-markdown-title",
+                    "release gate summary",
+                    "--summary-pr-comment",
+                    str(pr_comment),
+                    "--summary-pr-comment-title",
+                    "review snapshot",
+                ],
+            ):
+                cli.main()
+
+            self.assertIn("## release gate summary", summary_md.read_text(encoding="utf-8"))
+            rendered = pr_comment.read_text(encoding="utf-8")
+            self.assertIn("## review snapshot", rendered)
+            self.assertNotIn("## release gate summary", rendered)
 
     def test_cli_prints_summary_pr_comment_to_stdout_when_dash_is_used(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

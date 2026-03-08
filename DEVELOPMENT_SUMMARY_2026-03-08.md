@@ -502,3 +502,24 @@
 
 ### Next
 - Consider adding one copy-paste CI snippet that posts the stdout reviewer note after `--summary-pr-comment -` into a PR helper action.
+
+## Run @ 21:20 UTC (cron)
+
+### Plan
+- Decouple PR-comment headings from markdown artifact headings.
+- Re-verify reviewer-note regeneration and unit coverage.
+
+### Changes
+- Added `--summary-pr-comment-title` in `src/prompt_regression_min/cli.py` so PR-comment snapshots can use a reviewer-specific title without changing `--summary-markdown-title`.
+- Added/updated CLI tests for custom PR-comment titles and separate markdown vs PR-comment headings.
+- Updated `scripts/regenerate_walkthrough_artifacts.sh`, README, and example playbooks to use/document the new flag.
+
+### Verification
+- `PYTHONPATH=src python3 -m unittest tests.test_core tests.test_cli`
+- Result: **PASS** (138 tests)
+
+### Blockers
+- `pytest` is still unavailable in host PATH, so validation continues via `unittest`.
+
+### Next
+- Add one CI smoke that regenerates a PR-comment artifact with a custom `--summary-pr-comment-title` to pin reviewer-note formatting in workflows.

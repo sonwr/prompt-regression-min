@@ -198,6 +198,7 @@ The walkthrough PASS fixture now also ships an approval-ready reviewer note snap
 Those PR-comment snapshots keep the same schema marker, explicit pass-rate trend, and deterministic stable/regression ids as the markdown/JSON artifacts, so reviewers can paste the note without reformatting CI output.
 `./scripts/regenerate_walkthrough_artifacts.sh` now regenerates those PR-comment snapshots from the same CLI contract via `--summary-pr-comment`, so reviewer-note wording stays formatter-consistent with the committed markdown/JSON summaries.
 Need to pipe the reviewer note directly into CI or a PR bot? `--summary-pr-comment -` now shares the same stdout ergonomics as `--summary-markdown -`, so workflows can render or post the ready-to-paste note without creating a temp file first.
+Need a reviewer-note heading that differs from the markdown artifact title? Use `--summary-pr-comment-title` so PR-comment snapshots can say `review snapshot` or `release blocker note` without changing `--summary-markdown-title`.
 Refresh all committed walkthrough snapshots (including the word-count markdown/JSON pair) with `./scripts/regenerate_walkthrough_artifacts.sh` before updating docs that cite those artifacts.
 The CI workflow also re-checks that the committed word-count markdown snapshot keeps both the schema marker and the documented regression IDs (`release-note-bullets`, `release-note-short`) so reviewer-facing release-note examples do not drift silently.
 For practical threshold combinations you can copy into CI, see `examples/gate_policy_recipes.md`.
