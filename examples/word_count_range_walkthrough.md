@@ -44,6 +44,7 @@ Committed snapshot files:
 - Markdown: `examples/artifacts/word-count-range.summary.md`
 - JSON: `examples/artifacts/word-count-range.summary.json`
 - PR comment playbook: `examples/word_count_pr_comment_playbook.md`
+- Ready-to-paste PR comment snapshot: `examples/artifacts/word-count-range.pr-comment.md`
 
 One-command regeneration:
 
@@ -54,6 +55,7 @@ One-command regeneration:
 Expected regeneration behavior:
 - The word-count fixture remains a FAIL artifact because it intentionally exceeds the release-note budget gate.
 - The regenerated markdown keeps the `word-count release-note gate` title so reviewer-facing snapshots stay stable.
+- The regenerated PR comment snapshot keeps the same schema marker and deterministic regression ids as the markdown/JSON artifacts.
 
 Snapshot drift check:
 
@@ -68,6 +70,9 @@ assert payload['summary']['regression_ids'] == ['release-note-bullets', 'release
 md = Path('examples/artifacts/word-count-range.summary.md').read_text(encoding='utf-8')
 assert 'word-count release-note gate' in md
 assert 'Summary schema version: `1`' in md
+pr_comment = Path('examples/artifacts/word-count-range.pr-comment.md').read_text(encoding='utf-8')
+assert 'Summary schema version: `1`' in pr_comment
+assert 'release-note-bullets' in pr_comment and 'release-note-short' in pr_comment
 print('word-count snapshot drift: PASS')
 PY
 ```

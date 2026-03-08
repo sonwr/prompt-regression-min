@@ -438,3 +438,26 @@
 
 ### Next
 - Add one markdown-focused walkthrough example that shows how to paste the word-count FAIL summary directly into a PR comment or release-review note.
+
+## Run @ 19:10 UTC (cron)
+
+### Plan
+- Make the word-count walkthrough more reviewer-ready by treating the PR-comment snapshot as a first-class committed artifact.
+- Re-run snapshot regeneration and unit coverage so docs/examples/tests stay aligned.
+
+### Changes
+- Updated `examples/word_count_range_walkthrough.md` to document the ready-to-paste PR comment snapshot (`examples/artifacts/word-count-range.pr-comment.md`) alongside the JSON/Markdown artifacts.
+- Extended the walkthrough drift-check snippet to assert the PR-comment snapshot keeps the schema marker plus deterministic regression ids.
+- Updated `README.md` to explain that the PR-comment snapshot mirrors the markdown/JSON contract.
+- Added unittest coverage in `tests/test_cli.py` that pins the committed PR-comment snapshot contents.
+
+### Verification
+- `./scripts/regenerate_walkthrough_artifacts.sh`
+- `python3 -m unittest discover -s tests -q`
+- Result: **PASS**
+
+### Blockers
+- None.
+
+### Next
+- Add a second reviewer-note snapshot for a PASS fixture so teams can copy both approval and failure comment shapes directly from committed artifacts.
