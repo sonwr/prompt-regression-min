@@ -17,6 +17,8 @@
 - Regression budget usage: 0/0 (0.00% active-case rate)
 - Changed-case budget usage: 1/disabled (50.00% active-case rate)
 - Unchanged-fail budget usage: 0/disabled (0.00% active-case rate)
+- Skipped-case budget usage: 0/disabled (0.00% source-case rate)
+- Filtered-out budget usage: 0/disabled (0.00% source-case rate)
 - Reviewer handoff: stable=1, regressions=0, improved=1, watchlist=0
 - Coverage watch: selected=2, active=2, skipped=0, filtered_out=0
 - Gate snapshot:

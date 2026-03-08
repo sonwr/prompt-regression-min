@@ -669,6 +669,16 @@ def main() -> None:
                     + f" ({summary.get('unchanged_fail_rate', 0.0) * 100:.2f}% active-case rate)"
                 ),
                 (
+                    f"- Skipped-case budget usage: {summary.get('skipped_cases', 0)}/"
+                    + (str(args.max_skipped_cases) if args.max_skipped_cases >= 0 else "disabled")
+                    + f" ({(summary.get('skipped_cases', 0) / summary.get('dataset_cases', summary['cases']) * 100 if summary.get('dataset_cases', summary['cases']) else 0.0):.2f}% source-case rate)"
+                ),
+                (
+                    f"- Filtered-out budget usage: {summary.get('filtered_out_cases', 0)}/"
+                    + (str(args.max_filtered_out_cases) if args.max_filtered_out_cases >= 0 else "disabled")
+                    + f" ({summary.get('filtered_out_rate', 0.0) * 100:.2f}% source-case rate)"
+                ),
+                (
                     "- Reviewer handoff: "
                     f"stable={summary.get('unchanged_pass', 0)}, "
                     f"regressions={summary['regressions']}, "

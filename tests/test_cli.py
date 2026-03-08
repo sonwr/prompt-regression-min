@@ -120,6 +120,8 @@ class PromptRegressionCliTests(unittest.TestCase):
         markdown = output.getvalue()
         self.assertIn("- Selection rate: 50.00% of source cases", markdown)
         self.assertIn("- Active-case rate: 50.00% of source cases", markdown)
+        self.assertIn("- Skipped-case budget usage: 0/disabled (0.00% source-case rate)", markdown)
+        self.assertIn("- Filtered-out budget usage: 2/2 (50.00% source-case rate)", markdown)
 
     def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -233,6 +235,62 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Regression budget usage: 0/0 (0.00% active-case rate)", markdown)
             self.assertIn("- Changed-case budget usage: 1/2 (50.00% active-case rate)", markdown)
             self.assertIn("- Unchanged-fail budget usage: 0/disabled (0.00% active-case rate)", markdown)
+            self.assertIn("- Skipped-case budget usage: 0/disabled (0.00% source-case rate)", markdown)
+            self.assertIn("- Filtered-out budget usage: 0/disabled (0.00% source-case rate)", markdown)
+
+    def test_summary_markdown_includes_skipped_case_budget_usage_when_gate_is_set(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "active-pass", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "skip-me", "disabled": True, "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "active-pass", "output": "ok"},
+                    {"id": "skip-me", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "active-pass", "output": "ok"},
+                    {"id": "skip-me", "output": "ok"},
+                ],
+            )
+
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm",
+                        "run",
+                        "-d",
+                        str(dataset),
+                        "-b",
+                        str(baseline),
+                        "-c",
+                        str(candidate),
+                        "--summary-markdown",
+                        "-",
+                        "--max-skipped-cases",
+                        "1",
+                        "--quiet",
+                    ],
+                ):
+                    cli.main()
+            markdown = output.getvalue()
+            self.assertIn("- Skipped-case budget usage: 1/1 (50.00% source-case rate)", markdown)
+            self.assertIn("- Filtered-out budget usage: 0/disabled (0.00% source-case rate)", markdown)
 
     def test_cli_allows_configurable_regression_budget(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
