@@ -673,6 +673,18 @@ def main() -> None:
                     if args.max_filtered_out_rate is not None
                     else "  - max_filtered_out_rate=disabled"
                 ),
+                f"  - min_active_cases={args.min_active_cases}",
+                f"  - min_improved={args.min_improved}",
+                (
+                    f"  - max_improved={args.max_improved}"
+                    if args.max_improved >= 0
+                    else "  - max_improved=disabled"
+                ),
+                (
+                    f"  - max_improved_rate={args.max_improved_rate}"
+                    if args.max_improved_rate is not None
+                    else "  - max_improved_rate=disabled"
+                ),
                 (
                     f"  - min_stability_rate={args.min_stability_rate}"
                     if args.min_stability_rate is not None

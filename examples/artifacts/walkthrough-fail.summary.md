@@ -20,6 +20,10 @@
   - max_changed_rate=disabled
   - max_filtered_out_cases=disabled
   - max_filtered_out_rate=disabled
+  - min_active_cases=1
+  - min_improved=0
+  - max_improved=disabled
+  - max_improved_rate=disabled
   - min_stability_rate=disabled
   - require_pass_rate_trend=disabled
 - Regression IDs: `auth-login`
