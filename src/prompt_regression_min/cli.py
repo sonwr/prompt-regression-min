@@ -620,6 +620,7 @@ def main() -> None:
                     f"active={summary.get('active_cases', summary['cases'])}"
                 ),
                 f"- Selection rate: {summary.get('selection_rate', 1.0) * 100:.2f}% of source cases",
+                f"- Active-case rate: {(summary.get('active_cases', summary['cases']) / summary.get('dataset_cases', summary['cases']) * 100 if summary.get('dataset_cases', summary['cases']) else 0.0):.2f}% of source cases",
                 (
                     f"- Cases: {summary['cases']} "
                     f"(active={summary.get('active_cases', summary['cases'])}, "

@@ -6,6 +6,7 @@
 - Status: **FAIL**
 - Dataset scope: source=2, selected=2, active=2
 - Selection rate: 100.00% of source cases
+- Active-case rate: 100.00% of source cases
 - Cases: 2 (active=2, skipped=0, filtered_out=0)
 - Pass rate: baseline 100.0% -> candidate 0.0% (delta -100.00pp)
 - Pass-rate trend: `regressing`

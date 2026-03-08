@@ -48,6 +48,36 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("## word-count release-note gate", markdown)
         self.assertIn("- Regression IDs: `release-note-bullets`, `release-note-short`", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
+    def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "--dataset",
+                    str(root / "examples" / "dataset" / "filtered_out_band_demo.jsonl"),
+                    "--baseline",
+                    str(root / "examples" / "outputs" / "filtered_out_band_demo.baseline.jsonl"),
+                    "--candidate",
+                    str(root / "examples" / "outputs" / "filtered_out_band_demo.candidate.jsonl"),
+                    "--include-id-regex",
+                    "^auth-",
+                    "--max-filtered-out-cases",
+                    "2",
+                    "--max-filtered-out-rate",
+                    "0.5",
+                    "--summary-markdown",
+                    "-",
+                ],
+            ):
+                cli.main()
+        markdown = output.getvalue()
+        self.assertIn("- Selection rate: 50.00% of source cases", markdown)
+        self.assertIn("- Active-case rate: 50.00% of source cases", markdown)
+
     def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
@@ -2725,6 +2755,36 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("- Status: **FAIL**", markdown)
+    def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "--dataset",
+                    str(root / "examples" / "dataset" / "filtered_out_band_demo.jsonl"),
+                    "--baseline",
+                    str(root / "examples" / "outputs" / "filtered_out_band_demo.baseline.jsonl"),
+                    "--candidate",
+                    str(root / "examples" / "outputs" / "filtered_out_band_demo.candidate.jsonl"),
+                    "--include-id-regex",
+                    "^auth-",
+                    "--max-filtered-out-cases",
+                    "2",
+                    "--max-filtered-out-rate",
+                    "0.5",
+                    "--summary-markdown",
+                    "-",
+                ],
+            ):
+                cli.main()
+        markdown = output.getvalue()
+        self.assertIn("- Selection rate: 50.00% of source cases", markdown)
+        self.assertIn("- Active-case rate: 50.00% of source cases", markdown)
+
     def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
