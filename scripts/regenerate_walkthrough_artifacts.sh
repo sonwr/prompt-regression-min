@@ -13,6 +13,7 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
   -c examples/outputs/walkthrough_pass_artifact_demo.candidate.jsonl \
   --summary-json "$ARTIFACT_DIR/walkthrough-pass.summary.json" \
   --summary-markdown "$ARTIFACT_DIR/walkthrough-pass.summary.md" \
+  --summary-pr-comment "$ARTIFACT_DIR/walkthrough-pass.pr-comment.md" \
   --require-summary-schema-version 1 \
   --quiet
 
@@ -24,6 +25,7 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
   --max-regressions 0 \
   --summary-json "$ARTIFACT_DIR/walkthrough-fail.summary.json" \
   --summary-markdown "$ARTIFACT_DIR/walkthrough-fail.summary.md" \
+  --summary-pr-comment "$ARTIFACT_DIR/walkthrough-fail.pr-comment.md" \
   --require-summary-schema-version 1 \
   --quiet
 status=$?
@@ -45,6 +47,7 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
   --max-regressions 0 \
   --summary-json "$ARTIFACT_DIR/word-count-range.summary.json" \
   --summary-markdown "$ARTIFACT_DIR/word-count-range.summary.md" \
+  --summary-pr-comment "$ARTIFACT_DIR/word-count-range.pr-comment.md" \
   --summary-markdown-title "word-count release-note gate" \
   --quiet
 word_count_status=$?
@@ -55,32 +58,3 @@ if [[ "$word_count_status" -eq 0 ]]; then
   exit 1
 fi
 
-cat > "$ARTIFACT_DIR/word-count-range.pr-comment.md" <<'EOF'
-## word-count release-note gate
-- Status: **FAIL**
-- Summary schema version: `1`
-- Pass-rate trend: `regressing`
-- Regression ids: `release-note-bullets`, `release-note-short`
-- Why it failed: both candidate release notes fell below the configured minimum word-count band.
-- Reviewer next step: ask the author to expand the candidate release notes, then rerun `./scripts/regenerate_walkthrough_artifacts.sh` before merging.
-EOF
-
-cat > "$ARTIFACT_DIR/walkthrough-pass.pr-comment.md" <<'EOF'
-## prompt-regression-min summary
-- Status: **PASS**
-- Summary schema version: `1`
-- Pass-rate trend: `flat`
-- Outcome: candidate preserved all documented expectations for the walkthrough PASS fixture.
-- Stable IDs: `checkout-copy`, `policy-note`
-- Reviewer next step: this snapshot is approval-ready; paste it into the PR comment and merge once surrounding checks pass.
-EOF
-
-cat > "$ARTIFACT_DIR/walkthrough-fail.pr-comment.md" <<'EOF'
-## prompt-regression-min summary
-- Status: **FAIL**
-- Summary schema version: `1`
-- Pass-rate trend: `regressing`
-- Regression IDs: `auth-login`
-- Outcome: the walkthrough FAIL fixture still demonstrates a deterministic regression reviewers can paste directly into a blocking PR comment.
-- Reviewer next step: keep the PR blocked until `auth-login` is fixed, then rerun `./scripts/regenerate_walkthrough_artifacts.sh` to refresh the committed reviewer note.
-EOF

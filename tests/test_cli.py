@@ -2410,9 +2410,9 @@ class PromptRegressionCliTests(unittest.TestCase):
 
         walkthrough_pass_pr_comment = (root / "examples" / "artifacts" / "walkthrough-pass.pr-comment.md").read_text(encoding="utf-8")
         self.assertIn("Summary schema version: `1`", walkthrough_pass_pr_comment)
-        self.assertIn("Pass-rate trend: `flat`", walkthrough_pass_pr_comment)
-        self.assertIn("checkout-copy", walkthrough_pass_pr_comment)
-        self.assertIn("policy-note", walkthrough_pass_pr_comment)
+        self.assertIn("Pass-rate trend: `improving`", walkthrough_pass_pr_comment)
+        self.assertIn("Improved IDs: `checkout-copy`", walkthrough_pass_pr_comment)
+        self.assertIn("Stable IDs: `policy-note`", walkthrough_pass_pr_comment)
 
         walkthrough_fail_pr_comment = (root / "examples" / "artifacts" / "walkthrough-fail.pr-comment.md").read_text(encoding="utf-8")
         self.assertIn("Summary schema version: `1`", walkthrough_fail_pr_comment)
@@ -2466,6 +2466,83 @@ class PromptRegressionCliTests(unittest.TestCase):
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("## nightly reviewer handoff", markdown)
             self.assertNotIn("## prompt-regression-min summary", markdown)
+
+    def test_cli_writes_summary_pr_comment_file(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            pr_comment = tmp_path / "artifacts" / "summary.pr-comment.md"
+
+            _write_jsonl(dataset, [{"id": "a", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "a", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "a", "output": "ok"}])
+
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-pr-comment",
+                    str(pr_comment),
+                    "--summary-markdown-title",
+                    "review snapshot",
+                ],
+            ):
+                cli.main()
+
+            rendered = pr_comment.read_text(encoding="utf-8")
+            self.assertIn("## review snapshot", rendered)
+            self.assertIn("- Status: **PASS**", rendered)
+            self.assertIn("- Summary schema version: `1`", rendered)
+            self.assertIn("- Pass-rate trend: `flat`", rendered)
+            self.assertIn("- Stable IDs: `a`", rendered)
+            self.assertIn("approval-ready", rendered)
+
+    def test_cli_prints_summary_pr_comment_to_stdout_when_dash_is_used(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "auth-login", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "auth-login", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "auth-login", "output": "nope"}])
+
+            stdout = io.StringIO()
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-pr-comment",
+                    "-",
+                ],
+            ), mock.patch("sys.stdout", stdout):
+                with self.assertRaises(SystemExit) as ctx:
+                    cli.main()
+
+            self.assertEqual(ctx.exception.code, 1)
+            rendered = stdout.getvalue()
+            self.assertIn("## prompt-regression-min summary", rendered)
+            self.assertIn("- Status: **FAIL**", rendered)
+            self.assertIn("- Regression IDs: `auth-login`", rendered)
+            self.assertIn("- Why it failed:", rendered)
+            self.assertIn("keep the PR blocked", rendered)
 
     def test_cli_prints_summary_markdown_to_stdout_when_dash_is_used(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

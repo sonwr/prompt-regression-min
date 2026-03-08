@@ -118,6 +118,14 @@ def _build_parser() -> argparse.ArgumentParser:
         ),
     )
     run_cmd.add_argument(
+        "--summary-pr-comment",
+        default=None,
+        help=(
+            "Write a compact reviewer-note markdown snapshot to file (for PR comments). "
+            "Use '-' to print the PR-comment snapshot to stdout. File paths are always overwritten."
+        ),
+    )
+    run_cmd.add_argument(
         "--require-summary-schema-version",
         type=int,
         default=None,
@@ -602,6 +610,9 @@ def main() -> None:
                     raise SystemExit(2)
                 emit(f"- summary_json: {summary_path}")
 
+        regression_ids = summary.get("regression_ids", [])
+        improved_ids = summary.get("improved_ids", [])
+
         if args.summary_markdown:
             markdown_lines = [
                 f"## {args.summary_markdown_title}",
@@ -658,8 +669,6 @@ def main() -> None:
                     f"filtered_out={summary.get('filtered_out_cases', 0)}"
                 ),
             ]
-            regression_ids = summary.get("regression_ids", [])
-            improved_ids = summary.get("improved_ids", [])
             markdown_lines.append("- Gate snapshot:")
             gate_lines = [
                 f"  - max_regressions={args.max_regressions}",
@@ -820,6 +829,51 @@ def main() -> None:
                     print(f"error: failed to write summary markdown to {md_path}: {exc}", file=sys.stderr)
                     raise SystemExit(2)
                 emit(f"- summary_markdown: {md_path}")
+
+        if args.summary_pr_comment:
+            pr_comment_lines = [
+                f"## {args.summary_markdown_title}",
+                f"- Status: **{status}**",
+                "- Summary schema version: `1`",
+                f"- Pass-rate trend: `{summary.get('pass_rate_trend', 'flat')}`",
+            ]
+            if regression_ids:
+                pr_comment_lines.append(
+                    "- Regression IDs: " + ", ".join(f"`{case_id}`" for case_id in regression_ids)
+                )
+            if improved_ids:
+                pr_comment_lines.append(
+                    "- Improved IDs: " + ", ".join(f"`{case_id}`" for case_id in improved_ids)
+                )
+            if summary.get("unchanged_pass_ids"):
+                pr_comment_lines.append(
+                    "- Stable IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_pass_ids"])
+                )
+            if fail_reasons:
+                pr_comment_lines.append("- Why it failed:")
+                pr_comment_lines.extend([f"  - {reason}" for reason in fail_reasons])
+                pr_comment_lines.append(
+                    "- Reviewer next step: keep the PR blocked until the failing IDs are fixed, then rerun the regression command."
+                )
+            else:
+                pr_comment_lines.append(
+                    "- Reviewer next step: this snapshot is approval-ready; paste it into the PR comment once surrounding checks pass."
+                )
+            pr_comment_text = "\n".join(pr_comment_lines) + "\n"
+            if args.summary_pr_comment == "-":
+                print(pr_comment_text, end="")
+            else:
+                pr_comment_path = Path(args.summary_pr_comment)
+                try:
+                    pr_comment_path.parent.mkdir(parents=True, exist_ok=True)
+                    pr_comment_path.write_text(pr_comment_text, encoding="utf-8")
+                except OSError as exc:
+                    print(
+                        f"error: failed to write summary PR comment to {pr_comment_path}: {exc}",
+                        file=sys.stderr,
+                    )
+                    raise SystemExit(2)
+                emit(f"- summary_pr_comment: {pr_comment_path}")
 
         if args.report:
             report_path = Path(args.report)

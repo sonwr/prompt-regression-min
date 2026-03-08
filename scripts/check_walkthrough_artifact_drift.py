@@ -38,12 +38,14 @@ REQUIRED_MARKDOWN_MARKERS = (
 PR_COMMENT_REQUIRED_MARKERS = {
     'walkthrough-pass.pr-comment.md': (
         '- Summary schema version: `1`',
-        '- Stable IDs: `checkout-copy`, `policy-note`',
+        '- Pass-rate trend: `improving`',
+        '- Improved IDs: `checkout-copy`',
+        '- Stable IDs: `policy-note`',
         '- Reviewer next step:',
     ),
     'word-count-range.pr-comment.md': (
         '- Summary schema version: `1`',
-        '- Regression ids: `release-note-bullets`, `release-note-short`',
+        '- Regression IDs: `release-note-bullets`, `release-note-short`',
         '- Reviewer next step:',
     ),
 }

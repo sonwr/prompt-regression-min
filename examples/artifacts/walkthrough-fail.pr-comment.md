@@ -3,5 +3,7 @@
 - Summary schema version: `1`
 - Pass-rate trend: `regressing`
 - Regression IDs: `auth-login`
-- Outcome: the walkthrough FAIL fixture still demonstrates a deterministic regression reviewers can paste directly into a blocking PR comment.
-- Reviewer next step: keep the PR blocked until `auth-login` is fixed, then rerun `./scripts/regenerate_walkthrough_artifacts.sh` to refresh the committed reviewer note.
+- Stable IDs: `checkout-copy`
+- Why it failed:
+  - regressions 1 exceeded max 0
+- Reviewer next step: keep the PR blocked until the failing IDs are fixed, then rerun the regression command.

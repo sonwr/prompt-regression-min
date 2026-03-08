@@ -2,6 +2,7 @@
 - Status: **FAIL**
 - Summary schema version: `1`
 - Pass-rate trend: `regressing`
-- Regression ids: `release-note-bullets`, `release-note-short`
-- Why it failed: both candidate release notes fell below the configured minimum word-count band.
-- Reviewer next step: ask the author to expand the candidate release notes, then rerun `./scripts/regenerate_walkthrough_artifacts.sh` before merging.
+- Regression IDs: `release-note-bullets`, `release-note-short`
+- Why it failed:
+  - regressions 2 exceeded max 0
+- Reviewer next step: keep the PR blocked until the failing IDs are fixed, then rerun the regression command.
