@@ -617,6 +617,8 @@ def main() -> None:
                     f"-> candidate {summary['candidate_pass_rate'] * 100:.1f}% "
                     f"(delta {summary['delta_pass_rate_pp']:+.2f}pp)"
                 ),
+                f"- Pass-rate trend: `{summary.get('pass_rate_trend', 'flat')}`",
+                f"- Stability rate: {summary.get('stability_rate', 0.0) * 100:.2f}%",
                 (
                     "- Outcomes: "
                     f"regressions={summary['regressions']}, "
@@ -627,6 +629,29 @@ def main() -> None:
             ]
             regression_ids = summary.get("regression_ids", [])
             improved_ids = summary.get("improved_ids", [])
+            markdown_lines.append("- Gate snapshot:")
+            gate_lines = [
+                f"  - max_regressions={args.max_regressions}",
+                (
+                    f"  - max_regression_rate={args.max_regression_rate}"
+                    if args.max_regression_rate is not None
+                    else "  - max_regression_rate=disabled"
+                ),
+                f"  - min_candidate_pass_rate={args.min_candidate_pass_rate}",
+                f"  - max_unchanged_fail={args.max_unchanged_fail}",
+                f"  - max_skipped_cases={args.max_skipped_cases}",
+                (
+                    f"  - min_stability_rate={args.min_stability_rate}"
+                    if args.min_stability_rate is not None
+                    else "  - min_stability_rate=disabled"
+                ),
+                (
+                    f"  - require_pass_rate_trend={args.require_pass_rate_trend}"
+                    if args.require_pass_rate_trend is not None
+                    else "  - require_pass_rate_trend=disabled"
+                ),
+            ]
+            markdown_lines.extend(gate_lines)
             if regression_ids:
                 markdown_lines.append(
                     "- Regression IDs: " + ", ".join(f"`{case_id}`" for case_id in regression_ids)

@@ -6,7 +6,17 @@
 - Status: **FAIL**
 - Cases: 2 (active=2, skipped=0, filtered_out=0)
 - Pass rate: baseline 100.0% -> candidate 50.0% (delta -50.00pp)
+- Pass-rate trend: `regressing`
+- Stability rate: 50.00%
 - Outcomes: regressions=1, improved=0, unchanged_pass=1, unchanged_fail=0
+- Gate snapshot:
+  - max_regressions=0
+  - max_regression_rate=disabled
+  - min_candidate_pass_rate=0.0
+  - max_unchanged_fail=-1
+  - max_skipped_cases=-1
+  - min_stability_rate=disabled
+  - require_pass_rate_trend=disabled
 - Regression IDs: `auth-login`
 - Fail reasons:
   - regressions 1 exceeded max 0
