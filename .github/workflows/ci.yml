@@ -212,11 +212,15 @@ jobs:
           assert fail_payload['summary']['regression_ids'] == ['auth-login']
           pass_md = Path('examples/artifacts/walkthrough-pass.summary.md').read_text(encoding='utf-8')
           fail_md = Path('examples/artifacts/walkthrough-fail.summary.md').read_text(encoding='utf-8')
+          pass_pr = Path('examples/artifacts/walkthrough-pass.pr-comment.md').read_text(encoding='utf-8')
+          fail_pr = Path('examples/artifacts/walkthrough-fail.pr-comment.md').read_text(encoding='utf-8')
           assert 'Summary schema version: `1`' in pass_md
           assert 'Summary schema version: `1`' in fail_md
           assert 'Status: **PASS**' in pass_md
           assert 'Status: **FAIL**' in fail_md
           assert 'regressions 1 exceeded max 0' in fail_md
+          assert '## walkthrough approval note' in pass_pr
+          assert '## walkthrough blocker note' in fail_pr
           print('committed walkthrough artifact snapshots: PASS')
           PY
         env:
