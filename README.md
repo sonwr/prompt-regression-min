@@ -514,6 +514,7 @@ Use `--summary-json` for CI parsers:
   - Markdown summaries also include filtered/skipped/unchanged-fail case IDs when present, making shard drift and lingering broken flows reviewable without opening the JSON payload first.
   - Gate snapshots in markdown now echo changed-case, filtered-out, active-case, and improvement budgets/rates too, so PR reviewers can see rollout/shard constraints without opening JSON.
   - Markdown summaries also show dataset scope (`source`, `selected`, `active`) so reviewers can spot regex-filter shrinkage before comparing pass/fail outcomes.
+- Summary JSON now also includes `selected_dataset_ids` and `active_case_ids`, making shard/debug handoffs deterministic when CI runs only a subset of the dataset.
 - `--summary-markdown -`: print the markdown summary to stdout so CI jobs can pipe it straight into PR-comment or release-note helpers without creating a temporary file first.
 - `--quiet`: suppress all human-readable summary lines (including baseline/candidate/delta and outcome rollups) so CI logs can keep only JSON/artifact paths
 - In CI, persist `.tmp/` summary artifacts (JSON + Markdown) with `actions/upload-artifact` so failed gates stay reviewable after the job exits.

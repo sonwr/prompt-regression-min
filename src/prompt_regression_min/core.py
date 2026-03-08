@@ -670,6 +670,8 @@ def run_regression(
     stability_rate = round(unchanged / len(results), 4)
 
     selected_dataset_case_count = len(dataset_rows)
+    selected_dataset_ids = sorted(row["id"] for row in dataset_rows)
+    active_case_ids = sorted(result.id for result in results)
     filtered_out_rate = round(len(filtered_out_ids) / source_dataset_case_count, 4)
 
     pass_rate_trend = "flat"
@@ -681,7 +683,9 @@ def run_regression(
     summary = {
         "dataset_cases": source_dataset_case_count,
         "selected_dataset_cases": selected_dataset_case_count,
+        "selected_dataset_ids": selected_dataset_ids,
         "cases": len(results),
+        "active_case_ids": active_case_ids,
         "id_filter_include_regex": include_id_regex,
         "id_filter_exclude_regex": exclude_id_regex,
         "filtered_out_cases": len(filtered_out_ids),
