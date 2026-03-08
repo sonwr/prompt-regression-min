@@ -123,6 +123,8 @@ Readable code, inspectable data format, and practical docs over hype.
   - `contains_all_ci`
   - `contains_any`
   - `contains_any_ci`
+  - `contains_all_ordered`
+  - `contains_all_ordered_ci`
   - `equals_any`
   - `equals_any_ci`
   - `not_contains`

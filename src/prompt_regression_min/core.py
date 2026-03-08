@@ -30,6 +30,8 @@ SUPPORTED_EXPECTED_TYPES = (
     "contains_all_ci",
     "contains_any",
     "contains_any_ci",
+    "contains_all_ordered",
+    "contains_all_ordered_ci",
     "not_contains",
     "not_contains_ci",
     "contains_none",
@@ -178,6 +180,31 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
             raise ValueError("contains_any_ci expectation requires a list in expected.values")
         output_lower = output.lower()
         return any(str(v).lower() in output_lower for v in values)
+    if kind == "contains_all_ordered":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("contains_all_ordered expectation requires a list in expected.values")
+        start = 0
+        for value in values:
+            needle = str(value)
+            idx = output.find(needle, start)
+            if idx == -1:
+                return False
+            start = idx + len(needle)
+        return True
+    if kind == "contains_all_ordered_ci":
+        values = expected.get("values")
+        if not isinstance(values, list):
+            raise ValueError("contains_all_ordered_ci expectation requires a list in expected.values")
+        output_lower = output.lower()
+        start = 0
+        for value in values:
+            needle = str(value).lower()
+            idx = output_lower.find(needle, start)
+            if idx == -1:
+                return False
+            start = idx + len(needle)
+        return True
     if kind == "not_contains":
         values = expected.get("values")
         if not isinstance(values, list):
@@ -351,7 +378,7 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
             )
         return
 
-    if kind in {"contains_any", "contains_any_ci"}:
+    if kind in {"contains_any", "contains_any_ci", "contains_all_ordered", "contains_all_ordered_ci"}:
         values = expected.get("values")
         if not isinstance(values, list):
             raise ValueError(

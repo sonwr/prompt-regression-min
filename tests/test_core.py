@@ -16,6 +16,44 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
 
 
 class RegressionCoreTests(unittest.TestCase):
+
+    def test_run_regression_supports_contains_all_ordered_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "contains_all_ordered", "values": ["step 1", "step 2", "step 3"]}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "step 1 -> step 2 -> step 3"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "step 2 -> step 1 -> step 3"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_supports_contains_all_ordered_ci_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "contains_all_ordered_ci", "values": ["alpha", "beta", "gamma"]}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "ALPHA then beta then Gamma"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "beta before ALPHA then gamma"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
     def test_run_regression_supports_exact_ci_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
