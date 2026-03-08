@@ -54,3 +54,12 @@ if [[ "$word_count_status" -eq 0 ]]; then
   echo "expected word_count_range_release_notes fixture to fail gate evaluation" >&2
   exit 1
 fi
+
+cat > "$ARTIFACT_DIR/word-count-range.pr-comment.md" <<'EOF'
+## word-count release-note gate
+- Status: **FAIL**
+- Summary schema version: `1`
+- Regression ids: `release-note-bullets`, `release-note-short`
+- Why it failed: both candidate release notes fell below the configured minimum word-count band.
+- Reviewer next step: ask the author to expand the candidate release notes, then rerun `./scripts/regenerate_walkthrough_artifacts.sh` before merging.
+EOF

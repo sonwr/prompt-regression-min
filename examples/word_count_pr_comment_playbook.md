@@ -22,7 +22,7 @@ Expected result:
 
 ```markdown
 ## word-count release-note gate
-- Status: `FAIL`
+- Status: **FAIL**
 - Summary schema version: `1`
 - Regression ids: `release-note-bullets`, `release-note-short`
 - Why it failed: both candidate release notes fell below the configured minimum word-count band.
@@ -39,4 +39,5 @@ Release review note: keep this change blocked until the release-note outputs rec
 
 - Markdown snapshot: `examples/artifacts/word-count-range.summary.md`
 - JSON snapshot: `examples/artifacts/word-count-range.summary.json`
+- Ready-to-paste PR comment snapshot: `examples/artifacts/word-count-range.pr-comment.md`
 - Regeneration helper: `./scripts/regenerate_walkthrough_artifacts.sh`

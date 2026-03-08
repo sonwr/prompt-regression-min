@@ -16,12 +16,14 @@ EXPECTED_FILES = {
     "walkthrough-fail.summary.md": "FAIL",
     "word-count-range.summary.json": "FAIL",
     "word-count-range.summary.md": "FAIL",
+    "word-count-range.pr-comment.md": "FAIL",
 }
 
 EXPECTED_MARKDOWN_TITLES = {
     "walkthrough-pass.summary.md": "## prompt-regression-min summary",
     "walkthrough-fail.summary.md": "## prompt-regression-min summary",
     "word-count-range.summary.md": "## word-count release-note gate",
+    "word-count-range.pr-comment.md": "## word-count release-note gate",
 }
 
 REQUIRED_MARKDOWN_MARKERS = (
@@ -29,6 +31,12 @@ REQUIRED_MARKDOWN_MARKERS = (
     "- Selected dataset IDs:",
     "- Active case IDs:",
     "  - require_summary_schema_version=",
+)
+
+PR_COMMENT_REQUIRED_MARKERS = (
+    "- Summary schema version: `1`",
+    "- Regression ids: `release-note-bullets`, `release-note-short`",
+    "- Reviewer next step:",
 )
 
 
@@ -87,7 +95,8 @@ def main() -> int:
             else:
                 committed_text = _read(committed)
                 regenerated_text = _read(regenerated)
-                for marker in REQUIRED_MARKDOWN_MARKERS:
+                markers = PR_COMMENT_REQUIRED_MARKERS if name.endswith(".pr-comment.md") else REQUIRED_MARKDOWN_MARKERS
+                for marker in markers:
                     if marker not in committed_text:
                         diffs.append(f'{name}: committed markdown missing marker {marker!r}')
                     if marker not in regenerated_text:
