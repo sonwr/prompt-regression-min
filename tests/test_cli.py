@@ -2360,6 +2360,45 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("## nightly reviewer handoff", markdown)
             self.assertNotIn("## prompt-regression-min summary", markdown)
 
+    def test_cli_prints_summary_markdown_to_stdout_when_dash_is_used(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "a", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "a", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "a", "output": "ok"}])
+
+            output = io.StringIO()
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-markdown",
+                    "-",
+                    "--summary-markdown-title",
+                    "stdout reviewer handoff",
+                    "--quiet",
+                ],
+            ):
+                with contextlib.redirect_stdout(output):
+                    cli.main()
+
+            markdown = output.getvalue()
+            self.assertIn("## stdout reviewer handoff", markdown)
+            self.assertIn(f"- Tool version: `{cli.__version__}`", markdown)
+            self.assertIn("- Status: **PASS**", markdown)
+            self.assertNotIn("summary_markdown:", markdown)
+
     def test_cli_writes_summary_markdown_file(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
