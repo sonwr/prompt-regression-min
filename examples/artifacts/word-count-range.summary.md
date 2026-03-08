@@ -12,6 +12,8 @@
 - Pass-rate trend: `regressing`
 - Stability rate: 0.00%
 - Outcomes: regressions=2, improved=0, unchanged_pass=0, unchanged_fail=0
+- Regression rate: 100.00% of active cases
+- Improvement rate: 0.00% of active cases
 - Reviewer handoff: stable=0, regressions=2, improved=0, watchlist=0
 - Coverage watch: selected=2, active=2, skipped=0, filtered_out=0
 - Gate snapshot:

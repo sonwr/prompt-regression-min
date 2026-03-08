@@ -641,6 +641,8 @@ def main() -> None:
                     f"unchanged_pass={summary.get('unchanged_pass', 0)}, "
                     f"unchanged_fail={summary.get('unchanged_fail', 0)}"
                 ),
+                f"- Regression rate: {summary.get('regression_rate', 0.0) * 100:.2f}% of active cases",
+                f"- Improvement rate: {(summary.get('improved', 0) / summary.get('active_cases', summary['cases']) * 100 if summary.get('active_cases', summary['cases']) else 0.0):.2f}% of active cases",
                 (
                     "- Reviewer handoff: "
                     f"stable={summary.get('unchanged_pass', 0)}, "
