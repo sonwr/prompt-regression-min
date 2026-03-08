@@ -3,7 +3,9 @@
 - Summary schema version: `1`
 - Pass-rate trend: `regressing`
 - Coverage watch: selected=2, active=2, skipped=0, filtered_out=0
-- Regression IDs: `auth-login`
+- Regression IDs (1): `auth-login`
+- Changed IDs (1): `auth-login`
+- Changed-case rate: 50.00% of active cases
 - Stable IDs: `checkout-copy`
 - Why it failed:
   - regressions 1 exceeded max 0

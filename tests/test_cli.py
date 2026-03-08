@@ -60,6 +60,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             rendered = stdout.getvalue()
             self.assertIn("## release gate reviewer note", rendered)
             self.assertIn("- Summary schema version: `1`", rendered)
+            self.assertIn("- Stable IDs: `checkout-copy`", rendered)
             self.assertIn("approval-ready", rendered)
 
 
@@ -122,6 +123,61 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Active-case rate: 50.00% of source cases", markdown)
         self.assertIn("- Skipped-case budget usage: 0/disabled (0.00% source-case rate)", markdown)
         self.assertIn("- Filtered-out budget usage: 2/2 (50.00% source-case rate)", markdown)
+
+    def test_summary_pr_comment_includes_changed_ids_and_rate_for_reviewer_triage(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "stable-pass", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "stable-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "stable-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "bad"},
+                ],
+            )
+
+            output = io.StringIO()
+            with self.assertRaises(SystemExit):
+                with contextlib.redirect_stdout(output):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm",
+                            "run",
+                            "-d",
+                            str(dataset),
+                            "-b",
+                            str(baseline),
+                            "-c",
+                            str(candidate),
+                            "--summary-pr-comment",
+                            "-",
+                            "--quiet",
+                        ],
+                    ):
+                        cli.main()
+            pr_comment = output.getvalue()
+            self.assertIn("- Regression IDs (1): `reg-1`", pr_comment)
+            self.assertIn("- Changed IDs (1): `reg-1`", pr_comment)
+            self.assertIn("- Changed-case rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Stable IDs: `stable-pass`", pr_comment)
 
     def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -2568,7 +2624,8 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("## walkthrough approval note", walkthrough_pass_pr_comment)
         self.assertIn("Summary schema version: `1`", walkthrough_pass_pr_comment)
         self.assertIn("Pass-rate trend: `improving`", walkthrough_pass_pr_comment)
-        self.assertIn("Improved IDs: `checkout-copy`", walkthrough_pass_pr_comment)
+        self.assertIn("Improved IDs (1): `checkout-copy`", walkthrough_pass_pr_comment)
+        self.assertIn("Changed IDs (1): `checkout-copy`", walkthrough_pass_pr_comment)
         self.assertIn("Stable IDs: `policy-note`", walkthrough_pass_pr_comment)
 
         walkthrough_fail_pr_comment = (root / "examples" / "artifacts" / "walkthrough-fail.pr-comment.md").read_text(encoding="utf-8")
@@ -2800,7 +2857,8 @@ class PromptRegressionCliTests(unittest.TestCase):
             rendered = stdout.getvalue()
             self.assertIn("## prompt-regression-min summary", rendered)
             self.assertIn("- Status: **FAIL**", rendered)
-            self.assertIn("- Regression IDs: `auth-login`", rendered)
+            self.assertIn("- Regression IDs (1): `auth-login`", rendered)
+            self.assertIn("- Changed IDs (1): `auth-login`", rendered)
             self.assertIn("- Why it failed:", rendered)
             self.assertIn("keep the PR blocked", rendered)
 

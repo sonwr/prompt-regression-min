@@ -41,19 +41,22 @@ PR_COMMENT_REQUIRED_MARKERS = {
     'walkthrough-pass.pr-comment.md': (
         '- Summary schema version: `1`',
         '- Pass-rate trend: `improving`',
-        '- Improved IDs: `checkout-copy`',
+        '- Improved IDs (1): `checkout-copy`',
+        '- Changed IDs (1): `checkout-copy`',
         '- Stable IDs: `policy-note`',
         '- Reviewer next step:',
     ),
     'walkthrough-fail.pr-comment.md': (
         '- Summary schema version: `1`',
         '- Pass-rate trend: `regressing`',
-        '- Regression IDs: `auth-login`',
+        '- Regression IDs (1): `auth-login`',
+        '- Changed IDs (1): `auth-login`',
         '- Reviewer next step:',
     ),
     'word-count-range.pr-comment.md': (
         '- Summary schema version: `1`',
-        '- Regression IDs: `release-note-bullets`, `release-note-short`',
+        '- Regression IDs (2): `release-note-bullets`, `release-note-short`',
+        '- Changed IDs (2): `release-note-bullets`, `release-note-short`',
         '- Reviewer next step:',
     ),
 }

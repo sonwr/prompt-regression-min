@@ -884,11 +884,18 @@ def main() -> None:
                 )
             if regression_ids:
                 pr_comment_lines.append(
-                    "- Regression IDs: " + ", ".join(f"`{case_id}`" for case_id in regression_ids)
+                    f"- Regression IDs ({len(regression_ids)}): " + ", ".join(f"`{case_id}`" for case_id in regression_ids)
                 )
             if improved_ids:
                 pr_comment_lines.append(
-                    "- Improved IDs: " + ", ".join(f"`{case_id}`" for case_id in improved_ids)
+                    f"- Improved IDs ({len(improved_ids)}): " + ", ".join(f"`{case_id}`" for case_id in improved_ids)
+                )
+            if summary.get("changed_ids"):
+                pr_comment_lines.append(
+                    f"- Changed IDs ({len(summary['changed_ids'])}): " + ", ".join(f"`{case_id}`" for case_id in summary["changed_ids"])
+                )
+                pr_comment_lines.append(
+                    f"- Changed-case rate: {summary.get('changed_rate', 0.0) * 100:.2f}% of active cases"
                 )
             if summary.get("unchanged_pass_ids"):
                 pr_comment_lines.append(
