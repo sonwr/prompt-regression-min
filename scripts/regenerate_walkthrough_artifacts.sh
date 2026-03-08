@@ -35,3 +35,22 @@ if [[ "$status" -eq 0 ]]; then
 fi
 
 echo "walkthrough artifacts regenerated: PASS"
+
+
+set +e
+PYTHONPATH=src python3 -m prompt_regression_min run \
+  -d examples/dataset/word_count_range_release_notes.jsonl \
+  -b examples/outputs/word_count_range_release_notes.baseline.jsonl \
+  -c examples/outputs/word_count_range_release_notes.candidate.jsonl \
+  --max-regressions 0 \
+  --summary-json "$ARTIFACT_DIR/word-count-range.summary.json" \
+  --summary-markdown "$ARTIFACT_DIR/word-count-range.summary.md" \
+  --summary-markdown-title "word-count release-note gate" \
+  --quiet
+word_count_status=$?
+set -e
+
+if [[ "$word_count_status" -eq 0 ]]; then
+  echo "expected word_count_range_release_notes fixture to fail gate evaluation" >&2
+  exit 1
+fi

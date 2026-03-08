@@ -14,11 +14,12 @@ EXPECTED_FILES = {
     "walkthrough-pass.summary.md": "PASS",
     "walkthrough-fail.summary.json": "FAIL",
     "walkthrough-fail.summary.md": "FAIL",
+    "word-count-range.summary.json": "FAIL",
+    "word-count-range.summary.md": "FAIL",
 }
 
 
 REQUIRED_MARKDOWN_MARKERS = (
-    "## prompt-regression-min summary",
     "- Summary schema version: `1`",
 )
 
