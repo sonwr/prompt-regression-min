@@ -2596,6 +2596,7 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("- Filtered-out IDs: `billing-out`", markdown)
+            self.assertIn("- Scope reduction: 33.33% of source cases removed by filters", markdown)
             self.assertIn("- Skipped IDs: `ops-skip`", markdown)
             self.assertIn("- Unchanged fail IDs: `auth-keep`", markdown)
 
@@ -2699,6 +2700,7 @@ if __name__ == "__main__":
             self.assertIn("- Changed-case rate: 50.00%", rendered)
             self.assertIn("- Filtered-out IDs: `filtered-out`", rendered)
             self.assertIn("- Filtered-out rate: 33.33% of source cases", rendered)
+            self.assertIn("- Scope reduction: 33.33% of source cases removed by filters", rendered)
 
     def test_cli_fixture_trend_stability_policy_passes(self) -> None:
         root = Path(__file__).resolve().parents[1]

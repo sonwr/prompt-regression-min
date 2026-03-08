@@ -152,6 +152,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - terminal summary (including `outcome_counts` rollup and explicit `unchanged_pass` / `unchanged_fail` counters)
   - machine-readable JSON report (including `summary.regression_ids` / `summary.improved_ids`)
   - compact markdown summaries for PR comments/release notes, now including explicit regression/improvement case IDs when present, plus changed/filtered-out IDs and their rates for triage handoff
+  - reviewer-friendly markdown snapshots that surface selected dataset IDs, active case IDs, and scope reduction from filters, making shard-scoped reruns easier to audit without opening JSON
 - Exits with non-zero status when regressions are detected (CI-friendly)
 
 ---

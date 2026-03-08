@@ -752,6 +752,9 @@ def main() -> None:
                 markdown_lines.append(
                     f"- Filtered-out rate: {summary.get('filtered_out_rate', 0.0) * 100:.2f}% of source cases"
                 )
+                markdown_lines.append(
+                    f"- Scope reduction: {summary.get('filtered_out_rate', 0.0) * 100:.2f}% of source cases removed by filters"
+                )
             if summary.get("skipped_ids"):
                 markdown_lines.append(
                     "- Skipped IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"])
