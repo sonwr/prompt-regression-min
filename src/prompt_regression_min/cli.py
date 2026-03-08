@@ -648,6 +648,13 @@ def main() -> None:
                     f"improved={summary['improved']}, "
                     f"watchlist={summary.get('unchanged_fail', 0)}"
                 ),
+                (
+                    "- Coverage watch: "
+                    f"selected={summary.get('selected_dataset_cases', summary['cases'])}, "
+                    f"active={summary.get('active_cases', summary['cases'])}, "
+                    f"skipped={summary.get('skipped_cases', 0)}, "
+                    f"filtered_out={summary.get('filtered_out_cases', 0)}"
+                ),
             ]
             regression_ids = summary.get("regression_ids", [])
             improved_ids = summary.get("improved_ids", [])

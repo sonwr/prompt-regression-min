@@ -13,6 +13,7 @@
 - Stability rate: 50.00%
 - Outcomes: regressions=0, improved=1, unchanged_pass=1, unchanged_fail=0
 - Reviewer handoff: stable=1, regressions=0, improved=1, watchlist=0
+- Coverage watch: selected=2, active=2, skipped=0, filtered_out=0
 - Gate snapshot:
   - max_regressions=0
   - max_regression_rate=disabled
