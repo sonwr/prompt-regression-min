@@ -29,5 +29,6 @@
   - min_stability_rate=disabled
   - require_pass_rate_trend=disabled
 - Regression IDs: `auth-login`
+- Changed IDs: `auth-login`
 - Fail reasons:
   - regressions 1 exceeded max 0

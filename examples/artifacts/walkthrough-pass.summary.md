@@ -29,3 +29,4 @@
   - min_stability_rate=disabled
   - require_pass_rate_trend=disabled
 - Improved IDs: `checkout-copy`
+- Changed IDs: `checkout-copy`

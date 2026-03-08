@@ -621,8 +621,9 @@ def run_regression(
 
     regressions = len(regression_ids)
     improved = len(improved_ids)
+    changed_ids = sorted(regression_ids + improved_ids)
     unchanged = len(results) - regressions - improved
-    changed = regressions + improved
+    changed = len(changed_ids)
     regression_rate = round(regressions / len(results), 4)
     changed_rate = round(changed / len(results), 4)
 
@@ -673,6 +674,7 @@ def run_regression(
         "regression_rate": regression_rate,
         "improved": improved,
         "changed": changed,
+        "changed_ids": changed_ids,
         "changed_rate": changed_rate,
         "unchanged": unchanged,
         "stability_rate": stability_rate,

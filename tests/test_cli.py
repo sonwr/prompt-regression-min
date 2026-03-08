@@ -250,6 +250,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("  - min_stability_rate=disabled", rendered)
             self.assertIn("- Regression IDs: `reg-1`", rendered)
             self.assertIn("- Improved IDs: `imp-1`", rendered)
+            self.assertIn("- Changed IDs: `imp-1`, `reg-1`", rendered)
             self.assertNotIn("prompt-regression-min summary\n- cases:", rendered)
 
 

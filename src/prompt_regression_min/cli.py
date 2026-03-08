@@ -722,6 +722,10 @@ def main() -> None:
                     + ", exclude="
                     + (f"`{args.exclude_id_regex}`" if args.exclude_id_regex else "_none_")
                 )
+            if summary.get("changed_ids"):
+                markdown_lines.append(
+                    "- Changed IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["changed_ids"])
+                )
             if summary.get("filtered_out_ids"):
                 markdown_lines.append(
                     "- Filtered-out IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"])
