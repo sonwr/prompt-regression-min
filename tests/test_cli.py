@@ -48,6 +48,59 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("## word-count release-note gate", markdown)
         self.assertIn("- Regression IDs: `release-note-bullets`, `release-note-short`", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
+    def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "stable-pass", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "stable-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "stable-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "bad"},
+                ],
+            )
+
+            output = io.StringIO()
+            with self.assertRaises(SystemExit):
+                with contextlib.redirect_stdout(output):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm",
+                            "run",
+                            "-d",
+                            str(dataset),
+                            "-b",
+                            str(baseline),
+                            "-c",
+                            str(candidate),
+                            "--summary-markdown",
+                            "-",
+                            "--quiet",
+                        ],
+                    ):
+                        cli.main()
+            markdown = output.getvalue()
+            self.assertIn("- Unchanged pass IDs: `stable-pass`", markdown)
+            self.assertIn("- Regression IDs: `reg-1`", markdown)
+
 
     def test_cli_allows_configurable_regression_budget(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -2672,6 +2725,59 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("- Status: **FAIL**", markdown)
+    def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "stable-pass", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "stable-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "stable-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "bad"},
+                ],
+            )
+
+            output = io.StringIO()
+            with self.assertRaises(SystemExit):
+                with contextlib.redirect_stdout(output):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm",
+                            "run",
+                            "-d",
+                            str(dataset),
+                            "-b",
+                            str(baseline),
+                            "-c",
+                            str(candidate),
+                            "--summary-markdown",
+                            "-",
+                            "--quiet",
+                        ],
+                    ):
+                        cli.main()
+            markdown = output.getvalue()
+            self.assertIn("- Unchanged pass IDs: `stable-pass`", markdown)
+            self.assertIn("- Regression IDs: `reg-1`", markdown)
+
             self.assertIn("- Fail reasons:", markdown)
 
 

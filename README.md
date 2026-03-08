@@ -658,7 +658,7 @@ prm run \
 ```
 
 This keeps the body deterministic while making pasted PR comments easier to scan.
-The same title override is preserved when `--summary-markdown <path>` writes a file, so CI artifacts and pasted PR comments can keep the same workflow-specific heading.
+The same title override is preserved when `--summary-markdown <path>` writes a file, so CI artifacts and pasted PR comments can keep the same workflow-specific heading. Markdown summaries now also list `Unchanged pass IDs` when available, which makes reviewer handoff easier because the stable controls remain visible next to regressions and improvements.
 
 ---
 

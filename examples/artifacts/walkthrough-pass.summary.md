@@ -35,3 +35,4 @@
 - Improved IDs: `checkout-copy`
 - Changed IDs: `checkout-copy`
 - Changed-case rate: 50.00%
+- Unchanged pass IDs: `policy-note`

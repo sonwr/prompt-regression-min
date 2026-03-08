@@ -35,5 +35,6 @@
 - Regression IDs: `auth-login`
 - Changed IDs: `auth-login`
 - Changed-case rate: 50.00%
+- Unchanged pass IDs: `checkout-copy`
 - Fail reasons:
   - regressions 1 exceeded max 0

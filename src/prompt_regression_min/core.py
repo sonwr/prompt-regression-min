@@ -644,6 +644,7 @@ def run_regression(
 
     regression_ids = [r.id for r in results if r.baseline_pass and not r.candidate_pass]
     improved_ids = [r.id for r in results if not r.baseline_pass and r.candidate_pass]
+    unchanged_pass_ids = [r.id for r in results if r.baseline_pass and r.candidate_pass]
     unchanged_fail_ids = [r.id for r in results if not r.baseline_pass and not r.candidate_pass]
 
     regressions = len(regression_ids)
@@ -712,6 +713,7 @@ def run_regression(
         "unchanged": unchanged,
         "stability_rate": stability_rate,
         "unchanged_pass": unchanged_pass,
+        "unchanged_pass_ids": sorted(unchanged_pass_ids),
         "unchanged_fail": unchanged_fail,
         "unchanged_fail_rate": unchanged_fail_rate,
         "regression_ids": sorted(regression_ids),
