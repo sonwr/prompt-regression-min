@@ -655,6 +655,15 @@ def main() -> None:
                 f"- Regression rate: {summary.get('regression_rate', 0.0) * 100:.2f}% of active cases",
                 f"- Improvement rate: {(summary.get('improved', 0) / summary.get('active_cases', summary['cases']) * 100 if summary.get('active_cases', summary['cases']) else 0.0):.2f}% of active cases",
                 (
+                    f"- Regression budget usage: {summary['regressions']}/{args.max_regressions} "
+                    f"({(summary.get('regression_rate', 0.0) * 100):.2f}% active-case rate)"
+                ),
+                (
+                    f"- Changed-case budget usage: {summary.get('changed', summary['regressions'] + summary.get('improved', 0))}/"
+                    + (str(args.max_changed_cases) if args.max_changed_cases >= 0 else "disabled")
+                    + f" ({summary.get('changed_rate', 0.0) * 100:.2f}% active-case rate)"
+                ),
+                (
                     "- Reviewer handoff: "
                     f"stable={summary.get('unchanged_pass', 0)}, "
                     f"regressions={summary['regressions']}, "

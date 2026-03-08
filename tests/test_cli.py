@@ -136,6 +136,60 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Regression IDs: `reg-1`", markdown)
 
 
+    def test_summary_markdown_includes_changed_case_budget_usage_when_gate_is_set(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "stable-pass", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "improved", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "stable-pass", "output": "ok"},
+                    {"id": "improved", "output": "bad"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "stable-pass", "output": "ok"},
+                    {"id": "improved", "output": "ok"},
+                ],
+            )
+
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm",
+                        "run",
+                        "-d",
+                        str(dataset),
+                        "-b",
+                        str(baseline),
+                        "-c",
+                        str(candidate),
+                        "--summary-markdown",
+                        "-",
+                        "--max-changed-cases",
+                        "2",
+                        "--quiet",
+                    ],
+                ):
+                    cli.main()
+            markdown = output.getvalue()
+            self.assertIn("- Regression budget usage: 0/0 (0.00% active-case rate)", markdown)
+            self.assertIn("- Changed-case budget usage: 1/2 (50.00% active-case rate)", markdown)
+
     def test_cli_allows_configurable_regression_budget(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

@@ -14,6 +14,8 @@
 - Outcomes: regressions=1, improved=0, unchanged_pass=1, unchanged_fail=0
 - Regression rate: 50.00% of active cases
 - Improvement rate: 0.00% of active cases
+- Regression budget usage: 1/0 (50.00% active-case rate)
+- Changed-case budget usage: 1/disabled (50.00% active-case rate)
 - Reviewer handoff: stable=1, regressions=1, improved=0, watchlist=0
 - Coverage watch: selected=2, active=2, skipped=0, filtered_out=0
 - Gate snapshot:
