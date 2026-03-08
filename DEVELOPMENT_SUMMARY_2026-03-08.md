@@ -325,3 +325,24 @@
 
 ### Next
 - Add one fixture-level smoke check that the committed markdown walkthrough snapshots retain the schema marker after regeneration.
+
+## Run @ 10:30 UTC (cron)
+
+### Plan
+- Close the markdown-schema-marker TODO by asserting committed walkthrough markdown snapshots keep the same contract marker as JSON outputs.
+- Re-run CLI/core tests plus artifact regeneration to keep docs-facing snapshots aligned.
+
+### Changes
+- Updated `.github/workflows/ci.yml` committed walkthrough snapshot smoke step to assert both PASS/FAIL markdown artifacts contain `Summary schema version: 1`.
+- Updated `README.md` CI artifact walkthrough guidance to state that committed markdown snapshots retain the same schema marker as JSON outputs.
+
+### Verification
+- `python3 -m unittest tests.test_core tests.test_cli`
+- `./scripts/regenerate_walkthrough_artifacts.sh`
+- Result: **PASS** (115 tests + walkthrough artifact regeneration pass)
+
+### Blockers
+- `pytest` is still unavailable in host PATH, so validation continues via `unittest` + CLI smoke commands.
+
+### Next
+- Add one fixture-level smoke assertion in CI docs/examples that the PASS markdown snapshot keeps the expected improvement id alongside the schema marker.
