@@ -2305,6 +2305,8 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Summary schema version: `1`", pass_md)
         self.assertIn("- Required schema version gate: `1`", pass_md)
         self.assertIn("- Status: **PASS**", pass_md)
+        self.assertIn("- Selected dataset IDs: `checkout-copy`, `policy-note`", pass_md)
+        self.assertIn("- Active case IDs: `checkout-copy`, `policy-note`", pass_md)
 
         self.assertIn("## prompt-regression-min summary", fail_md)
         self.assertIn(f"- Tool version: `{cli.__version__}`", fail_md)
@@ -2317,6 +2319,8 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn(f"- Tool version: `{cli.__version__}`", word_count_md)
         self.assertIn("- Summary schema version: `1`", word_count_md)
         self.assertIn("- Status: **FAIL**", word_count_md)
+        self.assertIn("- Selected dataset IDs: `release-note-bullets`, `release-note-short`", word_count_md)
+        self.assertIn("- Active case IDs: `release-note-bullets`, `release-note-short`", word_count_md)
 
     def test_cli_writes_summary_markdown_file_with_custom_title(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

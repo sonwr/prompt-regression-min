@@ -707,6 +707,16 @@ def main() -> None:
                 ),
             ]
             markdown_lines.extend(gate_lines)
+            if summary.get("selected_dataset_ids"):
+                markdown_lines.append(
+                    "- Selected dataset IDs: "
+                    + ", ".join(f"`{case_id}`" for case_id in summary["selected_dataset_ids"])
+                )
+            if summary.get("active_case_ids"):
+                markdown_lines.append(
+                    "- Active case IDs: "
+                    + ", ".join(f"`{case_id}`" for case_id in summary["active_case_ids"])
+                )
             if regression_ids:
                 markdown_lines.append(
                     "- Regression IDs: " + ", ".join(f"`{case_id}`" for case_id in regression_ids)

@@ -26,6 +26,8 @@ EXPECTED_MARKDOWN_TITLES = {
 
 REQUIRED_MARKDOWN_MARKERS = (
     "- Summary schema version: `1`",
+    "- Selected dataset IDs:",
+    "- Active case IDs:",
 )
 
 
