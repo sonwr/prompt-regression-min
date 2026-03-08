@@ -370,3 +370,26 @@
 
 ### 다음 실행 우선순위
 - markdown summary에도 schema-version/compatibility gate 표시를 넣을지 검토.
+
+
+## Run @ 11:40 UTC (cron)
+
+### Plan
+- Add one small scorer that helps teams catch answer-length drift deterministically.
+- Cover it with core tests and minimal README updates.
+
+### Changes
+- Added `word_count_range` expectation type in `src/prompt_regression_min/core.py`.
+  - Supports `min_words`, `max_words`, or both using whitespace-delimited word counts.
+- Added focused tests in `tests/test_core.py` for valid range checks, single-bound usage, and invalid bound rejection.
+- Updated `README.md` supported-expectation docs and JSON example.
+
+### Verification
+- `python3 -m unittest`
+- Result: **PASS** (120 tests)
+
+### Blockers
+- `pytest` is still unavailable in host PATH, so validation continues via `python3 -m unittest`.
+
+### Next
+- Add one example dataset/output pair that demonstrates `word_count_range` in a release-note or summarization workflow.

@@ -40,6 +40,7 @@ SUPPORTED_EXPECTED_TYPES = (
     "not_regex",
     "not_regex_ci",
     "not_regex_fullmatch",
+    "word_count_range",
 )
 REGEX_FLAG_MAP = {
     "IGNORECASE": re.IGNORECASE,
@@ -52,6 +53,10 @@ def _normalize_regex_flag_name(flag_name: Any) -> str:
     if not isinstance(flag_name, str):
         return ""
     return flag_name.strip().upper()
+
+
+def _count_words(value: str) -> int:
+    return len(re.findall(r"\S+", value))
 
 
 @dataclass
@@ -188,6 +193,36 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
             raise ValueError("contains_none_ci expectation requires a list in expected.values")
         output_lower = output.lower()
         return all(str(v).lower() not in output_lower for v in values)
+    if kind == "word_count_range":
+        min_words = expected.get("min_words")
+        max_words = expected.get("max_words")
+        word_count = _count_words(output)
+        if min_words is not None and word_count < min_words:
+            return False
+        if max_words is not None and word_count > max_words:
+            return False
+        return True
+    if kind == "word_count_range":
+        min_words = expected.get("min_words")
+        max_words = expected.get("max_words")
+        if min_words is None and max_words is None:
+            raise ValueError(
+                f"Invalid word_count_range expectation in dataset id={case_id}: set min_words, max_words, or both"
+            )
+        if min_words is not None and (not isinstance(min_words, int) or min_words < 0):
+            raise ValueError(
+                f"Invalid expected.min_words for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if max_words is not None and (not isinstance(max_words, int) or max_words < 0):
+            raise ValueError(
+                f"Invalid expected.max_words for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if min_words is not None and max_words is not None and min_words > max_words:
+            raise ValueError(
+                f"Invalid word_count_range expectation in dataset id={case_id}: min_words must be <= max_words"
+            )
+        return
+
     if kind in {"regex", "regex_ci", "regex_fullmatch", "not_regex", "not_regex_ci", "not_regex_fullmatch"}:
         pattern = expected.get("pattern")
         if not isinstance(pattern, str):
@@ -352,6 +387,15 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
             )
         return
 
+    if kind == "word_count_range":
+        min_words = expected.get("min_words")
+        max_words = expected.get("max_words")
+        word_count = _count_words(output)
+        if min_words is not None and word_count < min_words:
+            return False
+        if max_words is not None and word_count > max_words:
+            return False
+        return True
     if kind in {"regex", "regex_ci", "regex_fullmatch", "not_regex", "not_regex_ci", "not_regex_fullmatch"}:
         pattern = expected.get("pattern")
         if not isinstance(pattern, str) or not pattern.strip():

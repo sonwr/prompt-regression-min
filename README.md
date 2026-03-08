@@ -142,6 +142,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `not_regex` (same flags, but fails if the pattern appears anywhere)
   - `not_regex_ci` (alias of `not_regex` with implicit `IGNORECASE`)
   - `not_regex_fullmatch` (same flags, but fails if the entire output matches the pattern)
+  - `word_count_range` (enforces lower/upper output-length bounds using whitespace-delimited word counts)
 - Produces:
   - terminal summary (including `outcome_counts` rollup and explicit `unchanged_pass` / `unchanged_fail` counters)
   - machine-readable JSON report (including `summary.regression_ids` / `summary.improved_ids`)
@@ -236,6 +237,10 @@ Supported `expected.type` values:
 - `not_substring_ci` (case-insensitive variant of `not_substring`):
   ```json
   { "type": "not_substring_ci", "value": "secret" }
+  ```
+- `word_count_range` (uses whitespace-delimited word counts; set `min_words`, `max_words`, or both):
+  ```json
+  { "type": "word_count_range", "min_words": 20, "max_words": 60 }
   ```
 - `contains_all` (requires a non-empty `values` list of non-empty strings):
   ```json

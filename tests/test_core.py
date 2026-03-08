@@ -1324,3 +1324,59 @@ class RegressionCoreTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+    def test_run_regression_supports_word_count_range_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "word_count_range", "min_words": 3, "max_words": 5}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "one two three four"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "one two"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_allows_word_count_range_with_single_bound(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "word_count_range", "max_words": 4}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "one two three"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "one two three four five"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_rejects_invalid_word_count_range_bounds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "word_count_range", "min_words": 5, "max_words": 2}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "one two three"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "one two three"}])
+
+            with self.assertRaisesRegex(ValueError, "min_words must be <= max_words"):
+                run_regression(str(dataset), str(baseline), str(candidate))
