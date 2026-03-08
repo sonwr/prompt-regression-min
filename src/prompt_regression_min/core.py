@@ -44,6 +44,7 @@ SUPPORTED_EXPECTED_TYPES = (
     "not_regex_fullmatch",
     "word_count_range",
     "line_count_range",
+    "char_count_range",
 )
 REGEX_FLAG_MAP = {
     "IGNORECASE": re.IGNORECASE,
@@ -243,6 +244,15 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
         if min_lines is not None and line_count < min_lines:
             return False
         if max_lines is not None and line_count > max_lines:
+            return False
+        return True
+    if kind == "char_count_range":
+        min_chars = expected.get("min_chars")
+        max_chars = expected.get("max_chars")
+        char_count = len(output)
+        if min_chars is not None and char_count < min_chars:
+            return False
+        if max_chars is not None and char_count > max_chars:
             return False
         return True
 

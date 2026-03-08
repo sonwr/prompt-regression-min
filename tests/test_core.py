@@ -1453,6 +1453,41 @@ if __name__ == "__main__":
             self.assertEqual(report["summary"]["regressions"], 1)
             self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
 
+
+    def test_run_regression_supports_char_count_range_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "char_count_range", "min_chars": 5, "max_chars": 12}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "welcome"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "too long for gate"}])
+
+            report = run_regression(dataset, baseline, candidate)
+
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_rejects_invalid_char_count_range_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "case-1", "expected": {"type": "char_count_range"}}])
+            _write_jsonl(baseline, [{"id": "case-1", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "ok"}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(dataset, baseline, candidate)
+
+            self.assertIn("Invalid char_count_range expectation", str(exc.exception))
+
     def test_run_regression_rejects_invalid_line_count_range_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
