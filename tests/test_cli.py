@@ -2408,11 +2408,13 @@ class PromptRegressionCliTests(unittest.TestCase):
 
         walkthrough_pass_pr_comment = (root / "examples" / "artifacts" / "walkthrough-pass.pr-comment.md").read_text(encoding="utf-8")
         self.assertIn("Summary schema version: `1`", walkthrough_pass_pr_comment)
+        self.assertIn("Pass-rate trend: `flat`", walkthrough_pass_pr_comment)
         self.assertIn("checkout-copy", walkthrough_pass_pr_comment)
         self.assertIn("policy-note", walkthrough_pass_pr_comment)
 
         walkthrough_fail_pr_comment = (root / "examples" / "artifacts" / "walkthrough-fail.pr-comment.md").read_text(encoding="utf-8")
         self.assertIn("Summary schema version: `1`", walkthrough_fail_pr_comment)
+        self.assertIn("Pass-rate trend: `regressing`", walkthrough_fail_pr_comment)
         self.assertIn("auth-login", walkthrough_fail_pr_comment)
         self.assertIn("Status: **FAIL**", walkthrough_fail_pr_comment)
 
