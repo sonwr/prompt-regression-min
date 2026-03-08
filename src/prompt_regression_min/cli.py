@@ -647,7 +647,32 @@ def main() -> None:
                 ),
                 f"  - min_candidate_pass_rate={args.min_candidate_pass_rate}",
                 f"  - max_unchanged_fail={args.max_unchanged_fail}",
+                (
+                    f"  - max_unchanged_fail_rate={args.max_unchanged_fail_rate}"
+                    if args.max_unchanged_fail_rate is not None
+                    else "  - max_unchanged_fail_rate=disabled"
+                ),
                 f"  - max_skipped_cases={args.max_skipped_cases}",
+                (
+                    f"  - max_changed_cases={args.max_changed_cases}"
+                    if args.max_changed_cases >= 0
+                    else "  - max_changed_cases=disabled"
+                ),
+                (
+                    f"  - max_changed_rate={args.max_changed_rate}"
+                    if args.max_changed_rate is not None
+                    else "  - max_changed_rate=disabled"
+                ),
+                (
+                    f"  - max_filtered_out_cases={args.max_filtered_out_cases}"
+                    if args.max_filtered_out_cases >= 0
+                    else "  - max_filtered_out_cases=disabled"
+                ),
+                (
+                    f"  - max_filtered_out_rate={args.max_filtered_out_rate}"
+                    if args.max_filtered_out_rate is not None
+                    else "  - max_filtered_out_rate=disabled"
+                ),
                 (
                     f"  - min_stability_rate={args.min_stability_rate}"
                     if args.min_stability_rate is not None

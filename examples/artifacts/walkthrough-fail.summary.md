@@ -14,7 +14,12 @@
   - max_regression_rate=disabled
   - min_candidate_pass_rate=0.0
   - max_unchanged_fail=-1
+  - max_unchanged_fail_rate=disabled
   - max_skipped_cases=-1
+  - max_changed_cases=disabled
+  - max_changed_rate=disabled
+  - max_filtered_out_cases=disabled
+  - max_filtered_out_rate=disabled
   - min_stability_rate=disabled
   - require_pass_rate_trend=disabled
 - Regression IDs: `auth-login`
