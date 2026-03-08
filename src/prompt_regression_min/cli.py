@@ -619,6 +619,7 @@ def main() -> None:
                     f"selected={summary.get('selected_dataset_cases', summary['cases'])}, "
                     f"active={summary.get('active_cases', summary['cases'])}"
                 ),
+                f"- Selection rate: {summary.get('selection_rate', 1.0) * 100:.2f}% of source cases",
                 (
                     f"- Cases: {summary['cases']} "
                     f"(active={summary.get('active_cases', summary['cases'])}, "

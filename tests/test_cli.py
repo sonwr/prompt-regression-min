@@ -2306,6 +2306,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Required schema version gate: `1`", pass_md)
         self.assertIn("- Status: **PASS**", pass_md)
         self.assertIn("- Selected dataset IDs: `checkout-copy`, `policy-note`", pass_md)
+        self.assertIn("- Selection rate: 100.00% of source cases", pass_md)
         self.assertIn("- Active case IDs: `checkout-copy`, `policy-note`", pass_md)
 
         self.assertIn("## prompt-regression-min summary", fail_md)
@@ -2690,5 +2691,6 @@ if __name__ == "__main__":
             self.assertEqual(exc.exception.code, 1)
             rendered = summary_markdown.read_text(encoding="utf-8")
             self.assertIn("- Dataset scope: source=3, selected=2, active=2", rendered)
+            self.assertIn("- Selection rate: 66.67% of source cases", rendered)
             self.assertIn("- Changed IDs: `reg-1`", rendered)
             self.assertIn("- Filtered-out IDs: `filtered-out`", rendered)

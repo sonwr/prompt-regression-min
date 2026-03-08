@@ -1201,6 +1201,7 @@ class RegressionCoreTests(unittest.TestCase):
             self.assertEqual(report["summary"]["dataset_cases"], 3)
             self.assertEqual(report["summary"]["selected_dataset_cases"], 1)
             self.assertEqual(report["summary"]["selected_dataset_ids"], ["auth-1"])
+            self.assertEqual(report["summary"]["selection_rate"], 0.3333)
             self.assertEqual(report["summary"]["active_case_ids"], ["auth-1"])
             self.assertEqual(report["summary"]["cases"], 1)
             self.assertEqual(report["summary"]["filtered_out_cases"], 2)

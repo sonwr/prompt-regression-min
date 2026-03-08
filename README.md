@@ -515,7 +515,7 @@ Use `--summary-json` for CI parsers:
   - Markdown summaries also include filtered/skipped/unchanged-fail case IDs when present, making shard drift and lingering broken flows reviewable without opening the JSON payload first.
   - Gate snapshots in markdown now echo changed-case, filtered-out, active-case, and improvement budgets/rates too, so PR reviewers can see rollout/shard constraints without opening JSON.
   - Markdown summaries also show dataset scope (`source`, `selected`, `active`) so reviewers can spot regex-filter shrinkage before comparing pass/fail outcomes.
-- Summary JSON now also includes `selected_dataset_ids` and `active_case_ids`, making shard/debug handoffs deterministic when CI runs only a subset of the dataset.
+- Summary JSON now also includes `selected_dataset_ids`, `active_case_ids`, and `selection_rate`, making shard/debug handoffs deterministic when CI runs only a subset of the dataset.
 - `--summary-markdown -`: print the markdown summary to stdout so CI jobs can pipe it straight into PR-comment or release-note helpers without creating a temporary file first.
 - `--quiet`: suppress all human-readable summary lines (including baseline/candidate/delta and outcome rollups) so CI logs can keep only JSON/artifact paths
 - In CI, persist `.tmp/` summary artifacts (JSON + Markdown) with `actions/upload-artifact` so failed gates stay reviewable after the job exits.
@@ -569,7 +569,7 @@ Payload shape:
 {
   "status": "PASS|FAIL",
   "fail_reasons": ["..."],
-  "summary": {"...": "..."},
+  "summary": {"selection_rate": 1.0, "...": "..."},
   "gates": {
     "max_regressions": 0,
     "max_regression_rate": null,
@@ -664,6 +664,7 @@ Summary JSON now includes explicit parser metadata:
 - `summary_schema_version`: stable schema marker for downstream CI parsers
 - generated summary markdown now includes the same schema marker for human review parity plus the producing tool version
 - `tool_version`: package version that produced the JSON artifact
+- `selection_rate`: selected/source dataset ratio for shard-size visibility in CI handoffs
 
 Use the generated report and fail deployment when regressions exceed your tolerance.
 
