@@ -2113,6 +2113,7 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("## prompt-regression-min summary", markdown)
+            self.assertIn("- Summary schema version: `1`", markdown)
             self.assertIn("- Status: **PASS**", markdown)
 
     def test_cli_summary_markdown_includes_fail_reasons(self) -> None:

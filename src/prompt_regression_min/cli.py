@@ -579,6 +579,7 @@ def main() -> None:
             markdown_lines = [
                 "## prompt-regression-min summary",
                 "",
+                "- Summary schema version: `1`",
                 f"- Status: **{status}**",
                 (
                     f"- Cases: {summary['cases']} "

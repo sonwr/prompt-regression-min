@@ -303,3 +303,25 @@
 
 ### Next
 - Add a small schema/version marker to summary JSON or drift helper output so downstream CI parsers can detect format changes explicitly.
+
+
+## Run @ 10:20 UTC (cron)
+
+### Plan
+- Add one tiny human-readable schema signal so markdown summaries expose the same contract version as JSON outputs.
+- Re-run CLI/core tests to keep reviewer-facing artifacts parser-safe and docs-aligned.
+
+### Changes
+- Added `Summary schema version: 1` to `--summary-markdown` output in `src/prompt_regression_min/cli.py`.
+- Extended `tests/test_cli.py` to pin the new markdown marker.
+- Updated `README.md` machine-readable summary guidance to note markdown/JSON schema-marker parity.
+
+### Verification
+- `python3 -m unittest tests.test_core tests.test_cli`
+- Result: **PASS**
+
+### Blockers
+- `pytest` is still unavailable in host PATH, so validation continues via `unittest`.
+
+### Next
+- Add one fixture-level smoke check that the committed markdown walkthrough snapshots retain the schema marker after regeneration.

@@ -607,6 +607,7 @@ Regenerate those committed walkthrough snapshots with one command:
 Summary JSON now includes explicit parser metadata:
 
 - `summary_schema_version`: stable schema marker for downstream CI parsers
+- generated summary markdown now includes the same schema marker for human review parity
 - `tool_version`: package version that produced the artifact
 
 Use the generated report and fail deployment when regressions exceed your tolerance.

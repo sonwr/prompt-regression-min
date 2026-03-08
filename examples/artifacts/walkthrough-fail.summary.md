@@ -1,5 +1,6 @@
 ## prompt-regression-min summary
 
+- Summary schema version: `1`
 - Status: **FAIL**
 - Cases: 2 (active=2, skipped=0, filtered_out=0)
 - Pass rate: baseline 100.0% -> candidate 50.0% (delta -50.00pp)
