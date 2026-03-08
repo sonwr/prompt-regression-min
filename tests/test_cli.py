@@ -2694,3 +2694,49 @@ if __name__ == "__main__":
             self.assertIn("- Selection rate: 66.67% of source cases", rendered)
             self.assertIn("- Changed IDs: `reg-1`", rendered)
             self.assertIn("- Filtered-out IDs: `filtered-out`", rendered)
+
+    def test_cli_fixture_trend_stability_policy_passes(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        dataset = root / "examples" / "dataset" / "trend_stability_demo.jsonl"
+        baseline = root / "examples" / "outputs" / "trend_stability_demo.baseline.jsonl"
+        candidate = root / "examples" / "outputs" / "trend_stability_demo.candidate.jsonl"
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            summary_path = Path(tmpdir) / "trend-stability-summary.json"
+            with self.assertRaises(SystemExit) as ctx, redirect_stdout(io.StringIO()):
+                with patch.object(
+                    sys,
+                    "argv",
+                    [
+                        "prm",
+                        "run",
+                        "-d",
+                        str(dataset),
+                        "-b",
+                        str(baseline),
+                        "-c",
+                        str(candidate),
+                        "--max-regressions",
+                        "1",
+                        "--min-stability-rate",
+                        "0.5",
+                        "--require-pass-rate-trend",
+                        "flat",
+                        "--summary-json",
+                        str(summary_path),
+                        "--quiet",
+                    ],
+                ):
+                    cli.main()
+
+            self.assertEqual(ctx.exception.code, 0)
+            payload = json.loads(summary_path.read_text(encoding="utf-8"))
+            self.assertEqual(payload["status"], "PASS")
+            self.assertEqual(payload["summary"]["pass_rate_trend"], "flat")
+            self.assertEqual(payload["summary"]["stability_rate"], 0.5)
+            self.assertEqual(payload["summary"]["regression_ids"], ["checkout-regressed"])
+            self.assertEqual(payload["summary"]["improved_ids"], ["checkout-improved"])
+            self.assertEqual(payload["gates"]["min_stability_rate"], 0.5)
+            self.assertEqual(payload["gates"]["require_pass_rate_trend"], "flat")
+
+

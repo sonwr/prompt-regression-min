@@ -504,6 +504,23 @@ python3 -m prompt_regression_min run \
 
 Expected: exit code `0`, JSON payload `status=PASS`, `summary.filtered_out_cases=2`, `summary.filtered_out_rate=0.5`, and gate echo values `gates.max_filtered_out_cases=2` + `gates.max_filtered_out_rate=0.5`.
 
+### Trend + stability fixture (CI release-shape smoke)
+
+Use this fixture when you want a deterministic policy that allows one regression only if one improvement offsets it and the overall pass-rate trend stays flat with at least 50% stability:
+
+```bash
+python3 -m prompt_regression_min run \
+  -d examples/dataset/trend_stability_demo.jsonl \
+  -b examples/outputs/trend_stability_demo.baseline.jsonl \
+  -c examples/outputs/trend_stability_demo.candidate.jsonl \
+  --max-regressions 1 \
+  --min-stability-rate 0.5 \
+  --require-pass-rate-trend flat \
+  --summary-json
+```
+
+Expected: exit code `0`, JSON payload `status=PASS`, `summary.pass_rate_trend="flat"`, `summary.stability_rate=0.5`, plus one regression id and one improvement id for balanced rollout triage.
+
 ### Machine-readable summary
 
 Use `--summary-json` for CI parsers:

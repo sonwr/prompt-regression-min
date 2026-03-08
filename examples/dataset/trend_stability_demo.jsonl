@@ -1,0 +1,4 @@
+{"id":"checkout-stable-pass","input":"A","expected":{"type":"exact","value":"PASS"}}
+{"id":"checkout-regressed","input":"B","expected":{"type":"exact","value":"PASS"}}
+{"id":"checkout-improved","input":"C","expected":{"type":"exact","value":"PASS"}}
+{"id":"checkout-stable-fail","input":"D","expected":{"type":"exact","value":"PASS"}}

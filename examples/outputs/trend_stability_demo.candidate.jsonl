@@ -1,0 +1,4 @@
+{"id":"checkout-stable-pass","output":"PASS"}
+{"id":"checkout-regressed","output":"FAIL"}
+{"id":"checkout-improved","output":"PASS"}
+{"id":"checkout-stable-fail","output":"FAIL"}
