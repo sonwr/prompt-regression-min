@@ -862,6 +862,9 @@ def main() -> None:
                 reviewer_queue_total += len(summary["skipped_ids"])
             if review_queue:
                 markdown_lines.append(f"- Reviewer queue total: {reviewer_queue_total} case(s)")
+                markdown_lines.append(
+                    f"- Reviewer queue rate: {(reviewer_queue_total / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
+                )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
@@ -949,6 +952,9 @@ def main() -> None:
                 reviewer_queue_total += len(summary["skipped_ids"])
             if reviewer_queue:
                 pr_comment_lines.append(f"- Reviewer queue total: {reviewer_queue_total} case(s)")
+                pr_comment_lines.append(
+                    f"- Reviewer queue rate: {(reviewer_queue_total / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
+                )
                 pr_comment_lines.append("- Reviewer queue: " + " | ".join(reviewer_queue))
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")

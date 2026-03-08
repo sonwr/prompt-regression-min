@@ -8,6 +8,7 @@
 - Changed-case rate: 50.00% of active cases
 - Stable IDs: `checkout-copy`
 - Reviewer queue total: 1 case(s)
+- Reviewer queue rate: 50.00% of active cases
 - Reviewer queue: fix regressions: `auth-login`
 - Why it failed:
   - regressions 1 exceeded max 0
