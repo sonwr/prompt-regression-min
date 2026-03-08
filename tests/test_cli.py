@@ -234,6 +234,7 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             rendered = output.getvalue()
             self.assertIn("## prompt-regression-min summary", rendered)
+            self.assertIn(f"- Tool version: `{cli.__version__}`", rendered)
             self.assertIn("- Status: **FAIL**", rendered)
             self.assertIn("- Regression IDs: `reg-1`", rendered)
             self.assertIn("- Improved IDs: `imp-1`", rendered)
@@ -2220,11 +2221,13 @@ class PromptRegressionCliTests(unittest.TestCase):
         fail_md = (root / "examples" / "artifacts" / "walkthrough-fail.summary.md").read_text(encoding="utf-8")
 
         self.assertIn("## prompt-regression-min summary", pass_md)
+        self.assertIn(f"- Tool version: `{cli.__version__}`", pass_md)
         self.assertIn("- Summary schema version: `1`", pass_md)
         self.assertIn("- Required schema version gate: `1`", pass_md)
         self.assertIn("- Status: **PASS**", pass_md)
 
         self.assertIn("## prompt-regression-min summary", fail_md)
+        self.assertIn(f"- Tool version: `{cli.__version__}`", fail_md)
         self.assertIn("- Summary schema version: `1`", fail_md)
         self.assertIn("- Required schema version gate: `1`", fail_md)
         self.assertIn("- Status: **FAIL**", fail_md)
@@ -2260,6 +2263,7 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("## prompt-regression-min summary", markdown)
+            self.assertIn(f"- Tool version: `{cli.__version__}`", markdown)
             self.assertIn("- Summary schema version: `1`", markdown)
             self.assertIn("- Required schema version gate: _not set_", markdown)
             self.assertIn("- Status: **PASS**", markdown)

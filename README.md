@@ -503,7 +503,7 @@ Use `--summary-json` for CI parsers:
 - `--summary-json artifacts/summary.json`: write JSON payload to file
 - `--summary-json-pretty`: pretty-print summary JSON (`indent=2`) for stdout/file outputs
 - `--summary-markdown artifacts/summary.md`: write a compact markdown summary for PR comments/release notes
-  - Markdown summaries now echo `Required schema version gate` so reviewers can see whether the artifact was generated under an explicit compatibility contract or free-run mode.
+  - Markdown summaries now echo `Tool version` plus `Required schema version gate` so reviewers can see both the producing build and whether the artifact was generated under an explicit compatibility contract or free-run mode.
 - `--summary-markdown -`: print the markdown summary to stdout so CI jobs can pipe it straight into PR-comment or release-note helpers without creating a temporary file first.
 - `--quiet`: suppress all human-readable summary lines (including baseline/candidate/delta and outcome rollups) so CI logs can keep only JSON/artifact paths
 - In CI, persist `.tmp/` summary artifacts (JSON + Markdown) with `actions/upload-artifact` so failed gates stay reviewable after the job exits.
@@ -630,8 +630,8 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
 Summary JSON now includes explicit parser metadata:
 
 - `summary_schema_version`: stable schema marker for downstream CI parsers
-- generated summary markdown now includes the same schema marker for human review parity
-- `tool_version`: package version that produced the artifact
+- generated summary markdown now includes the same schema marker for human review parity plus the producing tool version
+- `tool_version`: package version that produced the JSON artifact
 
 Use the generated report and fail deployment when regressions exceed your tolerance.
 

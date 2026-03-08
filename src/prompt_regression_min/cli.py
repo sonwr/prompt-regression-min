@@ -598,6 +598,7 @@ def main() -> None:
             markdown_lines = [
                 "## prompt-regression-min summary",
                 "",
+                f"- Tool version: `{__version__}`",
                 "- Summary schema version: `1`",
                 (
                     f"- Required schema version gate: `{args.require_summary_schema_version}`"

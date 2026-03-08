@@ -1,5 +1,6 @@
 ## prompt-regression-min summary
 
+- Tool version: `0.1.0`
 - Summary schema version: `1`
 - Required schema version gate: `1`
 - Status: **FAIL**
