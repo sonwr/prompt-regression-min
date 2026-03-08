@@ -61,6 +61,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("## release gate reviewer note", rendered)
             self.assertIn("- Summary schema version: `1`", rendered)
             self.assertIn("- Stable IDs: `checkout-copy`", rendered)
+            self.assertNotIn("- Reviewer queue total:", rendered)
             self.assertIn("approval-ready", rendered)
 
 
@@ -3527,6 +3528,7 @@ if __name__ == "__main__":
                     ):
                         cli.main()
             markdown = markdown_output.getvalue()
+            self.assertIn("- Reviewer queue total: 4 case(s)", markdown)
             self.assertIn("- Reviewer queue: fix regressions: `reg-1` | watch unchanged fails: `watch-1` | confirm filtered-out scope: `scope-1` | resolve skipped cases: `skip-1`", markdown)
 
             pr_output = io.StringIO()
@@ -3541,4 +3543,5 @@ if __name__ == "__main__":
                     ):
                         cli.main()
             pr_comment = pr_output.getvalue()
+            self.assertIn("- Reviewer queue total: 4 case(s)", pr_comment)
             self.assertIn("- Reviewer queue: fix regressions: `reg-1` | watch unchanged fails: `watch-1` | confirm filtered-out scope: `scope-1` | resolve skipped cases: `skip-1`", pr_comment)

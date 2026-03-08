@@ -153,7 +153,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - terminal summary (including `outcome_counts` rollup and explicit `unchanged_pass` / `unchanged_fail` counters)
   - machine-readable JSON report (including `summary.regression_ids` / `summary.improved_ids`)
   - compact markdown summaries for PR comments/release notes, now including explicit regression/improvement case IDs with per-list counts when present, plus changed/filtered-out IDs and their rates for triage handoff
-  - reviewer-friendly markdown snapshots that surface selected dataset IDs, active case IDs, and scope reduction from filters, making shard-scoped reruns easier to audit without opening JSON, plus explicit active-case rate so shard coverage stays visible in pasted PR comments.
+  - reviewer-friendly markdown snapshots that surface selected dataset IDs, active case IDs, scope reduction from filters, and a reviewer-queue total so shard-scoped reruns are easier to size without opening JSON, plus explicit active-case rate so shard coverage stays visible in pasted PR comments.
   - skipped-case handoff cues in markdown summaries, including skipped IDs and skipped-case rate, so disabled cases remain visible during shard/release review.
 - Exits with non-zero status when regressions are detected (CI-friendly)
 
