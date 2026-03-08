@@ -2721,6 +2721,8 @@ class PromptRegressionCliTests(unittest.TestCase):
             rendered = pr_comment.read_text(encoding="utf-8")
             self.assertIn("- Coverage watch: selected=2, active=1, skipped=1, filtered_out=1", rendered)
             self.assertIn("- Case filters: include=`^auth-|^ops-`, exclude=_none_", rendered)
+            self.assertIn("- Filtered-out IDs: `billing-out`", rendered)
+            self.assertIn("- Skipped IDs: `ops-skip`", rendered)
 
 
     def test_cli_allows_custom_summary_pr_comment_title_without_changing_markdown_title(self) -> None:

@@ -894,6 +894,14 @@ def main() -> None:
                 pr_comment_lines.append(
                     "- Stable IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_pass_ids"])
                 )
+            if summary.get("filtered_out_ids"):
+                pr_comment_lines.append(
+                    "- Filtered-out IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"])
+                )
+            if summary.get("skipped_ids"):
+                pr_comment_lines.append(
+                    "- Skipped IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"])
+                )
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")
                 pr_comment_lines.extend([f"  - {reason}" for reason in fail_reasons])
