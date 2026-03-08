@@ -703,6 +703,7 @@ Summary JSON now includes explicit parser metadata:
 
 - `summary_schema_version`: stable schema marker for downstream CI parsers
 - generated summary markdown now includes the same schema marker for human review parity plus the producing tool version
+- summary markdown now also surfaces unchanged-fail budget usage so reviewers can spot watchlist pressure beside regression/changed-case budgets
 - `tool_version`: package version that produced the JSON artifact
 - `selection_rate`: selected/source dataset ratio for shard-size visibility in CI handoffs
 

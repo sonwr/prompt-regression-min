@@ -232,6 +232,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             markdown = output.getvalue()
             self.assertIn("- Regression budget usage: 0/0 (0.00% active-case rate)", markdown)
             self.assertIn("- Changed-case budget usage: 1/2 (50.00% active-case rate)", markdown)
+            self.assertIn("- Unchanged-fail budget usage: 0/disabled (0.00% active-case rate)", markdown)
 
     def test_cli_allows_configurable_regression_budget(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

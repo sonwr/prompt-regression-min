@@ -664,6 +664,11 @@ def main() -> None:
                     + f" ({summary.get('changed_rate', 0.0) * 100:.2f}% active-case rate)"
                 ),
                 (
+                    f"- Unchanged-fail budget usage: {summary.get('unchanged_fail', 0)}/"
+                    + (str(args.max_unchanged_fail) if args.max_unchanged_fail >= 0 else "disabled")
+                    + f" ({summary.get('unchanged_fail_rate', 0.0) * 100:.2f}% active-case rate)"
+                ),
+                (
                     "- Reviewer handoff: "
                     f"stable={summary.get('unchanged_pass', 0)}, "
                     f"regressions={summary['regressions']}, "
