@@ -1,4 +1,4 @@
-## word-count release-note gate
+## word-count blocker note
 - Status: **FAIL**
 - Summary schema version: `1`
 - Pass-rate trend: `regressing`

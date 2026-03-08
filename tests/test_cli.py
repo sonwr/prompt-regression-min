@@ -2581,6 +2581,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         word_count_md = (root / "examples" / "artifacts" / "word-count-range.summary.md").read_text(encoding="utf-8")
         self.assertIn("## word-count release-note gate", word_count_md)
         word_count_pr_comment = (root / "examples" / "artifacts" / "word-count-range.pr-comment.md").read_text(encoding="utf-8")
+        self.assertIn("## word-count blocker note", word_count_pr_comment)
         self.assertIn("Summary schema version: `1`", word_count_pr_comment)
         self.assertIn("release-note-bullets", word_count_pr_comment)
         self.assertIn("release-note-short", word_count_pr_comment)

@@ -51,7 +51,7 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
   --summary-markdown "$ARTIFACT_DIR/word-count-range.summary.md" \
   --summary-pr-comment "$ARTIFACT_DIR/word-count-range.pr-comment.md" \
   --summary-markdown-title "word-count release-note gate" \
-  --summary-pr-comment-title "word-count release-note gate" \
+  --summary-pr-comment-title "word-count blocker note" \
   --quiet
 word_count_status=$?
 set -e

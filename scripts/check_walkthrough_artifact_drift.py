@@ -27,7 +27,7 @@ EXPECTED_MARKDOWN_TITLES = {
     "walkthrough-fail.summary.md": "## prompt-regression-min summary",
     "walkthrough-fail.pr-comment.md": "## walkthrough blocker note",
     "word-count-range.summary.md": "## word-count release-note gate",
-    "word-count-range.pr-comment.md": "## word-count release-note gate",
+    "word-count-range.pr-comment.md": "## word-count blocker note",
 }
 
 REQUIRED_MARKDOWN_MARKERS = (
