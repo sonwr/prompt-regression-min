@@ -43,6 +43,7 @@ PR-comment copy/paste example:
 Committed snapshot files:
 - Markdown: `examples/artifacts/word-count-range.summary.md`
 - JSON: `examples/artifacts/word-count-range.summary.json`
+- PR comment playbook: `examples/word_count_pr_comment_playbook.md`
 
 One-command regeneration:
 
