@@ -20,6 +20,8 @@
   - max_unchanged_fail_rate=disabled
   - forbid_unchanged_fail_id_regex=disabled
   - max_skipped_cases=-1
+  - min_delta_pass_rate_pp=disabled
+  - max_delta_pass_rate_pp=disabled
   - max_changed_cases=disabled
   - max_changed_rate=disabled
   - max_filtered_out_cases=disabled
@@ -28,6 +30,8 @@
   - min_improved=0
   - max_improved=disabled
   - max_improved_rate=disabled
+  - min_unchanged_pass=0
+  - max_unchanged_pass=disabled
   - min_stability_rate=disabled
   - require_pass_rate_trend=disabled
   - require_summary_schema_version=1

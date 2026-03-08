@@ -666,6 +666,16 @@ def main() -> None:
                 ),
                 f"  - max_skipped_cases={args.max_skipped_cases}",
                 (
+                    f"  - min_delta_pass_rate_pp={args.min_delta_pass_rate_pp}"
+                    if args.min_delta_pass_rate_pp is not None
+                    else "  - min_delta_pass_rate_pp=disabled"
+                ),
+                (
+                    f"  - max_delta_pass_rate_pp={args.max_delta_pass_rate_pp}"
+                    if args.max_delta_pass_rate_pp is not None
+                    else "  - max_delta_pass_rate_pp=disabled"
+                ),
+                (
                     f"  - max_changed_cases={args.max_changed_cases}"
                     if args.max_changed_cases >= 0
                     else "  - max_changed_cases=disabled"
@@ -696,6 +706,14 @@ def main() -> None:
                     f"  - max_improved_rate={args.max_improved_rate}"
                     if args.max_improved_rate is not None
                     else "  - max_improved_rate=disabled"
+                ),
+                (
+                    f"  - min_unchanged_pass={args.min_unchanged_pass}"
+                ),
+                (
+                    f"  - max_unchanged_pass={args.max_unchanged_pass}"
+                    if args.max_unchanged_pass >= 0
+                    else "  - max_unchanged_pass=disabled"
                 ),
                 (
                     f"  - min_stability_rate={args.min_stability_rate}"
