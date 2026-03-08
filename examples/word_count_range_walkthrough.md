@@ -29,6 +29,16 @@ Expected markdown highlights:
 - `release-note-short` and `release-note-bullets` appear under regressions.
 - The markdown header uses `word-count release-note gate`.
 
+PR-comment copy/paste example:
+
+```markdown
+## word-count release-note gate
+- Status: `FAIL`
+- Summary schema version: `1`
+- Regression ids: `release-note-bullets`, `release-note-short`
+- Why it failed: both candidate release notes fell below the configured minimum word-count band.
+- Reviewer next step: ask the author to expand the candidate release notes, then rerun the same fixture trio before merging.
+```
 
 Committed snapshot files:
 - Markdown: `examples/artifacts/word-count-range.summary.md`
