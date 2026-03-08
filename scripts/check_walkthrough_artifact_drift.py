@@ -17,6 +17,12 @@ EXPECTED_FILES = {
 }
 
 
+REQUIRED_MARKDOWN_MARKERS = (
+    "## prompt-regression-min summary",
+    "- Summary schema version: `1`",
+)
+
+
 def _run_regeneration(root: Path, out_dir: Path) -> None:
     env = dict(**__import__("os").environ, PRM_WALKTHROUGH_ARTIFACT_DIR=str(out_dir))
     subprocess.run([str(root / "scripts" / "regenerate_walkthrough_artifacts.sh")], check=True, cwd=root, env=env)
@@ -72,6 +78,16 @@ def main() -> int:
             else:
                 committed_text = _read(committed)
                 regenerated_text = _read(regenerated)
+                for marker in REQUIRED_MARKDOWN_MARKERS:
+                    if marker not in committed_text:
+                        diffs.append(f'{name}: committed markdown missing marker {marker!r}')
+                    if marker not in regenerated_text:
+                        diffs.append(f'{name}: regenerated markdown missing marker {marker!r}')
+                status_marker = f'- Status: **{expected_status}**'
+                if status_marker not in committed_text:
+                    diffs.append(f'{name}: committed markdown missing status marker {status_marker!r}')
+                if status_marker not in regenerated_text:
+                    diffs.append(f'{name}: regenerated markdown missing status marker {status_marker!r}')
                 if committed_text != regenerated_text:
                     diff = '\n'.join(difflib.unified_diff(
                         committed_text.splitlines(),

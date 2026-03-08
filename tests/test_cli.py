@@ -2153,6 +2153,19 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("walkthrough artifact drift: PASS", result.stdout)
         self.assertIn("summary_schema_version=1", result.stdout)
 
+    def test_walkthrough_markdown_snapshots_keep_schema_and_status_markers(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        pass_md = (root / "examples" / "artifacts" / "walkthrough-pass.summary.md").read_text(encoding="utf-8")
+        fail_md = (root / "examples" / "artifacts" / "walkthrough-fail.summary.md").read_text(encoding="utf-8")
+
+        self.assertIn("## prompt-regression-min summary", pass_md)
+        self.assertIn("- Summary schema version: `1`", pass_md)
+        self.assertIn("- Status: **PASS**", pass_md)
+
+        self.assertIn("## prompt-regression-min summary", fail_md)
+        self.assertIn("- Summary schema version: `1`", fail_md)
+        self.assertIn("- Status: **FAIL**", fail_md)
+
     def test_cli_writes_summary_markdown_file(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
