@@ -159,6 +159,14 @@ Readable code, inspectable data format, and practical docs over hype.
 
 ## Quickstart
 
+### Smoke-check the documented summary artifacts
+
+```bash
+scripts/smoke_summary_outputs.sh
+```
+
+This smoke check reruns the committed pass/fail walkthrough fixtures, verifies the expected exit codes, and confirms that both markdown and JSON summaries still expose the reviewer-facing markers used in the docs.
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
