@@ -110,6 +110,15 @@ def _build_parser() -> argparse.ArgumentParser:
         ),
     )
     run_cmd.add_argument(
+        "--require-summary-schema-version",
+        type=int,
+        default=None,
+        help=(
+            "Fail if the emitted summary schema version does not match this value. "
+            "Useful for downstream CI/parser compatibility policies."
+        ),
+    )
+    run_cmd.add_argument(
         "--quiet",
         action="store_true",
         help="Suppress human-readable summary lines; keep machine-readable outputs (e.g., --summary-json).",
@@ -405,6 +414,8 @@ def main() -> None:
                 "regression rate "
                 f"{summary.get('regression_rate', 0.0):.4f} exceeded max {args.max_regression_rate:.4f}"
             )
+        summary_schema_version = 1
+
         if summary["candidate_pass_rate"] < args.min_candidate_pass_rate:
             fail_reasons.append(
                 "candidate pass rate "
@@ -504,6 +515,14 @@ def main() -> None:
                 "pass rate trend "
                 f"{summary.get('pass_rate_trend', 'unknown')} does not match required {args.require_pass_rate_trend}"
             )
+        if (
+            args.require_summary_schema_version is not None
+            and summary_schema_version != args.require_summary_schema_version
+        ):
+            fail_reasons.append(
+                "summary schema version "
+                f"{summary_schema_version} does not match required {args.require_summary_schema_version}"
+            )
         filtered_out_case_count = summary.get("filtered_out_cases", 0)
         if args.max_filtered_out_cases >= 0 and filtered_out_case_count > args.max_filtered_out_cases:
             fail_reasons.append(
@@ -544,12 +563,13 @@ def main() -> None:
                 "max_unchanged_pass": args.max_unchanged_pass,
                 "min_stability_rate": args.min_stability_rate,
                 "require_pass_rate_trend": args.require_pass_rate_trend,
+                "require_summary_schema_version": args.require_summary_schema_version,
                 "include_id_regex": args.include_id_regex,
                 "exclude_id_regex": args.exclude_id_regex,
             }
             payload = {
                 "status": status,
-                "summary_schema_version": 1,
+                "summary_schema_version": summary_schema_version,
                 "tool_version": __version__,
                 "fail_reasons": fail_reasons,
                 "summary": summary,

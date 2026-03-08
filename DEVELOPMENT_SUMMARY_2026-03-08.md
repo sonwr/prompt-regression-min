@@ -346,3 +346,27 @@
 
 ### Next
 - Add one fixture-level smoke assertion in CI docs/examples that the PASS markdown snapshot keeps the expected improvement id alongside the schema marker.
+
+## 실행 @ 10:40 UTC (cron)
+
+### 계획
+- summary JSON을 소비하는 다운스트림 CI가 schema drift를 바로 감지할 수 있는 gate를 추가한다.
+- 기존 walkthrough snapshot도 함께 맞춰 artifact drift를 없앤다.
+
+### 변경 사항
+- `src/prompt_regression_min/cli.py`에 `--require-summary-schema-version` gate 추가.
+- `tests/test_cli.py`에 mismatch/pass-through JSON coverage 추가.
+- `.github/workflows/ci.yml`에 schema-version compatibility smoke step 추가.
+- `examples/artifacts/` walkthrough snapshot을 새 gate 필드에 맞게 재생성.
+- `README.md`에 downstream parser compatibility gate 사용 예시 반영.
+
+### 검증
+- `./scripts/regenerate_walkthrough_artifacts.sh`
+- `PYTHONPATH=src python3 -m unittest discover -s tests -v`
+- 결과: **PASS**
+
+### 막힘/리스크
+- 초기 테스트에서 committed walkthrough snapshot이 새 gate 필드 누락으로 drift FAIL이 났고, 재생성으로 해결.
+
+### 다음 실행 우선순위
+- markdown summary에도 schema-version/compatibility gate 표시를 넣을지 검토.

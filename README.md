@@ -603,6 +603,15 @@ Regenerate those committed walkthrough snapshots with one command:
 
 ```bash
 ./scripts/regenerate_walkthrough_artifacts.sh
+
+# downstream parser compatibility gate
+PYTHONPATH=src python3 -m prompt_regression_min run \
+  -d examples/dataset/walkthrough_pass_artifact_demo.jsonl \
+  -b examples/outputs/walkthrough_pass_artifact_demo.baseline.jsonl \
+  -c examples/outputs/walkthrough_pass_artifact_demo.candidate.jsonl \
+  --summary-json .tmp/walkthrough-pass.json \
+  --require-summary-schema-version 1 \
+  --quiet
 ```
 
 Summary JSON now includes explicit parser metadata:
@@ -692,3 +701,5 @@ Yes. Any workflow producing text outputs can be compared via baseline/candidate 
 ## License
 
 MIT
+
+- `--require-summary-schema-version <n>`: fail if the emitted summary JSON schema version drifts from the version your downstream parser expects.

@@ -153,6 +153,18 @@ jobs:
         env:
           PYTHONPATH: src
 
+      - name: Smoke test summary schema version compatibility gate
+        run: |
+          python -m prompt_regression_min run \
+            -d examples/dataset/walkthrough_pass_artifact_demo.jsonl \
+            -b examples/outputs/walkthrough_pass_artifact_demo.baseline.jsonl \
+            -c examples/outputs/walkthrough_pass_artifact_demo.candidate.jsonl \
+            --summary-json .tmp/schema-gate-pass.json \
+            --require-summary-schema-version 1 \
+            --quiet
+        env:
+          PYTHONPATH: src
+
       - name: Smoke test committed walkthrough artifact snapshots stay current
         run: |
           set -euo pipefail

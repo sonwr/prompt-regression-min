@@ -211,6 +211,73 @@ class PromptRegressionCliTests(unittest.TestCase):
                     cli.main()
             self.assertEqual(exc.exception.code, 1)
 
+
+    def test_cli_fails_when_summary_schema_version_gate_mismatches(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "a", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "a", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "a", "output": "ok"}])
+
+            with self.assertRaises(SystemExit) as exc:
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm",
+                        "run",
+                        "-d",
+                        str(dataset),
+                        "-b",
+                        str(baseline),
+                        "-c",
+                        str(candidate),
+                        "--require-summary-schema-version",
+                        "2",
+                    ],
+                ):
+                    cli.main()
+            self.assertEqual(exc.exception.code, 1)
+
+    def test_cli_exposes_summary_schema_version_gate_in_summary_json(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "a", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "a", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "a", "output": "ok"}])
+
+            output = io.StringIO()
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--require-summary-schema-version",
+                    "1",
+                    "--summary-json",
+                ],
+            ):
+                with contextlib.redirect_stdout(output):
+                    cli.main()
+
+            lines = [line for line in output.getvalue().splitlines() if line.strip()]
+            summary_payload = json.loads(lines[-1])
+            self.assertEqual(summary_payload["summary_schema_version"], 1)
+            self.assertEqual(summary_payload["gates"]["require_summary_schema_version"], 1)
+
     def test_cli_emits_summary_json_to_stdout(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
