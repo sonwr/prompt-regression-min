@@ -20,6 +20,49 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
 
 
 class PromptRegressionCliTests(unittest.TestCase):
+    def test_cli_emits_summary_pr_comment_to_stdout(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset_path = tmp_path / "dataset.jsonl"
+            baseline_path = tmp_path / "baseline.jsonl"
+            candidate_path = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset_path,
+                [{"id": "checkout-copy", "expected": {"type": "substring", "value": "ok"}}],
+            )
+            _write_jsonl(baseline_path, [{"id": "checkout-copy", "output": "ok"}])
+            _write_jsonl(candidate_path, [{"id": "checkout-copy", "output": "ok"}])
+
+            stdout = io.StringIO()
+            with contextlib.redirect_stdout(stdout):
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm",
+                        "run",
+                        "--dataset",
+                        str(dataset_path),
+                        "--baseline",
+                        str(baseline_path),
+                        "--candidate",
+                        str(candidate_path),
+                        "--summary-pr-comment",
+                        "-",
+                        "--summary-markdown-title",
+                        "release gate reviewer note",
+                        "--quiet",
+                    ],
+                ):
+                    exit_code = cli.main()
+
+            self.assertIsNone(exit_code)
+            rendered = stdout.getvalue()
+            self.assertIn("## release gate reviewer note", rendered)
+            self.assertIn("- Summary schema version: `1`", rendered)
+            self.assertIn("approval-ready", rendered)
+
+
     def test_summary_markdown_stdout_word_count_range_fixture_surfaces_regression_id(self) -> None:
         root = Path(__file__).resolve().parents[1]
         output = io.StringIO()

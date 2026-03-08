@@ -483,3 +483,22 @@
 
 ### Next
 - Consider generating reviewer-note snapshots directly from summary artifacts/templates so committed PR comments stay formatter-consistent with markdown summaries.
+
+## Run @ 20:57 UTC (cron)
+
+### Plan
+- Close a small reviewer-note ergonomics gap by pinning stdout behavior for PR-comment snapshots.
+- Mirror the workflow in README guidance so CI users can discover it from the landing page.
+
+### Changes
+- Added `test_cli_emits_summary_pr_comment_to_stdout` in `tests/test_cli.py` to lock `--summary-pr-comment -` behavior on the quiet path.
+- Updated `README.md` to document direct stdout piping for reviewer-note snapshots alongside committed PR-comment artifacts.
+
+### Verification
+- `python3 -m unittest discover -s tests -q`
+
+### Blockers
+- None.
+
+### Next
+- Consider adding one copy-paste CI snippet that posts the stdout reviewer note after `--summary-pr-comment -` into a PR helper action.
