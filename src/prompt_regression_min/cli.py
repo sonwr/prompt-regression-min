@@ -635,6 +635,13 @@ def main() -> None:
                 markdown_lines.append(
                     "- Improved IDs: " + ", ".join(f"`{case_id}`" for case_id in improved_ids)
                 )
+            if args.include_id_regex or args.exclude_id_regex:
+                markdown_lines.append(
+                    "- Case filters: include="
+                    + (f"`{args.include_id_regex}`" if args.include_id_regex else "_all_")
+                    + ", exclude="
+                    + (f"`{args.exclude_id_regex}`" if args.exclude_id_regex else "_none_")
+                )
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
                 markdown_lines.extend([f"  - {reason}" for reason in fail_reasons])

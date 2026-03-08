@@ -2302,6 +2302,41 @@ class PromptRegressionCliTests(unittest.TestCase):
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("- Required schema version gate: `1`", markdown)
 
+    def test_cli_summary_markdown_includes_case_filters(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_md = tmp_path / "artifacts" / "summary.md"
+
+            _write_jsonl(dataset, [{"id": "auth-1", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "auth-1", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "auth-1", "output": "ok"}])
+
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-markdown",
+                    str(summary_md),
+                    "--include-id-regex",
+                    "^auth-",
+                    "--exclude-id-regex=-canary$",
+                ],
+            ):
+                cli.main()
+
+            markdown = summary_md.read_text(encoding="utf-8")
+            self.assertIn("- Case filters: include=`^auth-`, exclude=`-canary$`", markdown)
+
     def test_cli_summary_markdown_includes_fail_reasons(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
