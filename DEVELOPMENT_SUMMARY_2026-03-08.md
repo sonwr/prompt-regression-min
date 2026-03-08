@@ -461,3 +461,25 @@
 
 ### Next
 - Add a second reviewer-note snapshot for a PASS fixture so teams can copy both approval and failure comment shapes directly from committed artifacts.
+
+## Run @ 19:45 UTC (cron)
+
+### Plan
+- Promote walkthrough reviewer-note artifacts so PASS/FAIL PR comment shapes are both committed and reproducible.
+- Regenerate snapshots and re-run the full unittest suite.
+
+### Changes
+- Added committed reviewer-note snapshot `examples/artifacts/walkthrough-fail.pr-comment.md`.
+- Updated `scripts/regenerate_walkthrough_artifacts.sh` to regenerate both walkthrough PASS/FAIL PR-comment snapshots.
+- Updated `README.md` and `tests/test_cli.py` so the new FAIL note stays documented and pinned in tests.
+
+### Verification
+- `./scripts/regenerate_walkthrough_artifacts.sh`
+- `python3 -m unittest discover -s tests -q`
+- Result: **PASS**
+
+### Blockers
+- None.
+
+### Next
+- Consider generating reviewer-note snapshots directly from summary artifacts/templates so committed PR comments stay formatter-consistent with markdown summaries.

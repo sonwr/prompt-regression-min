@@ -2411,6 +2411,11 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("checkout-copy", walkthrough_pass_pr_comment)
         self.assertIn("policy-note", walkthrough_pass_pr_comment)
 
+        walkthrough_fail_pr_comment = (root / "examples" / "artifacts" / "walkthrough-fail.pr-comment.md").read_text(encoding="utf-8")
+        self.assertIn("Summary schema version: `1`", walkthrough_fail_pr_comment)
+        self.assertIn("auth-login", walkthrough_fail_pr_comment)
+        self.assertIn("Status: **FAIL**", walkthrough_fail_pr_comment)
+
         word_count_md = (root / "examples" / "artifacts" / "word-count-range.summary.md").read_text(encoding="utf-8")
         self.assertIn("## word-count release-note gate", word_count_md)
         word_count_pr_comment = (root / "examples" / "artifacts" / "word-count-range.pr-comment.md").read_text(encoding="utf-8")

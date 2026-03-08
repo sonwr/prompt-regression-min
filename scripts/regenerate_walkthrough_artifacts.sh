@@ -72,3 +72,12 @@ cat > "$ARTIFACT_DIR/walkthrough-pass.pr-comment.md" <<'EOF'
 - Stable IDs: `checkout-copy`, `policy-note`
 - Reviewer next step: this snapshot is approval-ready; paste it into the PR comment and merge once surrounding checks pass.
 EOF
+
+cat > "$ARTIFACT_DIR/walkthrough-fail.pr-comment.md" <<'EOF'
+## prompt-regression-min summary
+- Status: **FAIL**
+- Summary schema version: `1`
+- Regression IDs: `auth-login`
+- Outcome: the walkthrough FAIL fixture still demonstrates a deterministic regression reviewers can paste directly into a blocking PR comment.
+- Reviewer next step: keep the PR blocked until `auth-login` is fixed, then rerun `./scripts/regenerate_walkthrough_artifacts.sh` to refresh the committed reviewer note.
+EOF
