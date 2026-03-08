@@ -785,6 +785,9 @@ def main() -> None:
                 markdown_lines.append(
                     "- Skipped IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"])
                 )
+                markdown_lines.append(
+                    f"- Skipped-case rate: {summary.get('skipped_rate', 0.0) * 100:.2f}% of active cases"
+                )
             if summary.get("unchanged_pass_ids"):
                 markdown_lines.append(
                     "- Unchanged pass IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_pass_ids"])

@@ -2725,6 +2725,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Filtered-out IDs: `billing-out`", markdown)
             self.assertIn("- Scope reduction: 33.33% of source cases removed by filters", markdown)
             self.assertIn("- Skipped IDs: `ops-skip`", markdown)
+            self.assertIn("- Skipped-case rate: 100.00% of active cases", markdown)
             self.assertIn("- Unchanged fail IDs: `auth-keep`", markdown)
 
     def test_cli_summary_markdown_includes_fail_reasons(self) -> None:

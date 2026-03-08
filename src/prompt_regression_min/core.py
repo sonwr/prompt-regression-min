@@ -674,6 +674,7 @@ def run_regression(
     selected_dataset_ids = sorted(row["id"] for row in dataset_rows)
     active_case_ids = sorted(result.id for result in results)
     filtered_out_rate = round(len(filtered_out_ids) / source_dataset_case_count, 4)
+    skipped_rate = round(len(skipped_ids) / len(results), 4) if results else 0.0
     selection_rate = round(selected_dataset_case_count / source_dataset_case_count, 4)
 
     pass_rate_trend = "flat"
@@ -696,6 +697,7 @@ def run_regression(
         "filtered_out_ids": sorted(filtered_out_ids),
         "active_cases": len(results),
         "skipped_cases": len(skipped_ids),
+        "skipped_rate": skipped_rate,
         "skipped_ids": sorted(skipped_ids),
         "baseline_passes": baseline_passes,
         "candidate_passes": candidate_passes,
