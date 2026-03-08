@@ -185,33 +185,58 @@ class PromptRegressionCliTests(unittest.TestCase):
             baseline = tmp_path / "baseline.jsonl"
             candidate = tmp_path / "candidate.jsonl"
 
-            _write_jsonl(dataset, [{"id": "a", "expected": {"type": "substring", "value": "ok"}}])
-            _write_jsonl(baseline, [{"id": "a", "output": "ok"}])
-            _write_jsonl(candidate, [{"id": "a", "output": "ok"}])
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "keep-pass", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "imp-1", "expected": {"type": "substring", "value": "great"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "keep-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "ok"},
+                    {"id": "imp-1", "output": "bad"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "keep-pass", "output": "ok"},
+                    {"id": "reg-1", "output": "bad"},
+                    {"id": "imp-1", "output": "great"},
+                ],
+            )
 
             output = io.StringIO()
-            with contextlib.redirect_stdout(output):
-                with mock.patch(
-                    "sys.argv",
-                    [
-                        "prm",
-                        "run",
-                        "-d",
-                        str(dataset),
-                        "-b",
-                        str(baseline),
-                        "-c",
-                        str(candidate),
-                        "--summary-markdown",
-                        "-",
-                        "--quiet",
-                    ],
-                ):
-                    cli.main()
+            with self.assertRaises(SystemExit) as exc:
+                with contextlib.redirect_stdout(output):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm",
+                            "run",
+                            "-d",
+                            str(dataset),
+                            "-b",
+                            str(baseline),
+                            "-c",
+                            str(candidate),
+                            "--summary-markdown",
+                            "-",
+                            "--quiet",
+                        ],
+                    ):
+                        cli.main()
+            self.assertEqual(exc.exception.code, 1)
 
             rendered = output.getvalue()
             self.assertIn("## prompt-regression-min summary", rendered)
-            self.assertIn("- Status: **PASS**", rendered)
+            self.assertIn("- Status: **FAIL**", rendered)
+            self.assertIn("- Regression IDs: `reg-1`", rendered)
+            self.assertIn("- Improved IDs: `imp-1`", rendered)
             self.assertNotIn("prompt-regression-min summary\n- cases:", rendered)
 
     def test_cli_fails_when_unchanged_fail_count_exceeds_threshold(self) -> None:

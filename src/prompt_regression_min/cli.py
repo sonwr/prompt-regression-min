@@ -619,6 +619,16 @@ def main() -> None:
                     f"unchanged_fail={summary.get('unchanged_fail', 0)}"
                 ),
             ]
+            regression_ids = summary.get("regression_ids", [])
+            improved_ids = summary.get("improved_ids", [])
+            if regression_ids:
+                markdown_lines.append(
+                    "- Regression IDs: " + ", ".join(f"`{case_id}`" for case_id in regression_ids)
+                )
+            if improved_ids:
+                markdown_lines.append(
+                    "- Improved IDs: " + ", ".join(f"`{case_id}`" for case_id in improved_ids)
+                )
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
                 markdown_lines.extend([f"  - {reason}" for reason in fail_reasons])

@@ -145,6 +145,7 @@ Readable code, inspectable data format, and practical docs over hype.
 - Produces:
   - terminal summary (including `outcome_counts` rollup and explicit `unchanged_pass` / `unchanged_fail` counters)
   - machine-readable JSON report (including `summary.regression_ids` / `summary.improved_ids`)
+  - compact markdown summaries for PR comments/release notes, now including explicit regression/improvement case IDs when present
 - Exits with non-zero status when regressions are detected (CI-friendly)
 
 ---
