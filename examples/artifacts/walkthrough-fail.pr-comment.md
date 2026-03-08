@@ -1,4 +1,4 @@
-## prompt-regression-min summary
+## walkthrough blocker note
 - Status: **FAIL**
 - Summary schema version: `1`
 - Pass-rate trend: `regressing`

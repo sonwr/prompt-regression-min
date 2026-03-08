@@ -14,6 +14,7 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
   --summary-json "$ARTIFACT_DIR/walkthrough-pass.summary.json" \
   --summary-markdown "$ARTIFACT_DIR/walkthrough-pass.summary.md" \
   --summary-pr-comment "$ARTIFACT_DIR/walkthrough-pass.pr-comment.md" \
+  --summary-pr-comment-title "walkthrough approval note" \
   --require-summary-schema-version 1 \
   --quiet
 
@@ -26,6 +27,7 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
   --summary-json "$ARTIFACT_DIR/walkthrough-fail.summary.json" \
   --summary-markdown "$ARTIFACT_DIR/walkthrough-fail.summary.md" \
   --summary-pr-comment "$ARTIFACT_DIR/walkthrough-fail.pr-comment.md" \
+  --summary-pr-comment-title "walkthrough blocker note" \
   --require-summary-schema-version 1 \
   --quiet
 status=$?

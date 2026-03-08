@@ -1,4 +1,4 @@
-## prompt-regression-min summary
+## walkthrough approval note
 - Status: **PASS**
 - Summary schema version: `1`
 - Pass-rate trend: `improving`

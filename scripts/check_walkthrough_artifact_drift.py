@@ -15,6 +15,7 @@ EXPECTED_FILES = {
     "walkthrough-pass.pr-comment.md": "PASS",
     "walkthrough-fail.summary.json": "FAIL",
     "walkthrough-fail.summary.md": "FAIL",
+    "walkthrough-fail.pr-comment.md": "FAIL",
     "word-count-range.summary.json": "FAIL",
     "word-count-range.summary.md": "FAIL",
     "word-count-range.pr-comment.md": "FAIL",
@@ -22,8 +23,9 @@ EXPECTED_FILES = {
 
 EXPECTED_MARKDOWN_TITLES = {
     "walkthrough-pass.summary.md": "## prompt-regression-min summary",
-    "walkthrough-pass.pr-comment.md": "## prompt-regression-min summary",
+    "walkthrough-pass.pr-comment.md": "## walkthrough approval note",
     "walkthrough-fail.summary.md": "## prompt-regression-min summary",
+    "walkthrough-fail.pr-comment.md": "## walkthrough blocker note",
     "word-count-range.summary.md": "## word-count release-note gate",
     "word-count-range.pr-comment.md": "## word-count release-note gate",
 }
@@ -41,6 +43,12 @@ PR_COMMENT_REQUIRED_MARKERS = {
         '- Pass-rate trend: `improving`',
         '- Improved IDs: `checkout-copy`',
         '- Stable IDs: `policy-note`',
+        '- Reviewer next step:',
+    ),
+    'walkthrough-fail.pr-comment.md': (
+        '- Summary schema version: `1`',
+        '- Pass-rate trend: `regressing`',
+        '- Regression IDs: `auth-login`',
         '- Reviewer next step:',
     ),
     'word-count-range.pr-comment.md': (
