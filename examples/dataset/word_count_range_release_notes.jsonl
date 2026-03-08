@@ -1,0 +1,2 @@
+{"id": "release-note-short", "input": "Summarize the release in one compact sentence.", "expected": {"type": "word_count_range", "min_words": 6, "max_words": 12}}
+{"id": "release-note-bullets", "input": "Summarize the release in a short update paragraph.", "expected": {"type": "word_count_range", "min_words": 10, "max_words": 18}}

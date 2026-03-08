@@ -1381,6 +1381,18 @@ if __name__ == "__main__":
             with self.assertRaisesRegex(ValueError, "min_words must be <= max_words"):
                 run_regression(str(dataset), str(baseline), str(candidate))
 
+    def test_run_regression_word_count_range_example_fixture_surfaces_expected_regression_id(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        report = run_regression(
+            str(root / "examples" / "dataset" / "word_count_range_release_notes.jsonl"),
+            str(root / "examples" / "outputs" / "word_count_range_release_notes.baseline.jsonl"),
+            str(root / "examples" / "outputs" / "word_count_range_release_notes.candidate.jsonl"),
+        )
+
+        self.assertEqual(report["summary"]["regressions"], 1)
+        self.assertEqual(report["summary"]["regression_ids"], ["release-note-short"])
+        self.assertEqual(report["summary"]["unchanged_pass"], 1)
+
     def test_run_regression_supports_line_count_range_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

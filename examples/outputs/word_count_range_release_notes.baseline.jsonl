@@ -1,0 +1,2 @@
+{"id": "release-note-short", "output": "Release improves dashboard speed and checkout clarity."}
+{"id": "release-note-bullets", "output": "This release improves dashboard speed, clarifies checkout copy, and removes a flaky login retry path."}

@@ -393,3 +393,25 @@
 
 ### Next
 - Add one example dataset/output pair that demonstrates `word_count_range` in a release-note or summarization workflow.
+
+## Run @ 13:30 UTC (cron)
+
+### Plan
+- Close the pending `word_count_range` documentation gap with a real example fixture trio.
+- Pin the documented regression outcome in tests and README navigation.
+
+### Changes
+- Added `examples/dataset/word_count_range_release_notes.jsonl` plus matching baseline/candidate outputs under `examples/outputs/`.
+- Added `examples/word_count_range_walkthrough.md` with a copyable smoke command for concise release-note workflows.
+- Added `test_run_regression_word_count_range_example_fixture_surfaces_expected_regression_id` in `tests/test_core.py`.
+- Updated `README.md` to link the new deterministic length-budget example.
+
+### Verification
+- `PYTHONPATH=src python3 -m unittest discover -s tests -v`
+- Result: **PASS** (125 tests)
+
+### Blockers
+- None.
+
+### Next
+- Add one CLI smoke example that emits summary markdown for the word-count fixture so reviewer-facing docs include both JSON and markdown paths.

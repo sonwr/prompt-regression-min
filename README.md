@@ -145,6 +145,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `not_regex_fullmatch` (same flags, but fails if the entire output matches the pattern)
   - `word_count_range` (enforces lower/upper output-length bounds using whitespace-delimited word counts)
   - `line_count_range` (enforces lower/upper output-length bounds using newline-delimited line counts)
+- Example fixture trio for deterministic release-note length checks: `examples/dataset/word_count_range_release_notes.jsonl` + matching outputs
 - Produces:
   - terminal summary (including `outcome_counts` rollup and explicit `unchanged_pass` / `unchanged_fail` counters)
   - machine-readable JSON report (including `summary.regression_ids` / `summary.improved_ids`)
@@ -174,6 +175,8 @@ python -m prompt_regression_min run \
   --candidate examples/outputs/customer_support.candidate.jsonl \
   --report report.json
 ```
+
+For a copyable length-budget smoke test, see `examples/word_count_range_walkthrough.md`.
 
 ---
 
