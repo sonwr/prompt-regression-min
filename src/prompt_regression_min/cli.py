@@ -652,6 +652,11 @@ def main() -> None:
                     if args.max_unchanged_fail_rate is not None
                     else "  - max_unchanged_fail_rate=disabled"
                 ),
+                (
+                    f"  - forbid_unchanged_fail_id_regex={args.forbid_unchanged_fail_id_regex}"
+                    if args.forbid_unchanged_fail_id_regex is not None
+                    else "  - forbid_unchanged_fail_id_regex=disabled"
+                ),
                 f"  - max_skipped_cases={args.max_skipped_cases}",
                 (
                     f"  - max_changed_cases={args.max_changed_cases}"

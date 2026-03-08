@@ -240,6 +240,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Stability rate: 33.33%", rendered)
             self.assertIn("- Gate snapshot:", rendered)
             self.assertIn("  - max_regressions=0", rendered)
+            self.assertIn("  - forbid_unchanged_fail_id_regex=disabled", rendered)
             self.assertIn("  - max_changed_cases=disabled", rendered)
             self.assertIn("  - max_filtered_out_cases=disabled", rendered)
             self.assertIn("  - min_active_cases=1", rendered)
@@ -2460,6 +2461,40 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("- Case filters: include=`^auth-`, exclude=`-canary$`", markdown)
+
+    def test_cli_summary_markdown_includes_forbidden_unchanged_fail_regex_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_md = tmp_path / "artifacts" / "summary.md"
+
+            _write_jsonl(dataset, [{"id": "auth-login", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "auth-login", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "auth-login", "output": "ok"}])
+
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-markdown",
+                    str(summary_md),
+                    "--forbid-unchanged-fail-id-regex",
+                    "^auth-",
+                ],
+            ):
+                cli.main()
+
+            markdown = summary_md.read_text(encoding="utf-8")
+            self.assertIn("  - forbid_unchanged_fail_id_regex=^auth-", markdown)
 
     def test_cli_summary_markdown_includes_filtered_skipped_and_unchanged_fail_ids(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

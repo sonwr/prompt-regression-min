@@ -15,6 +15,7 @@
   - min_candidate_pass_rate=0.0
   - max_unchanged_fail=-1
   - max_unchanged_fail_rate=disabled
+  - forbid_unchanged_fail_id_regex=disabled
   - max_skipped_cases=-1
   - max_changed_cases=disabled
   - max_changed_rate=disabled
