@@ -1380,3 +1380,38 @@ if __name__ == "__main__":
 
             with self.assertRaisesRegex(ValueError, "min_words must be <= max_words"):
                 run_regression(str(dataset), str(baseline), str(candidate))
+
+    def test_run_regression_supports_line_count_range_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "line_count_range", "min_lines": 2, "max_lines": 3}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "alpha\nbeta"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "alpha beta gamma"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_rejects_invalid_line_count_range_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "case-1", "expected": {"type": "line_count_range"}}])
+            _write_jsonl(baseline, [{"id": "case-1", "output": "alpha\nbeta"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "alpha\nbeta"}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertIn("Invalid line_count_range expectation", str(exc.exception))

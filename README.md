@@ -143,6 +143,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `not_regex_ci` (alias of `not_regex` with implicit `IGNORECASE`)
   - `not_regex_fullmatch` (same flags, but fails if the entire output matches the pattern)
   - `word_count_range` (enforces lower/upper output-length bounds using whitespace-delimited word counts)
+  - `line_count_range` (enforces lower/upper output-length bounds using newline-delimited line counts)
 - Produces:
   - terminal summary (including `outcome_counts` rollup and explicit `unchanged_pass` / `unchanged_fail` counters)
   - machine-readable JSON report (including `summary.regression_ids` / `summary.improved_ids`)
@@ -213,6 +214,10 @@ Supported `expected.type` values:
 - `exact_ci` (case-insensitive variant of `exact`; still trims surrounding whitespace):
   ```json
   { "type": "exact_ci", "value": "approved" }
+  ```
+- `line_count_range` (useful for enforcing compact bullets or multi-line templates):
+  ```json
+  { "type": "line_count_range", "min_lines": 2, "max_lines": 4 }
   ```
 - `not_exact` (`value` must be a string; passes only when normalized output differs):
   ```json

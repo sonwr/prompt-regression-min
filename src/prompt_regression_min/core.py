@@ -41,6 +41,7 @@ SUPPORTED_EXPECTED_TYPES = (
     "not_regex_ci",
     "not_regex_fullmatch",
     "word_count_range",
+    "line_count_range",
 )
 REGEX_FLAG_MAP = {
     "IGNORECASE": re.IGNORECASE,
@@ -57,6 +58,12 @@ def _normalize_regex_flag_name(flag_name: Any) -> str:
 
 def _count_words(value: str) -> int:
     return len(re.findall(r"\S+", value))
+
+
+def _count_lines(value: str) -> int:
+    if not value:
+        return 0
+    return len(value.splitlines())
 
 
 @dataclass
@@ -202,26 +209,15 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
         if max_words is not None and word_count > max_words:
             return False
         return True
-    if kind == "word_count_range":
-        min_words = expected.get("min_words")
-        max_words = expected.get("max_words")
-        if min_words is None and max_words is None:
-            raise ValueError(
-                f"Invalid word_count_range expectation in dataset id={case_id}: set min_words, max_words, or both"
-            )
-        if min_words is not None and (not isinstance(min_words, int) or min_words < 0):
-            raise ValueError(
-                f"Invalid expected.min_words for type={kind} in dataset id={case_id}: must be an integer >= 0"
-            )
-        if max_words is not None and (not isinstance(max_words, int) or max_words < 0):
-            raise ValueError(
-                f"Invalid expected.max_words for type={kind} in dataset id={case_id}: must be an integer >= 0"
-            )
-        if min_words is not None and max_words is not None and min_words > max_words:
-            raise ValueError(
-                f"Invalid word_count_range expectation in dataset id={case_id}: min_words must be <= max_words"
-            )
-        return
+    if kind == "line_count_range":
+        min_lines = expected.get("min_lines")
+        max_lines = expected.get("max_lines")
+        line_count = _count_lines(output)
+        if min_lines is not None and line_count < min_lines:
+            return False
+        if max_lines is not None and line_count > max_lines:
+            return False
+        return True
 
     if kind in {"regex", "regex_ci", "regex_fullmatch", "not_regex", "not_regex_ci", "not_regex_fullmatch"}:
         pattern = expected.get("pattern")
@@ -390,12 +386,43 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
     if kind == "word_count_range":
         min_words = expected.get("min_words")
         max_words = expected.get("max_words")
-        word_count = _count_words(output)
-        if min_words is not None and word_count < min_words:
-            return False
-        if max_words is not None and word_count > max_words:
-            return False
-        return True
+        if min_words is None and max_words is None:
+            raise ValueError(
+                f"Invalid word_count_range expectation in dataset id={case_id}: set min_words, max_words, or both"
+            )
+        if min_words is not None and (not isinstance(min_words, int) or min_words < 0):
+            raise ValueError(
+                f"Invalid expected.min_words for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if max_words is not None and (not isinstance(max_words, int) or max_words < 0):
+            raise ValueError(
+                f"Invalid expected.max_words for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if min_words is not None and max_words is not None and min_words > max_words:
+            raise ValueError(
+                f"Invalid word_count_range expectation in dataset id={case_id}: min_words must be <= max_words"
+            )
+        return
+    if kind == "line_count_range":
+        min_lines = expected.get("min_lines")
+        max_lines = expected.get("max_lines")
+        if min_lines is None and max_lines is None:
+            raise ValueError(
+                f"Invalid line_count_range expectation in dataset id={case_id}: set min_lines, max_lines, or both"
+            )
+        if min_lines is not None and (not isinstance(min_lines, int) or min_lines < 0):
+            raise ValueError(
+                f"Invalid expected.min_lines for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if max_lines is not None and (not isinstance(max_lines, int) or max_lines < 0):
+            raise ValueError(
+                f"Invalid expected.max_lines for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if min_lines is not None and max_lines is not None and min_lines > max_lines:
+            raise ValueError(
+                f"Invalid line_count_range expectation in dataset id={case_id}: min_lines must be <= max_lines"
+            )
+        return
     if kind in {"regex", "regex_ci", "regex_fullmatch", "not_regex", "not_regex_ci", "not_regex_fullmatch"}:
         pattern = expected.get("pattern")
         if not isinstance(pattern, str) or not pattern.strip():
