@@ -63,3 +63,12 @@ cat > "$ARTIFACT_DIR/word-count-range.pr-comment.md" <<'EOF'
 - Why it failed: both candidate release notes fell below the configured minimum word-count band.
 - Reviewer next step: ask the author to expand the candidate release notes, then rerun `./scripts/regenerate_walkthrough_artifacts.sh` before merging.
 EOF
+
+cat > "$ARTIFACT_DIR/walkthrough-pass.pr-comment.md" <<'EOF'
+## prompt-regression-min summary
+- Status: **PASS**
+- Summary schema version: `1`
+- Outcome: candidate preserved all documented expectations for the walkthrough PASS fixture.
+- Stable IDs: `checkout-copy`, `policy-note`
+- Reviewer next step: this snapshot is approval-ready; paste it into the PR comment and merge once surrounding checks pass.
+EOF

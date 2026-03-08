@@ -12,6 +12,7 @@ from pathlib import Path
 EXPECTED_FILES = {
     "walkthrough-pass.summary.json": "PASS",
     "walkthrough-pass.summary.md": "PASS",
+    "walkthrough-pass.pr-comment.md": "PASS",
     "walkthrough-fail.summary.json": "FAIL",
     "walkthrough-fail.summary.md": "FAIL",
     "word-count-range.summary.json": "FAIL",
@@ -21,6 +22,7 @@ EXPECTED_FILES = {
 
 EXPECTED_MARKDOWN_TITLES = {
     "walkthrough-pass.summary.md": "## prompt-regression-min summary",
+    "walkthrough-pass.pr-comment.md": "## prompt-regression-min summary",
     "walkthrough-fail.summary.md": "## prompt-regression-min summary",
     "word-count-range.summary.md": "## word-count release-note gate",
     "word-count-range.pr-comment.md": "## word-count release-note gate",
@@ -33,11 +35,18 @@ REQUIRED_MARKDOWN_MARKERS = (
     "  - require_summary_schema_version=",
 )
 
-PR_COMMENT_REQUIRED_MARKERS = (
-    "- Summary schema version: `1`",
-    "- Regression ids: `release-note-bullets`, `release-note-short`",
-    "- Reviewer next step:",
-)
+PR_COMMENT_REQUIRED_MARKERS = {
+    'walkthrough-pass.pr-comment.md': (
+        '- Summary schema version: `1`',
+        '- Stable IDs: `checkout-copy`, `policy-note`',
+        '- Reviewer next step:',
+    ),
+    'word-count-range.pr-comment.md': (
+        '- Summary schema version: `1`',
+        '- Regression ids: `release-note-bullets`, `release-note-short`',
+        '- Reviewer next step:',
+    ),
+}
 
 
 def _run_regeneration(root: Path, out_dir: Path) -> None:
@@ -95,7 +104,7 @@ def main() -> int:
             else:
                 committed_text = _read(committed)
                 regenerated_text = _read(regenerated)
-                markers = PR_COMMENT_REQUIRED_MARKERS if name.endswith(".pr-comment.md") else REQUIRED_MARKDOWN_MARKERS
+                markers = PR_COMMENT_REQUIRED_MARKERS.get(name, REQUIRED_MARKDOWN_MARKERS) if name.endswith(".pr-comment.md") else REQUIRED_MARKDOWN_MARKERS
                 for marker in markers:
                     if marker not in committed_text:
                         diffs.append(f'{name}: committed markdown missing marker {marker!r}')
