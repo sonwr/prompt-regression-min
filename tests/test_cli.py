@@ -178,6 +178,42 @@ class PromptRegressionCliTests(unittest.TestCase):
                     cli.main()
             self.assertEqual(exc.exception.code, 1)
 
+    def test_cli_prints_summary_markdown_to_stdout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "a", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "a", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "a", "output": "ok"}])
+
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm",
+                        "run",
+                        "-d",
+                        str(dataset),
+                        "-b",
+                        str(baseline),
+                        "-c",
+                        str(candidate),
+                        "--summary-markdown",
+                        "-",
+                        "--quiet",
+                    ],
+                ):
+                    cli.main()
+
+            rendered = output.getvalue()
+            self.assertIn("## prompt-regression-min summary", rendered)
+            self.assertIn("- Status: **PASS**", rendered)
+            self.assertNotIn("prompt-regression-min summary\n- cases:", rendered)
+
     def test_cli_fails_when_unchanged_fail_count_exceeds_threshold(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

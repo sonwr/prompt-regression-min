@@ -106,7 +106,7 @@ def _build_parser() -> argparse.ArgumentParser:
         default=None,
         help=(
             "Write a compact markdown summary to file (for PR comments/release notes). "
-            "The file is always overwritten."
+            "Use '-' to print markdown to stdout. File paths are always overwritten."
         ),
     )
     run_cmd.add_argument(
@@ -595,7 +595,6 @@ def main() -> None:
                 emit(f"- summary_json: {summary_path}")
 
         if args.summary_markdown:
-            md_path = Path(args.summary_markdown)
             markdown_lines = [
                 "## prompt-regression-min summary",
                 "",
@@ -623,13 +622,18 @@ def main() -> None:
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
                 markdown_lines.extend([f"  - {reason}" for reason in fail_reasons])
-            try:
-                md_path.parent.mkdir(parents=True, exist_ok=True)
-                md_path.write_text("\n".join(markdown_lines) + "\n", encoding="utf-8")
-            except OSError as exc:
-                print(f"error: failed to write summary markdown to {md_path}: {exc}", file=sys.stderr)
-                raise SystemExit(2)
-            emit(f"- summary_markdown: {md_path}")
+            markdown_text = "\n".join(markdown_lines) + "\n"
+            if args.summary_markdown == "-":
+                print(markdown_text, end="")
+            else:
+                md_path = Path(args.summary_markdown)
+                try:
+                    md_path.parent.mkdir(parents=True, exist_ok=True)
+                    md_path.write_text(markdown_text, encoding="utf-8")
+                except OSError as exc:
+                    print(f"error: failed to write summary markdown to {md_path}: {exc}", file=sys.stderr)
+                    raise SystemExit(2)
+                emit(f"- summary_markdown: {md_path}")
 
         if args.report:
             report_path = Path(args.report)
