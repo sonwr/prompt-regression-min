@@ -901,6 +901,13 @@ def main() -> None:
                 pr_comment_lines.append(
                     "- Stable IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_pass_ids"])
                 )
+            if summary.get("unchanged_fail_ids"):
+                pr_comment_lines.append(
+                    "- Unchanged fail IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_fail_ids"])
+                )
+                pr_comment_lines.append(
+                    f"- Watchlist rate: {summary.get('unchanged_fail_rate', 0.0) * 100:.2f}% of active cases"
+                )
             if summary.get("filtered_out_ids"):
                 pr_comment_lines.append(
                     "- Filtered-out IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"])
