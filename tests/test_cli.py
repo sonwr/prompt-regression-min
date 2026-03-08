@@ -2662,8 +2662,65 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Status: **PASS**", rendered)
             self.assertIn("- Summary schema version: `1`", rendered)
             self.assertIn("- Pass-rate trend: `flat`", rendered)
+            self.assertIn("- Coverage watch: selected=1, active=1, skipped=0, filtered_out=0", rendered)
             self.assertIn("- Stable IDs: `a`", rendered)
             self.assertIn("approval-ready", rendered)
+
+    def test_cli_summary_pr_comment_includes_case_filters_and_coverage_watch(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            pr_comment = tmp_path / "artifacts" / "summary.pr-comment.md"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "auth-pass", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "ops-skip", "expected": {"type": "substring", "value": "ok"}, "disabled": True},
+                    {"id": "billing-out", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "auth-pass", "output": "ok"},
+                    {"id": "ops-skip", "output": "ok"},
+                    {"id": "billing-out", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "auth-pass", "output": "ok"},
+                    {"id": "ops-skip", "output": "ok"},
+                    {"id": "billing-out", "output": "ok"},
+                ],
+            )
+
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--include-id-regex",
+                    "^auth-|^ops-",
+                    "--summary-pr-comment",
+                    str(pr_comment),
+                ],
+            ):
+                cli.main()
+
+            rendered = pr_comment.read_text(encoding="utf-8")
+            self.assertIn("- Coverage watch: selected=2, active=1, skipped=1, filtered_out=1", rendered)
+            self.assertIn("- Case filters: include=`^auth-|^ops-`, exclude=_none_", rendered)
 
 
     def test_cli_allows_custom_summary_pr_comment_title_without_changing_markdown_title(self) -> None:

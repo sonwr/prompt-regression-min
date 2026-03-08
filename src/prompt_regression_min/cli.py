@@ -868,7 +868,20 @@ def main() -> None:
                 f"- Status: **{status}**",
                 "- Summary schema version: `1`",
                 f"- Pass-rate trend: `{summary.get('pass_rate_trend', 'flat')}`",
+                (
+                    f"- Coverage watch: selected={summary.get('selected_dataset_cases', summary['cases'])}, "
+                    f"active={summary.get('active_cases', summary['cases'])}, "
+                    f"skipped={summary.get('skipped_cases', 0)}, "
+                    f"filtered_out={summary.get('filtered_out_cases', 0)}"
+                ),
             ]
+            if args.include_id_regex or args.exclude_id_regex:
+                pr_comment_lines.append(
+                    "- Case filters: include="
+                    + (f"`{args.include_id_regex}`" if args.include_id_regex else "_all_")
+                    + ", exclude="
+                    + (f"`{args.exclude_id_regex}`" if args.exclude_id_regex else "_none_")
+                )
             if regression_ids:
                 pr_comment_lines.append(
                     "- Regression IDs: " + ", ".join(f"`{case_id}`" for case_id in regression_ids)
