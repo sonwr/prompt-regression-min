@@ -349,6 +349,10 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             raw = output.getvalue()
             self.assertNotIn("prompt-regression-min summary", raw)
+            self.assertNotIn("- baseline:", raw)
+            self.assertNotIn("- candidate:", raw)
+            self.assertNotIn("- delta:", raw)
+            self.assertNotIn("- outcome_counts:", raw)
             lines = [line for line in raw.splitlines() if line.strip()]
             summary_payload = json.loads(lines[-1])
             self.assertEqual(summary_payload["status"], "PASS")

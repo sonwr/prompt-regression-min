@@ -362,15 +362,15 @@ def main() -> None:
         emit(f"- skipped_cases: {summary.get('skipped_cases', 0)}")
         if summary.get("skipped_ids"):
             emit(f"- skipped_ids: {', '.join(summary['skipped_ids'])}")
-        print(
+        emit(
             f"- baseline: {summary['baseline_passes']} "
             f"({summary['baseline_pass_rate'] * 100:.1f}%)"
         )
-        print(
+        emit(
             f"- candidate: {summary['candidate_passes']} "
             f"({summary['candidate_pass_rate'] * 100:.1f}%)"
         )
-        print(
+        emit(
             f"- delta: {summary['delta_passes']} "
             f"({summary['delta_pass_rate_pp']:+.2f}pp)"
         )
@@ -393,7 +393,7 @@ def main() -> None:
             emit(f"- unchanged_fail_ids: {', '.join(summary['unchanged_fail_ids'])}")
         outcome_counts = summary.get("outcome_counts", {})
         if outcome_counts:
-            print(
+            emit(
                 "- outcome_counts: "
                 f"regressed={outcome_counts.get('regressed', 0)}, "
                 f"improved={outcome_counts.get('improved', 0)}, "
