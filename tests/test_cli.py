@@ -128,6 +128,7 @@ class PromptRegressionCliTests(unittest.TestCase):
                     ):
                         cli.main()
             markdown = output.getvalue()
+            self.assertIn("- Reviewer handoff: stable=1, regressions=1, improved=0, watchlist=0", markdown)
             self.assertIn("- Unchanged pass IDs: `stable-pass`", markdown)
             self.assertIn("- Regression IDs: `reg-1`", markdown)
 

@@ -12,6 +12,7 @@
 - Pass-rate trend: `improving`
 - Stability rate: 50.00%
 - Outcomes: regressions=0, improved=1, unchanged_pass=1, unchanged_fail=0
+- Reviewer handoff: stable=1, regressions=0, improved=1, watchlist=0
 - Gate snapshot:
   - max_regressions=0
   - max_regression_rate=disabled

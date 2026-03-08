@@ -641,6 +641,13 @@ def main() -> None:
                     f"unchanged_pass={summary.get('unchanged_pass', 0)}, "
                     f"unchanged_fail={summary.get('unchanged_fail', 0)}"
                 ),
+                (
+                    "- Reviewer handoff: "
+                    f"stable={summary.get('unchanged_pass', 0)}, "
+                    f"regressions={summary['regressions']}, "
+                    f"improved={summary['improved']}, "
+                    f"watchlist={summary.get('unchanged_fail', 0)}"
+                ),
             ]
             regression_ids = summary.get("regression_ids", [])
             improved_ids = summary.get("improved_ids", [])
