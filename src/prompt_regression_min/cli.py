@@ -737,9 +737,15 @@ def main() -> None:
                 markdown_lines.append(
                     "- Changed IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["changed_ids"])
                 )
+                markdown_lines.append(
+                    f"- Changed-case rate: {summary.get('changed_rate', 0.0) * 100:.2f}%"
+                )
             if summary.get("filtered_out_ids"):
                 markdown_lines.append(
                     "- Filtered-out IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"])
+                )
+                markdown_lines.append(
+                    f"- Filtered-out rate: {summary.get('filtered_out_rate', 0.0) * 100:.2f}% of source cases"
                 )
             if summary.get("skipped_ids"):
                 markdown_lines.append(

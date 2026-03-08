@@ -33,3 +33,4 @@
 - Active case IDs: `checkout-copy`, `policy-note`
 - Improved IDs: `checkout-copy`
 - Changed IDs: `checkout-copy`
+- Changed-case rate: 50.00%

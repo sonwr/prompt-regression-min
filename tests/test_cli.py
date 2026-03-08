@@ -280,6 +280,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Regression IDs: `reg-1`", rendered)
             self.assertIn("- Improved IDs: `imp-1`", rendered)
             self.assertIn("- Changed IDs: `imp-1`, `reg-1`", rendered)
+            self.assertIn("- Changed-case rate: 66.67%", rendered)
             self.assertNotIn("prompt-regression-min summary\n- cases:", rendered)
 
 
@@ -2693,7 +2694,9 @@ if __name__ == "__main__":
             self.assertIn("- Dataset scope: source=3, selected=2, active=2", rendered)
             self.assertIn("- Selection rate: 66.67% of source cases", rendered)
             self.assertIn("- Changed IDs: `reg-1`", rendered)
+            self.assertIn("- Changed-case rate: 50.00%", rendered)
             self.assertIn("- Filtered-out IDs: `filtered-out`", rendered)
+            self.assertIn("- Filtered-out rate: 33.33% of source cases", rendered)
 
     def test_cli_fixture_trend_stability_policy_passes(self) -> None:
         root = Path(__file__).resolve().parents[1]

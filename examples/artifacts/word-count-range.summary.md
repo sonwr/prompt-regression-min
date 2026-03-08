@@ -33,5 +33,6 @@
 - Active case IDs: `release-note-bullets`, `release-note-short`
 - Regression IDs: `release-note-bullets`, `release-note-short`
 - Changed IDs: `release-note-bullets`, `release-note-short`
+- Changed-case rate: 100.00%
 - Fail reasons:
   - regressions 2 exceeded max 0
