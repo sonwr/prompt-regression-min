@@ -222,6 +222,28 @@ jobs:
         env:
           PYTHONPATH: src
 
+      - name: Smoke test committed word-count walkthrough snapshots stay reviewer-friendly
+        run: |
+          set -euo pipefail
+          chmod +x scripts/regenerate_walkthrough_artifacts.sh
+          ./scripts/regenerate_walkthrough_artifacts.sh
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          payload = json.loads(Path('examples/artifacts/word-count-range.summary.json').read_text(encoding='utf-8'))
+          assert payload['status'] == 'FAIL'
+          assert payload['summary_schema_version'] == 1
+          assert payload['summary']['regression_ids'] == ['release-note-bullets', 'release-note-short']
+          md = Path('examples/artifacts/word-count-range.summary.md').read_text(encoding='utf-8')
+          assert 'word-count release-note gate' in md
+          assert 'Summary schema version: `1`' in md
+          assert 'Regression IDs: `release-note-short`, `release-note-bullets`' in md
+          print('committed word-count walkthrough snapshots: PASS')
+          PY
+        env:
+          PYTHONPATH: src
+
       - name: Upload regression summary artifacts
         if: always()
         uses: actions/upload-artifact@v4

@@ -415,3 +415,26 @@
 
 ### Next
 - Add one CLI smoke example that emits summary markdown for the word-count fixture so reviewer-facing docs include both JSON and markdown paths.
+
+## Run @ 15:50 UTC (cron)
+
+### Plan
+- Turn the word-count walkthrough into a stronger reviewer-facing artifact contract, not just a fixture description.
+- Keep committed JSON/Markdown snapshots pinned in CI so release-note examples cannot drift silently.
+
+### Changes
+- Updated `.github/workflows/ci.yml` with a committed word-count snapshot smoke step.
+  - Asserts FAIL status, schema version, regression ids, and markdown title/schema markers for `examples/artifacts/word-count-range.summary.{json,md}`.
+- Updated `README.md` to document the new CI drift guard for reviewer-facing word-count artifacts.
+- Updated `examples/word_count_range_walkthrough.md` with a copy-paste snapshot drift check.
+
+### Verification
+- `python3 -m unittest discover -s tests -p 'test_*.py' -v`
+- `./scripts/regenerate_walkthrough_artifacts.sh`
+- Result: **PASS** (129 tests + word-count artifact smoke)
+
+### Blockers
+- Initial smoke assertion used the wrong deterministic `regression_ids` order; corrected to the repo's stable sorted order (`release-note-bullets`, `release-note-short`).
+
+### Next
+- Add one markdown-focused walkthrough example that shows how to paste the word-count FAIL summary directly into a PR comment or release-review note.

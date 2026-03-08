@@ -181,6 +181,7 @@ python -m prompt_regression_min run \
 For a copyable length-budget smoke test, see `examples/word_count_range_walkthrough.md`.
 Committed reviewer-facing markdown output for the same fixture lives at `examples/artifacts/word-count-range.summary.md`, and the matching machine-readable gate payload now lives at `examples/artifacts/word-count-range.summary.json` for CI drift checks.
 Refresh all committed walkthrough snapshots (including the word-count markdown/JSON pair) with `./scripts/regenerate_walkthrough_artifacts.sh` before updating docs that cite those artifacts.
+The CI workflow also re-checks that the committed word-count markdown snapshot keeps both the schema marker and the documented regression IDs (`release-note-bullets`, `release-note-short`) so reviewer-facing release-note examples do not drift silently.
 
 ---
 

@@ -43,3 +43,20 @@ One-command regeneration:
 Expected regeneration behavior:
 - The word-count fixture remains a FAIL artifact because it intentionally exceeds the release-note budget gate.
 - The regenerated markdown keeps the `word-count release-note gate` title so reviewer-facing snapshots stay stable.
+
+Snapshot drift check:
+
+```bash
+python3 - <<'PY'
+import json
+from pathlib import Path
+
+payload = json.loads(Path('examples/artifacts/word-count-range.summary.json').read_text(encoding='utf-8'))
+assert payload['status'] == 'FAIL'
+assert payload['summary']['regression_ids'] == ['release-note-bullets', 'release-note-short']
+md = Path('examples/artifacts/word-count-range.summary.md').read_text(encoding='utf-8')
+assert 'word-count release-note gate' in md
+assert 'Summary schema version: `1`' in md
+print('word-count snapshot drift: PASS')
+PY
+```
