@@ -4,6 +4,7 @@
 - Summary schema version: `1`
 - Required schema version gate: `1`
 - Status: **FAIL**
+- Dataset scope: source=2, selected=2, active=2
 - Cases: 2 (active=2, skipped=0, filtered_out=0)
 - Pass rate: baseline 100.0% -> candidate 50.0% (delta -50.00pp)
 - Pass-rate trend: `regressing`

@@ -2649,5 +2649,6 @@ if __name__ == "__main__":
                     cli.main()
             self.assertEqual(exc.exception.code, 1)
             rendered = summary_markdown.read_text(encoding="utf-8")
+            self.assertIn("- Dataset scope: source=3, selected=2, active=2", rendered)
             self.assertIn("- Changed IDs: `reg-1`", rendered)
             self.assertIn("- Filtered-out IDs: `filtered-out`", rendered)

@@ -615,6 +615,11 @@ def main() -> None:
                 ),
                 f"- Status: **{status}**",
                 (
+                    f"- Dataset scope: source={summary.get('dataset_cases', summary['cases'])}, "
+                    f"selected={summary.get('selected_dataset_cases', summary['cases'])}, "
+                    f"active={summary.get('active_cases', summary['cases'])}"
+                ),
+                (
                     f"- Cases: {summary['cases']} "
                     f"(active={summary.get('active_cases', summary['cases'])}, "
                     f"skipped={summary.get('skipped_cases', 0)}, "
