@@ -792,3 +792,15 @@ Yes. Any workflow producing text outputs can be compared via baseline/candidate 
 MIT
 
 - `--require-summary-schema-version <n>`: fail if the emitted summary JSON schema version drifts from the version your downstream parser expects.
+
+
+## Reviewer-oriented shard workflow
+
+When a PR only touches one feature area, prefer a shard run that still makes skipped scope explicit.
+
+1. Start from `examples/shard_filter_walkthrough.md`.
+2. Keep `selected_dataset_ids`, `filtered_out_ids`, and `selection_rate` visible in the emitted summary.
+3. Treat filtered-out budgets as a release gate, not just an informational metric.
+4. Use a markdown or PR-comment summary so reviewers do not need raw JSON to see scope loss.
+
+This keeps shard runs deterministic while preserving reviewer trust in what was, and was not, exercised.
