@@ -29,6 +29,7 @@
   - max_improved_rate=disabled
   - min_stability_rate=disabled
   - require_pass_rate_trend=disabled
+  - require_summary_schema_version=disabled
 - Selected dataset IDs: `release-note-bullets`, `release-note-short`
 - Active case IDs: `release-note-bullets`, `release-note-short`
 - Regression IDs: `release-note-bullets`, `release-note-short`

@@ -277,6 +277,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("  - max_improved=disabled", rendered)
             self.assertIn("  - max_improved_rate=disabled", rendered)
             self.assertIn("  - min_stability_rate=disabled", rendered)
+            self.assertIn("  - require_summary_schema_version=disabled", rendered)
             self.assertIn("- Regression IDs: `reg-1`", rendered)
             self.assertIn("- Improved IDs: `imp-1`", rendered)
             self.assertIn("- Changed IDs: `imp-1`, `reg-1`", rendered)
@@ -2428,6 +2429,7 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             markdown = summary_md.read_text(encoding="utf-8")
             self.assertIn("- Required schema version gate: `1`", markdown)
+            self.assertIn("  - require_summary_schema_version=1", markdown)
 
     def test_cli_summary_markdown_gate_snapshot_includes_changed_and_filtered_budget_lines(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

@@ -531,7 +531,7 @@ Use `--summary-json` for CI parsers:
 - `--summary-markdown artifacts/summary.md`: write a compact markdown summary for PR comments/release notes
   - Markdown summaries now echo `Tool version` plus `Required schema version gate` so reviewers can see both the producing build and whether the artifact was generated under an explicit compatibility contract or free-run mode.
   - Markdown summaries also include filtered/skipped/unchanged-fail case IDs when present, making shard drift and lingering broken flows reviewable without opening the JSON payload first.
-  - Gate snapshots in markdown now echo changed-case, filtered-out, active-case, and improvement budgets/rates too, so PR reviewers can see rollout/shard constraints without opening JSON.
+  - Gate snapshots in markdown now echo changed-case, filtered-out, active-case, improvement budgets/rates, and the required summary schema gate too, so PR reviewers can verify rollout/shard constraints plus JSON-contract expectations without opening JSON.
   - Markdown summaries also show dataset scope (`source`, `selected`, `active`) so reviewers can spot regex-filter shrinkage before comparing pass/fail outcomes.
 - Summary JSON now also includes `selected_dataset_ids`, `active_case_ids`, and `selection_rate`, making shard/debug handoffs deterministic when CI runs only a subset of the dataset.
 - `--summary-markdown -`: print the markdown summary to stdout so CI jobs can pipe it straight into PR-comment or release-note helpers without creating a temporary file first.

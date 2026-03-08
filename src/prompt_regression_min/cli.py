@@ -706,6 +706,11 @@ def main() -> None:
                     if args.require_pass_rate_trend is not None
                     else "  - require_pass_rate_trend=disabled"
                 ),
+                (
+                    f"  - require_summary_schema_version={args.require_summary_schema_version}"
+                    if args.require_summary_schema_version is not None
+                    else "  - require_summary_schema_version=disabled"
+                ),
             ]
             markdown_lines.extend(gate_lines)
             if summary.get("selected_dataset_ids"):

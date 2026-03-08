@@ -29,6 +29,7 @@
   - max_improved_rate=disabled
   - min_stability_rate=disabled
   - require_pass_rate_trend=disabled
+  - require_summary_schema_version=1
 - Selected dataset IDs: `checkout-copy`, `policy-note`
 - Active case IDs: `checkout-copy`, `policy-note`
 - Improved IDs: `checkout-copy`

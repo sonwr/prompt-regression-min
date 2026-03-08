@@ -28,6 +28,7 @@ REQUIRED_MARKDOWN_MARKERS = (
     "- Summary schema version: `1`",
     "- Selected dataset IDs:",
     "- Active case IDs:",
+    "  - require_summary_schema_version=",
 )
 
 

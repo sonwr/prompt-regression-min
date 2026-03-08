@@ -29,6 +29,7 @@
   - max_improved_rate=disabled
   - min_stability_rate=disabled
   - require_pass_rate_trend=disabled
+  - require_summary_schema_version=1
 - Selected dataset IDs: `auth-login`, `checkout-copy`
 - Active case IDs: `auth-login`, `checkout-copy`
 - Regression IDs: `auth-login`
