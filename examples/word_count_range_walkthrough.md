@@ -28,3 +28,18 @@ PYTHONPATH=src python3 -m prompt_regression_min run \
 Expected markdown highlights:
 - `release-note-short` and `release-note-bullets` appear under regressions.
 - The markdown header uses `word-count release-note gate`.
+
+
+Committed snapshot files:
+- Markdown: `examples/artifacts/word-count-range.summary.md`
+- JSON: `examples/artifacts/word-count-range.summary.json`
+
+One-command regeneration:
+
+```bash
+./scripts/regenerate_walkthrough_artifacts.sh
+```
+
+Expected regeneration behavior:
+- The word-count fixture remains a FAIL artifact because it intentionally exceeds the release-note budget gate.
+- The regenerated markdown keeps the `word-count release-note gate` title so reviewer-facing snapshots stay stable.
