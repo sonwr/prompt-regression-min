@@ -7,6 +7,7 @@
 - Changed IDs (1): `auth-login`
 - Changed-case rate: 50.00% of active cases
 - Stable IDs: `checkout-copy`
+- Reviewer queue: fix regressions: `auth-login`
 - Why it failed:
   - regressions 1 exceeded max 0
 - Reviewer next step: keep the PR blocked until the failing IDs are fixed, then rerun the regression command.

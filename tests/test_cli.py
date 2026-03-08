@@ -3478,3 +3478,67 @@ if __name__ == "__main__":
             self.assertEqual(payload["gates"]["require_pass_rate_trend"], "flat")
 
 
+
+
+    def test_summary_outputs_include_reviewer_queue_for_scope_and_watchlist_handoff(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "watch-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "skip-1", "expected": {"type": "substring", "value": "ok"}, "skip": True},
+                    {"id": "scope-1", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "reg-1", "output": "ok"},
+                    {"id": "watch-1", "output": "bad"},
+                    {"id": "skip-1", "output": "ok"},
+                    {"id": "scope-1", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "reg-1", "output": "bad"},
+                    {"id": "watch-1", "output": "bad"},
+                    {"id": "skip-1", "output": "ok"},
+                    {"id": "scope-1", "output": "ok"},
+                ],
+            )
+
+            markdown_output = io.StringIO()
+            with contextlib.redirect_stdout(markdown_output):
+                with self.assertRaises(SystemExit):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm", "run", "-d", str(dataset), "-b", str(baseline), "-c", str(candidate),
+                            "--exclude-id-regex", "^scope-", "--summary-markdown", "-"
+                        ],
+                    ):
+                        cli.main()
+            markdown = markdown_output.getvalue()
+            self.assertIn("- Reviewer queue: fix regressions: `reg-1` | watch unchanged fails: `watch-1` | confirm filtered-out scope: `scope-1` | resolve skipped cases: `skip-1`", markdown)
+
+            pr_output = io.StringIO()
+            with contextlib.redirect_stdout(pr_output):
+                with self.assertRaises(SystemExit):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm", "run", "-d", str(dataset), "-b", str(baseline), "-c", str(candidate),
+                            "--exclude-id-regex", "^scope-", "--summary-pr-comment", "-", "--quiet"
+                        ],
+                    ):
+                        cli.main()
+            pr_comment = pr_output.getvalue()
+            self.assertIn("- Reviewer queue: fix regressions: `reg-1` | watch unchanged fails: `watch-1` | confirm filtered-out scope: `scope-1` | resolve skipped cases: `skip-1`", pr_comment)

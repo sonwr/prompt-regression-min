@@ -50,5 +50,6 @@
 - Changed IDs (1): `auth-login`
 - Changed-case rate: 50.00%
 - Unchanged pass IDs (1): `checkout-copy`
+- Reviewer queue: fix regressions: `auth-login`
 - Fail reasons:
   - regressions 1 exceeded max 0

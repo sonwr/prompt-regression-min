@@ -6,6 +6,7 @@
 - Regression IDs (2): `release-note-bullets`, `release-note-short`
 - Changed IDs (2): `release-note-bullets`, `release-note-short`
 - Changed-case rate: 100.00% of active cases
+- Reviewer queue: fix regressions: `release-note-bullets`, `release-note-short`
 - Why it failed:
   - regressions 2 exceeded max 0
 - Reviewer next step: keep the PR blocked until the failing IDs are fixed, then rerun the regression command.

@@ -846,6 +846,17 @@ def main() -> None:
                 markdown_lines.append(
                     f"- Unchanged fail IDs ({len(summary['unchanged_fail_ids'])}): " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_fail_ids"])
                 )
+            review_queue = []
+            if regression_ids:
+                review_queue.append("fix regressions: " + ", ".join(f"`{case_id}`" for case_id in regression_ids))
+            if summary.get("unchanged_fail_ids"):
+                review_queue.append("watch unchanged fails: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_fail_ids"]))
+            if summary.get("filtered_out_ids"):
+                review_queue.append("confirm filtered-out scope: " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"]))
+            if summary.get("skipped_ids"):
+                review_queue.append("resolve skipped cases: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"]))
+            if review_queue:
+                markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
                 markdown_lines.extend([f"  - {reason}" for reason in fail_reasons])
@@ -916,6 +927,17 @@ def main() -> None:
                 pr_comment_lines.append(
                     "- Skipped IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"])
                 )
+            reviewer_queue = []
+            if regression_ids:
+                reviewer_queue.append("fix regressions: " + ", ".join(f"`{case_id}`" for case_id in regression_ids))
+            if summary.get("unchanged_fail_ids"):
+                reviewer_queue.append("watch unchanged fails: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_fail_ids"]))
+            if summary.get("filtered_out_ids"):
+                reviewer_queue.append("confirm filtered-out scope: " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"]))
+            if summary.get("skipped_ids"):
+                reviewer_queue.append("resolve skipped cases: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"]))
+            if reviewer_queue:
+                pr_comment_lines.append("- Reviewer queue: " + " | ".join(reviewer_queue))
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")
                 pr_comment_lines.extend([f"  - {reason}" for reason in fail_reasons])
