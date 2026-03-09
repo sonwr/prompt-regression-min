@@ -60,6 +60,7 @@
 - Reviewer queue largest group label: fix regressions
 - Reviewer queue dominant focus: fix regressions
 - Reviewer queue follow-up priority: fix_regressions
+- Reviewer queue next-focus priority rank: 1 of 1
 - Reviewer queue largest group IDs: `auth-login`
 - Reviewer queue next-focus label: fix regressions
 - Reviewer queue next focus: fix_regressions: `auth-login`

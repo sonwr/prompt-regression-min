@@ -104,6 +104,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Reviewer queue next-focus case count: 2", markdown)
         self.assertIn("- Reviewer queue next-focus active-case rate: 100.00% of active cases", markdown)
         self.assertIn("- Reviewer queue next-focus source-case rate: 100.00% of source cases", markdown)
+        self.assertIn("- Reviewer queue next-focus priority rank: 1 of 1", markdown)
         self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
     def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
@@ -208,6 +209,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue next-focus case count: 1", pr_comment)
             self.assertIn("- Reviewer queue next-focus active-case rate: 50.00% of active cases", pr_comment)
             self.assertIn("- Reviewer queue next-focus source-case rate: 50.00% of source cases", pr_comment)
+            self.assertIn("- Reviewer queue next-focus priority rank: 1 of 1", pr_comment)
             self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", pr_comment)
             self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
@@ -3726,6 +3728,7 @@ if __name__ == "__main__":
         self.assertIsNone(payload["largest_group_key"])
         self.assertIsNone(payload["largest_group_label"])
         self.assertEqual(payload["largest_group_count"], 0)
+        self.assertIsNone(payload["largest_group_priority_rank"])
         self.assertEqual(payload["groups"], [])
 
     def test_summary_json_exposes_largest_group_label_for_handoff_copy(self) -> None:
@@ -3744,6 +3747,7 @@ if __name__ == "__main__":
         self.assertEqual(payload["largest_group_label"], "fix regressions")
         self.assertEqual(payload["largest_group_ids"], ["checkout-copy", "policy-note"])
         self.assertEqual(payload["largest_group_queue_share"], 0.6667)
+        self.assertEqual(payload["largest_group_priority_rank"], 1)
 
 
     def test_summary_outputs_include_reviewer_queue_for_scope_and_watchlist_handoff(self) -> None:
