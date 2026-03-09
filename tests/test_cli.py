@@ -281,6 +281,21 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(reviewer_queue["next_focus_case_count"], 1)
             self.assertEqual(reviewer_queue["next_focus_queue_share"], 0.5)
             self.assertEqual(reviewer_queue["next_focus_tie_mode"], "tied")
+            self.assertEqual(
+                reviewer_queue["next_focus_group"],
+                {
+                    "key": "fix_regressions",
+                    "label": "fix regressions",
+                    "priority_label": "P1 · fix regressions",
+                    "priority_rank": 1,
+                    "ids": ["reg-1"],
+                    "case_count": 1,
+                    "active_case_rate": 0.5,
+                    "source_case_rate": 0.5,
+                    "queue_share": 0.5,
+                    "tie_mode": "tied",
+                },
+            )
 
     def test_summary_json_exposes_reviewer_queue_group_maps_for_bots(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

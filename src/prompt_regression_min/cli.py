@@ -135,6 +135,26 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "next_focus_case_count": 0 if next_focus_group is None else int(next_focus_group["count"]),
         "next_focus_queue_share": 0.0 if next_focus_group is None or total == 0 else round(float(next_focus_group["count"]) / total, 4),
         "next_focus_tie_mode": next_focus_tie_mode,
+        "next_focus_group": {
+            "key": next_focus_key,
+            "label": next_focus_label,
+            "priority_label": (
+                None
+                if next_focus_key is None or next_focus_key not in follow_up_priority_ranks
+                else f"P{follow_up_priority_ranks[next_focus_key]} · {queue_label_by_key.get(next_focus_key, next_focus_key)}"
+            ),
+            "priority_rank": (
+                None
+                if next_focus_key is None
+                else follow_up_priority_ranks.get(next_focus_key)
+            ),
+            "ids": next_focus_ids,
+            "case_count": 0 if next_focus_group is None else int(next_focus_group["count"]),
+            "active_case_rate": 0.0 if next_focus_group is None else float(next_focus_group["rate"]),
+            "source_case_rate": 0.0 if next_focus_group is None else float(next_focus_group["source_case_rate"]),
+            "queue_share": 0.0 if next_focus_group is None or total == 0 else round(float(next_focus_group["count"]) / total, 4),
+            "tie_mode": next_focus_tie_mode,
+        },
         "largest_group_keys": largest_group_keys,
         "largest_group_labels": largest_group_labels,
         "largest_group_tie_count": len(largest_group_keys),
