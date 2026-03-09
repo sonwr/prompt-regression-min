@@ -3716,8 +3716,26 @@ if __name__ == "__main__":
         self.assertEqual(payload["group_count"], 0)
         self.assertEqual(payload["follow_up_priority"], [])
         self.assertIsNone(payload["largest_group_key"])
+        self.assertIsNone(payload["largest_group_label"])
         self.assertEqual(payload["largest_group_count"], 0)
         self.assertEqual(payload["groups"], [])
+
+    def test_summary_json_exposes_largest_group_label_for_handoff_copy(self) -> None:
+        payload = cli._build_reviewer_queue(
+            {
+                "active_cases": 3,
+                "dataset_cases": 5,
+                "regression_ids": ["checkout-copy", "policy-note"],
+                "unchanged_fail_ids": ["watch-auth"],
+                "filtered_out_ids": [],
+                "skipped_ids": [],
+            }
+        )
+
+        self.assertEqual(payload["largest_group_key"], "fix_regressions")
+        self.assertEqual(payload["largest_group_label"], "fix regressions")
+        self.assertEqual(payload["largest_group_ids"], ["checkout-copy", "policy-note"])
+        self.assertEqual(payload["largest_group_queue_share"], 0.6667)
 
 
     def test_summary_outputs_include_reviewer_queue_for_scope_and_watchlist_handoff(self) -> None:
