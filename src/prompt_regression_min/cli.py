@@ -40,10 +40,12 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         count = int(group["count"])
         group["queue_share"] = 0.0 if total == 0 else round(count / total, 4)
     rate = (total / active_cases) if active_cases else 0.0
+    source_case_rate = (total / dataset_cases) if dataset_cases else 0.0
     largest_group = max(groups, key=lambda item: (int(item["count"]), item["key"]), default=None)
     return {
         "total": total,
         "rate": round(rate, 4),
+        "source_case_rate": round(source_case_rate, 4),
         "active_cases": active_cases,
         "dataset_cases": dataset_cases,
         "groups": groups,

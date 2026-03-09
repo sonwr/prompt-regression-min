@@ -848,7 +848,7 @@ MIT
 
 ## Structured reviewer queue in summary JSON
 
-`--summary-json` now emits a `reviewer_queue` object for downstream automation and PR bots, including per-group `rate`, `source_case_rate`, and `queue_share` values plus `group_count`, `largest_group_key`, and `largest_group_count` so triage dashboards can spot both the dominant follow-up bucket and how much of the total reviewer queue it owns without recomputing it.
+`--summary-json` now emits a `reviewer_queue` object for downstream automation and PR bots, including top-level `rate` and `source_case_rate` plus per-group `rate`, `source_case_rate`, and `queue_share` values alongside `group_count`, `largest_group_key`, and `largest_group_count` so triage dashboards can spot both the dominant follow-up bucket and how much of the active/source dataset follow-up load it owns without recomputing it.
 It groups case IDs into four follow-up buckets:
 
 - `fix_regressions`

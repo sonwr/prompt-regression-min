@@ -3675,6 +3675,7 @@ if __name__ == "__main__":
             payload = json.loads(summary_json.read_text(encoding="utf-8"))
             self.assertEqual(payload["reviewer_queue"]["total"], 4)
             self.assertEqual(payload["reviewer_queue"]["rate"], 1.3333)
+            self.assertEqual(payload["reviewer_queue"]["source_case_rate"], 1.0)
             self.assertEqual(payload["reviewer_queue"]["group_count"], 4)
             self.assertEqual(payload["reviewer_queue"]["largest_group_key"], "watch_unchanged_fails")
             self.assertEqual(payload["reviewer_queue"]["largest_group_count"], 1)
@@ -3693,6 +3694,7 @@ if __name__ == "__main__":
         payload = cli._build_reviewer_queue({"active_cases": 3})
 
         self.assertEqual(payload["total"], 0)
+        self.assertEqual(payload["source_case_rate"], 0.0)
         self.assertEqual(payload["group_count"], 0)
         self.assertIsNone(payload["largest_group_key"])
         self.assertEqual(payload["largest_group_count"], 0)
