@@ -117,6 +117,10 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             for group in groups
         },
         "follow_up_priority": follow_up_priority,
+        "follow_up_priority_labels": [
+            f"P{follow_up_priority_ranks[key]} · {queue_label_by_key.get(key, key)}"
+            for key in follow_up_priority
+        ],
         "follow_up_priority_ranks": follow_up_priority_ranks,
         "largest_group_priority_rank": largest_group_priority_rank,
         "next_focus_key": next_focus_key,
@@ -1100,6 +1104,13 @@ def main() -> None:
                             for key in reviewer_queue_summary["follow_up_priority"]
                         )
                     )
+                    if reviewer_queue_summary.get("follow_up_priority_labels"):
+                        markdown_lines.append(
+                            "- Reviewer queue follow-up priority labels: "
+                            + " -> ".join(
+                                str(label) for label in reviewer_queue_summary["follow_up_priority_labels"]
+                            )
+                        )
                     if reviewer_queue_summary.get("follow_up_priority_ranks"):
                         markdown_lines.append(
                             "- Reviewer queue priority ranks: "
@@ -1364,6 +1375,13 @@ def main() -> None:
                             for key in reviewer_queue_summary["follow_up_priority"]
                         )
                     )
+                    if reviewer_queue_summary.get("follow_up_priority_labels"):
+                        pr_comment_lines.append(
+                            "- Reviewer queue follow-up priority labels: "
+                            + " -> ".join(
+                                str(label) for label in reviewer_queue_summary["follow_up_priority_labels"]
+                            )
+                        )
                     if reviewer_queue_summary.get("follow_up_priority_ranks"):
                         pr_comment_lines.append(
                             "- Reviewer queue priority ranks: "

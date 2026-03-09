@@ -103,6 +103,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Reviewer queue priority labels: fix_regressions=P1 · fix regressions", markdown)
         self.assertIn("- Reviewer queue follow-up priority: fix_regressions", markdown)
         self.assertIn("- Reviewer queue follow-up labels: fix regressions", markdown)
+        self.assertIn("- Reviewer queue follow-up priority labels: P1 · fix regressions", markdown)
         self.assertIn("- Reviewer queue priority ranks: fix_regressions=P1", markdown)
         self.assertIn("- Reviewer queue next-focus key: fix_regressions", markdown)
         self.assertIn("- Reviewer queue next-focus label: fix regressions", markdown)
@@ -217,6 +218,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue next-focus priority label: P1 · fix regressions", pr_comment)
             self.assertIn("- Reviewer queue follow-up priority: fix_regressions", pr_comment)
             self.assertIn("- Reviewer queue follow-up labels: fix regressions", pr_comment)
+            self.assertIn("- Reviewer queue follow-up priority labels: P1 · fix regressions", pr_comment)
             self.assertIn("- Reviewer queue priority ranks: fix_regressions=P1", pr_comment)
             self.assertIn("- Reviewer queue next-focus key: fix_regressions", pr_comment)
             self.assertIn("- Reviewer queue next-focus label: fix regressions", pr_comment)
@@ -279,6 +281,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(reviewer_queue["next_focus_label"], "fix regressions")
             self.assertEqual(reviewer_queue["next_focus_ids"], ["reg-1"])
             self.assertEqual(reviewer_queue["next_focus_case_count"], 1)
+            self.assertEqual(reviewer_queue["follow_up_priority_labels"], ["P1 · fix regressions", "P2 · watch unchanged fails"])
             self.assertEqual(reviewer_queue["next_focus_queue_share"], 0.5)
             self.assertEqual(reviewer_queue["next_focus_tie_mode"], "tied")
             self.assertEqual(
