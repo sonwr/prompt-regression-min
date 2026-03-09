@@ -160,6 +160,17 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         for group in groups
         if largest_group is not None and int(group["count"]) == int(largest_group["count"])
     ]
+    queue_mix_summary = (
+        "none"
+        if not groups
+        else " | ".join(
+            f"{str(group['key'])}={int(group['count'])} case(s)"
+            f"/{float(group['queue_share']) * 100:.2f}% queue share"
+            f"/{float(group['rate']) * 100:.2f}% active-case rate"
+            f"/{float(group['source_case_rate']) * 100:.2f}% source-case rate"
+            for group in priority_sorted_groups
+        )
+    )
     largest_group_labels = [
         str(group["label"])
         for group in groups
@@ -199,6 +210,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             str(group["key"]): float(group["queue_share"])
             for group in groups
         },
+        "queue_mix_summary": queue_mix_summary,
         "group_ids_by_key": {
             str(group["key"]): list(group["ids"])
             for group in groups
@@ -1431,6 +1443,7 @@ def main() -> None:
                         "- Reviewer queue next-focus advantage summary: "
                         + str(reviewer_queue_summary.get("next_focus_advantage_summary", "none"))
                     )
+                markdown_lines.append("- Reviewer queue mix summary: " + str(reviewer_queue_summary.get("queue_mix_summary", "none")))
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
@@ -1698,6 +1711,7 @@ def main() -> None:
                     pr_comment_lines.append(
                         f"- Reviewer queue (skipped cases): {len(summary['skipped_ids'])} case(s) / {(len(summary['skipped_ids']) / active_cases) * 100:.2f}% of active cases / {skipped_group.get('source_case_rate', 0.0) * 100:.2f}% of source cases"
                     )
+                pr_comment_lines.append("- Reviewer queue mix summary: " + str(reviewer_queue_summary.get("queue_mix_summary", "none")))
                 pr_comment_lines.append("- Reviewer queue: " + " | ".join(reviewer_queue))
                 if reviewer_queue_summary.get("largest_group_ids"):
                     pr_comment_lines.append(

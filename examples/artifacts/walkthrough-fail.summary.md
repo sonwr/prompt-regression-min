@@ -88,6 +88,7 @@
 - Reviewer queue next-focus advantage label: single queue
 - Reviewer queue next-focus tie summary: fix_regressions=P1 · fix regressions
 - Reviewer queue next-focus advantage summary: single queue: +1 case(s), +100.00% queue share, +50.00% active-case rate, +50.00% source-case rate
+- Reviewer queue mix summary: fix_regressions=1 case(s)/100.00% queue share/50.00% active-case rate/50.00% source-case rate
 - Reviewer queue: fix regressions: `auth-login`
 - Fail reasons:
   - regressions 1 exceeded max 0

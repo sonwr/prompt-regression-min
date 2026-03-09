@@ -38,6 +38,7 @@
 - Reviewer queue tied largest labels: fix regressions
 - Reviewer queue largest group IDs: `auth-login`
 - Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases
+- Reviewer queue mix summary: fix_regressions=1 case(s)/100.00% queue share/50.00% active-case rate/50.00% source-case rate
 - Reviewer queue: fix regressions: `auth-login`
 - Reviewer queue next-focus key: fix_regressions
 - Reviewer queue next-focus label: fix regressions
