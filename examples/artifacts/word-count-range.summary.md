@@ -55,6 +55,7 @@
 - Reviewer queue groups: 1
 - Reviewer queue group keys: fix_regressions
 - Reviewer queue group labels: fix regressions
+- Reviewer queue priority labels: fix_regressions=P1 · fix regressions
 - Reviewer queue rate: 100.00% of active cases
 - Reviewer queue source-case rate: 100.00% of source cases
 - Reviewer queue largest group: fix_regressions (2 case(s), 100.00% of active cases, 100.00% overall queue rate, 100.00% source-case rate, 100.00% of queued follow-up)
@@ -70,6 +71,7 @@
 - Reviewer queue tied largest labels: fix regressions
 - Reviewer queue largest group IDs: `release-note-bullets`, `release-note-short`
 - Reviewer queue next-focus label: fix regressions
+- Reviewer queue next-focus priority label: P1 · fix regressions
 - Reviewer queue next focus: fix_regressions: `release-note-bullets`, `release-note-short`
 - Reviewer queue next-focus case count: 2
 - Reviewer queue next-focus active-case rate: 100.00% of active cases

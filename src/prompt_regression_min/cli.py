@@ -21,6 +21,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         ("confirm_filtered_scope", "confirm filtered-out scope", list(summary.get("filtered_out_ids", []))),
         ("resolve_skipped_cases", "resolve skipped cases", list(summary.get("skipped_ids", []))),
     ]
+    queue_label_by_key = {key: label for key, label, _ in queue_specs}
     queue_priority_index = {key: idx for idx, (key, _, _) in enumerate(queue_specs)}
     for key, label, ids in queue_specs:
         if not ids:
@@ -85,6 +86,10 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "group_count": len(groups),
         "group_keys": [str(group["key"]) for group in groups],
         "group_labels": [str(group["label"]) for group in groups],
+        "group_priority_labels_by_key": {
+            key: f"P{follow_up_priority_ranks[key]} · {queue_label_by_key.get(key, key)}"
+            for key in follow_up_priority_ranks
+        },
         "group_counts_by_key": {
             str(group["key"]): int(group["count"])
             for group in groups
@@ -114,6 +119,11 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "largest_group_priority_rank": largest_group_priority_rank,
         "next_focus_key": next_focus_key,
         "next_focus_label": next_focus_label,
+        "next_focus_priority_label": (
+            None
+            if next_focus_key is None or next_focus_key not in follow_up_priority_ranks
+            else f"P{follow_up_priority_ranks[next_focus_key]} · {queue_label_by_key.get(next_focus_key, next_focus_key)}"
+        ),
         "next_focus_ids": next_focus_ids,
         "next_focus_case_count": 0 if largest_group is None else int(largest_group["count"]),
         "next_focus_tie_mode": next_focus_tie_mode,
@@ -1010,6 +1020,14 @@ def main() -> None:
                         "- Reviewer queue group labels: "
                         + ", ".join(str(label) for label in reviewer_queue_summary["group_labels"])
                     )
+                if reviewer_queue_summary.get("group_priority_labels_by_key"):
+                    markdown_lines.append(
+                        "- Reviewer queue priority labels: "
+                        + ", ".join(
+                            f"{key}={reviewer_queue_summary['group_priority_labels_by_key'][str(key)]}"
+                            for key in reviewer_queue_summary.get("follow_up_priority", [])
+                        )
+                    )
                 markdown_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
                 )
@@ -1093,6 +1111,11 @@ def main() -> None:
                     if dominant_label:
                         markdown_lines.append(
                             "- Reviewer queue next-focus label: " + dominant_label
+                        )
+                    if reviewer_queue_summary.get("next_focus_priority_label"):
+                        markdown_lines.append(
+                            "- Reviewer queue next-focus priority label: "
+                            + str(reviewer_queue_summary["next_focus_priority_label"])
                         )
                     markdown_lines.append(
                         "- Reviewer queue next focus: "
@@ -1256,6 +1279,14 @@ def main() -> None:
                         "- Reviewer queue group labels: "
                         + ", ".join(str(label) for label in reviewer_queue_summary["group_labels"])
                     )
+                if reviewer_queue_summary.get("group_priority_labels_by_key"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue priority labels: "
+                        + ", ".join(
+                            f"{key}={reviewer_queue_summary['group_priority_labels_by_key'][str(key)]}"
+                            for key in reviewer_queue_summary.get("follow_up_priority", [])
+                        )
+                    )
                 pr_comment_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / active_cases) * 100:.2f}% of active cases"
                 )
@@ -1362,6 +1393,11 @@ def main() -> None:
                     if dominant_label:
                         pr_comment_lines.append(
                             "- Reviewer queue next-focus label: " + dominant_label
+                        )
+                    if reviewer_queue_summary.get("next_focus_priority_label"):
+                        pr_comment_lines.append(
+                            "- Reviewer queue next-focus priority label: "
+                            + str(reviewer_queue_summary["next_focus_priority_label"])
                         )
                     pr_comment_lines.append(
                         "- Reviewer queue next focus: "

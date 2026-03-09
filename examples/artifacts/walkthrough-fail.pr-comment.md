@@ -20,6 +20,7 @@
 - Reviewer queue groups: 1
 - Reviewer queue group keys: fix_regressions
 - Reviewer queue group labels: fix regressions
+- Reviewer queue priority labels: fix_regressions=P1 · fix regressions
 - Reviewer queue rate: 50.00% of active cases
 - Reviewer queue source-case rate: 50.00% of source cases
 - Reviewer queue largest group: fix_regressions (1 case(s), 50.00% of active cases, 50.00% overall queue rate, 50.00% source-case rate, 100.00% of queued follow-up)
@@ -37,6 +38,7 @@
 - Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases
 - Reviewer queue: fix regressions: `auth-login`
 - Reviewer queue next-focus label: fix regressions
+- Reviewer queue next-focus priority label: P1 · fix regressions
 - Reviewer queue next focus: fix_regressions: `auth-login`
 - Reviewer queue next-focus case count: 1
 - Reviewer queue next-focus active-case rate: 50.00% of active cases
