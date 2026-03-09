@@ -1123,6 +1123,14 @@ def main() -> None:
                         f"- Reviewer queue (skipped cases): {len(summary['skipped_ids'])} case(s) / {(len(summary['skipped_ids']) / active_cases) * 100:.2f}% of active cases"
                     )
                 pr_comment_lines.append("- Reviewer queue: " + " | ".join(reviewer_queue))
+                if reviewer_queue_summary.get("largest_group_ids"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue next focus: "
+                        + f"{reviewer_queue_summary.get('largest_group_key')}: "
+                        + ", ".join(
+                            f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
+                        )
+                    )
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")
                 pr_comment_lines.extend([f"  - {reason}" for reason in fail_reasons])
