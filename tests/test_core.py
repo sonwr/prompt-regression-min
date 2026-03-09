@@ -1595,6 +1595,41 @@ if __name__ == "__main__":
 
 
 
+    def test_run_regression_supports_paragraph_count_range_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "paragraph_count_range", "min_paragraphs": 2, "max_paragraphs": 3}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "alpha\n\nbeta"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "alpha\n\nbeta\n\ngamma\n\ndelta"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_rejects_invalid_paragraph_count_range_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "case-1", "expected": {"type": "paragraph_count_range"}}])
+            _write_jsonl(baseline, [{"id": "case-1", "output": "alpha"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "alpha"}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertIn("Invalid paragraph_count_range expectation", str(exc.exception))
+
     def test_run_regression_supports_byte_count_range_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
