@@ -99,12 +99,16 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
     )
     if next_focus_group is None:
         next_focus_advantage_label = "none"
+        next_focus_advantage_direction = "none"
     elif next_focus_tie_mode == "tied":
         next_focus_advantage_label = "tied lead"
+        next_focus_advantage_direction = "tied"
     elif second_focus_group is None:
         next_focus_advantage_label = "single queue"
+        next_focus_advantage_direction = "solo"
     else:
         next_focus_advantage_label = "clear lead"
+        next_focus_advantage_direction = "ahead"
     next_focus_advantage_summary = (
         "none"
         if next_focus_group is None
@@ -295,6 +299,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "next_focus_advantage_active_case_rate": next_focus_advantage_active_case_rate,
         "next_focus_advantage_source_case_rate": next_focus_advantage_source_case_rate,
         "next_focus_advantage_label": next_focus_advantage_label,
+        "next_focus_advantage_direction": next_focus_advantage_direction,
         "next_focus_advantage_summary": next_focus_advantage_summary,
         "next_focus_group": {
             "key": next_focus_key,
@@ -319,6 +324,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             "advantage_queue_share": next_focus_advantage_queue_share,
             "advantage_active_case_rate": next_focus_advantage_active_case_rate,
             "advantage_source_case_rate": next_focus_advantage_source_case_rate,
+            "advantage_direction": next_focus_advantage_direction,
             "advantage_summary": next_focus_advantage_summary,
         },
         "largest_group_keys": largest_group_keys,

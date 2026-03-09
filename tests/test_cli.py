@@ -309,6 +309,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(reviewer_queue["next_focus_handoff_summary"], "fix_regressions=P1 · fix regressions -> `reg-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)")
             self.assertEqual(reviewer_queue["runner_up_handoff_summary"], "watch_unchanged_fails=P2 · watch unchanged fails -> `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)")
             self.assertEqual(reviewer_queue["next_focus_tie_summary"], "fix_regressions=P1 · fix regressions, watch_unchanged_fails=P2 · watch unchanged fails")
+            self.assertEqual(reviewer_queue["next_focus_advantage_direction"], "tied")
             self.assertEqual(
                 reviewer_queue["next_focus_group"],
                 {
@@ -326,6 +327,7 @@ class PromptRegressionCliTests(unittest.TestCase):
                     "advantage_queue_share": 0.0,
                     "advantage_active_case_rate": 0.0,
                     "advantage_source_case_rate": 0.0,
+                    "advantage_direction": "tied",
                     "advantage_summary": "tied lead: +0 case(s), +0.00% queue share, +0.00% active-case rate, +0.00% source-case rate",
                 },
             )
@@ -4134,6 +4136,7 @@ if __name__ == "__main__":
         self.assertEqual(payload["next_focus_advantage_active_case_rate"], 0.3333)
         self.assertEqual(payload["next_focus_advantage_source_case_rate"], 0.3333)
         self.assertEqual(payload["next_focus_advantage_label"], "clear lead")
+        self.assertEqual(payload["next_focus_advantage_direction"], "ahead")
         self.assertEqual(payload["next_focus_advantage_summary"], "clear lead: +2 case(s), +40.00% queue share, +33.33% active-case rate, +33.33% source-case rate")
         self.assertEqual(payload["runner_up_key"], "watch_unchanged_fails")
         self.assertEqual(payload["runner_up_label"], "watch unchanged fails")
@@ -4159,6 +4162,7 @@ if __name__ == "__main__":
                 "advantage_queue_share": 0.4,
                 "advantage_active_case_rate": 0.3333,
                 "advantage_source_case_rate": 0.3333,
+                "advantage_direction": "ahead",
                 "advantage_summary": "clear lead: +2 case(s), +40.00% queue share, +33.33% active-case rate, +33.33% source-case rate",
             },
         )
