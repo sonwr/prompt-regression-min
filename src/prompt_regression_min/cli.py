@@ -44,12 +44,13 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
     rate = (total / active_cases) if active_cases else 0.0
     source_case_rate = (total / dataset_cases) if dataset_cases else 0.0
     largest_group = max(groups, key=lambda item: (int(item["count"]), item["key"]), default=None)
+    priority_sorted_groups = sorted(
+        groups,
+        key=lambda item: (-int(item["count"]), queue_priority_index[str(item["key"])]),
+    )
     follow_up_priority = [
         str(group["key"])
-        for group in sorted(
-            groups,
-            key=lambda item: (-int(item["count"]), queue_priority_index[str(item["key"])]),
-        )
+        for group in priority_sorted_groups
     ]
     follow_up_priority_ranks = {
         key: idx for idx, key in enumerate(follow_up_priority, start=1)
@@ -59,11 +60,12 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         if largest_group is None
         else follow_up_priority.index(str(largest_group["key"])) + 1
     )
-    next_focus_key = None if largest_group is None else str(largest_group["key"])
-    next_focus_label = None if largest_group is None else str(largest_group["label"])
-    next_focus_ids = [] if largest_group is None else list(largest_group["ids"])
-    next_focus_tie_mode = "tied" if largest_group is not None and any(
-        int(group["count"]) == int(largest_group["count"]) and str(group["key"]) != next_focus_key
+    next_focus_group = priority_sorted_groups[0] if priority_sorted_groups else None
+    next_focus_key = None if next_focus_group is None else str(next_focus_group["key"])
+    next_focus_label = None if next_focus_group is None else str(next_focus_group["label"])
+    next_focus_ids = [] if next_focus_group is None else list(next_focus_group["ids"])
+    next_focus_tie_mode = "tied" if next_focus_group is not None and any(
+        int(group["count"]) == int(next_focus_group["count"]) and str(group["key"]) != next_focus_key
         for group in groups
     ) else "unique"
     largest_group_keys = [
@@ -125,8 +127,8 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             else f"P{follow_up_priority_ranks[next_focus_key]} · {queue_label_by_key.get(next_focus_key, next_focus_key)}"
         ),
         "next_focus_ids": next_focus_ids,
-        "next_focus_case_count": 0 if largest_group is None else int(largest_group["count"]),
-        "next_focus_queue_share": 0.0 if largest_group is None or total == 0 else round(float(largest_group["count"]) / total, 4),
+        "next_focus_case_count": 0 if next_focus_group is None else int(next_focus_group["count"]),
+        "next_focus_queue_share": 0.0 if next_focus_group is None or total == 0 else round(float(next_focus_group["count"]) / total, 4),
         "next_focus_tie_mode": next_focus_tie_mode,
         "largest_group_keys": largest_group_keys,
         "largest_group_labels": largest_group_labels,
@@ -1113,9 +1115,10 @@ def main() -> None:
                         "- Reviewer queue next-focus key: "
                         + str(reviewer_queue_summary.get("next_focus_key") or reviewer_queue_summary.get("largest_group_key") or "none")
                     )
-                    if dominant_label:
+                    next_focus_label = reviewer_queue_summary.get("next_focus_label") or dominant_label
+                    if next_focus_label:
                         markdown_lines.append(
-                            "- Reviewer queue next-focus label: " + dominant_label
+                            "- Reviewer queue next-focus label: " + str(next_focus_label)
                         )
                     if reviewer_queue_summary.get("next_focus_priority_label"):
                         markdown_lines.append(
@@ -1124,22 +1127,22 @@ def main() -> None:
                         )
                     markdown_lines.append(
                         "- Reviewer queue next focus: "
-                        + f"{reviewer_queue_summary.get('largest_group_key')}: "
+                        + f"{reviewer_queue_summary.get('next_focus_key') or reviewer_queue_summary.get('largest_group_key')}: "
                         + ", ".join(
-                            f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
+                            f"`{case_id}`" for case_id in reviewer_queue_summary.get("next_focus_ids", reviewer_queue_summary["largest_group_ids"])
                         )
                     )
                     markdown_lines.append(
-                        f"- Reviewer queue next-focus case count: {reviewer_queue_summary.get('largest_group_count', 0)}"
+                        f"- Reviewer queue next-focus case count: {reviewer_queue_summary.get('next_focus_case_count', reviewer_queue_summary.get('largest_group_count', 0))}"
                     )
                     markdown_lines.append(
-                        f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('largest_group_rate', 0.0) * 100:.2f}% of active cases"
+                        f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('group_rates_by_key', {}).get(str(reviewer_queue_summary.get('next_focus_key')), reviewer_queue_summary.get('largest_group_rate', 0.0)) * 100:.2f}% of active cases"
                     )
                     markdown_lines.append(
-                        f"- Reviewer queue next-focus source-case rate: {reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% of source cases"
+                        f"- Reviewer queue next-focus source-case rate: {reviewer_queue_summary.get('group_source_case_rates_by_key', {}).get(str(reviewer_queue_summary.get('next_focus_key')), reviewer_queue_summary.get('largest_group_source_case_rate', 0.0)) * 100:.2f}% of source cases"
                     )
                     markdown_lines.append(
-                        f"- Reviewer queue next-focus queue share: {reviewer_queue_summary.get('largest_group_queue_share', 0.0) * 100:.2f}% of queued follow-up"
+                        f"- Reviewer queue next-focus queue share: {reviewer_queue_summary.get('next_focus_queue_share', reviewer_queue_summary.get('largest_group_queue_share', 0.0)) * 100:.2f}% of queued follow-up"
                     )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
@@ -1399,9 +1402,10 @@ def main() -> None:
                         "- Reviewer queue next-focus key: "
                         + str(reviewer_queue_summary.get("next_focus_key") or reviewer_queue_summary.get("largest_group_key") or "none")
                     )
-                    if dominant_label:
+                    next_focus_label = reviewer_queue_summary.get("next_focus_label") or dominant_label
+                    if next_focus_label:
                         pr_comment_lines.append(
-                            "- Reviewer queue next-focus label: " + dominant_label
+                            "- Reviewer queue next-focus label: " + str(next_focus_label)
                         )
                     if reviewer_queue_summary.get("next_focus_priority_label"):
                         pr_comment_lines.append(
@@ -1410,22 +1414,22 @@ def main() -> None:
                         )
                     pr_comment_lines.append(
                         "- Reviewer queue next focus: "
-                        + f"{reviewer_queue_summary.get('largest_group_key')}: "
+                        + f"{reviewer_queue_summary.get('next_focus_key') or reviewer_queue_summary.get('largest_group_key')}: "
                         + ", ".join(
-                            f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
+                            f"`{case_id}`" for case_id in reviewer_queue_summary.get("next_focus_ids", reviewer_queue_summary["largest_group_ids"])
                         )
                     )
                     pr_comment_lines.append(
-                        f"- Reviewer queue next-focus case count: {reviewer_queue_summary.get('largest_group_count', 0)}"
+                        f"- Reviewer queue next-focus case count: {reviewer_queue_summary.get('next_focus_case_count', reviewer_queue_summary.get('largest_group_count', 0))}"
                     )
                     pr_comment_lines.append(
-                        f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('largest_group_rate', 0.0) * 100:.2f}% of active cases"
+                        f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('group_rates_by_key', {}).get(str(reviewer_queue_summary.get('next_focus_key')), reviewer_queue_summary.get('largest_group_rate', 0.0)) * 100:.2f}% of active cases"
                     )
                     pr_comment_lines.append(
-                        f"- Reviewer queue next-focus source-case rate: {reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% of source cases"
+                        f"- Reviewer queue next-focus source-case rate: {reviewer_queue_summary.get('group_source_case_rates_by_key', {}).get(str(reviewer_queue_summary.get('next_focus_key')), reviewer_queue_summary.get('largest_group_source_case_rate', 0.0)) * 100:.2f}% of source cases"
                     )
                     pr_comment_lines.append(
-                        f"- Reviewer queue next-focus queue share: {reviewer_queue_summary.get('largest_group_queue_share', 0.0) * 100:.2f}% of queued follow-up"
+                        f"- Reviewer queue next-focus queue share: {reviewer_queue_summary.get('next_focus_queue_share', reviewer_queue_summary.get('largest_group_queue_share', 0.0)) * 100:.2f}% of queued follow-up"
                     )
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")

@@ -275,9 +275,9 @@ class PromptRegressionCliTests(unittest.TestCase):
 
             payload = json.loads(summary_json.read_text(encoding="utf-8"))
             reviewer_queue = payload["reviewer_queue"]
-            self.assertEqual(reviewer_queue["next_focus_key"], "watch_unchanged_fails")
-            self.assertEqual(reviewer_queue["next_focus_label"], "watch unchanged fails")
-            self.assertEqual(reviewer_queue["next_focus_ids"], ["watch-1"])
+            self.assertEqual(reviewer_queue["next_focus_key"], "fix_regressions")
+            self.assertEqual(reviewer_queue["next_focus_label"], "fix regressions")
+            self.assertEqual(reviewer_queue["next_focus_ids"], ["reg-1"])
             self.assertEqual(reviewer_queue["next_focus_case_count"], 1)
             self.assertEqual(reviewer_queue["next_focus_queue_share"], 0.5)
             self.assertEqual(reviewer_queue["next_focus_tie_mode"], "tied")
@@ -441,6 +441,9 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue largest-group tie count: 2", pr_comment)
             self.assertIn("- Reviewer queue tied largest labels: fix regressions, watch unchanged fails", pr_comment)
             self.assertIn("- Reviewer queue next-focus tie mode: tied", pr_comment)
+            self.assertIn("- Reviewer queue next-focus key: fix_regressions", pr_comment)
+            self.assertIn("- Reviewer queue next-focus label: fix regressions", pr_comment)
+            self.assertIn("- Reviewer queue next focus: fix_regressions: `reg-1`", pr_comment)
 
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
