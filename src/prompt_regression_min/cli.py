@@ -1052,6 +1052,14 @@ def main() -> None:
                         "- Reviewer queue group labels: "
                         + ", ".join(str(label) for label in reviewer_queue_summary["group_labels"])
                     )
+                if reviewer_queue_summary.get("group_queue_shares_by_key") and reviewer_queue_summary.get("follow_up_priority"):
+                    markdown_lines.append(
+                        "- Reviewer queue group queue shares: "
+                        + ", ".join(
+                            f"{key}={reviewer_queue_summary['group_queue_shares_by_key'].get(str(key), 0.0) * 100:.2f}%"
+                            for key in reviewer_queue_summary["follow_up_priority"]
+                        )
+                    )
                 if reviewer_queue_summary.get("group_priority_labels_by_key"):
                     markdown_lines.append(
                         "- Reviewer queue priority labels: "
@@ -1322,6 +1330,14 @@ def main() -> None:
                     pr_comment_lines.append(
                         "- Reviewer queue group labels: "
                         + ", ".join(str(label) for label in reviewer_queue_summary["group_labels"])
+                    )
+                if reviewer_queue_summary.get("group_queue_shares_by_key") and reviewer_queue_summary.get("follow_up_priority"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue group queue shares: "
+                        + ", ".join(
+                            f"{key}={reviewer_queue_summary['group_queue_shares_by_key'].get(str(key), 0.0) * 100:.2f}%"
+                            for key in reviewer_queue_summary["follow_up_priority"]
+                        )
                     )
                 if reviewer_queue_summary.get("group_priority_labels_by_key"):
                     pr_comment_lines.append(

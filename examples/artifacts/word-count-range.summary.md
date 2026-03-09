@@ -55,6 +55,7 @@
 - Reviewer queue groups: 1
 - Reviewer queue group keys: fix_regressions
 - Reviewer queue group labels: fix regressions
+- Reviewer queue group queue shares: fix_regressions=100.00%
 - Reviewer queue priority labels: fix_regressions=P1 · fix regressions
 - Reviewer queue rate: 100.00% of active cases
 - Reviewer queue source-case rate: 100.00% of source cases
