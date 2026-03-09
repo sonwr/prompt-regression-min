@@ -53,6 +53,7 @@ REGEX_FLAG_MAP = {
     "IGNORECASE": re.IGNORECASE,
     "MULTILINE": re.MULTILINE,
     "DOTALL": re.DOTALL,
+    "VERBOSE": re.VERBOSE,
 }
 
 
