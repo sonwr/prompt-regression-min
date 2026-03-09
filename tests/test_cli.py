@@ -306,6 +306,7 @@ class PromptRegressionCliTests(unittest.TestCase):
                     "advantage_queue_share": 0.0,
                     "advantage_active_case_rate": 0.0,
                     "advantage_source_case_rate": 0.0,
+                    "advantage_summary": "tied lead: +0 case(s), +0.00% queue share, +0.00% active-case rate, +0.00% source-case rate",
                 },
             )
 
@@ -4101,6 +4102,7 @@ if __name__ == "__main__":
         self.assertEqual(payload["next_focus_advantage_active_case_rate"], 0.3333)
         self.assertEqual(payload["next_focus_advantage_source_case_rate"], 0.3333)
         self.assertEqual(payload["next_focus_advantage_label"], "clear lead")
+        self.assertEqual(payload["next_focus_advantage_summary"], "clear lead: +2 case(s), +40.00% queue share, +33.33% active-case rate, +33.33% source-case rate")
         self.assertEqual(
             payload["next_focus_group"],
             {
@@ -4118,6 +4120,7 @@ if __name__ == "__main__":
                 "advantage_queue_share": 0.4,
                 "advantage_active_case_rate": 0.3333,
                 "advantage_source_case_rate": 0.3333,
+                "advantage_summary": "clear lead: +2 case(s), +40.00% queue share, +33.33% active-case rate, +33.33% source-case rate",
             },
         )
 
