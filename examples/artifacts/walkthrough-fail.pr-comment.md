@@ -26,6 +26,7 @@
 - Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases
 - Reviewer queue: fix regressions: `auth-login`
 - Reviewer queue next focus: fix_regressions: `auth-login`
+- Reviewer queue next-focus source-case rate: 50.00% of source cases
 - Why it failed:
   - regressions 1 exceeded max 0
 - Reviewer next step: keep the PR blocked until the failing IDs are fixed, then rerun the regression command.

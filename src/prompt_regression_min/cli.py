@@ -1148,6 +1148,9 @@ def main() -> None:
                             f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
                         )
                     )
+                    pr_comment_lines.append(
+                        f"- Reviewer queue next-focus source-case rate: {reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% of source cases"
+                    )
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")
                 pr_comment_lines.extend([f"  - {reason}" for reason in fail_reasons])
