@@ -291,6 +291,10 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(reviewer_queue["follow_up_priority_labels"], ["P1 · fix regressions", "P2 · watch unchanged fails"])
             self.assertEqual(reviewer_queue["next_focus_queue_share"], 0.5)
             self.assertEqual(reviewer_queue["next_focus_tie_mode"], "tied")
+            self.assertEqual(reviewer_queue["next_focus_tie_keys"], ["fix_regressions", "watch_unchanged_fails"])
+            self.assertEqual(reviewer_queue["next_focus_tie_labels"], ["fix regressions", "watch unchanged fails"])
+            self.assertEqual(reviewer_queue["next_focus_tie_count"], 2)
+            self.assertTrue(reviewer_queue["next_focus_has_ties"])
             self.assertEqual(
                 reviewer_queue["next_focus_group"],
                 {

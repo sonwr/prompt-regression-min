@@ -111,6 +111,16 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             f"+{next_focus_advantage_source_case_rate * 100:.2f}% source-case rate"
         )
     )
+    next_focus_tie_keys = [
+        str(group["key"])
+        for group in priority_sorted_groups
+        if next_focus_group is not None and int(group["count"]) == int(next_focus_group["count"])
+    ]
+    next_focus_tie_labels = [
+        str(group["label"])
+        for group in priority_sorted_groups
+        if next_focus_group is not None and int(group["count"]) == int(next_focus_group["count"])
+    ]
     largest_group_keys = [
         str(group["key"])
         for group in groups
@@ -199,6 +209,10 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "next_focus_case_count": 0 if next_focus_group is None else int(next_focus_group["count"]),
         "next_focus_queue_share": 0.0 if next_focus_group is None or total == 0 else round(float(next_focus_group["count"]) / total, 4),
         "next_focus_tie_mode": next_focus_tie_mode,
+        "next_focus_tie_keys": next_focus_tie_keys,
+        "next_focus_tie_labels": next_focus_tie_labels,
+        "next_focus_tie_count": len(next_focus_tie_keys),
+        "next_focus_has_ties": len(next_focus_tie_keys) > 1,
         "next_focus_advantage_case_count": next_focus_advantage_case_count,
         "next_focus_advantage_queue_share": next_focus_advantage_queue_share,
         "next_focus_advantage_active_case_rate": next_focus_advantage_active_case_rate,
