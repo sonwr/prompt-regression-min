@@ -23,8 +23,13 @@ Use this guide when deciding which expectation type to add to a dataset case.
 - Approval label with minor capitalization drift -> `exact_ci`
 - Ordered checklist handoff -> `contains_all_ordered`
 - Release note length budget -> `word_count_range`
+- Multilingual UI label with a hard UTF-8 byte ceiling -> `byte_count_range`
 - Ticket summary that must not leak secrets -> `not_substring_ci`
 - Response header that must start with `Order #` -> `starts_with`
+
+## Byte budget tip
+
+Use `byte_count_range` instead of `char_count_range` when deployment limits are enforced in bytes rather than visible characters. This matters for Korean, Japanese, emoji, and mixed-language outputs because a short-looking label can still overflow a strict UTF-8 byte limit.
 
 ## Related files
 
