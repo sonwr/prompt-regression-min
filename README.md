@@ -203,6 +203,7 @@ That walkthrough now also includes a PR-comment-ready FAIL summary snippet for r
 If you want a dedicated reviewer-note template, open `examples/word_count_pr_comment_playbook.md` for a generate -> paste -> rerun flow built around the committed word-count snapshots.
 If you need to decide the first rerun lane from reviewer-queue metadata, open `examples/reviewer_queue_next_focus_playbook.md` for a compact `dominant focus -> next-focus -> tie-mode` triage flow.
 If `next_focus_tie_mode` is `tied`, open `examples/reviewer_queue_tie_playbook.md` for a deterministic “keep the first priority lane, but preserve the tie in the pasted note” workflow.
+If you want the first rerun lane plus the likely second lane in one reviewer handoff, open `examples/reviewer_queue_runner_up_playbook.md` for a compact `primary lane + runner-up lane` paste pattern.
 If filtered-out cases, skipped cases, or unchanged-fail watchlists are muddying the handoff, open `examples/reviewer_queue_filter_playbook.md` before trusting the queue priority string.
 Reviewer-queue JSON and paste-ready summaries now also expose a structured runner-up lane (`runner_up_key`, `runner_up_priority_label`, `runner_up_summary`) so rerun handoffs can keep the second queue branch visible without reopening the full artifact.
 They now also emit `next_focus_tie_summary`, a paste-ready `key=P# · label` line for tied first lanes, so PR comments can preserve deterministic rerun ordering without re-reading the full JSON artifact.
