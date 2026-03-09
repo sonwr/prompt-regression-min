@@ -94,6 +94,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         markdown = output.getvalue()
         self.assertIn("## word-count release-note gate", markdown)
         self.assertIn("- Regression IDs (2): `release-note-bullets`, `release-note-short`", markdown)
+        self.assertIn("- Reviewer queue groups: 1", markdown)
         self.assertIn("- Reviewer queue largest group: fix_regressions (2 case(s), 100.00% overall queue rate, 100.00% source-case rate)", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
     def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:

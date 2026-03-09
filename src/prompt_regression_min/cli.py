@@ -915,6 +915,9 @@ def main() -> None:
                 reviewer_queue_summary = _build_reviewer_queue(summary)
                 markdown_lines.append(f"- Reviewer queue total: {reviewer_queue_total} case(s)")
                 markdown_lines.append(
+                    f"- Reviewer queue groups: {reviewer_queue_summary.get('group_count', 0)}"
+                )
+                markdown_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
                 )
                 markdown_lines.append(
@@ -1054,6 +1057,9 @@ def main() -> None:
                 active_cases = summary.get('active_cases', summary['cases'])
                 reviewer_queue_summary = _build_reviewer_queue(summary)
                 pr_comment_lines.append(f"- Reviewer queue total: {reviewer_queue_total} case(s)")
+                pr_comment_lines.append(
+                    f"- Reviewer queue groups: {reviewer_queue_summary.get('group_count', 0)}"
+                )
                 pr_comment_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / active_cases) * 100:.2f}% of active cases"
                 )
