@@ -18,6 +18,8 @@
 - Stable source-case rate: 50.00% of source cases
 - Reviewer queue total: 1 case(s)
 - Reviewer queue groups: 1
+- Reviewer queue group keys: fix_regressions
+- Reviewer queue group labels: fix regressions
 - Reviewer queue rate: 50.00% of active cases
 - Reviewer queue source-case rate: 50.00% of source cases
 - Reviewer queue largest group: fix_regressions (1 case(s), 50.00% of active cases, 50.00% overall queue rate, 50.00% source-case rate, 100.00% of queued follow-up)

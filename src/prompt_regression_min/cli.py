@@ -73,6 +73,8 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "dataset_cases": dataset_cases,
         "groups": groups,
         "group_count": len(groups),
+        "group_keys": [str(group["key"]) for group in groups],
+        "group_labels": [str(group["label"]) for group in groups],
         "follow_up_priority": follow_up_priority,
         "largest_group_priority_rank": largest_group_priority_rank,
         "largest_group_keys": largest_group_keys,
@@ -956,6 +958,16 @@ def main() -> None:
                 markdown_lines.append(
                     f"- Reviewer queue groups: {reviewer_queue_summary.get('group_count', 0)}"
                 )
+                if reviewer_queue_summary.get("group_keys"):
+                    markdown_lines.append(
+                        "- Reviewer queue group keys: "
+                        + ", ".join(str(key) for key in reviewer_queue_summary["group_keys"])
+                    )
+                if reviewer_queue_summary.get("group_labels"):
+                    markdown_lines.append(
+                        "- Reviewer queue group labels: "
+                        + ", ".join(str(label) for label in reviewer_queue_summary["group_labels"])
+                    )
                 markdown_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
                 )
@@ -1177,6 +1189,16 @@ def main() -> None:
                 pr_comment_lines.append(
                     f"- Reviewer queue groups: {reviewer_queue_summary.get('group_count', 0)}"
                 )
+                if reviewer_queue_summary.get("group_keys"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue group keys: "
+                        + ", ".join(str(key) for key in reviewer_queue_summary["group_keys"])
+                    )
+                if reviewer_queue_summary.get("group_labels"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue group labels: "
+                        + ", ".join(str(label) for label in reviewer_queue_summary["group_labels"])
+                    )
                 pr_comment_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / active_cases) * 100:.2f}% of active cases"
                 )
