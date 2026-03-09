@@ -887,6 +887,12 @@ def main() -> None:
                 f"## {args.summary_pr_comment_title}",
                 f"- Status: **{status}**",
                 "- Summary schema version: `1`",
+                f"- Tool version: `{__version__}`",
+                (
+                    f"- Required schema version gate: `{args.require_summary_schema_version}`"
+                    if args.require_summary_schema_version is not None
+                    else "- Required schema version gate: _disabled_"
+                ),
                 f"- Pass-rate trend: `{summary.get('pass_rate_trend', 'flat')}`",
                 (
                     f"- Coverage watch: selected={summary.get('selected_dataset_cases', summary['cases'])}, "

@@ -40,6 +40,8 @@ REQUIRED_MARKDOWN_MARKERS = (
 PR_COMMENT_REQUIRED_MARKERS = {
     'walkthrough-pass.pr-comment.md': (
         '- Summary schema version: `1`',
+        '- Tool version: `',
+        '- Required schema version gate:',
         '- Pass-rate trend: `improving`',
         '- Improved IDs (1): `checkout-copy`',
         '- Changed IDs (1): `checkout-copy`',
@@ -48,6 +50,8 @@ PR_COMMENT_REQUIRED_MARKERS = {
     ),
     'walkthrough-fail.pr-comment.md': (
         '- Summary schema version: `1`',
+        '- Tool version: `',
+        '- Required schema version gate:',
         '- Pass-rate trend: `regressing`',
         '- Regression IDs (1): `auth-login`',
         '- Changed IDs (1): `auth-login`',
@@ -55,6 +59,8 @@ PR_COMMENT_REQUIRED_MARKERS = {
     ),
     'word-count-range.pr-comment.md': (
         '- Summary schema version: `1`',
+        '- Tool version: `',
+        '- Required schema version gate:',
         '- Regression IDs (2): `release-note-bullets`, `release-note-short`',
         '- Changed IDs (2): `release-note-bullets`, `release-note-short`',
         '- Reviewer next step:',

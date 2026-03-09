@@ -34,7 +34,7 @@ assert payload['summary']['improved_ids'] == ['checkout-copy'], payload
 for marker in (
     '## prompt-regression-min summary',
     '- Status: **PASS**',
-    '- Improved IDs: `checkout-copy`',
+    '- Improved IDs (1): `checkout-copy`',
     '- Required schema version gate: `1`',
 ):
     assert marker in md, marker
@@ -67,7 +67,7 @@ assert payload['summary']['regression_ids'] == ['auth-login'], payload
 for marker in (
     '## prompt-regression-min summary',
     '- Status: **FAIL**',
-    '- Regression IDs: `auth-login`',
+    '- Regression IDs (1): `auth-login`',
     '- Fail reasons:',
 ):
     assert marker in md, marker

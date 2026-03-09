@@ -1,6 +1,8 @@
 ## word-count blocker note
 - Status: **FAIL**
 - Summary schema version: `1`
+- Tool version: `0.1.0`
+- Required schema version gate: _disabled_
 - Pass-rate trend: `regressing`
 - Coverage watch: selected=2, active=2, skipped=0, filtered_out=0
 - Selection rate: 100.00% of source cases
