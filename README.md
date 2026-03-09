@@ -139,7 +139,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `ends_with_ci`
   - `not_ends_with`
   - `not_ends_with_ci`
-  - `regex` (with optional `IGNORECASE`, `MULTILINE`, `DOTALL` flags; case/whitespace-insensitive tokens like `" ignorecase "` are normalized)
+  - `regex` (with optional `IGNORECASE`, `MULTILINE`, `DOTALL` flags; `expected.flags` accepts either a list or a comma/pipe/whitespace-delimited string, and case/whitespace-insensitive tokens like `" ignorecase "` are normalized)
   - `regex_ci` (alias of `regex` with implicit `IGNORECASE`)
   - `regex_fullmatch` (same flags, but requires the entire output to match)
   - `regex_fullmatch_ci` (alias of `regex_fullmatch` with implicit `IGNORECASE`)

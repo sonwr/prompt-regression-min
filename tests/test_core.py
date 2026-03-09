@@ -54,6 +54,45 @@ class RegressionCoreTests(unittest.TestCase):
 
             self.assertEqual(report["summary"]["regressions"], 1)
             self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_supports_regex_flags_as_pipe_delimited_string(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "regex", "pattern": "^alpha.+omega$", "flags": " ignorecase | dotall "}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "ALPHA\nmid\nomega"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "beta\nmid\nomega"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_rejects_non_string_non_list_regex_flags(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "regex", "pattern": "alpha", "flags": 123}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "alpha"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "alpha"}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertIn("expected.flags as a list or string", str(exc.exception))
+
     def test_run_regression_supports_exact_ci_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

@@ -62,6 +62,17 @@ def _normalize_regex_flag_name(flag_name: Any) -> str:
     return flag_name.strip().upper()
 
 
+def _coerce_regex_flags(raw_flags: Any, kind: str) -> list[str]:
+    if raw_flags is None:
+        return []
+    if isinstance(raw_flags, str):
+        tokens = [token for token in re.split(r"[|,\s]+", raw_flags) if token]
+        return [_normalize_regex_flag_name(token) for token in tokens]
+    if isinstance(raw_flags, list):
+        return [_normalize_regex_flag_name(token) for token in raw_flags]
+    raise ValueError(f"{kind} expectation requires expected.flags as a list or string")
+
+
 def _count_words(value: str) -> int:
     return len(re.findall(r"\S+", value))
 
@@ -273,13 +284,10 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
         if not isinstance(pattern, str):
             raise ValueError(f"{kind} expectation requires expected.pattern as a string")
 
-        raw_flags = expected.get("flags", [])
-        if not isinstance(raw_flags, list):
-            raise ValueError(f"{kind} expectation requires expected.flags as a list")
+        raw_flags = _coerce_regex_flags(expected.get("flags", []), kind)
 
         flags = 0
-        for raw_flag_name in raw_flags:
-            flag_name = _normalize_regex_flag_name(raw_flag_name)
+        for flag_name in raw_flags:
             if flag_name not in REGEX_FLAG_MAP:
                 supported_flags = ", ".join(REGEX_FLAG_MAP)
                 raise ValueError(
@@ -519,14 +527,13 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
                 f"Invalid expected.pattern for type={kind} in dataset id={case_id}: must be a non-empty string"
             )
 
-        flags = expected.get("flags", [])
-        if not isinstance(flags, list):
+        try:
+            normalized_flags = _coerce_regex_flags(expected.get("flags", []), kind)
+        except ValueError as exc:
             raise ValueError(
-                f"Invalid expected.flags for type={kind} in dataset id={case_id}: must be a list"
-            )
-        normalized_flags: list[str] = []
-        for raw_flag_name in flags:
-            flag_name = _normalize_regex_flag_name(raw_flag_name)
+                f"Invalid expected.flags for type={kind} in dataset id={case_id}: must be a list or string"
+            ) from exc
+        for flag_name in normalized_flags:
             if flag_name not in REGEX_FLAG_MAP:
                 supported_flags = ", ".join(REGEX_FLAG_MAP)
                 raise ValueError(
