@@ -47,6 +47,7 @@ SUPPORTED_EXPECTED_TYPES = (
     "word_count_range",
     "line_count_range",
     "char_count_range",
+    "byte_count_range",
 )
 REGEX_FLAG_MAP = {
     "IGNORECASE": re.IGNORECASE,
@@ -255,6 +256,15 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
         if min_chars is not None and char_count < min_chars:
             return False
         if max_chars is not None and char_count > max_chars:
+            return False
+        return True
+    if kind == "byte_count_range":
+        min_bytes = expected.get("min_bytes")
+        max_bytes = expected.get("max_bytes")
+        byte_count = len(output.encode("utf-8"))
+        if min_bytes is not None and byte_count < min_bytes:
+            return False
+        if max_bytes is not None and byte_count > max_bytes:
             return False
         return True
 
@@ -480,6 +490,26 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
         if min_chars is not None and max_chars is not None and min_chars > max_chars:
             raise ValueError(
                 f"Invalid char_count_range expectation in dataset id={case_id}: min_chars must be <= max_chars"
+            )
+        return
+    if kind == "byte_count_range":
+        min_bytes = expected.get("min_bytes")
+        max_bytes = expected.get("max_bytes")
+        if min_bytes is None and max_bytes is None:
+            raise ValueError(
+                f"Invalid byte_count_range expectation in dataset id={case_id}: set min_bytes, max_bytes, or both"
+            )
+        if min_bytes is not None and (not isinstance(min_bytes, int) or min_bytes < 0):
+            raise ValueError(
+                f"Invalid expected.min_bytes for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if max_bytes is not None and (not isinstance(max_bytes, int) or max_bytes < 0):
+            raise ValueError(
+                f"Invalid expected.max_bytes for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if min_bytes is not None and max_bytes is not None and min_bytes > max_bytes:
+            raise ValueError(
+                f"Invalid byte_count_range expectation in dataset id={case_id}: min_bytes must be <= max_bytes"
             )
         return
     if kind in {"regex", "regex_ci", "regex_fullmatch", "regex_fullmatch_ci", "not_regex", "not_regex_ci", "not_regex_fullmatch", "not_regex_fullmatch_ci"}:

@@ -150,6 +150,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `word_count_range` (enforces lower/upper output-length bounds using whitespace-delimited word counts)
   - `line_count_range` (enforces lower/upper output-length bounds using newline-delimited line counts)
   - `char_count_range` (enforces lower/upper output-length bounds using raw character counts)
+  - `byte_count_range` (enforces UTF-8 byte-length bounds for UI labels, commit titles, or multilingual outputs)
 - Example fixture trio for deterministic release-note length checks: `examples/dataset/word_count_range_release_notes.jsonl` + matching outputs
 - Produces:
   - terminal summary (including `outcome_counts` rollup and explicit `unchanged_pass` / `unchanged_fail` counters)
@@ -272,6 +273,11 @@ Supported `expected.type` values:
   { "type": "char_count_range", "max_chars": 72 }
   ```
   You can set `min_chars`, `max_chars`, or both.
+- `byte_count_range` (useful when downstream systems enforce UTF-8 byte budgets and multibyte Korean/Japanese text must stay within a hard limit):
+  ```json
+  { "type": "byte_count_range", "max_bytes": 96 }
+  ```
+  You can set `min_bytes`, `max_bytes`, or both.
 - `not_exact` (`value` must be a string; passes only when normalized output differs):
   ```json
   { "type": "not_exact", "value": "Forbidden" }

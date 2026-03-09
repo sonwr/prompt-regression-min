@@ -1508,6 +1508,26 @@ if __name__ == "__main__":
             self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
 
 
+
+    def test_run_regression_supports_byte_count_range_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "byte_count_range", "min_bytes": 6, "max_bytes": 8}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "테스트"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "테스트메시지"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
     def test_run_regression_supports_char_count_range_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
