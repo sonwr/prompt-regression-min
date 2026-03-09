@@ -55,6 +55,26 @@ class RegressionCoreTests(unittest.TestCase):
 
             self.assertIn("set min_sentences, max_sentences, or both", str(exc.exception))
 
+    def test_run_regression_counts_korean_and_japanese_sentence_punctuation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "sentence_count_range", "min_sentences": 2, "max_sentences": 2}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "안녕하세요. 테스트입니다."}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "좋습니다。続けます！"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 0)
+            self.assertEqual(report["summary"]["unchanged_pass"], 1)
+            self.assertEqual(report["summary"]["improved"], 0)
+
     def test_run_regression_supports_contains_all_ordered_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
