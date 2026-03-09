@@ -996,6 +996,60 @@ class RegressionCoreTests(unittest.TestCase):
             self.assertEqual(report["summary"]["regressions"], 1)
             self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
 
+    def test_run_regression_supports_regex_fullmatch_ci_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {
+                        "id": "case-1",
+                        "expected": {
+                            "type": "regex_fullmatch_ci",
+                            "pattern": "status: (approved|pending)",
+                        },
+                    }
+                ],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "STATUS: APPROVED"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "STATUS: approved now"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_supports_not_regex_fullmatch_ci_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {
+                        "id": "case-1",
+                        "expected": {
+                            "type": "not_regex_fullmatch_ci",
+                            "pattern": "(approved|pending)",
+                        },
+                    }
+                ],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "Rejected"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "APPROVED"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
 
     def test_run_regression_summary_exposes_unchanged_buckets(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

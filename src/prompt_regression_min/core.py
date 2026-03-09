@@ -39,9 +39,11 @@ SUPPORTED_EXPECTED_TYPES = (
     "regex",
     "regex_ci",
     "regex_fullmatch",
+    "regex_fullmatch_ci",
     "not_regex",
     "not_regex_ci",
     "not_regex_fullmatch",
+    "not_regex_fullmatch_ci",
     "word_count_range",
     "line_count_range",
     "char_count_range",
@@ -256,7 +258,7 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
             return False
         return True
 
-    if kind in {"regex", "regex_ci", "regex_fullmatch", "not_regex", "not_regex_ci", "not_regex_fullmatch"}:
+    if kind in {"regex", "regex_ci", "regex_fullmatch", "regex_fullmatch_ci", "not_regex", "not_regex_ci", "not_regex_fullmatch", "not_regex_fullmatch_ci"}:
         pattern = expected.get("pattern")
         if not isinstance(pattern, str):
             raise ValueError(f"{kind} expectation requires expected.pattern as a string")
@@ -275,18 +277,18 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
                 )
             flags |= REGEX_FLAG_MAP[flag_name]
 
-        if kind in {"regex_ci", "not_regex_ci"}:
+        if kind in {"regex_ci", "regex_fullmatch_ci", "not_regex_ci", "not_regex_fullmatch_ci"}:
             flags |= re.IGNORECASE
 
         try:
             compiled = re.compile(pattern, flags=flags)
         except re.error as exc:
             raise ValueError(f"Invalid regex pattern: {exc}") from exc
-        if kind == "regex_fullmatch":
+        if kind in {"regex_fullmatch", "regex_fullmatch_ci"}:
             return compiled.fullmatch(output) is not None
         if kind in {"not_regex", "not_regex_ci"}:
             return compiled.search(output) is None
-        if kind == "not_regex_fullmatch":
+        if kind in {"not_regex_fullmatch", "not_regex_fullmatch_ci"}:
             return compiled.fullmatch(output) is None
         return compiled.search(output) is not None
     supported = ", ".join(SUPPORTED_EXPECTED_TYPES)
@@ -460,7 +462,7 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
                 f"Invalid line_count_range expectation in dataset id={case_id}: min_lines must be <= max_lines"
             )
         return
-    if kind in {"regex", "regex_ci", "regex_fullmatch", "not_regex", "not_regex_ci", "not_regex_fullmatch"}:
+    if kind in {"regex", "regex_ci", "regex_fullmatch", "regex_fullmatch_ci", "not_regex", "not_regex_ci", "not_regex_fullmatch", "not_regex_fullmatch_ci"}:
         pattern = expected.get("pattern")
         if not isinstance(pattern, str) or not pattern.strip():
             raise ValueError(
@@ -486,7 +488,7 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
         for flag_name in normalized_flags:
             flags_value |= REGEX_FLAG_MAP[flag_name]
 
-        if kind in {"regex_ci", "not_regex_ci"}:
+        if kind in {"regex_ci", "regex_fullmatch_ci", "not_regex_ci", "not_regex_fullmatch_ci"}:
             flags_value |= re.IGNORECASE
 
         try:
