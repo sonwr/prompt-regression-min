@@ -4110,6 +4110,13 @@ if __name__ == "__main__":
         self.assertEqual(payload["next_focus_advantage_source_case_rate"], 0.3333)
         self.assertEqual(payload["next_focus_advantage_label"], "clear lead")
         self.assertEqual(payload["next_focus_advantage_summary"], "clear lead: +2 case(s), +40.00% queue share, +33.33% active-case rate, +33.33% source-case rate")
+        self.assertEqual(payload["runner_up_key"], "watch_unchanged_fails")
+        self.assertEqual(payload["runner_up_label"], "watch unchanged fails")
+        self.assertEqual(payload["runner_up_ids"], ["watch-1"])
+        self.assertEqual(payload["runner_up_case_count"], 1)
+        self.assertEqual(payload["runner_up_active_case_rate"], 0.1667)
+        self.assertEqual(payload["runner_up_source_case_rate"], 0.1667)
+        self.assertEqual(payload["runner_up_queue_share"], 0.2)
         self.assertEqual(
             payload["next_focus_group"],
             {
