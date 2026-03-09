@@ -1280,6 +1280,11 @@ def main() -> None:
                     pr_comment_lines.append(
                         f"- Reviewer queue largest-group tie count: {reviewer_queue_summary.get('largest_group_tie_count', 0)}"
                     )
+                if reviewer_queue_summary.get("largest_group_labels"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue tied largest labels: "
+                        + ", ".join(str(label) for label in reviewer_queue_summary["largest_group_labels"])
+                    )
                 if reviewer_queue_summary.get("largest_group_ids"):
                     pr_comment_lines.append(
                         "- Reviewer queue largest group IDs: "

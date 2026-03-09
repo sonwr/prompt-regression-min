@@ -31,6 +31,7 @@
 - Reviewer queue next-focus priority rank: 1 of 1
 - Reviewer queue tied largest groups: fix_regressions
 - Reviewer queue largest-group tie count: 1
+- Reviewer queue tied largest labels: fix regressions
 - Reviewer queue largest group IDs: `auth-login`
 - Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases
 - Reviewer queue: fix regressions: `auth-login`

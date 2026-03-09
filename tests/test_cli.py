@@ -221,6 +221,60 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", pr_comment)
             self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
+    def test_summary_pr_comment_surfaces_tied_largest_group_labels(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "watch-1", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "reg-1", "output": "ok"},
+                    {"id": "watch-1", "output": "bad"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "reg-1", "output": "bad"},
+                    {"id": "watch-1", "output": "bad"},
+                ],
+            )
+
+            output = io.StringIO()
+            with self.assertRaises(SystemExit):
+                with contextlib.redirect_stdout(output):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm",
+                            "run",
+                            "-d",
+                            str(dataset),
+                            "-b",
+                            str(baseline),
+                            "-c",
+                            str(candidate),
+                            "--summary-pr-comment",
+                            "-",
+                            "--quiet",
+                        ],
+                    ):
+                        cli.main()
+            pr_comment = output.getvalue()
+            self.assertIn("- Reviewer queue tied largest groups: fix_regressions, watch_unchanged_fails", pr_comment)
+            self.assertIn("- Reviewer queue largest-group tie count: 2", pr_comment)
+            self.assertIn("- Reviewer queue tied largest labels: fix regressions, watch unchanged fails", pr_comment)
+
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
