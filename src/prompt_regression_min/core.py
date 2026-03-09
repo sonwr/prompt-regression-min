@@ -823,6 +823,7 @@ def run_regression(
     filtered_out_rate = round(len(filtered_out_ids) / source_dataset_case_count, 4)
     skipped_rate = round(len(skipped_ids) / len(results), 4) if results else 0.0
     selection_rate = round(selected_dataset_case_count / source_dataset_case_count, 4)
+    active_case_rate = round(len(results) / selected_dataset_case_count, 4)
 
     pass_rate_trend = "flat"
     if candidate_pass_rate > baseline_pass_rate:
@@ -837,6 +838,7 @@ def run_regression(
         "selected_dataset_ids": selected_dataset_ids,
         "cases": len(results),
         "active_case_ids": active_case_ids,
+        "active_case_rate": active_case_rate,
         "id_filter_include_regex": include_id_regex,
         "id_filter_exclude_regex": exclude_id_regex,
         "filtered_out_cases": len(filtered_out_ids),
