@@ -209,6 +209,7 @@ PR-comment output now also surfaces `Filtered-out rate` and `Skipped-case rate`,
 PR-comment output now also surfaces `Tool version` plus `Required schema version gate`, so paste-ready reviewer notes expose both the producing build and the expected summary contract without opening the JSON or markdown artifacts.
 PR-comment output now also surfaces `Selection rate` and `Active-case rate`, making shard coverage and post-filter execution scope visible in paste-ready reviewer notes without opening the JSON or markdown artifacts.
 PR-comment output now also surfaces reviewer-queue breakdown lines (`regressions`, `watchlist`, `filtered-out scope`, `skipped cases`) so reviewers can see what kind of follow-up work dominates a rerun without opening the JSON artifact.
+The largest reviewer-queue group line now also shows its share of queued follow-up, so reviewers can tell whether one class of action dominates the entire rerun plan.
 Markdown/PR-comment summaries now also expose `Reviewer queue source-case rate`, so shard-heavy reruns can distinguish active-case overload from total dataset impact without opening JSON.
 The `Reviewer queue largest group` line now also shows both active-case rate and source-case rate, so the dominant rerun bucket is easy to size against the current shard and the full dataset without opening JSON.
 PR-comment output now also surfaces `Regression rate` and `Improvement rate`, so reviewers can gauge how concentrated the changed outcomes are without opening the JSON artifact.

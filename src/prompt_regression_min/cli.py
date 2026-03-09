@@ -51,6 +51,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "largest_group_count": 0 if largest_group is None else int(largest_group["count"]),
         "largest_group_rate": 0.0 if largest_group is None else float(largest_group["rate"]),
         "largest_group_source_case_rate": 0.0 if largest_group is None else float(largest_group["source_case_rate"]),
+        "largest_group_queue_share": 0.0 if largest_group is None or total == 0 else round(float(largest_group["count"]) / total, 4),
     }
 
 
@@ -935,7 +936,8 @@ def main() -> None:
                     f"({reviewer_queue_summary.get('largest_group_count', 0)} case(s), "
                     f"{reviewer_queue_summary.get('largest_group_rate', 0.0) * 100:.2f}% of active cases, "
                     f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate, "
-                    f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate)"
+                    f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate, "
+                    f"{reviewer_queue_summary.get('largest_group_queue_share', 0.0) * 100:.2f}% of queued follow-up)"
                 )
                 if reviewer_queue_summary.get("largest_group_ids"):
                     markdown_lines.append(
@@ -1089,7 +1091,8 @@ def main() -> None:
                     f"({reviewer_queue_summary.get('largest_group_count', 0)} case(s), "
                     f"{reviewer_queue_summary.get('largest_group_rate', 0.0) * 100:.2f}% of active cases, "
                     f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate, "
-                    f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate)"
+                    f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate, "
+                    f"{reviewer_queue_summary.get('largest_group_queue_share', 0.0) * 100:.2f}% of queued follow-up)"
                 )
                 if reviewer_queue_summary.get("largest_group_ids"):
                     pr_comment_lines.append(

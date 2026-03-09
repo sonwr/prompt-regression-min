@@ -95,7 +95,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("## word-count release-note gate", markdown)
         self.assertIn("- Regression IDs (2): `release-note-bullets`, `release-note-short`", markdown)
         self.assertIn("- Reviewer queue groups: 1", markdown)
-        self.assertIn("- Reviewer queue largest group: fix_regressions (2 case(s), 100.00% of active cases, 100.00% overall queue rate, 100.00% source-case rate)", markdown)
+        self.assertIn("- Reviewer queue largest group: fix_regressions (2 case(s), 100.00% of active cases, 100.00% overall queue rate, 100.00% source-case rate, 100.00% of queued follow-up)", markdown)
         self.assertIn("- Reviewer queue largest group IDs: `release-note-bullets`, `release-note-short`", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
     def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
@@ -128,7 +128,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Selection rate: 50.00% of source cases", markdown)
         self.assertIn("- Active-case rate: 50.00% of source cases", markdown)
         self.assertIn("- Skipped-case budget usage: 0/disabled (0.00% source-case rate)", markdown)
-        self.assertIn("- Filtered-out budget usage: 2/2 (50.00% source-case rate)", markdown)
+        self.assertIn("- Filtered-out budget usage: 2/2 (50.00% source-case rate, 100.00% of queued follow-up)", markdown)
 
     def test_summary_pr_comment_includes_changed_ids_and_rate_for_reviewer_triage(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -192,7 +192,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Stable-case rate: 50.00% of active cases", pr_comment)
             self.assertIn("- Stable source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
-            self.assertIn("- Reviewer queue largest group: fix_regressions (1 case(s), 50.00% of active cases, 50.00% overall queue rate, 50.00% source-case rate)", pr_comment)
+            self.assertIn("- Reviewer queue largest group: fix_regressions (1 case(s), 50.00% of active cases, 50.00% overall queue rate, 50.00% source-case rate, 100.00% of queued follow-up)", pr_comment)
             self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases", pr_comment)
 
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:
