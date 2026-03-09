@@ -990,6 +990,12 @@ def main() -> None:
                 pr_comment_lines.append(
                     "- Stable IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_pass_ids"])
                 )
+                pr_comment_lines.append(
+                    f"- Stable-case rate: {(len(summary['unchanged_pass_ids']) / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
+                )
+                pr_comment_lines.append(
+                    f"- Stable source-case rate: {(len(summary['unchanged_pass_ids']) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
+                )
             if summary.get("unchanged_fail_ids"):
                 pr_comment_lines.append(
                     "- Unchanged fail IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_fail_ids"])

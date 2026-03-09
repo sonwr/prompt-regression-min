@@ -14,4 +14,6 @@
 - Changed-case rate: 50.00% of active cases
 - Changed source-case rate: 50.00% of source cases
 - Stable IDs: `policy-note`
+- Stable-case rate: 50.00% of active cases
+- Stable source-case rate: 50.00% of source cases
 - Reviewer next step: this snapshot is approval-ready; paste it into the PR comment once surrounding checks pass.

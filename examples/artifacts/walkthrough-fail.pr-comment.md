@@ -14,6 +14,8 @@
 - Changed-case rate: 50.00% of active cases
 - Changed source-case rate: 50.00% of source cases
 - Stable IDs: `checkout-copy`
+- Stable-case rate: 50.00% of active cases
+- Stable source-case rate: 50.00% of source cases
 - Reviewer queue total: 1 case(s)
 - Reviewer queue rate: 50.00% of active cases
 - Reviewer queue source-case rate: 50.00% of source cases
