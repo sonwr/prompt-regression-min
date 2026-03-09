@@ -889,6 +889,9 @@ def main() -> None:
                 markdown_lines.append(
                     f"- Skipped-case rate: {summary.get('skipped_rate', 0.0) * 100:.2f}% of active cases"
                 )
+                markdown_lines.append(
+                    f"- Skipped source-case rate: {(len(summary['skipped_ids']) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
+                )
             if summary.get("unchanged_pass_ids"):
                 markdown_lines.append(
                     f"- Unchanged pass IDs ({len(summary['unchanged_pass_ids'])}): " + ", ".join(f"`{case_id}`" for case_id in summary["unchanged_pass_ids"])
@@ -1038,6 +1041,9 @@ def main() -> None:
                 )
                 pr_comment_lines.append(
                     f"- Skipped-case rate: {summary.get('skipped_rate', 0.0) * 100:.2f}% of active cases"
+                )
+                pr_comment_lines.append(
+                    f"- Skipped source-case rate: {(len(summary['skipped_ids']) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
                 )
             reviewer_queue = []
             reviewer_queue_total = 0

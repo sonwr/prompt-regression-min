@@ -2971,6 +2971,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Filtered-out rate: 33.33% of source cases", rendered)
             self.assertIn("- Skipped IDs: `ops-skip`", rendered)
             self.assertIn("- Skipped-case rate: 100.00% of active cases", rendered)
+            self.assertIn("- Skipped source-case rate: 33.33% of source cases", rendered)
 
 
     def test_cli_allows_custom_summary_pr_comment_title_without_changing_markdown_title(self) -> None:
@@ -3331,6 +3332,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Scope reduction: 33.33% of source cases removed by filters", markdown)
             self.assertIn("- Skipped IDs (1): `ops-skip`", markdown)
             self.assertIn("- Skipped-case rate: 100.00% of active cases", markdown)
+            self.assertIn("- Skipped source-case rate: 33.33% of source cases", markdown)
             self.assertIn("- Unchanged fail IDs (1): `auth-keep`", markdown)
 
     def test_cli_summary_markdown_includes_fail_reasons(self) -> None:
