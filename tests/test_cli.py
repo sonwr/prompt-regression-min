@@ -3521,6 +3521,67 @@ if __name__ == "__main__":
 
 
 
+    def test_summary_json_includes_structured_reviewer_queue(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_json = tmp_path / "summary.json"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "watch-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "skip-1", "expected": {"type": "substring", "value": "ok"}, "skip": True},
+                    {"id": "scope-1", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "reg-1", "output": "ok"},
+                    {"id": "watch-1", "output": "bad"},
+                    {"id": "skip-1", "output": "ok"},
+                    {"id": "scope-1", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "reg-1", "output": "bad"},
+                    {"id": "watch-1", "output": "bad"},
+                    {"id": "skip-1", "output": "ok"},
+                    {"id": "scope-1", "output": "ok"},
+                ],
+            )
+
+            with self.assertRaises(SystemExit) as exc:
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm", "run", "-d", str(dataset), "-b", str(baseline), "-c", str(candidate),
+                        "--exclude-id-regex", "^scope-", "--summary-json", str(summary_json), "--quiet"
+                    ],
+                ):
+                    cli.main()
+            self.assertEqual(exc.exception.code, 1)
+
+            payload = json.loads(summary_json.read_text(encoding="utf-8"))
+            self.assertEqual(payload["reviewer_queue"]["total"], 4)
+            self.assertEqual(payload["reviewer_queue"]["rate"], 1.3333)
+            self.assertEqual(
+                payload["reviewer_queue"]["groups"],
+                [
+                    {"key": "fix_regressions", "label": "fix regressions", "ids": ["reg-1"], "count": 1},
+                    {"key": "watch_unchanged_fails", "label": "watch unchanged fails", "ids": ["watch-1"], "count": 1},
+                    {"key": "confirm_filtered_scope", "label": "confirm filtered-out scope", "ids": ["scope-1"], "count": 1},
+                    {"key": "resolve_skipped_cases", "label": "resolve skipped cases", "ids": ["skip-1"], "count": 1},
+                ],
+            )
+
+
     def test_summary_outputs_include_reviewer_queue_for_scope_and_watchlist_handoff(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

@@ -828,3 +828,16 @@ This keeps shard runs deterministic while preserving reviewer trust in what was,
 ## License
 
 MIT
+
+
+## Structured reviewer queue in summary JSON
+
+`--summary-json` now emits a `reviewer_queue` object for downstream automation and PR bots.
+It groups case IDs into four follow-up buckets:
+
+- `fix_regressions`
+- `watch_unchanged_fails`
+- `confirm_filtered_scope`
+- `resolve_skipped_cases`
+
+This keeps markdown/PR-comment handoffs and machine-readable JSON aligned.

@@ -10,6 +10,35 @@ from . import __version__
 from .core import run_regression
 
 
+def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
+    active_cases = int(summary.get("active_cases", summary.get("cases", 0)) or 0)
+    groups: list[dict[str, object]] = []
+    total = 0
+    queue_specs = [
+        ("fix_regressions", "fix regressions", list(summary.get("regression_ids", []))),
+        ("watch_unchanged_fails", "watch unchanged fails", list(summary.get("unchanged_fail_ids", []))),
+        ("confirm_filtered_scope", "confirm filtered-out scope", list(summary.get("filtered_out_ids", []))),
+        ("resolve_skipped_cases", "resolve skipped cases", list(summary.get("skipped_ids", []))),
+    ]
+    for key, label, ids in queue_specs:
+        if not ids:
+            continue
+        groups.append({
+            "key": key,
+            "label": label,
+            "ids": ids,
+            "count": len(ids),
+        })
+        total += len(ids)
+    rate = (total / active_cases) if active_cases else 0.0
+    return {
+        "total": total,
+        "rate": round(rate, 4),
+        "active_cases": active_cases,
+        "groups": groups,
+    }
+
+
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="prm",
@@ -597,6 +626,7 @@ def main() -> None:
                 "tool_version": __version__,
                 "fail_reasons": fail_reasons,
                 "summary": summary,
+                "reviewer_queue": _build_reviewer_queue(summary),
                 "gates": gates,
             }
             json_indent = 2 if args.summary_json_pretty else None
