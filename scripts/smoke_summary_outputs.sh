@@ -7,8 +7,10 @@ trap 'rm -rf "$TMPDIR"' EXIT
 
 PASS_MD="$TMPDIR/pass.summary.md"
 PASS_JSON="$TMPDIR/pass.summary.json"
+PASS_PR="$TMPDIR/pass.pr-comment.md"
 FAIL_MD="$TMPDIR/fail.summary.md"
 FAIL_JSON="$TMPDIR/fail.summary.json"
+FAIL_PR="$TMPDIR/fail.pr-comment.md"
 
 cd "$ROOT"
 export PYTHONPATH="$ROOT/src${PYTHONPATH:+:$PYTHONPATH}"
@@ -21,14 +23,17 @@ python3 -m prompt_regression_min.cli run \
   --require-summary-schema-version 1 \
   --summary-markdown "$PASS_MD" \
   --summary-json "$PASS_JSON" \
+  --summary-pr-comment "$PASS_PR" \
+  --summary-pr-comment-title "walkthrough approval note" \
   --quiet
 
-python3 - <<'PY' "$PASS_MD" "$PASS_JSON"
+python3 - <<'PY' "$PASS_MD" "$PASS_JSON" "$PASS_PR"
 import json
 import sys
 from pathlib import Path
 md = Path(sys.argv[1]).read_text(encoding='utf-8')
 payload = json.loads(Path(sys.argv[2]).read_text(encoding='utf-8'))
+pr = Path(sys.argv[3]).read_text(encoding='utf-8')
 assert payload['status'] == 'PASS', payload
 assert payload['summary']['improved_ids'] == ['checkout-copy'], payload
 for marker in (
@@ -38,6 +43,13 @@ for marker in (
     '- Required schema version gate: `1`',
 ):
     assert marker in md, marker
+for marker in (
+    '## walkthrough approval note',
+    '- Tool version: `0.1.0`',
+    '- Required schema version gate: `1`',
+    'approval-ready',
+):
+    assert marker in pr, marker
 print('pass smoke: PASS')
 PY
 
@@ -48,6 +60,8 @@ python3 -m prompt_regression_min.cli run \
   --candidate "$ROOT/examples/outputs/walkthrough_fail_artifact_demo.candidate.jsonl" \
   --summary-markdown "$FAIL_MD" \
   --summary-json "$FAIL_JSON" \
+  --summary-pr-comment "$FAIL_PR" \
+  --summary-pr-comment-title "walkthrough blocker note" \
   --quiet
 STATUS=$?
 set -e
@@ -56,12 +70,13 @@ if [[ "$STATUS" -ne 1 ]]; then
   exit 1
 fi
 
-python3 - <<'PY' "$FAIL_MD" "$FAIL_JSON"
+python3 - <<'PY' "$FAIL_MD" "$FAIL_JSON" "$FAIL_PR"
 import json
 import sys
 from pathlib import Path
 md = Path(sys.argv[1]).read_text(encoding='utf-8')
 payload = json.loads(Path(sys.argv[2]).read_text(encoding='utf-8'))
+pr = Path(sys.argv[3]).read_text(encoding='utf-8')
 assert payload['status'] == 'FAIL', payload
 assert payload['summary']['regression_ids'] == ['auth-login'], payload
 for marker in (
@@ -71,6 +86,13 @@ for marker in (
     '- Fail reasons:',
 ):
     assert marker in md, marker
+for marker in (
+    '## walkthrough blocker note',
+    '- Regression IDs (1): `auth-login`',
+    '- Reviewer queue total: 1 case(s)',
+    '- Required schema version gate: _disabled_',
+):
+    assert marker in pr, marker
 print('fail smoke: PASS')
 PY
 

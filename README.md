@@ -170,6 +170,7 @@ scripts/smoke_summary_outputs.sh
 ```
 
 This smoke check reruns the committed pass/fail walkthrough fixtures, verifies the expected exit codes, and confirms that both markdown and JSON summaries still expose the reviewer-facing markers used in the docs.
+It now also rechecks the PR-comment contract (`--summary-pr-comment`) for the same PASS/FAIL fixtures, including the custom reviewer-note headings used in the walkthrough artifacts.
 
 ```bash
 python3 -m venv .venv
