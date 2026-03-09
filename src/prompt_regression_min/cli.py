@@ -1005,10 +1005,27 @@ def main() -> None:
                 reviewer_queue.append("resolve skipped cases: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"]))
                 reviewer_queue_total += len(summary["skipped_ids"])
             if reviewer_queue:
+                active_cases = summary.get('active_cases', summary['cases'])
                 pr_comment_lines.append(f"- Reviewer queue total: {reviewer_queue_total} case(s)")
                 pr_comment_lines.append(
-                    f"- Reviewer queue rate: {(reviewer_queue_total / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
+                    f"- Reviewer queue rate: {(reviewer_queue_total / active_cases) * 100:.2f}% of active cases"
                 )
+                if regression_ids:
+                    pr_comment_lines.append(
+                        f"- Reviewer queue (regressions): {len(regression_ids)} case(s) / {(len(regression_ids) / active_cases) * 100:.2f}% of active cases"
+                    )
+                if summary.get("unchanged_fail_ids"):
+                    pr_comment_lines.append(
+                        f"- Reviewer queue (watchlist): {len(summary['unchanged_fail_ids'])} case(s) / {(len(summary['unchanged_fail_ids']) / active_cases) * 100:.2f}% of active cases"
+                    )
+                if summary.get("filtered_out_ids"):
+                    pr_comment_lines.append(
+                        f"- Reviewer queue (filtered-out scope): {len(summary['filtered_out_ids'])} case(s) / {(len(summary['filtered_out_ids']) / active_cases) * 100:.2f}% of active cases"
+                    )
+                if summary.get("skipped_ids"):
+                    pr_comment_lines.append(
+                        f"- Reviewer queue (skipped cases): {len(summary['skipped_ids'])} case(s) / {(len(summary['skipped_ids']) / active_cases) * 100:.2f}% of active cases"
+                    )
                 pr_comment_lines.append("- Reviewer queue: " + " | ".join(reviewer_queue))
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")

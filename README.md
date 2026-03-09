@@ -206,6 +206,7 @@ PR-comment output now also carries `Filtered-out IDs` and `Skipped IDs` when fil
 PR-comment output now also surfaces `Filtered-out rate` and `Skipped-case rate`, so reviewers can gauge how much scope moved out of the shard without opening the JSON artifact.
 PR-comment output now also surfaces `Tool version` plus `Required schema version gate`, so paste-ready reviewer notes expose both the producing build and the expected summary contract without opening the JSON or markdown artifacts.
 PR-comment output now also surfaces `Selection rate` and `Active-case rate`, making shard coverage and post-filter execution scope visible in paste-ready reviewer notes without opening the JSON or markdown artifacts.
+PR-comment output now also surfaces reviewer-queue breakdown lines (`regressions`, `watchlist`, `filtered-out scope`, `skipped cases`) so reviewers can see what kind of follow-up work dominates a rerun without opening the JSON artifact.
 PR-comment output now also surfaces `Regression rate` and `Improvement rate`, so reviewers can gauge how concentrated the changed outcomes are without opening the JSON artifact.
 PR-comment output now also carries `Unchanged fail IDs` plus a watchlist rate, so reviewers can separate known-bad carryover cases from newly regressed IDs without opening the JSON artifact.
 PR-comment snapshots now also include `Changed IDs` plus the changed-case rate, so reviewers can tell whether a failure is concentrated in one case or spread across the active shard without opening the full markdown/JSON summary.

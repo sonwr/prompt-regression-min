@@ -184,6 +184,8 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Selection rate: 100.00% of source cases", pr_comment)
             self.assertIn("- Active-case rate: 100.00% of source cases", pr_comment)
             self.assertIn("- Stable IDs: `stable-pass`", pr_comment)
+            self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
+            self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases", pr_comment)
 
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -317,6 +319,36 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Stable IDs: `stable-pass`", pr_comment)
             self.assertIn("- Unchanged fail IDs: `watch-auth`", pr_comment)
             self.assertIn("- Watchlist rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
+            self.assertIn("- Reviewer queue (watchlist): 1 case(s) / 50.00% of active cases", pr_comment)
+
+    def test_summary_pr_comment_exposes_reviewer_queue_breakdown_for_filtered_and_skipped_scope(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "--dataset",
+                    str(root / "examples" / "dataset" / "filtered_out_band_demo.jsonl"),
+                    "--baseline",
+                    str(root / "examples" / "outputs" / "filtered_out_band_demo.baseline.jsonl"),
+                    "--candidate",
+                    str(root / "examples" / "outputs" / "filtered_out_band_demo.candidate.jsonl"),
+                    "--include-id-regex",
+                    "^auth-",
+                    "--summary-pr-comment",
+                    "-",
+                    "--quiet",
+                ],
+            ):
+                cli.main()
+        pr_comment = output.getvalue()
+        self.assertIn("- Reviewer queue total: 2 case(s)", pr_comment)
+        self.assertIn("- Reviewer queue (filtered-out scope): 2 case(s) / 100.00% of active cases", pr_comment)
+
 
     def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -3404,6 +3436,8 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Stable IDs: `stable-pass`", pr_comment)
             self.assertIn("- Unchanged fail IDs: `watch-auth`", pr_comment)
             self.assertIn("- Watchlist rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
+            self.assertIn("- Reviewer queue (watchlist): 1 case(s) / 50.00% of active cases", pr_comment)
 
     def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
