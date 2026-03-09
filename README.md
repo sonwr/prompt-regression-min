@@ -194,6 +194,7 @@ python -m prompt_regression_min run \
 ```
 
 For a copyable length-budget smoke test, see `examples/word_count_range_walkthrough.md`.
+For a rendered-line budget variant, open `examples/line_count_range_walkthrough.md` to compare PASS/FAIL reviewer-note flows for `line_count_range` without introducing semantic scorers.
 That walkthrough now also includes a PR-comment-ready FAIL summary snippet for reviewer notes and release-review threads.
 If you want a dedicated reviewer-note template, open `examples/word_count_pr_comment_playbook.md` for a generate -> paste -> rerun flow built around the committed word-count snapshots.
 Committed reviewer-facing markdown output for the same fixture lives at `examples/artifacts/word-count-range.summary.md`, and the matching machine-readable gate payload now lives at `examples/artifacts/word-count-range.summary.json` for CI drift checks.
