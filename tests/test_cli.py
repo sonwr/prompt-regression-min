@@ -178,11 +178,64 @@ class PromptRegressionCliTests(unittest.TestCase):
                         cli.main()
             pr_comment = output.getvalue()
             self.assertIn("- Regression IDs (1): `reg-1`", pr_comment)
+            self.assertIn("- Regression rate: 50.00% of active cases", pr_comment)
             self.assertIn("- Changed IDs (1): `reg-1`", pr_comment)
             self.assertIn("- Changed-case rate: 50.00% of active cases", pr_comment)
             self.assertIn("- Selection rate: 100.00% of source cases", pr_comment)
             self.assertIn("- Active-case rate: 100.00% of source cases", pr_comment)
             self.assertIn("- Stable IDs: `stable-pass`", pr_comment)
+
+    def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "imp-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "stable-pass", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "imp-1", "output": "bad"},
+                    {"id": "stable-pass", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "imp-1", "output": "ok"},
+                    {"id": "stable-pass", "output": "ok"},
+                ],
+            )
+
+            output = io.StringIO()
+            with contextlib.redirect_stdout(output):
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm",
+                        "run",
+                        "-d",
+                        str(dataset),
+                        "-b",
+                        str(baseline),
+                        "-c",
+                        str(candidate),
+                        "--summary-pr-comment",
+                        "-",
+                        "--quiet",
+                    ],
+                ):
+                    cli.main()
+            pr_comment = output.getvalue()
+            self.assertIn("- Improved IDs (1): `imp-1`", pr_comment)
+            self.assertIn("- Improvement rate: 50.00% of active cases", pr_comment)
 
     def test_summary_pr_comment_includes_selection_and_active_case_rates_for_filtered_scope(self) -> None:
         root = Path(__file__).resolve().parents[1]

@@ -8,6 +8,7 @@
 - Selection rate: 100.00% of source cases
 - Active-case rate: 100.00% of source cases
 - Regression IDs (1): `auth-login`
+- Regression rate: 50.00% of active cases
 - Changed IDs (1): `auth-login`
 - Changed-case rate: 50.00% of active cases
 - Stable IDs: `checkout-copy`

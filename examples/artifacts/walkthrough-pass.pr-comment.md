@@ -8,6 +8,7 @@
 - Selection rate: 100.00% of source cases
 - Active-case rate: 100.00% of source cases
 - Improved IDs (1): `checkout-copy`
+- Improvement rate: 50.00% of active cases
 - Changed IDs (1): `checkout-copy`
 - Changed-case rate: 50.00% of active cases
 - Stable IDs: `policy-note`
