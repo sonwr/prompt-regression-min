@@ -9,8 +9,10 @@
 - Active-case rate: 100.00% of source cases
 - Regression IDs (2): `release-note-bullets`, `release-note-short`
 - Regression rate: 100.00% of active cases
+- Regression source-case rate: 100.00% of source cases
 - Changed IDs (2): `release-note-bullets`, `release-note-short`
 - Changed-case rate: 100.00% of active cases
+- Changed source-case rate: 100.00% of source cases
 - Reviewer queue total: 2 case(s)
 - Reviewer queue rate: 100.00% of active cases
 - Reviewer queue source-case rate: 100.00% of source cases

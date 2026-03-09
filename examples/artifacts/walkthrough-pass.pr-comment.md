@@ -9,7 +9,9 @@
 - Active-case rate: 100.00% of source cases
 - Improved IDs (1): `checkout-copy`
 - Improvement rate: 50.00% of active cases
+- Improvement source-case rate: 50.00% of source cases
 - Changed IDs (1): `checkout-copy`
 - Changed-case rate: 50.00% of active cases
+- Changed source-case rate: 50.00% of source cases
 - Stable IDs: `policy-note`
 - Reviewer next step: this snapshot is approval-ready; paste it into the PR comment once surrounding checks pass.

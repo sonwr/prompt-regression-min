@@ -837,9 +837,15 @@ def main() -> None:
                 markdown_lines.append(
                     f"- Regression IDs ({len(regression_ids)}): " + ", ".join(f"`{case_id}`" for case_id in regression_ids)
                 )
+                markdown_lines.append(
+                    f"- Regression source-case rate: {(len(regression_ids) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
+                )
             if improved_ids:
                 markdown_lines.append(
                     f"- Improved IDs ({len(improved_ids)}): " + ", ".join(f"`{case_id}`" for case_id in improved_ids)
+                )
+                markdown_lines.append(
+                    f"- Improvement source-case rate: {(len(improved_ids) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
                 )
             if args.include_id_regex or args.exclude_id_regex:
                 markdown_lines.append(
@@ -854,6 +860,9 @@ def main() -> None:
                 )
                 markdown_lines.append(
                     f"- Changed-case rate: {summary.get('changed_rate', 0.0) * 100:.2f}%"
+                )
+                markdown_lines.append(
+                    f"- Changed source-case rate: {(len(summary['changed_ids']) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
                 )
             if summary.get("filtered_out_ids"):
                 markdown_lines.append(
@@ -954,6 +963,9 @@ def main() -> None:
                 pr_comment_lines.append(
                     f"- Regression rate: {(len(regression_ids) / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
                 )
+                pr_comment_lines.append(
+                    f"- Regression source-case rate: {(len(regression_ids) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
+                )
             if improved_ids:
                 pr_comment_lines.append(
                     f"- Improved IDs ({len(improved_ids)}): " + ", ".join(f"`{case_id}`" for case_id in improved_ids)
@@ -961,12 +973,18 @@ def main() -> None:
                 pr_comment_lines.append(
                     f"- Improvement rate: {(len(improved_ids) / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
                 )
+                pr_comment_lines.append(
+                    f"- Improvement source-case rate: {(len(improved_ids) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
+                )
             if summary.get("changed_ids"):
                 pr_comment_lines.append(
                     f"- Changed IDs ({len(summary['changed_ids'])}): " + ", ".join(f"`{case_id}`" for case_id in summary["changed_ids"])
                 )
                 pr_comment_lines.append(
                     f"- Changed-case rate: {summary.get('changed_rate', 0.0) * 100:.2f}% of active cases"
+                )
+                pr_comment_lines.append(
+                    f"- Changed source-case rate: {(len(summary['changed_ids']) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
                 )
             if summary.get("unchanged_pass_ids"):
                 pr_comment_lines.append(
@@ -978,6 +996,9 @@ def main() -> None:
                 )
                 pr_comment_lines.append(
                     f"- Watchlist rate: {summary.get('unchanged_fail_rate', 0.0) * 100:.2f}% of active cases"
+                )
+                pr_comment_lines.append(
+                    f"- Watchlist source-case rate: {(len(summary['unchanged_fail_ids']) / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
                 )
             if summary.get("filtered_out_ids"):
                 pr_comment_lines.append(

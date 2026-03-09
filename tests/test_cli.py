@@ -179,8 +179,10 @@ class PromptRegressionCliTests(unittest.TestCase):
             pr_comment = output.getvalue()
             self.assertIn("- Regression IDs (1): `reg-1`", pr_comment)
             self.assertIn("- Regression rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Regression source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Changed IDs (1): `reg-1`", pr_comment)
             self.assertIn("- Changed-case rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Changed source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Selection rate: 100.00% of source cases", pr_comment)
             self.assertIn("- Active-case rate: 100.00% of source cases", pr_comment)
             self.assertIn("- Stable IDs: `stable-pass`", pr_comment)
@@ -238,6 +240,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             pr_comment = output.getvalue()
             self.assertIn("- Improved IDs (1): `imp-1`", pr_comment)
             self.assertIn("- Improvement rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Improvement source-case rate: 50.00% of source cases", pr_comment)
 
     def test_summary_pr_comment_includes_selection_and_active_case_rates_for_filtered_scope(self) -> None:
         root = Path(__file__).resolve().parents[1]
@@ -319,6 +322,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Stable IDs: `stable-pass`", pr_comment)
             self.assertIn("- Unchanged fail IDs: `watch-auth`", pr_comment)
             self.assertIn("- Watchlist rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Watchlist source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
             self.assertIn("- Reviewer queue (watchlist): 1 case(s) / 50.00% of active cases", pr_comment)
 
@@ -3437,6 +3441,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Stable IDs: `stable-pass`", pr_comment)
             self.assertIn("- Unchanged fail IDs: `watch-auth`", pr_comment)
             self.assertIn("- Watchlist rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Watchlist source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
             self.assertIn("- Reviewer queue (watchlist): 1 case(s) / 50.00% of active cases", pr_comment)
 

@@ -9,8 +9,10 @@
 - Active-case rate: 100.00% of source cases
 - Regression IDs (1): `auth-login`
 - Regression rate: 50.00% of active cases
+- Regression source-case rate: 50.00% of source cases
 - Changed IDs (1): `auth-login`
 - Changed-case rate: 50.00% of active cases
+- Changed source-case rate: 50.00% of source cases
 - Stable IDs: `checkout-copy`
 - Reviewer queue total: 1 case(s)
 - Reviewer queue rate: 50.00% of active cases

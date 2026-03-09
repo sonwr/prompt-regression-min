@@ -47,6 +47,8 @@
 - Selected dataset IDs: `checkout-copy`, `policy-note`
 - Active case IDs: `checkout-copy`, `policy-note`
 - Improved IDs (1): `checkout-copy`
+- Improvement source-case rate: 50.00% of source cases
 - Changed IDs (1): `checkout-copy`
 - Changed-case rate: 50.00%
+- Changed source-case rate: 50.00% of source cases
 - Unchanged pass IDs (1): `policy-note`

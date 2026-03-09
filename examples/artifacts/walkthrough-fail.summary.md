@@ -47,8 +47,10 @@
 - Selected dataset IDs: `auth-login`, `checkout-copy`
 - Active case IDs: `auth-login`, `checkout-copy`
 - Regression IDs (1): `auth-login`
+- Regression source-case rate: 50.00% of source cases
 - Changed IDs (1): `auth-login`
 - Changed-case rate: 50.00%
+- Changed source-case rate: 50.00% of source cases
 - Unchanged pass IDs (1): `checkout-copy`
 - Reviewer queue total: 1 case(s)
 - Reviewer queue rate: 50.00% of active cases
