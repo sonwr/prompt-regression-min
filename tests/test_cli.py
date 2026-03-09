@@ -4059,6 +4059,21 @@ if __name__ == "__main__":
         self.assertIsNone(payload["largest_group_priority_rank"])
         self.assertEqual(payload["largest_group_keys"], [])
         self.assertEqual(payload["largest_group_labels"], [])
+        self.assertEqual(payload["largest_group"], {
+            "key": None,
+            "label": None,
+            "priority_label": None,
+            "priority_rank": None,
+            "ids": [],
+            "case_count": 0,
+            "active_case_rate": 0.0,
+            "source_case_rate": 0.0,
+            "queue_share": 0.0,
+            "tie_count": 0,
+            "tie_keys": [],
+            "tie_labels": [],
+            "has_ties": False,
+        })
         self.assertEqual(payload["groups"], [])
 
     def test_summary_json_exposes_largest_group_label_for_handoff_copy(self) -> None:
@@ -4080,6 +4095,24 @@ if __name__ == "__main__":
         self.assertEqual(payload["largest_group_labels"], ["fix regressions"])
         self.assertEqual(payload["largest_group_queue_share"], 0.6667)
         self.assertEqual(payload["largest_group_priority_rank"], 1)
+        self.assertEqual(
+            payload["largest_group"],
+            {
+                "key": "fix_regressions",
+                "label": "fix regressions",
+                "priority_label": "P1 · fix regressions",
+                "priority_rank": 1,
+                "ids": ["checkout-copy", "policy-note"],
+                "case_count": 2,
+                "active_case_rate": 0.6667,
+                "source_case_rate": 0.4,
+                "queue_share": 0.6667,
+                "tie_count": 1,
+                "tie_keys": ["fix_regressions"],
+                "tie_labels": ["fix regressions"],
+                "has_ties": False,
+            },
+        )
 
 
     def test_summary_outputs_include_reviewer_queue_for_scope_and_watchlist_handoff(self) -> None:

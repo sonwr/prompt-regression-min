@@ -180,6 +180,25 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "largest_group_labels": largest_group_labels,
         "largest_group_tie_count": len(largest_group_keys),
         "largest_group_has_ties": len(largest_group_keys) > 1,
+        "largest_group": {
+            "key": None if largest_group is None else str(largest_group["key"]),
+            "label": None if largest_group is None else str(largest_group["label"]),
+            "priority_label": (
+                None
+                if largest_group is None
+                else f"P{follow_up_priority_ranks[str(largest_group['key'])]} · {queue_label_by_key.get(str(largest_group['key']), str(largest_group['key']))}"
+            ),
+            "priority_rank": None if largest_group is None else follow_up_priority_ranks[str(largest_group["key"])],
+            "ids": [] if largest_group is None else list(largest_group["ids"]),
+            "case_count": 0 if largest_group is None else int(largest_group["count"]),
+            "active_case_rate": 0.0 if largest_group is None else float(largest_group["rate"]),
+            "source_case_rate": 0.0 if largest_group is None else float(largest_group["source_case_rate"]),
+            "queue_share": 0.0 if largest_group is None or total == 0 else round(float(largest_group["count"]) / total, 4),
+            "tie_count": len(largest_group_keys),
+            "tie_keys": list(largest_group_keys),
+            "tie_labels": list(largest_group_labels),
+            "has_ties": len(largest_group_keys) > 1,
+        },
         "largest_group_key": None if largest_group is None else largest_group["key"],
         "largest_group_label": None if largest_group is None else largest_group["label"],
         "largest_group_ids": [] if largest_group is None else list(largest_group["ids"]),
