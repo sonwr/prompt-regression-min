@@ -3674,10 +3674,10 @@ if __name__ == "__main__":
             self.assertEqual(
                 payload["reviewer_queue"]["groups"],
                 [
-                    {"key": "fix_regressions", "label": "fix regressions", "ids": ["reg-1"], "count": 1},
-                    {"key": "watch_unchanged_fails", "label": "watch unchanged fails", "ids": ["watch-1"], "count": 1},
-                    {"key": "confirm_filtered_scope", "label": "confirm filtered-out scope", "ids": ["scope-1"], "count": 1},
-                    {"key": "resolve_skipped_cases", "label": "resolve skipped cases", "ids": ["skip-1"], "count": 1},
+                    {"key": "fix_regressions", "label": "fix regressions", "ids": ["reg-1"], "count": 1, "rate": 0.3333},
+                    {"key": "watch_unchanged_fails", "label": "watch unchanged fails", "ids": ["watch-1"], "count": 1, "rate": 0.3333},
+                    {"key": "confirm_filtered_scope", "label": "confirm filtered-out scope", "ids": ["scope-1"], "count": 1, "rate": 0.3333},
+                    {"key": "resolve_skipped_cases", "label": "resolve skipped cases", "ids": ["skip-1"], "count": 1, "rate": 0.3333},
                 ],
             )
 
@@ -3689,6 +3689,7 @@ if __name__ == "__main__":
         self.assertEqual(payload["group_count"], 0)
         self.assertIsNone(payload["largest_group_key"])
         self.assertEqual(payload["largest_group_count"], 0)
+        self.assertEqual(payload["groups"], [])
 
 
     def test_summary_outputs_include_reviewer_queue_for_scope_and_watchlist_handoff(self) -> None:

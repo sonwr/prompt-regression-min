@@ -23,11 +23,14 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
     for key, label, ids in queue_specs:
         if not ids:
             continue
+        count = len(ids)
+        group_rate = (count / active_cases) if active_cases else 0.0
         groups.append({
             "key": key,
             "label": label,
             "ids": ids,
-            "count": len(ids),
+            "count": count,
+            "rate": round(group_rate, 4),
         })
         total += len(ids)
     rate = (total / active_cases) if active_cases else 0.0
