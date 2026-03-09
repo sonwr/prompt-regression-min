@@ -29,6 +29,7 @@
 - Reviewer queue: fix regressions: `auth-login`
 - Reviewer queue next-focus label: fix regressions
 - Reviewer queue next focus: fix_regressions: `auth-login`
+- Reviewer queue next-focus case count: 1
 - Reviewer queue next-focus active-case rate: 50.00% of active cases
 - Reviewer queue next-focus source-case rate: 50.00% of source cases
 - Reviewer queue next-focus queue share: 100.00% of queued follow-up
