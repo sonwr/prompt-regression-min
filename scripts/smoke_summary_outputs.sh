@@ -14,6 +14,11 @@ FAIL_PR="$TMPDIR/fail.pr-comment.md"
 
 cd "$ROOT"
 export PYTHONPATH="$ROOT/src${PYTHONPATH:+:$PYTHONPATH}"
+TOOL_VERSION="$(python3 - <<'PY'
+from prompt_regression_min import __version__
+print(__version__)
+PY
+)"
 
 python3 -m prompt_regression_min.cli run \
   --dataset "$ROOT/examples/dataset/walkthrough_pass_artifact_demo.jsonl" \
@@ -27,13 +32,14 @@ python3 -m prompt_regression_min.cli run \
   --summary-pr-comment-title "walkthrough approval note" \
   --quiet
 
-python3 - <<'PY' "$PASS_MD" "$PASS_JSON" "$PASS_PR"
+python3 - <<'PY' "$PASS_MD" "$PASS_JSON" "$PASS_PR" "$TOOL_VERSION"
 import json
 import sys
 from pathlib import Path
 md = Path(sys.argv[1]).read_text(encoding='utf-8')
 payload = json.loads(Path(sys.argv[2]).read_text(encoding='utf-8'))
 pr = Path(sys.argv[3]).read_text(encoding='utf-8')
+tool_version = sys.argv[4]
 assert payload['status'] == 'PASS', payload
 assert payload['summary']['improved_ids'] == ['checkout-copy'], payload
 for marker in (
@@ -45,7 +51,7 @@ for marker in (
     assert marker in md, marker
 for marker in (
     '## walkthrough approval note',
-    '- Tool version: `0.1.0`',
+    f'- Tool version: `{tool_version}`',
     '- Required schema version gate: `1`',
     'approval-ready',
 ):
@@ -70,13 +76,14 @@ if [[ "$STATUS" -ne 1 ]]; then
   exit 1
 fi
 
-python3 - <<'PY' "$FAIL_MD" "$FAIL_JSON" "$FAIL_PR"
+python3 - <<'PY' "$FAIL_MD" "$FAIL_JSON" "$FAIL_PR" "$TOOL_VERSION"
 import json
 import sys
 from pathlib import Path
 md = Path(sys.argv[1]).read_text(encoding='utf-8')
 payload = json.loads(Path(sys.argv[2]).read_text(encoding='utf-8'))
 pr = Path(sys.argv[3]).read_text(encoding='utf-8')
+tool_version = sys.argv[4]
 assert payload['status'] == 'FAIL', payload
 assert payload['summary']['regression_ids'] == ['auth-login'], payload
 for marker in (
@@ -89,6 +96,7 @@ for marker in (
 for marker in (
     '## walkthrough blocker note',
     '- Regression IDs (1): `auth-login`',
+    f'- Tool version: `{tool_version}`',
     '- Reviewer queue total: 1 case(s)',
     '- Required schema version gate: _disabled_',
 ):
