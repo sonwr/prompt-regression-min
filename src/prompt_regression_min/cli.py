@@ -93,6 +93,14 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             4,
         )
     )
+    if next_focus_group is None:
+        next_focus_advantage_label = "none"
+    elif next_focus_tie_mode == "tied":
+        next_focus_advantage_label = "tied lead"
+    elif second_focus_group is None:
+        next_focus_advantage_label = "single queue"
+    else:
+        next_focus_advantage_label = "clear lead"
     largest_group_keys = [
         str(group["key"])
         for group in groups
@@ -185,6 +193,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "next_focus_advantage_queue_share": next_focus_advantage_queue_share,
         "next_focus_advantage_active_case_rate": next_focus_advantage_active_case_rate,
         "next_focus_advantage_source_case_rate": next_focus_advantage_source_case_rate,
+        "next_focus_advantage_label": next_focus_advantage_label,
         "next_focus_group": {
             "key": next_focus_key,
             "label": next_focus_label,
@@ -1260,6 +1269,10 @@ def main() -> None:
                     markdown_lines.append(
                         f"- Reviewer queue next-focus advantage: {reviewer_queue_summary.get('next_focus_advantage_case_count', 0)} case(s), {reviewer_queue_summary.get('next_focus_advantage_queue_share', 0.0) * 100:.2f}% of queued follow-up, {reviewer_queue_summary.get('next_focus_advantage_active_case_rate', 0.0) * 100:.2f}% of active cases, {reviewer_queue_summary.get('next_focus_advantage_source_case_rate', 0.0) * 100:.2f}% of source cases"
                     )
+                    markdown_lines.append(
+                        "- Reviewer queue next-focus advantage label: "
+                        + str(reviewer_queue_summary.get("next_focus_advantage_label", "none"))
+                    )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
@@ -1561,6 +1574,10 @@ def main() -> None:
                     )
                     pr_comment_lines.append(
                         f"- Reviewer queue next-focus queue share: {reviewer_queue_summary.get('next_focus_queue_share', reviewer_queue_summary.get('largest_group_queue_share', 0.0)) * 100:.2f}% of queued follow-up"
+                    )
+                    pr_comment_lines.append(
+                        "- Reviewer queue next-focus advantage label: "
+                        + str(reviewer_queue_summary.get("next_focus_advantage_label", "none"))
                     )
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")

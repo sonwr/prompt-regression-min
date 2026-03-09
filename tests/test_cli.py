@@ -117,6 +117,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Reviewer queue next-focus tie mode: unique", markdown)
         self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", markdown)
         self.assertIn("- Reviewer queue next-focus advantage: 2 case(s), 100.00% of queued follow-up, 100.00% of active cases, 100.00% of source cases", markdown)
+        self.assertIn("- Reviewer queue next-focus advantage label: single queue", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
     def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
         root = Path(__file__).resolve().parents[1]
@@ -232,6 +233,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue next-focus priority rank: 1 of 1", pr_comment)
             self.assertIn("- Reviewer queue next-focus tie mode: unique", pr_comment)
             self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", pr_comment)
+            self.assertIn("- Reviewer queue next-focus advantage label: single queue", pr_comment)
             self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
     def test_summary_json_exposes_next_focus_alias_fields_for_bots(self) -> None:
@@ -4098,6 +4100,7 @@ if __name__ == "__main__":
         self.assertEqual(payload["next_focus_advantage_queue_share"], 0.4)
         self.assertEqual(payload["next_focus_advantage_active_case_rate"], 0.3333)
         self.assertEqual(payload["next_focus_advantage_source_case_rate"], 0.3333)
+        self.assertEqual(payload["next_focus_advantage_label"], "clear lead")
         self.assertEqual(
             payload["next_focus_group"],
             {
