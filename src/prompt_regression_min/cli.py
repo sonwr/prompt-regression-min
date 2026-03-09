@@ -1419,6 +1419,12 @@ def main() -> None:
                             + " vs "
                             + str(reviewer_queue_summary.get("runner_up_priority_label", reviewer_queue_summary.get("runner_up_key") or "none"))
                         )
+                        markdown_lines.append(
+                            "- Reviewer queue top-two handoff summary: "
+                            + str(reviewer_queue_summary.get("next_focus_handoff_summary", "none"))
+                            + " || "
+                            + str(reviewer_queue_summary.get("runner_up_handoff_summary", "none"))
+                        )
                     markdown_lines.append(
                         f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('group_rates_by_key', {}).get(str(reviewer_queue_summary.get('next_focus_key')), reviewer_queue_summary.get('largest_group_rate', 0.0)) * 100:.2f}% of active cases"
                     )

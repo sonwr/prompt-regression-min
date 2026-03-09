@@ -4324,6 +4324,7 @@ if __name__ == "__main__":
             markdown = markdown_output.getvalue()
             self.assertIn("- Reviewer queue next-focus action summary: P1 · fix regressions -> `reg-1`, `reg-2`", markdown)
             self.assertIn("- Reviewer queue top-two summary: P1 · fix regressions vs P2 · watch unchanged fails", markdown)
+            self.assertIn("- Reviewer queue top-two handoff summary: fix_regressions=P1 · fix regressions -> `reg-1`, `reg-2` (2 case(s), 33.33% active-case rate, 33.33% source-case rate, 40.00% of queued follow-up) || watch_unchanged_fails=P2 · watch unchanged fails -> `watch-1` (1 case(s), 16.67% active-case rate, 16.67% source-case rate, 20.00% of queued follow-up)", markdown)
 
             pr_output = io.StringIO()
             with contextlib.redirect_stdout(pr_output):
@@ -4339,3 +4340,4 @@ if __name__ == "__main__":
             pr_comment = pr_output.getvalue()
             self.assertIn("- Reviewer queue next-focus action summary: P1 · fix regressions -> `reg-1`, `reg-2`", pr_comment)
             self.assertIn("- Reviewer queue top-two summary: P1 · fix regressions vs P2 · watch unchanged fails", pr_comment)
+            self.assertIn("- Reviewer queue top-two handoff summary: fix_regressions=P1 · fix regressions -> `reg-1`, `reg-2` (2 case(s), 33.33% active-case rate, 33.33% source-case rate, 40.00% of queued follow-up) || watch_unchanged_fails=P2 · watch unchanged fails -> `watch-1` (1 case(s), 16.67% active-case rate, 16.67% source-case rate, 20.00% of queued follow-up)", pr_comment)
