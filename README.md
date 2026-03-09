@@ -139,7 +139,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `ends_with_ci`
   - `not_ends_with`
   - `not_ends_with_ci`
-  - `regex` (with optional `IGNORECASE`, `MULTILINE`, `DOTALL`, `VERBOSE` flags; `expected.flags` accepts either a list or a comma/pipe/whitespace-delimited string, and case/whitespace-insensitive tokens like `" ignorecase "` are normalized)
+  - `regex` (with optional `IGNORECASE`, `MULTILINE`, `DOTALL`, `VERBOSE` flags; `expected.flags` accepts either a list or a comma/pipe/whitespace-delimited string, `expected.flag` works as a single-flag alias, and case/whitespace-insensitive tokens like `" ignorecase "` are normalized)
   - `regex_ci` (alias of `regex` with implicit `IGNORECASE`)
   - `regex_fullmatch` (same flags, but requires the entire output to match)
   - `regex_fullmatch_ci` (alias of `regex_fullmatch` with implicit `IGNORECASE`)
@@ -402,9 +402,12 @@ Supported `expected.type` values:
   ```json
   { "type": "contains_none_ci", "values": ["ssn", "credit card"] }
   ```
-- `regex` (requires non-empty `pattern`; optional `flags` list):
+- `regex` (requires non-empty `pattern`; optional `flags` list or single-string `flag` alias):
   ```json
   { "type": "regex", "pattern": "order\\s+#?\\d{4}", "flags": ["IGNORECASE"] }
+  ```
+  ```json
+  { "type": "regex", "pattern": "^approved$", "flag": "IGNORECASE" }
   ```
 - `regex_fullmatch` (same as `regex` but requires full-string match):
   ```json

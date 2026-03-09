@@ -75,6 +75,12 @@ def _coerce_regex_flags(raw_flags: Any, kind: str) -> list[str]:
     raise ValueError(f"{kind} expectation requires expected.flags as a list or string")
 
 
+def _get_regex_flag_input(expected: dict[str, Any]) -> Any:
+    if "flags" in expected:
+        return expected.get("flags")
+    return expected.get("flag")
+
+
 def _count_words(value: str) -> int:
     return len(re.findall(r"\S+", value))
 
@@ -301,7 +307,7 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
         if not isinstance(pattern, str):
             raise ValueError(f"{kind} expectation requires expected.pattern as a string")
 
-        raw_flags = _coerce_regex_flags(expected.get("flags", []), kind)
+        raw_flags = _coerce_regex_flags(_get_regex_flag_input(expected), kind)
 
         flags = 0
         for flag_name in raw_flags:
@@ -565,7 +571,7 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
             )
 
         try:
-            normalized_flags = _coerce_regex_flags(expected.get("flags", []), kind)
+            normalized_flags = _coerce_regex_flags(_get_regex_flag_input(expected), kind)
         except ValueError as exc:
             raise ValueError(
                 f"Invalid expected.flags for type={kind} in dataset id={case_id}: must be a list or string"
