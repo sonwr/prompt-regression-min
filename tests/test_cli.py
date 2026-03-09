@@ -4267,3 +4267,69 @@ if __name__ == "__main__":
             self.assertIn("- Reviewer queue source-case rate: 100.00% of source cases", pr_comment)
             self.assertIn("- Reviewer queue follow-up priority summary: fix_regressions -> watch_unchanged_fails -> confirm_filtered_scope -> resolve_skipped_cases", pr_comment)
             self.assertIn("- Reviewer queue: fix regressions: `reg-1` | watch unchanged fails: `watch-1` | confirm filtered-out scope: `scope-1` | resolve skipped cases: `skip-1`", pr_comment)
+
+
+    def test_summary_markdown_and_pr_comment_include_reviewer_queue_top_two_summary(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "reg-2", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "watch-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "scope-1", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "reg-1", "output": "ok"},
+                    {"id": "reg-2", "output": "ok"},
+                    {"id": "watch-1", "output": "bad"},
+                    {"id": "scope-1", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "reg-1", "output": "bad"},
+                    {"id": "reg-2", "output": "bad"},
+                    {"id": "watch-1", "output": "bad"},
+                    {"id": "scope-1", "output": "ok"},
+                ],
+            )
+
+            markdown_output = io.StringIO()
+            with contextlib.redirect_stdout(markdown_output):
+                with self.assertRaises(SystemExit):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm", "run", "-d", str(dataset), "-b", str(baseline), "-c", str(candidate),
+                            "--exclude-id-regex", "^scope-", "--summary-markdown", "-"
+                        ],
+                    ):
+                        cli.main()
+            markdown = markdown_output.getvalue()
+            self.assertIn("- Reviewer queue next-focus action summary: P1 · fix regressions -> `reg-1`, `reg-2`", markdown)
+            self.assertIn("- Reviewer queue top-two summary: P1 · fix regressions vs P2 · watch unchanged fails", markdown)
+
+            pr_output = io.StringIO()
+            with contextlib.redirect_stdout(pr_output):
+                with self.assertRaises(SystemExit):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm", "run", "-d", str(dataset), "-b", str(baseline), "-c", str(candidate),
+                            "--exclude-id-regex", "^scope-", "--summary-pr-comment", "-", "--quiet"
+                        ],
+                    ):
+                        cli.main()
+            pr_comment = pr_output.getvalue()
+            self.assertIn("- Reviewer queue next-focus action summary: P1 · fix regressions -> `reg-1`, `reg-2`", pr_comment)
+            self.assertIn("- Reviewer queue top-two summary: P1 · fix regressions vs P2 · watch unchanged fails", pr_comment)

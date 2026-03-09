@@ -1326,6 +1326,14 @@ def main() -> None:
                         )
                     )
                     markdown_lines.append(
+                        "- Reviewer queue next-focus action summary: "
+                        + str(reviewer_queue_summary.get("next_focus_priority_label", reviewer_queue_summary.get("next_focus_key") or "none"))
+                        + " -> "
+                        + ", ".join(
+                            f"`{case_id}`" for case_id in reviewer_queue_summary.get("next_focus_ids", reviewer_queue_summary["largest_group_ids"])
+                        )
+                    )
+                    markdown_lines.append(
                         f"- Reviewer queue next-focus case count: {reviewer_queue_summary.get('next_focus_case_count', reviewer_queue_summary.get('largest_group_count', 0))}"
                     )
                     if reviewer_queue_summary.get("runner_up_key"):
@@ -1360,6 +1368,13 @@ def main() -> None:
                         )
                         markdown_lines.append(
                             "- Reviewer queue runner-up summary: " + str(reviewer_queue_summary.get("runner_up_summary", "none"))
+                        )
+                    if reviewer_queue_summary.get("runner_up_key"):
+                        markdown_lines.append(
+                            "- Reviewer queue top-two summary: "
+                            + str(reviewer_queue_summary.get("next_focus_priority_label", reviewer_queue_summary.get("next_focus_key") or "none"))
+                            + " vs "
+                            + str(reviewer_queue_summary.get("runner_up_priority_label", reviewer_queue_summary.get("runner_up_key") or "none"))
                         )
                     markdown_lines.append(
                         f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('group_rates_by_key', {}).get(str(reviewer_queue_summary.get('next_focus_key')), reviewer_queue_summary.get('largest_group_rate', 0.0)) * 100:.2f}% of active cases"
