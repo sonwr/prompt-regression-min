@@ -1149,6 +1149,9 @@ def main() -> None:
                         )
                     )
                     pr_comment_lines.append(
+                        f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('largest_group_rate', 0.0) * 100:.2f}% of active cases"
+                    )
+                    pr_comment_lines.append(
                         f"- Reviewer queue next-focus source-case rate: {reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% of source cases"
                     )
             if fail_reasons:

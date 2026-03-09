@@ -194,6 +194,8 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
             self.assertIn("- Reviewer queue largest group: fix_regressions (1 case(s), 50.00% of active cases, 50.00% overall queue rate, 50.00% source-case rate, 100.00% of queued follow-up)", pr_comment)
             self.assertIn("- Reviewer queue next focus: fix_regressions: `reg-1`", pr_comment)
+            self.assertIn("- Reviewer queue next-focus active-case rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Reviewer queue next-focus source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:

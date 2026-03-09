@@ -23,6 +23,7 @@
 - Reviewer queue (regressions): 2 case(s) / 100.00% of active cases / 100.00% of source cases
 - Reviewer queue: fix regressions: `release-note-bullets`, `release-note-short`
 - Reviewer queue next focus: fix_regressions: `release-note-bullets`, `release-note-short`
+- Reviewer queue next-focus active-case rate: 100.00% of active cases
 - Reviewer queue next-focus source-case rate: 100.00% of source cases
 - Why it failed:
   - regressions 2 exceeded max 0
