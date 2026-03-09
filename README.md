@@ -253,6 +253,7 @@ Refresh all committed walkthrough snapshots (including the word-count markdown/J
 The CI workflow also re-checks that the committed word-count markdown snapshot keeps both the schema marker and the documented regression IDs (`release-note-bullets`, `release-note-short`) so reviewer-facing release-note examples do not drift silently.
 For practical threshold combinations you can copy into CI, see `examples/gate_policy_recipes.md`.
 For a focused pass-rate + trend + stable-core gating recipe, see `examples/pass_rate_gate_walkthrough.md`.
+For a compact expectation-picking rubric when writing new dataset cases, see `examples/expectation_selection_guide.md`.
 For shard-focused reviewer workflows that must make filtered-out scope obvious, see `examples/shard_filter_walkthrough.md`.
 For dual-output reviewer/CI handoffs that combine summary JSON with markdown, see `examples/summary_json_handoff.md`.
 For reviewer-queue triage notes that explain filtered scope, stable watchlists, and rerun load in one place, see `examples/reviewer_queue_triage.md`.
