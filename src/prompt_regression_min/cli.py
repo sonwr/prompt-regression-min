@@ -960,6 +960,11 @@ def main() -> None:
                     "resolve_skipped_cases": "resolve skipped cases",
                 }
                 dominant_key = reviewer_queue_summary.get('largest_group_key')
+                dominant_label = reviewer_queue_summary.get('largest_group_label')
+                if dominant_label:
+                    markdown_lines.append(
+                        "- Reviewer queue largest group label: " + dominant_label
+                    )
                 if dominant_key:
                     markdown_lines.append(
                         "- Reviewer queue dominant focus: "
@@ -1145,6 +1150,11 @@ def main() -> None:
                     "resolve_skipped_cases": "resolve skipped cases",
                 }
                 dominant_key = reviewer_queue_summary.get('largest_group_key')
+                dominant_label = reviewer_queue_summary.get('largest_group_label')
+                if dominant_label:
+                    pr_comment_lines.append(
+                        "- Reviewer queue largest group label: " + dominant_label
+                    )
                 if dominant_key:
                     pr_comment_lines.append(
                         "- Reviewer queue dominant focus: "
