@@ -299,6 +299,9 @@ class PromptRegressionCliTests(unittest.TestCase):
                     "source_case_rate": 0.5,
                     "queue_share": 0.5,
                     "tie_mode": "tied",
+                    "advantage_case_count": 0,
+                    "advantage_queue_share": 0.0,
+                    "advantage_active_case_rate": 0.0,
                 },
             )
 
@@ -4075,6 +4078,41 @@ if __name__ == "__main__":
             "has_ties": False,
         })
         self.assertEqual(payload["groups"], [])
+
+    def test_summary_json_exposes_next_focus_advantage_metrics(self) -> None:
+        payload = cli._build_reviewer_queue(
+            {
+                "active_cases": 6,
+                "dataset_cases": 6,
+                "regression_ids": ["reg-1", "reg-2", "reg-3"],
+                "unchanged_fail_ids": ["watch-1"],
+                "filtered_out_ids": ["scope-1"],
+                "skipped_ids": [],
+            }
+        )
+
+        self.assertEqual(payload["next_focus_key"], "fix_regressions")
+        self.assertEqual(payload["next_focus_advantage_case_count"], 2)
+        self.assertEqual(payload["next_focus_advantage_queue_share"], 0.4)
+        self.assertEqual(payload["next_focus_advantage_active_case_rate"], 0.3333)
+        self.assertEqual(
+            payload["next_focus_group"],
+            {
+                "key": "fix_regressions",
+                "label": "fix regressions",
+                "priority_label": "P1 · fix regressions",
+                "priority_rank": 1,
+                "ids": ["reg-1", "reg-2", "reg-3"],
+                "case_count": 3,
+                "active_case_rate": 0.5,
+                "source_case_rate": 0.5,
+                "queue_share": 0.6,
+                "tie_mode": "unique",
+                "advantage_case_count": 2,
+                "advantage_queue_share": 0.4,
+                "advantage_active_case_rate": 0.3333,
+            },
+        )
 
     def test_summary_json_exposes_largest_group_label_for_handoff_copy(self) -> None:
         payload = cli._build_reviewer_queue(

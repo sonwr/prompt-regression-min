@@ -80,6 +80,7 @@
 - Reviewer queue next-focus active-case rate: 100.00% of active cases
 - Reviewer queue next-focus source-case rate: 100.00% of source cases
 - Reviewer queue next-focus queue share: 100.00% of queued follow-up
+- Reviewer queue next-focus advantage: 2 case(s), 100.00% of queued follow-up, 100.00% of active cases
 - Reviewer queue: fix regressions: `release-note-bullets`, `release-note-short`
 - Fail reasons:
   - regressions 2 exceeded max 0
