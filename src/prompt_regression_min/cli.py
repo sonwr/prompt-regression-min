@@ -907,12 +907,19 @@ def main() -> None:
                 review_queue.append("resolve skipped cases: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"]))
                 reviewer_queue_total += len(summary["skipped_ids"])
             if review_queue:
+                reviewer_queue_summary = _build_reviewer_queue(summary)
                 markdown_lines.append(f"- Reviewer queue total: {reviewer_queue_total} case(s)")
                 markdown_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
                 )
                 markdown_lines.append(
                     f"- Reviewer queue source-case rate: {(reviewer_queue_total / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
+                )
+                markdown_lines.append(
+                    "- Reviewer queue largest group: "
+                    f"{reviewer_queue_summary.get('largest_group_key') or 'none'} "
+                    f"({reviewer_queue_summary.get('largest_group_count', 0)} case(s), "
+                    f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate)"
                 )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
@@ -1039,12 +1046,19 @@ def main() -> None:
                 reviewer_queue_total += len(summary["skipped_ids"])
             if reviewer_queue:
                 active_cases = summary.get('active_cases', summary['cases'])
+                reviewer_queue_summary = _build_reviewer_queue(summary)
                 pr_comment_lines.append(f"- Reviewer queue total: {reviewer_queue_total} case(s)")
                 pr_comment_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / active_cases) * 100:.2f}% of active cases"
                 )
                 pr_comment_lines.append(
                     f"- Reviewer queue source-case rate: {(reviewer_queue_total / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
+                )
+                pr_comment_lines.append(
+                    "- Reviewer queue largest group: "
+                    f"{reviewer_queue_summary.get('largest_group_key') or 'none'} "
+                    f"({reviewer_queue_summary.get('largest_group_count', 0)} case(s), "
+                    f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate)"
                 )
                 if regression_ids:
                     pr_comment_lines.append(
