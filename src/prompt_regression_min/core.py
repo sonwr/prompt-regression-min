@@ -47,6 +47,7 @@ SUPPORTED_EXPECTED_TYPES = (
     "word_count_range",
     "line_count_range",
     "paragraph_count_range",
+    "sentence_count_range",
     "char_count_range",
     "byte_count_range",
 )
@@ -95,6 +96,12 @@ def _count_paragraphs(value: str) -> int:
     if not value.strip():
         return 0
     return len([paragraph for paragraph in re.split(r"\n\s*\n+", value.strip()) if paragraph.strip()])
+
+
+def _count_sentences(value: str) -> int:
+    if not value.strip():
+        return 0
+    return len(re.findall(r"[^.!?\n]+(?:[.!?]+|$)", value.strip()))
 
 
 @dataclass
@@ -281,6 +288,15 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
         if min_paragraphs is not None and paragraph_count < min_paragraphs:
             return False
         if max_paragraphs is not None and paragraph_count > max_paragraphs:
+            return False
+        return True
+    if kind == "sentence_count_range":
+        min_sentences = expected.get("min_sentences")
+        max_sentences = expected.get("max_sentences")
+        sentence_count = _count_sentences(output)
+        if min_sentences is not None and sentence_count < min_sentences:
+            return False
+        if max_sentences is not None and sentence_count > max_sentences:
             return False
         return True
     if kind == "char_count_range":
@@ -521,6 +537,26 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
         if min_paragraphs is not None and max_paragraphs is not None and min_paragraphs > max_paragraphs:
             raise ValueError(
                 f"Invalid paragraph_count_range expectation in dataset id={case_id}: min_paragraphs must be <= max_paragraphs"
+            )
+        return
+    if kind == "sentence_count_range":
+        min_sentences = expected.get("min_sentences")
+        max_sentences = expected.get("max_sentences")
+        if min_sentences is None and max_sentences is None:
+            raise ValueError(
+                f"Invalid sentence_count_range expectation in dataset id={case_id}: set min_sentences, max_sentences, or both"
+            )
+        if min_sentences is not None and (not isinstance(min_sentences, int) or min_sentences < 0):
+            raise ValueError(
+                f"Invalid expected.min_sentences for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if max_sentences is not None and (not isinstance(max_sentences, int) or max_sentences < 0):
+            raise ValueError(
+                f"Invalid expected.max_sentences for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if min_sentences is not None and max_sentences is not None and min_sentences > max_sentences:
+            raise ValueError(
+                f"Invalid sentence_count_range expectation in dataset id={case_id}: min_sentences must be <= max_sentences"
             )
         return
     if kind == "char_count_range":

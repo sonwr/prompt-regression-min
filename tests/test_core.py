@@ -17,6 +17,44 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
 
 class RegressionCoreTests(unittest.TestCase):
 
+    def test_run_regression_supports_sentence_count_range_expectation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "sentence_count_range", "min_sentences": 2, "max_sentences": 3}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "Alpha ships now. Beta follows soon!"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "Alpha ships now"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_rejects_sentence_count_range_without_bounds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "sentence_count_range"}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "Alpha."}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "Alpha."}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertIn("set min_sentences, max_sentences, or both", str(exc.exception))
+
     def test_run_regression_supports_contains_all_ordered_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

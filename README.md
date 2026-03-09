@@ -150,6 +150,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `word_count_range` (enforces lower/upper output-length bounds using whitespace-delimited word counts)
   - `line_count_range` (enforces lower/upper output-length bounds using newline-delimited line counts)
   - `paragraph_count_range` (enforces lower/upper output-length bounds using blank-line-delimited paragraph counts for release notes, summaries, or email drafts)
+  - `sentence_count_range` (enforces lower/upper output-length bounds using punctuation-delimited sentence counts for summaries, reviewer notes, or support replies)
   - `char_count_range` (enforces lower/upper output-length bounds using raw character counts)
   - `byte_count_range` (enforces UTF-8 byte-length bounds for UI labels, commit titles, or multilingual outputs)
 - Example fixture trio for deterministic release-note length checks: `examples/dataset/word_count_range_release_notes.jsonl` + matching outputs
@@ -292,6 +293,11 @@ Supported `expected.type` values:
   ```json
   { "type": "line_count_range", "min_lines": 2, "max_lines": 4 }
   ```
+- `sentence_count_range` (useful when reviewer notes, summaries, or support replies must stay within a predictable sentence budget):
+  ```json
+  { "type": "sentence_count_range", "min_sentences": 2, "max_sentences": 4 }
+  ```
+  You can set `min_sentences`, `max_sentences`, or both.
 - `char_count_range` (useful when UI labels, commit titles, or release-note blurbs must stay within a strict character budget):
   ```json
   { "type": "char_count_range", "max_chars": 72 }
