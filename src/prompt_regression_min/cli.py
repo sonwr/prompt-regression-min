@@ -953,6 +953,11 @@ def main() -> None:
                     f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate, "
                     f"{reviewer_queue_summary.get('largest_group_queue_share', 0.0) * 100:.2f}% of queued follow-up)"
                 )
+                if reviewer_queue_summary.get("follow_up_priority"):
+                    markdown_lines.append(
+                        "- Reviewer queue follow-up priority: "
+                        + " -> ".join(str(key) for key in reviewer_queue_summary["follow_up_priority"])
+                    )
                 if reviewer_queue_summary.get("largest_group_ids"):
                     markdown_lines.append(
                         "- Reviewer queue largest group IDs: "
@@ -1132,6 +1137,11 @@ def main() -> None:
                     pr_comment_lines.append(
                         "- Reviewer queue dominant focus: "
                         + dominant_label_map.get(dominant_key, dominant_key)
+                    )
+                if reviewer_queue_summary.get("follow_up_priority"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue follow-up priority: "
+                        + " -> ".join(str(key) for key in reviewer_queue_summary["follow_up_priority"])
                     )
                 if reviewer_queue_summary.get("largest_group_ids"):
                     pr_comment_lines.append(
