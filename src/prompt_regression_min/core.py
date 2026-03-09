@@ -462,6 +462,26 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
                 f"Invalid line_count_range expectation in dataset id={case_id}: min_lines must be <= max_lines"
             )
         return
+    if kind == "char_count_range":
+        min_chars = expected.get("min_chars")
+        max_chars = expected.get("max_chars")
+        if min_chars is None and max_chars is None:
+            raise ValueError(
+                f"Invalid char_count_range expectation in dataset id={case_id}: set min_chars, max_chars, or both"
+            )
+        if min_chars is not None and (not isinstance(min_chars, int) or min_chars < 0):
+            raise ValueError(
+                f"Invalid expected.min_chars for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if max_chars is not None and (not isinstance(max_chars, int) or max_chars < 0):
+            raise ValueError(
+                f"Invalid expected.max_chars for type={kind} in dataset id={case_id}: must be an integer >= 0"
+            )
+        if min_chars is not None and max_chars is not None and min_chars > max_chars:
+            raise ValueError(
+                f"Invalid char_count_range expectation in dataset id={case_id}: min_chars must be <= max_chars"
+            )
+        return
     if kind in {"regex", "regex_ci", "regex_fullmatch", "regex_fullmatch_ci", "not_regex", "not_regex_ci", "not_regex_fullmatch", "not_regex_fullmatch_ci"}:
         pattern = expected.get("pattern")
         if not isinstance(pattern, str) or not pattern.strip():

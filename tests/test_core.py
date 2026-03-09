@@ -1593,3 +1593,41 @@ if __name__ == "__main__":
                 run_regression(str(dataset), str(baseline), str(candidate))
 
             self.assertIn("Invalid line_count_range expectation", str(exc.exception))
+
+    def test_run_regression_rejects_negative_char_count_range_bound(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "char_count_range", "min_chars": -1}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "hello"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "hello"}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertIn("Invalid expected.min_chars", str(exc.exception))
+
+    def test_run_regression_rejects_reversed_char_count_range_bounds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "char_count_range", "min_chars": 12, "max_chars": 5}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "hello"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "hello"}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertIn("min_chars must be <= max_chars", str(exc.exception))
