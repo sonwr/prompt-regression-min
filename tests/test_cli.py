@@ -3624,6 +3624,9 @@ if __name__ == "__main__":
             payload = json.loads(summary_json.read_text(encoding="utf-8"))
             self.assertEqual(payload["reviewer_queue"]["total"], 4)
             self.assertEqual(payload["reviewer_queue"]["rate"], 1.3333)
+            self.assertEqual(payload["reviewer_queue"]["group_count"], 4)
+            self.assertEqual(payload["reviewer_queue"]["largest_group_key"], "watch_unchanged_fails")
+            self.assertEqual(payload["reviewer_queue"]["largest_group_count"], 1)
             self.assertEqual(
                 payload["reviewer_queue"]["groups"],
                 [
@@ -3633,6 +3636,15 @@ if __name__ == "__main__":
                     {"key": "resolve_skipped_cases", "label": "resolve skipped cases", "ids": ["skip-1"], "count": 1},
                 ],
             )
+
+
+    def test_summary_json_reviewer_queue_defaults_when_empty(self) -> None:
+        payload = cli._build_reviewer_queue({"active_cases": 3})
+
+        self.assertEqual(payload["total"], 0)
+        self.assertEqual(payload["group_count"], 0)
+        self.assertIsNone(payload["largest_group_key"])
+        self.assertEqual(payload["largest_group_count"], 0)
 
 
     def test_summary_outputs_include_reviewer_queue_for_scope_and_watchlist_handoff(self) -> None:

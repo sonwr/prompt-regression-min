@@ -836,7 +836,7 @@ MIT
 
 ## Structured reviewer queue in summary JSON
 
-`--summary-json` now emits a `reviewer_queue` object for downstream automation and PR bots.
+`--summary-json` now emits a `reviewer_queue` object for downstream automation and PR bots, including `group_count`, `largest_group_key`, and `largest_group_count` so triage dashboards can spot the dominant follow-up bucket without recomputing it.
 It groups case IDs into four follow-up buckets:
 
 - `fix_regressions`

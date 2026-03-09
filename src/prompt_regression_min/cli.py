@@ -31,11 +31,15 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         })
         total += len(ids)
     rate = (total / active_cases) if active_cases else 0.0
+    largest_group = max(groups, key=lambda item: (int(item["count"]), item["key"]), default=None)
     return {
         "total": total,
         "rate": round(rate, 4),
         "active_cases": active_cases,
         "groups": groups,
+        "group_count": len(groups),
+        "largest_group_key": None if largest_group is None else largest_group["key"],
+        "largest_group_count": 0 if largest_group is None else int(largest_group["count"]),
     }
 
 
