@@ -46,7 +46,10 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "groups": groups,
         "group_count": len(groups),
         "largest_group_key": None if largest_group is None else largest_group["key"],
+        "largest_group_label": None if largest_group is None else largest_group["label"],
+        "largest_group_ids": [] if largest_group is None else list(largest_group["ids"]),
         "largest_group_count": 0 if largest_group is None else int(largest_group["count"]),
+        "largest_group_rate": 0.0 if largest_group is None else float(largest_group["rate"]),
         "largest_group_source_case_rate": 0.0 if largest_group is None else float(largest_group["source_case_rate"]),
     }
 
@@ -930,6 +933,7 @@ def main() -> None:
                     "- Reviewer queue largest group: "
                     f"{reviewer_queue_summary.get('largest_group_key') or 'none'} "
                     f"({reviewer_queue_summary.get('largest_group_count', 0)} case(s), "
+                    f"{reviewer_queue_summary.get('largest_group_rate', 0.0) * 100:.2f}% of active cases, "
                     f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate, "
                     f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate)"
                 )
@@ -1076,6 +1080,7 @@ def main() -> None:
                     "- Reviewer queue largest group: "
                     f"{reviewer_queue_summary.get('largest_group_key') or 'none'} "
                     f"({reviewer_queue_summary.get('largest_group_count', 0)} case(s), "
+                    f"{reviewer_queue_summary.get('largest_group_rate', 0.0) * 100:.2f}% of active cases, "
                     f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate, "
                     f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate)"
                 )
