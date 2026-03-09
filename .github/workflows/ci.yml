@@ -97,7 +97,7 @@ jobs:
           rendered = Path('.tmp/stdout-summary.md').read_text(encoding='utf-8')
           assert '## prompt-regression-min summary' in rendered
           assert '- Status: **FAIL**' in rendered
-          assert '- Regression IDs: `auth-login`' in rendered
+          assert '- Regression IDs (1): `auth-login`' in rendered
           print('stdout markdown summary piping: PASS')
           PY
         env:
@@ -242,7 +242,7 @@ jobs:
           md = Path('examples/artifacts/word-count-range.summary.md').read_text(encoding='utf-8')
           assert 'word-count release-note gate' in md
           assert 'Summary schema version: `1`' in md
-          assert 'Regression IDs: `release-note-short`, `release-note-bullets`' in md
+          assert 'Regression IDs (2): `release-note-bullets`, `release-note-short`' in md
           print('committed word-count walkthrough snapshots: PASS')
           PY
         env:
