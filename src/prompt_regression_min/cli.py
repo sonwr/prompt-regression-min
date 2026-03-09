@@ -82,6 +82,22 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             str(group["key"]): int(group["count"])
             for group in groups
         },
+        "group_labels_by_key": {
+            str(group["key"]): str(group["label"])
+            for group in groups
+        },
+        "group_rates_by_key": {
+            str(group["key"]): float(group["rate"])
+            for group in groups
+        },
+        "group_source_case_rates_by_key": {
+            str(group["key"]): float(group["source_case_rate"])
+            for group in groups
+        },
+        "group_queue_shares_by_key": {
+            str(group["key"]): float(group["queue_share"])
+            for group in groups
+        },
         "group_ids_by_key": {
             str(group["key"]): list(group["ids"])
             for group in groups

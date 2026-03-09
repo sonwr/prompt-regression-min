@@ -287,6 +287,38 @@ class PromptRegressionCliTests(unittest.TestCase):
                 },
             )
             self.assertEqual(
+                reviewer_queue["group_labels_by_key"],
+                {
+                    "fix_regressions": "fix regressions",
+                    "watch_unchanged_fails": "watch unchanged fails",
+                    "resolve_skipped_cases": "resolve skipped cases",
+                },
+            )
+            self.assertEqual(
+                reviewer_queue["group_rates_by_key"],
+                {
+                    "fix_regressions": 0.5,
+                    "watch_unchanged_fails": 0.5,
+                    "resolve_skipped_cases": 0.5,
+                },
+            )
+            self.assertEqual(
+                reviewer_queue["group_source_case_rates_by_key"],
+                {
+                    "fix_regressions": 0.3333,
+                    "watch_unchanged_fails": 0.3333,
+                    "resolve_skipped_cases": 0.3333,
+                },
+            )
+            self.assertEqual(
+                reviewer_queue["group_queue_shares_by_key"],
+                {
+                    "fix_regressions": 0.3333,
+                    "watch_unchanged_fails": 0.3333,
+                    "resolve_skipped_cases": 0.3333,
+                },
+            )
+            self.assertEqual(
                 reviewer_queue["group_ids_by_key"],
                 {
                     "fix_regressions": ["reg-1"],

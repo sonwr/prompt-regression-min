@@ -859,7 +859,7 @@ MIT
 
 ## Structured reviewer queue in summary JSON
 
-`--summary-json` now emits a `reviewer_queue` object for downstream automation and PR bots, including top-level `rate` and `source_case_rate` plus per-group `rate`, `source_case_rate`, and `queue_share` values alongside `group_count`, `largest_group_key`, and `largest_group_count` so triage dashboards can spot both the dominant follow-up bucket and how much of the active/source dataset follow-up load it owns without recomputing it. It also publishes `follow_up_priority`, a deterministic queue-order list sorted by follow-up size first and the built-in reviewer urgency order second (`fix_regressions` → `watch_unchanged_fails` → `confirm_filtered_scope` → `resolve_skipped_cases`).
+`--summary-json` now emits a `reviewer_queue` object for downstream automation and PR bots, including top-level `rate` and `source_case_rate` plus per-group `rate`, `source_case_rate`, and `queue_share` values alongside `group_count`, `largest_group_key`, and `largest_group_count` so triage dashboards can spot both the dominant follow-up bucket and how much of the active/source dataset follow-up load it owns without recomputing it. It also publishes stable per-key maps (`group_labels_by_key`, `group_rates_by_key`, `group_source_case_rates_by_key`, `group_queue_shares_by_key`) for bots that want direct key lookups without walking the ordered `groups` array first. `follow_up_priority` stays a deterministic queue-order list sorted by follow-up size first and the built-in reviewer urgency order second (`fix_regressions` → `watch_unchanged_fails` → `confirm_filtered_scope` → `resolve_skipped_cases`).
 It groups case IDs into four follow-up buckets:
 
 - `fix_regressions`
