@@ -1106,21 +1106,26 @@ def main() -> None:
                             f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
                         )
                     )
+                reviewer_queue_groups = {group['key']: group for group in reviewer_queue_summary.get('groups', [])}
                 if regression_ids:
+                    regression_group = reviewer_queue_groups.get('fix_regressions', {})
                     pr_comment_lines.append(
-                        f"- Reviewer queue (regressions): {len(regression_ids)} case(s) / {(len(regression_ids) / active_cases) * 100:.2f}% of active cases"
+                        f"- Reviewer queue (regressions): {len(regression_ids)} case(s) / {(len(regression_ids) / active_cases) * 100:.2f}% of active cases / {regression_group.get('source_case_rate', 0.0) * 100:.2f}% of source cases"
                     )
                 if summary.get("unchanged_fail_ids"):
+                    watchlist_group = reviewer_queue_groups.get('watch_unchanged_fails', {})
                     pr_comment_lines.append(
-                        f"- Reviewer queue (watchlist): {len(summary['unchanged_fail_ids'])} case(s) / {(len(summary['unchanged_fail_ids']) / active_cases) * 100:.2f}% of active cases"
+                        f"- Reviewer queue (watchlist): {len(summary['unchanged_fail_ids'])} case(s) / {(len(summary['unchanged_fail_ids']) / active_cases) * 100:.2f}% of active cases / {watchlist_group.get('source_case_rate', 0.0) * 100:.2f}% of source cases"
                     )
                 if summary.get("filtered_out_ids"):
+                    filtered_group = reviewer_queue_groups.get('confirm_filtered_scope', {})
                     pr_comment_lines.append(
-                        f"- Reviewer queue (filtered-out scope): {len(summary['filtered_out_ids'])} case(s) / {(len(summary['filtered_out_ids']) / active_cases) * 100:.2f}% of active cases"
+                        f"- Reviewer queue (filtered-out scope): {len(summary['filtered_out_ids'])} case(s) / {(len(summary['filtered_out_ids']) / active_cases) * 100:.2f}% of active cases / {filtered_group.get('source_case_rate', 0.0) * 100:.2f}% of source cases"
                     )
                 if summary.get("skipped_ids"):
+                    skipped_group = reviewer_queue_groups.get('resolve_skipped_cases', {})
                     pr_comment_lines.append(
-                        f"- Reviewer queue (skipped cases): {len(summary['skipped_ids'])} case(s) / {(len(summary['skipped_ids']) / active_cases) * 100:.2f}% of active cases"
+                        f"- Reviewer queue (skipped cases): {len(summary['skipped_ids'])} case(s) / {(len(summary['skipped_ids']) / active_cases) * 100:.2f}% of active cases / {skipped_group.get('source_case_rate', 0.0) * 100:.2f}% of source cases"
                     )
                 pr_comment_lines.append("- Reviewer queue: " + " | ".join(reviewer_queue))
                 if reviewer_queue_summary.get("largest_group_ids"):

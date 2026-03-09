@@ -194,7 +194,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
             self.assertIn("- Reviewer queue largest group: fix_regressions (1 case(s), 50.00% of active cases, 50.00% overall queue rate, 50.00% source-case rate, 100.00% of queued follow-up)", pr_comment)
             self.assertIn("- Reviewer queue next focus: fix_regressions: `reg-1`", pr_comment)
-            self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases", pr_comment)
+            self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -333,7 +333,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Watchlist rate: 50.00% of active cases", pr_comment)
             self.assertIn("- Watchlist source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
-            self.assertIn("- Reviewer queue (watchlist): 1 case(s) / 50.00% of active cases", pr_comment)
+            self.assertIn("- Reviewer queue (watchlist): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
     def test_summary_pr_comment_exposes_reviewer_queue_breakdown_for_filtered_and_skipped_scope(self) -> None:
         root = Path(__file__).resolve().parents[1]
@@ -362,7 +362,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Reviewer queue total: 2 case(s)", pr_comment)
         self.assertIn("- Reviewer queue source-case rate: 50.00% of source cases", pr_comment)
         self.assertIn("- Reviewer queue largest group IDs: `billing-invoice`, `search-query`", pr_comment)
-        self.assertIn("- Reviewer queue (filtered-out scope): 2 case(s) / 100.00% of active cases", pr_comment)
+        self.assertIn("- Reviewer queue (filtered-out scope): 2 case(s) / 100.00% of active cases / 50.00% of source cases", pr_comment)
 
 
     def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
@@ -3455,7 +3455,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Watchlist rate: 50.00% of active cases", pr_comment)
             self.assertIn("- Watchlist source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Reviewer queue total: 1 case(s)", pr_comment)
-            self.assertIn("- Reviewer queue (watchlist): 1 case(s) / 50.00% of active cases", pr_comment)
+            self.assertIn("- Reviewer queue (watchlist): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
     def test_summary_markdown_includes_unchanged_pass_ids_for_handoff_context(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
