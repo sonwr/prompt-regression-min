@@ -1472,6 +1472,42 @@ if __name__ == "__main__":
 
             self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
 
+    def test_run_regression_supports_char_count_range_with_min_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "char_count_range", "min_chars": 10}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "short"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "just enough"}])
+
+            report = run_regression(dataset, baseline, candidate)
+
+            self.assertEqual(report["summary"]["improved_ids"], ["case-1"])
+
+    def test_run_regression_supports_char_count_range_with_max_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "char_count_range", "max_chars": 12}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "fits"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "this output is too long"}])
+
+            report = run_regression(dataset, baseline, candidate)
+
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
     def test_run_regression_rejects_invalid_char_count_range_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

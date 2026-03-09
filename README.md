@@ -258,6 +258,11 @@ Supported `expected.type` values:
   ```json
   { "type": "line_count_range", "min_lines": 2, "max_lines": 4 }
   ```
+- `char_count_range` (useful when UI labels, commit titles, or release-note blurbs must stay within a strict character budget):
+  ```json
+  { "type": "char_count_range", "max_chars": 72 }
+  ```
+  You can set `min_chars`, `max_chars`, or both.
 - `not_exact` (`value` must be a string; passes only when normalized output differs):
   ```json
   { "type": "not_exact", "value": "Forbidden" }
