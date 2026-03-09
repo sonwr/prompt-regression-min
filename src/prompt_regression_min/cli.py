@@ -116,6 +116,23 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             str(group["key"]): list(group["ids"])
             for group in groups
         },
+        "group_priority_ranks_by_key": {
+            key: follow_up_priority_ranks[key]
+            for key in follow_up_priority_ranks
+        },
+        "groups_by_key": {
+            str(group["key"]): {
+                "label": str(group["label"]),
+                "ids": list(group["ids"]),
+                "count": int(group["count"]),
+                "active_case_rate": float(group["rate"]),
+                "source_case_rate": float(group["source_case_rate"]),
+                "queue_share": float(group["queue_share"]),
+                "priority_rank": follow_up_priority_ranks[str(group["key"])],
+                "priority_label": f"P{follow_up_priority_ranks[str(group["key"])]} · {queue_label_by_key.get(str(group["key"]), str(group["key"]))}",
+            }
+            for group in groups
+        },
         "follow_up_priority": follow_up_priority,
         "follow_up_priority_labels": [
             f"P{follow_up_priority_ranks[key]} · {queue_label_by_key.get(key, key)}"

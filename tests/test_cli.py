@@ -365,6 +365,42 @@ class PromptRegressionCliTests(unittest.TestCase):
                     "resolve_skipped_cases": 1,
                 },
             )
+            self.assertEqual(reviewer_queue["group_priority_ranks_by_key"], {"fix_regressions": 1, "watch_unchanged_fails": 2, "resolve_skipped_cases": 3})
+            self.assertEqual(
+                reviewer_queue["groups_by_key"],
+                {
+                    "fix_regressions": {
+                        "label": "fix regressions",
+                        "ids": ["reg-1"],
+                        "count": 1,
+                        "active_case_rate": 0.5,
+                        "source_case_rate": 0.3333,
+                        "queue_share": 0.3333,
+                        "priority_rank": 1,
+                        "priority_label": "P1 · fix regressions",
+                    },
+                    "watch_unchanged_fails": {
+                        "label": "watch unchanged fails",
+                        "ids": ["watch-1"],
+                        "count": 1,
+                        "active_case_rate": 0.5,
+                        "source_case_rate": 0.3333,
+                        "queue_share": 0.3333,
+                        "priority_rank": 2,
+                        "priority_label": "P2 · watch unchanged fails",
+                    },
+                    "resolve_skipped_cases": {
+                        "label": "resolve skipped cases",
+                        "ids": ["skip-1"],
+                        "count": 1,
+                        "active_case_rate": 0.5,
+                        "source_case_rate": 0.3333,
+                        "queue_share": 0.3333,
+                        "priority_rank": 3,
+                        "priority_label": "P3 · resolve skipped cases",
+                    },
+                },
+            )
             self.assertEqual(
                 reviewer_queue["group_labels_by_key"],
                 {
