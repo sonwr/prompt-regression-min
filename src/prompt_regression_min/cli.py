@@ -1285,6 +1285,10 @@ def main() -> None:
                         "- Reviewer queue next-focus advantage label: "
                         + str(reviewer_queue_summary.get("next_focus_advantage_label", "none"))
                     )
+                    markdown_lines.append(
+                        "- Reviewer queue next-focus advantage summary: "
+                        + str(reviewer_queue_summary.get("next_focus_advantage_summary", "none"))
+                    )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
@@ -1590,6 +1594,10 @@ def main() -> None:
                     pr_comment_lines.append(
                         "- Reviewer queue next-focus advantage label: "
                         + str(reviewer_queue_summary.get("next_focus_advantage_label", "none"))
+                    )
+                    pr_comment_lines.append(
+                        "- Reviewer queue next-focus advantage summary: "
+                        + str(reviewer_queue_summary.get("next_focus_advantage_summary", "none"))
                     )
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")

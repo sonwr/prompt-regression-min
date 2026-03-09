@@ -45,6 +45,7 @@
 - Reviewer queue next-focus source-case rate: 100.00% of source cases
 - Reviewer queue next-focus queue share: 100.00% of queued follow-up
 - Reviewer queue next-focus advantage label: single queue
+- Reviewer queue next-focus advantage summary: single queue: +2 case(s), +100.00% queue share, +100.00% active-case rate, +100.00% source-case rate
 - Why it failed:
   - regressions 2 exceeded max 0
 - Reviewer next step: keep the PR blocked until the failing IDs are fixed, then rerun the regression command.
