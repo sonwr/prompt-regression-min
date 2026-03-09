@@ -222,6 +222,7 @@ Markdown summaries now also expose `Reviewer queue next focus`, `Reviewer queue 
 The `Reviewer queue largest group` line now also shows both active-case rate and source-case rate, so the dominant rerun bucket is easy to size against the current shard and the full dataset without opening JSON.
 
 `--summary-json` also emits `largest_group_label`, a human-ready copy of the dominant follow-up bucket name (`fix regressions`, `watch unchanged fails`, `confirm filtered-out scope`, `resolve skipped cases`). That means bots and PR templates can paste a readable next-step label without re-mapping internal queue keys.
+`reviewer_queue.group_counts_by_key` and `reviewer_queue.group_ids_by_key` now expose per-bucket counts plus exact case IDs in stable maps, so bots can route regressions/watchlists/filtered scope/skipped cleanup without walking the ordered `groups` array first.
 PR-comment output now also surfaces `Regression rate` and `Improvement rate`, so reviewers can gauge how concentrated the changed outcomes are without opening the JSON artifact.
 Markdown/PR-comment summaries now also expose `Regression source-case rate`, `Improvement source-case rate`, `Changed source-case rate`, and `Watchlist source-case rate`, so reviewers can tell whether regressions/watchlists are shard-local or source-dataset-wide without opening JSON.
 PR-comment output now also carries `Unchanged fail IDs` plus a watchlist rate, so reviewers can separate known-bad carryover cases from newly regressed IDs without opening the JSON artifact.

@@ -78,6 +78,14 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "group_count": len(groups),
         "group_keys": [str(group["key"]) for group in groups],
         "group_labels": [str(group["label"]) for group in groups],
+        "group_counts_by_key": {
+            str(group["key"]): int(group["count"])
+            for group in groups
+        },
+        "group_ids_by_key": {
+            str(group["key"]): list(group["ids"])
+            for group in groups
+        },
         "follow_up_priority": follow_up_priority,
         "follow_up_priority_ranks": follow_up_priority_ranks,
         "largest_group_priority_rank": largest_group_priority_rank,

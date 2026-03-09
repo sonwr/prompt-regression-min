@@ -223,6 +223,79 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", pr_comment)
             self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
+    def test_summary_json_exposes_reviewer_queue_group_maps_for_bots(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "watch-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "skip-1", "expected": {"type": "substring", "value": "ok"}, "disabled": True},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "reg-1", "output": "ok"},
+                    {"id": "watch-1", "output": "bad"},
+                    {"id": "skip-1", "output": "ok"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "reg-1", "output": "bad"},
+                    {"id": "watch-1", "output": "bad"},
+                    {"id": "skip-1", "output": "ok"},
+                ],
+            )
+
+            output = io.StringIO()
+            with self.assertRaises(SystemExit):
+                with contextlib.redirect_stdout(output):
+                    with mock.patch(
+                        "sys.argv",
+                        [
+                            "prm",
+                            "run",
+                            "-d",
+                            str(dataset),
+                            "-b",
+                            str(baseline),
+                            "-c",
+                            str(candidate),
+                            "--summary-json",
+                            "-",
+                            "--quiet",
+                        ],
+                    ):
+                        cli.main()
+
+            payload = json.loads(output.getvalue())
+            reviewer_queue = payload["reviewer_queue"]
+            self.assertEqual(
+                reviewer_queue["group_counts_by_key"],
+                {
+                    "fix_regressions": 1,
+                    "watch_unchanged_fails": 1,
+                    "resolve_skipped_cases": 1,
+                },
+            )
+            self.assertEqual(
+                reviewer_queue["group_ids_by_key"],
+                {
+                    "fix_regressions": ["reg-1"],
+                    "watch_unchanged_fails": ["watch-1"],
+                    "resolve_skipped_cases": ["skip-1"],
+                },
+            )
+            self.assertEqual(reviewer_queue["follow_up_priority"], ["fix_regressions", "watch_unchanged_fails", "resolve_skipped_cases"])
+
     def test_summary_pr_comment_surfaces_tied_largest_group_labels(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
