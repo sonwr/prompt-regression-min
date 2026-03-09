@@ -96,6 +96,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Regression IDs (2): `release-note-bullets`, `release-note-short`", markdown)
         self.assertIn("- Reviewer queue groups: 1", markdown)
         self.assertIn("- Reviewer queue largest group: fix_regressions (2 case(s), 100.00% of active cases, 100.00% overall queue rate, 100.00% source-case rate)", markdown)
+        self.assertIn("- Reviewer queue largest group IDs: `release-note-bullets`, `release-note-short`", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
     def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
         root = Path(__file__).resolve().parents[1]
@@ -359,6 +360,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         pr_comment = output.getvalue()
         self.assertIn("- Reviewer queue total: 2 case(s)", pr_comment)
         self.assertIn("- Reviewer queue source-case rate: 50.00% of source cases", pr_comment)
+        self.assertIn("- Reviewer queue largest group IDs: `billing-invoice`, `search-query`", pr_comment)
         self.assertIn("- Reviewer queue (filtered-out scope): 2 case(s) / 100.00% of active cases", pr_comment)
 
 

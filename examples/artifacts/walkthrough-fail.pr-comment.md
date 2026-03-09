@@ -21,6 +21,7 @@
 - Reviewer queue rate: 50.00% of active cases
 - Reviewer queue source-case rate: 50.00% of source cases
 - Reviewer queue largest group: fix_regressions (1 case(s), 50.00% of active cases, 50.00% overall queue rate, 50.00% source-case rate)
+- Reviewer queue largest group IDs: `auth-login`
 - Reviewer queue (regressions): 1 case(s) / 50.00% of active cases
 - Reviewer queue: fix regressions: `auth-login`
 - Why it failed:

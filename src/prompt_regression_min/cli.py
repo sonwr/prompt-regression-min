@@ -937,6 +937,13 @@ def main() -> None:
                     f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate, "
                     f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate)"
                 )
+                if reviewer_queue_summary.get("largest_group_ids"):
+                    markdown_lines.append(
+                        "- Reviewer queue largest group IDs: "
+                        + ", ".join(
+                            f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
+                        )
+                    )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
@@ -1084,6 +1091,13 @@ def main() -> None:
                     f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate, "
                     f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate)"
                 )
+                if reviewer_queue_summary.get("largest_group_ids"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue largest group IDs: "
+                        + ", ".join(
+                            f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
+                        )
+                    )
                 if regression_ids:
                     pr_comment_lines.append(
                         f"- Reviewer queue (regressions): {len(regression_ids)} case(s) / {(len(regression_ids) / active_cases) * 100:.2f}% of active cases"
