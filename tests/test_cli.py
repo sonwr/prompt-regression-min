@@ -3684,6 +3684,15 @@ if __name__ == "__main__":
             self.assertEqual(payload["reviewer_queue"]["rate"], 1.3333)
             self.assertEqual(payload["reviewer_queue"]["source_case_rate"], 1.0)
             self.assertEqual(payload["reviewer_queue"]["group_count"], 4)
+            self.assertEqual(
+                payload["reviewer_queue"]["follow_up_priority"],
+                [
+                    "fix_regressions",
+                    "watch_unchanged_fails",
+                    "confirm_filtered_scope",
+                    "resolve_skipped_cases",
+                ],
+            )
             self.assertEqual(payload["reviewer_queue"]["largest_group_key"], "watch_unchanged_fails")
             self.assertEqual(payload["reviewer_queue"]["largest_group_count"], 1)
             self.assertEqual(
@@ -3703,6 +3712,7 @@ if __name__ == "__main__":
         self.assertEqual(payload["total"], 0)
         self.assertEqual(payload["source_case_rate"], 0.0)
         self.assertEqual(payload["group_count"], 0)
+        self.assertEqual(payload["follow_up_priority"], [])
         self.assertIsNone(payload["largest_group_key"])
         self.assertEqual(payload["largest_group_count"], 0)
         self.assertEqual(payload["groups"], [])

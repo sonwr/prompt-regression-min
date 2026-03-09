@@ -21,6 +21,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         ("confirm_filtered_scope", "confirm filtered-out scope", list(summary.get("filtered_out_ids", []))),
         ("resolve_skipped_cases", "resolve skipped cases", list(summary.get("skipped_ids", []))),
     ]
+    queue_priority_index = {key: idx for idx, (key, _, _) in enumerate(queue_specs)}
     for key, label, ids in queue_specs:
         if not ids:
             continue
@@ -42,6 +43,13 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
     rate = (total / active_cases) if active_cases else 0.0
     source_case_rate = (total / dataset_cases) if dataset_cases else 0.0
     largest_group = max(groups, key=lambda item: (int(item["count"]), item["key"]), default=None)
+    follow_up_priority = [
+        str(group["key"])
+        for group in sorted(
+            groups,
+            key=lambda item: (-int(item["count"]), queue_priority_index[str(item["key"])]),
+        )
+    ]
     return {
         "total": total,
         "rate": round(rate, 4),
@@ -50,6 +58,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "dataset_cases": dataset_cases,
         "groups": groups,
         "group_count": len(groups),
+        "follow_up_priority": follow_up_priority,
         "largest_group_key": None if largest_group is None else largest_group["key"],
         "largest_group_label": None if largest_group is None else largest_group["label"],
         "largest_group_ids": [] if largest_group is None else list(largest_group["ids"]),
