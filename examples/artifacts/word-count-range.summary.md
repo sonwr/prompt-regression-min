@@ -51,6 +51,7 @@
 - Changed-case rate: 100.00%
 - Reviewer queue total: 2 case(s)
 - Reviewer queue rate: 100.00% of active cases
+- Reviewer queue source-case rate: 100.00% of source cases
 - Reviewer queue: fix regressions: `release-note-bullets`, `release-note-short`
 - Fail reasons:
   - regressions 2 exceeded max 0

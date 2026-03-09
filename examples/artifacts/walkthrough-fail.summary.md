@@ -52,6 +52,7 @@
 - Unchanged pass IDs (1): `checkout-copy`
 - Reviewer queue total: 1 case(s)
 - Reviewer queue rate: 50.00% of active cases
+- Reviewer queue source-case rate: 50.00% of source cases
 - Reviewer queue: fix regressions: `auth-login`
 - Fail reasons:
   - regressions 1 exceeded max 0

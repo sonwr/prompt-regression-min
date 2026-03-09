@@ -899,6 +899,9 @@ def main() -> None:
                 markdown_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / summary.get('active_cases', summary['cases'])) * 100:.2f}% of active cases"
                 )
+                markdown_lines.append(
+                    f"- Reviewer queue source-case rate: {(reviewer_queue_total / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
+                )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")
@@ -1009,6 +1012,9 @@ def main() -> None:
                 pr_comment_lines.append(f"- Reviewer queue total: {reviewer_queue_total} case(s)")
                 pr_comment_lines.append(
                     f"- Reviewer queue rate: {(reviewer_queue_total / active_cases) * 100:.2f}% of active cases"
+                )
+                pr_comment_lines.append(
+                    f"- Reviewer queue source-case rate: {(reviewer_queue_total / summary.get('dataset_cases', summary['cases'])) * 100:.2f}% of source cases"
                 )
                 if regression_ids:
                     pr_comment_lines.append(
