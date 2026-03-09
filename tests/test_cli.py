@@ -361,6 +361,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         pr_comment = output.getvalue()
         self.assertIn("- Reviewer queue total: 2 case(s)", pr_comment)
         self.assertIn("- Reviewer queue source-case rate: 50.00% of source cases", pr_comment)
+        self.assertIn("- Reviewer queue dominant focus: confirm filtered-out scope", pr_comment)
         self.assertIn("- Reviewer queue largest group IDs: `billing-invoice`, `search-query`", pr_comment)
         self.assertIn("- Reviewer queue (filtered-out scope): 2 case(s) / 100.00% of active cases / 50.00% of source cases", pr_comment)
 
