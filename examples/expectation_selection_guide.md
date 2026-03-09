@@ -30,6 +30,7 @@ Use this guide when deciding which expectation type to add to a dataset case.
 ## Byte budget tip
 
 Use `byte_count_range` instead of `char_count_range` when deployment limits are enforced in bytes rather than visible characters. This matters for Korean, Japanese, emoji, and mixed-language outputs because a short-looking label can still overflow a strict UTF-8 byte limit.
+A single emoji like `🔥` already consumes 4 UTF-8 bytes, so byte-budget fixtures are useful even when the visible output looks only one character long.
 
 ## Related files
 

@@ -293,6 +293,25 @@ class RegressionCoreTests(unittest.TestCase):
 
             self.assertIn("set min_bytes, max_bytes, or both", str(exc.exception))
 
+    def test_run_regression_supports_byte_count_range_for_single_emoji_outputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "byte_count_range", "min_bytes": 4, "max_bytes": 4}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "🔥"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "💡"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 0)
+            self.assertEqual(report["summary"]["unchanged_pass"], 1)
+
     def test_run_regression_supports_exact_ci_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
