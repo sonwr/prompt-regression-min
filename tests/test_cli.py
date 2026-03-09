@@ -289,6 +289,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(reviewer_queue["next_focus_ids"], ["reg-1"])
             self.assertEqual(reviewer_queue["next_focus_case_count"], 1)
             self.assertEqual(reviewer_queue["follow_up_priority_labels"], ["P1 · fix regressions", "P2 · watch unchanged fails"])
+            self.assertEqual(reviewer_queue["follow_up_priority_summary"], "fix_regressions -> watch_unchanged_fails")
             self.assertEqual(reviewer_queue["next_focus_queue_share"], 0.5)
             self.assertEqual(reviewer_queue["next_focus_tie_mode"], "tied")
             self.assertEqual(reviewer_queue["next_focus_tie_keys"], ["fix_regressions", "watch_unchanged_fails"])
@@ -4220,6 +4221,7 @@ if __name__ == "__main__":
             self.assertIn("- Reviewer queue rate: 133.33% of active cases", markdown)
             self.assertIn("- Reviewer queue source-case rate: 100.00% of source cases", markdown)
             self.assertIn("- Reviewer queue dominant focus: fix regressions", markdown)
+            self.assertIn("- Reviewer queue follow-up priority summary: fix_regressions -> watch_unchanged_fails -> confirm_filtered_scope -> resolve_skipped_cases", markdown)
             self.assertIn("- Reviewer queue: fix regressions: `reg-1` | watch unchanged fails: `watch-1` | confirm filtered-out scope: `scope-1` | resolve skipped cases: `skip-1`", markdown)
 
             pr_output = io.StringIO()
@@ -4237,4 +4239,5 @@ if __name__ == "__main__":
             self.assertIn("- Reviewer queue total: 4 case(s)", pr_comment)
             self.assertIn("- Reviewer queue rate: 133.33% of active cases", pr_comment)
             self.assertIn("- Reviewer queue source-case rate: 100.00% of source cases", pr_comment)
+            self.assertIn("- Reviewer queue follow-up priority summary: fix_regressions -> watch_unchanged_fails -> confirm_filtered_scope -> resolve_skipped_cases", pr_comment)
             self.assertIn("- Reviewer queue: fix regressions: `reg-1` | watch unchanged fails: `watch-1` | confirm filtered-out scope: `scope-1` | resolve skipped cases: `skip-1`", pr_comment)

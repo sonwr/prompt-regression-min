@@ -52,6 +52,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         str(group["key"])
         for group in priority_sorted_groups
     ]
+    follow_up_priority_summary = " -> ".join(follow_up_priority) if follow_up_priority else "none"
     follow_up_priority_ranks = {
         key: idx for idx, key in enumerate(follow_up_priority, start=1)
     }
@@ -187,6 +188,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             for group in groups
         },
         "follow_up_priority": follow_up_priority,
+        "follow_up_priority_summary": follow_up_priority_summary,
         "follow_up_priority_labels": [
             f"P{follow_up_priority_ranks[key]} · {queue_label_by_key.get(key, key)}"
             for key in follow_up_priority
@@ -1208,6 +1210,10 @@ def main() -> None:
                     markdown_lines.append(
                         "- Reviewer queue follow-up priority: "
                         + " -> ".join(str(key) for key in reviewer_queue_summary["follow_up_priority"])
+                    )
+                    markdown_lines.append(
+                        "- Reviewer queue follow-up priority summary: "
+                        + str(reviewer_queue_summary.get("follow_up_priority_summary", "none"))
                     )
                     markdown_lines.append(
                         "- Reviewer queue follow-up labels: "
