@@ -50,6 +50,9 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             key=lambda item: (-int(item["count"]), queue_priority_index[str(item["key"])]),
         )
     ]
+    follow_up_priority_ranks = {
+        key: idx for idx, key in enumerate(follow_up_priority, start=1)
+    }
     largest_group_priority_rank = (
         None
         if largest_group is None
@@ -76,6 +79,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "group_keys": [str(group["key"]) for group in groups],
         "group_labels": [str(group["label"]) for group in groups],
         "follow_up_priority": follow_up_priority,
+        "follow_up_priority_ranks": follow_up_priority_ranks,
         "largest_group_priority_rank": largest_group_priority_rank,
         "largest_group_keys": largest_group_keys,
         "largest_group_labels": largest_group_labels,
@@ -1014,6 +1018,14 @@ def main() -> None:
                             for key in reviewer_queue_summary["follow_up_priority"]
                         )
                     )
+                    if reviewer_queue_summary.get("follow_up_priority_ranks"):
+                        markdown_lines.append(
+                            "- Reviewer queue priority ranks: "
+                            + ", ".join(
+                                f"{key}=P{reviewer_queue_summary['follow_up_priority_ranks'][str(key)]}"
+                                for key in reviewer_queue_summary["follow_up_priority"]
+                            )
+                        )
                 if reviewer_queue_summary.get("largest_group_priority_rank") is not None:
                     markdown_lines.append(
                         f"- Reviewer queue next-focus priority rank: {reviewer_queue_summary.get('largest_group_priority_rank')} of {len(reviewer_queue_summary.get('follow_up_priority', []))}"
@@ -1248,6 +1260,14 @@ def main() -> None:
                             for key in reviewer_queue_summary["follow_up_priority"]
                         )
                     )
+                    if reviewer_queue_summary.get("follow_up_priority_ranks"):
+                        pr_comment_lines.append(
+                            "- Reviewer queue priority ranks: "
+                            + ", ".join(
+                                f"{key}=P{reviewer_queue_summary['follow_up_priority_ranks'][str(key)]}"
+                                for key in reviewer_queue_summary["follow_up_priority"]
+                            )
+                        )
                 if reviewer_queue_summary.get("largest_group_priority_rank") is not None:
                     pr_comment_lines.append(
                         f"- Reviewer queue next-focus priority rank: {reviewer_queue_summary.get('largest_group_priority_rank')} of {len(reviewer_queue_summary.get('follow_up_priority', []))}"

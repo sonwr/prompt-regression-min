@@ -63,6 +63,7 @@
 - Reviewer queue dominant focus: fix regressions
 - Reviewer queue follow-up priority: fix_regressions
 - Reviewer queue follow-up labels: fix regressions
+- Reviewer queue priority ranks: fix_regressions=P1
 - Reviewer queue next-focus priority rank: 1 of 1
 - Reviewer queue tied largest groups: fix_regressions
 - Reviewer queue largest-group tie count: 1
