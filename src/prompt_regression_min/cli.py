@@ -951,6 +951,19 @@ def main() -> None:
                             f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
                         )
                     )
+                    markdown_lines.append(
+                        "- Reviewer queue next focus: "
+                        + f"{reviewer_queue_summary.get('largest_group_key')}: "
+                        + ", ".join(
+                            f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
+                        )
+                    )
+                    markdown_lines.append(
+                        f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('largest_group_rate', 0.0) * 100:.2f}% of active cases"
+                    )
+                    markdown_lines.append(
+                        f"- Reviewer queue next-focus source-case rate: {reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% of source cases"
+                    )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
                 markdown_lines.append("- Fail reasons:")

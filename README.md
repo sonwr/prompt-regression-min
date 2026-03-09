@@ -214,6 +214,7 @@ PR-comment and markdown summaries now also expose `Reviewer queue next-focus act
 Those per-group reviewer-queue lines now also show source-case rate, so shard-heavy reruns can distinguish active-case dominance from full-dataset impact at a glance.
 The largest reviewer-queue group line now also shows its share of queued follow-up, so reviewers can tell whether one class of action dominates the entire rerun plan.
 Markdown/PR-comment summaries now also expose `Reviewer queue source-case rate`, so shard-heavy reruns can distinguish active-case overload from total dataset impact without opening JSON.
+Markdown summaries now also expose `Reviewer queue next focus`, `Reviewer queue next-focus active-case rate`, and `Reviewer queue next-focus source-case rate`, so markdown artifacts match PR-comment rerun guidance when reviewers need the first follow-up IDs without opening JSON.
 The `Reviewer queue largest group` line now also shows both active-case rate and source-case rate, so the dominant rerun bucket is easy to size against the current shard and the full dataset without opening JSON.
 PR-comment output now also surfaces `Regression rate` and `Improvement rate`, so reviewers can gauge how concentrated the changed outcomes are without opening the JSON artifact.
 Markdown/PR-comment summaries now also expose `Regression source-case rate`, `Improvement source-case rate`, `Changed source-case rate`, and `Watchlist source-case rate`, so reviewers can tell whether regressions/watchlists are shard-local or source-dataset-wide without opening JSON.
