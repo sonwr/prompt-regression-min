@@ -3,6 +3,8 @@
 - Summary schema version: `1`
 - Pass-rate trend: `regressing`
 - Coverage watch: selected=2, active=2, skipped=0, filtered_out=0
+- Selection rate: 100.00% of source cases
+- Active-case rate: 100.00% of source cases
 - Regression IDs (2): `release-note-bullets`, `release-note-short`
 - Changed IDs (2): `release-note-bullets`, `release-note-short`
 - Changed-case rate: 100.00% of active cases

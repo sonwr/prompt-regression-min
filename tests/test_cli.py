@@ -178,7 +178,37 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Regression IDs (1): `reg-1`", pr_comment)
             self.assertIn("- Changed IDs (1): `reg-1`", pr_comment)
             self.assertIn("- Changed-case rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Selection rate: 100.00% of source cases", pr_comment)
+            self.assertIn("- Active-case rate: 100.00% of source cases", pr_comment)
             self.assertIn("- Stable IDs: `stable-pass`", pr_comment)
+
+    def test_summary_pr_comment_includes_selection_and_active_case_rates_for_filtered_scope(self) -> None:
+        root = Path(__file__).resolve().parents[1]
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output):
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "--dataset",
+                    str(root / "examples" / "dataset" / "filtered_out_band_demo.jsonl"),
+                    "--baseline",
+                    str(root / "examples" / "outputs" / "filtered_out_band_demo.baseline.jsonl"),
+                    "--candidate",
+                    str(root / "examples" / "outputs" / "filtered_out_band_demo.candidate.jsonl"),
+                    "--include-id-regex",
+                    "^auth-",
+                    "--summary-pr-comment",
+                    "-",
+                    "--quiet",
+                ],
+            ):
+                cli.main()
+        pr_comment = output.getvalue()
+        self.assertIn("- Selection rate: 50.00% of source cases", pr_comment)
+        self.assertIn("- Active-case rate: 100.00% of source cases", pr_comment)
+        self.assertIn("- Filtered-out IDs: `billing-invoice`, `search-query`", pr_comment)
 
     def test_summary_pr_comment_includes_unchanged_fail_watchlist_ids(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

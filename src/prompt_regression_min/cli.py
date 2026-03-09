@@ -894,6 +894,8 @@ def main() -> None:
                     f"skipped={summary.get('skipped_cases', 0)}, "
                     f"filtered_out={summary.get('filtered_out_cases', 0)}"
                 ),
+                f"- Selection rate: {summary.get('selection_rate', 1.0) * 100:.2f}% of source cases",
+                f"- Active-case rate: {summary.get('active_case_rate', 1.0) * 100:.2f}% of source cases",
             ]
             if args.include_id_regex or args.exclude_id_regex:
                 pr_comment_lines.append(

@@ -3,6 +3,8 @@
 - Summary schema version: `1`
 - Pass-rate trend: `regressing`
 - Coverage watch: selected=2, active=2, skipped=0, filtered_out=0
+- Selection rate: 100.00% of source cases
+- Active-case rate: 100.00% of source cases
 - Regression IDs (1): `auth-login`
 - Changed IDs (1): `auth-login`
 - Changed-case rate: 50.00% of active cases

@@ -3,6 +3,8 @@
 - Summary schema version: `1`
 - Pass-rate trend: `improving`
 - Coverage watch: selected=2, active=2, skipped=0, filtered_out=0
+- Selection rate: 100.00% of source cases
+- Active-case rate: 100.00% of source cases
 - Improved IDs (1): `checkout-copy`
 - Changed IDs (1): `checkout-copy`
 - Changed-case rate: 50.00% of active cases
