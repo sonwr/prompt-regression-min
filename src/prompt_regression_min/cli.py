@@ -126,6 +126,11 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             if next_focus_key is None or next_focus_key not in follow_up_priority_ranks
             else f"P{follow_up_priority_ranks[next_focus_key]} · {queue_label_by_key.get(next_focus_key, next_focus_key)}"
         ),
+        "next_focus_priority_rank": (
+            None
+            if next_focus_key is None
+            else follow_up_priority_ranks.get(next_focus_key)
+        ),
         "next_focus_ids": next_focus_ids,
         "next_focus_case_count": 0 if next_focus_group is None else int(next_focus_group["count"]),
         "next_focus_queue_share": 0.0 if next_focus_group is None or total == 0 else round(float(next_focus_group["count"]) / total, 4),
