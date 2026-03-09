@@ -296,6 +296,12 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(reviewer_queue["next_focus_tie_labels"], ["fix regressions", "watch unchanged fails"])
             self.assertEqual(reviewer_queue["next_focus_tie_count"], 2)
             self.assertTrue(reviewer_queue["next_focus_has_ties"])
+            self.assertEqual(reviewer_queue["runner_up_key"], "watch_unchanged_fails")
+            self.assertEqual(reviewer_queue["runner_up_label"], "watch unchanged fails")
+            self.assertEqual(reviewer_queue["runner_up_priority_label"], "P2 · watch unchanged fails")
+            self.assertEqual(reviewer_queue["runner_up_priority_rank"], 2)
+            self.assertEqual(reviewer_queue["runner_up_ids"], ["watch-1"])
+            self.assertEqual(reviewer_queue["runner_up_summary"], "watch_unchanged_fails: `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)")
             self.assertEqual(
                 reviewer_queue["next_focus_group"],
                 {
@@ -516,6 +522,15 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue next-focus key: fix_regressions", pr_comment)
             self.assertIn("- Reviewer queue next-focus label: fix regressions", pr_comment)
             self.assertIn("- Reviewer queue next focus: fix_regressions: `reg-1`", pr_comment)
+            self.assertIn("- Reviewer queue runner-up: watch_unchanged_fails: `watch-1`", pr_comment)
+            self.assertIn("- Reviewer queue runner-up label: watch unchanged fails", pr_comment)
+            self.assertIn("- Reviewer queue runner-up priority label: P2 · watch unchanged fails", pr_comment)
+            self.assertIn("- Reviewer queue runner-up priority rank: 2 of 2", pr_comment)
+            self.assertIn("- Reviewer queue runner-up case count: 1", pr_comment)
+            self.assertIn("- Reviewer queue runner-up active-case rate: 50.00% of active cases", pr_comment)
+            self.assertIn("- Reviewer queue runner-up source-case rate: 50.00% of source cases", pr_comment)
+            self.assertIn("- Reviewer queue runner-up queue share: 50.00% of queued follow-up", pr_comment)
+            self.assertIn("- Reviewer queue runner-up summary: watch_unchanged_fails: `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)", pr_comment)
 
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

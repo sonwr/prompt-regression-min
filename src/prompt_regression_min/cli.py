@@ -216,11 +216,31 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "next_focus_tie_mode": next_focus_tie_mode,
         "runner_up_key": runner_up_key,
         "runner_up_label": runner_up_label,
+        "runner_up_priority_label": (
+            None
+            if runner_up_key is None or runner_up_key not in follow_up_priority_ranks
+            else f"P{follow_up_priority_ranks[runner_up_key]} · {queue_label_by_key.get(runner_up_key, runner_up_key)}"
+        ),
+        "runner_up_priority_rank": (
+            None
+            if runner_up_key is None
+            else follow_up_priority_ranks.get(runner_up_key)
+        ),
         "runner_up_ids": runner_up_ids,
         "runner_up_case_count": 0 if second_focus_group is None else int(second_focus_group["count"]),
         "runner_up_active_case_rate": 0.0 if second_focus_group is None else float(second_focus_group["rate"]),
         "runner_up_source_case_rate": 0.0 if second_focus_group is None else float(second_focus_group["source_case_rate"]),
         "runner_up_queue_share": 0.0 if second_focus_group is None or total == 0 else round(float(second_focus_group["count"]) / total, 4),
+        "runner_up_summary": (
+            "none"
+            if second_focus_group is None
+            else (
+                f"{runner_up_key}: {', '.join(f'`{case_id}`' for case_id in runner_up_ids)}"
+                + f" ({int(second_focus_group['count'])} case(s), {float(second_focus_group['rate']) * 100:.2f}% active-case rate, "
+                + f"{float(second_focus_group['source_case_rate']) * 100:.2f}% source-case rate, "
+                + f"{(0.0 if total == 0 else round(float(second_focus_group['count']) / total, 4)) * 100:.2f}% of queued follow-up)"
+            )
+        ),
         "next_focus_tie_keys": next_focus_tie_keys,
         "next_focus_tie_labels": next_focus_tie_labels,
         "next_focus_tie_count": len(next_focus_tie_keys),
@@ -1299,6 +1319,39 @@ def main() -> None:
                     markdown_lines.append(
                         f"- Reviewer queue next-focus case count: {reviewer_queue_summary.get('next_focus_case_count', reviewer_queue_summary.get('largest_group_count', 0))}"
                     )
+                    if reviewer_queue_summary.get("runner_up_key"):
+                        markdown_lines.append(
+                            "- Reviewer queue runner-up: "
+                            + f"{reviewer_queue_summary.get('runner_up_key')}: "
+                            + ", ".join(f"`{case_id}`" for case_id in reviewer_queue_summary.get("runner_up_ids", []))
+                        )
+                        if reviewer_queue_summary.get("runner_up_label"):
+                            markdown_lines.append(
+                                "- Reviewer queue runner-up label: " + str(reviewer_queue_summary.get("runner_up_label"))
+                            )
+                        if reviewer_queue_summary.get("runner_up_priority_label"):
+                            markdown_lines.append(
+                                "- Reviewer queue runner-up priority label: " + str(reviewer_queue_summary.get("runner_up_priority_label"))
+                            )
+                        if reviewer_queue_summary.get("runner_up_priority_rank") is not None:
+                            markdown_lines.append(
+                                f"- Reviewer queue runner-up priority rank: {reviewer_queue_summary.get('runner_up_priority_rank')} of {len(reviewer_queue_summary.get('follow_up_priority', []))}"
+                            )
+                        markdown_lines.append(
+                            f"- Reviewer queue runner-up case count: {reviewer_queue_summary.get('runner_up_case_count', 0)}"
+                        )
+                        markdown_lines.append(
+                            f"- Reviewer queue runner-up active-case rate: {reviewer_queue_summary.get('runner_up_active_case_rate', 0.0) * 100:.2f}% of active cases"
+                        )
+                        markdown_lines.append(
+                            f"- Reviewer queue runner-up source-case rate: {reviewer_queue_summary.get('runner_up_source_case_rate', 0.0) * 100:.2f}% of source cases"
+                        )
+                        markdown_lines.append(
+                            f"- Reviewer queue runner-up queue share: {reviewer_queue_summary.get('runner_up_queue_share', 0.0) * 100:.2f}% of queued follow-up"
+                        )
+                        markdown_lines.append(
+                            "- Reviewer queue runner-up summary: " + str(reviewer_queue_summary.get("runner_up_summary", "none"))
+                        )
                     markdown_lines.append(
                         f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('group_rates_by_key', {}).get(str(reviewer_queue_summary.get('next_focus_key')), reviewer_queue_summary.get('largest_group_rate', 0.0)) * 100:.2f}% of active cases"
                     )
@@ -1618,8 +1671,32 @@ def main() -> None:
                             + f"{reviewer_queue_summary.get('runner_up_key')}: "
                             + ", ".join(f"`{case_id}`" for case_id in reviewer_queue_summary.get("runner_up_ids", []))
                         )
+                        if reviewer_queue_summary.get("runner_up_label"):
+                            pr_comment_lines.append(
+                                "- Reviewer queue runner-up label: " + str(reviewer_queue_summary.get("runner_up_label"))
+                            )
+                        if reviewer_queue_summary.get("runner_up_priority_label"):
+                            pr_comment_lines.append(
+                                "- Reviewer queue runner-up priority label: " + str(reviewer_queue_summary.get("runner_up_priority_label"))
+                            )
+                        if reviewer_queue_summary.get("runner_up_priority_rank") is not None:
+                            pr_comment_lines.append(
+                                f"- Reviewer queue runner-up priority rank: {reviewer_queue_summary.get('runner_up_priority_rank')} of {len(reviewer_queue_summary.get('follow_up_priority', []))}"
+                            )
                         pr_comment_lines.append(
                             f"- Reviewer queue runner-up case count: {reviewer_queue_summary.get('runner_up_case_count', 0)}"
+                        )
+                        pr_comment_lines.append(
+                            f"- Reviewer queue runner-up active-case rate: {reviewer_queue_summary.get('runner_up_active_case_rate', 0.0) * 100:.2f}% of active cases"
+                        )
+                        pr_comment_lines.append(
+                            f"- Reviewer queue runner-up source-case rate: {reviewer_queue_summary.get('runner_up_source_case_rate', 0.0) * 100:.2f}% of source cases"
+                        )
+                        pr_comment_lines.append(
+                            f"- Reviewer queue runner-up queue share: {reviewer_queue_summary.get('runner_up_queue_share', 0.0) * 100:.2f}% of queued follow-up"
+                        )
+                        pr_comment_lines.append(
+                            "- Reviewer queue runner-up summary: " + str(reviewer_queue_summary.get("runner_up_summary", "none"))
                         )
                     pr_comment_lines.append(
                         f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('group_rates_by_key', {}).get(str(reviewer_queue_summary.get('next_focus_key')), reviewer_queue_summary.get('largest_group_rate', 0.0)) * 100:.2f}% of active cases"
