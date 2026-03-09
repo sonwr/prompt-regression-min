@@ -24,9 +24,11 @@
 - Reviewer queue largest group IDs: `release-note-bullets`, `release-note-short`
 - Reviewer queue (regressions): 2 case(s) / 100.00% of active cases / 100.00% of source cases
 - Reviewer queue: fix regressions: `release-note-bullets`, `release-note-short`
+- Reviewer queue next-focus label: fix regressions
 - Reviewer queue next focus: fix_regressions: `release-note-bullets`, `release-note-short`
 - Reviewer queue next-focus active-case rate: 100.00% of active cases
 - Reviewer queue next-focus source-case rate: 100.00% of source cases
+- Reviewer queue next-focus queue share: 100.00% of queued follow-up
 - Why it failed:
   - regressions 2 exceeded max 0
 - Reviewer next step: keep the PR blocked until the failing IDs are fixed, then rerun the regression command.

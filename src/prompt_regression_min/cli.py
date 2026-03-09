@@ -982,6 +982,10 @@ def main() -> None:
                             f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
                         )
                     )
+                    if dominant_label:
+                        markdown_lines.append(
+                            "- Reviewer queue next-focus label: " + dominant_label
+                        )
                     markdown_lines.append(
                         "- Reviewer queue next focus: "
                         + f"{reviewer_queue_summary.get('largest_group_key')}: "
@@ -994,6 +998,9 @@ def main() -> None:
                     )
                     markdown_lines.append(
                         f"- Reviewer queue next-focus source-case rate: {reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% of source cases"
+                    )
+                    markdown_lines.append(
+                        f"- Reviewer queue next-focus queue share: {reviewer_queue_summary.get('largest_group_queue_share', 0.0) * 100:.2f}% of queued follow-up"
                     )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
@@ -1195,6 +1202,10 @@ def main() -> None:
                     )
                 pr_comment_lines.append("- Reviewer queue: " + " | ".join(reviewer_queue))
                 if reviewer_queue_summary.get("largest_group_ids"):
+                    if dominant_label:
+                        pr_comment_lines.append(
+                            "- Reviewer queue next-focus label: " + dominant_label
+                        )
                     pr_comment_lines.append(
                         "- Reviewer queue next focus: "
                         + f"{reviewer_queue_summary.get('largest_group_key')}: "
@@ -1207,6 +1218,9 @@ def main() -> None:
                     )
                     pr_comment_lines.append(
                         f"- Reviewer queue next-focus source-case rate: {reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% of source cases"
+                    )
+                    pr_comment_lines.append(
+                        f"- Reviewer queue next-focus queue share: {reviewer_queue_summary.get('largest_group_queue_share', 0.0) * 100:.2f}% of queued follow-up"
                     )
             if fail_reasons:
                 pr_comment_lines.append("- Why it failed:")

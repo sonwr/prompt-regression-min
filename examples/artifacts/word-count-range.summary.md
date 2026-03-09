@@ -60,9 +60,11 @@
 - Reviewer queue dominant focus: fix regressions
 - Reviewer queue follow-up priority: fix_regressions
 - Reviewer queue largest group IDs: `release-note-bullets`, `release-note-short`
+- Reviewer queue next-focus label: fix regressions
 - Reviewer queue next focus: fix_regressions: `release-note-bullets`, `release-note-short`
 - Reviewer queue next-focus active-case rate: 100.00% of active cases
 - Reviewer queue next-focus source-case rate: 100.00% of source cases
+- Reviewer queue next-focus queue share: 100.00% of queued follow-up
 - Reviewer queue: fix regressions: `release-note-bullets`, `release-note-short`
 - Fail reasons:
   - regressions 2 exceeded max 0
