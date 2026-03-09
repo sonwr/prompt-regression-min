@@ -36,6 +36,9 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             "source_case_rate": round(group_source_case_rate, 4),
         })
         total += len(ids)
+    for group in groups:
+        count = int(group["count"])
+        group["queue_share"] = 0.0 if total == 0 else round(count / total, 4)
     rate = (total / active_cases) if active_cases else 0.0
     largest_group = max(groups, key=lambda item: (int(item["count"]), item["key"]), default=None)
     return {

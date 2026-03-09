@@ -3681,10 +3681,10 @@ if __name__ == "__main__":
             self.assertEqual(
                 payload["reviewer_queue"]["groups"],
                 [
-                    {"key": "fix_regressions", "label": "fix regressions", "ids": ["reg-1"], "count": 1, "rate": 0.3333},
-                    {"key": "watch_unchanged_fails", "label": "watch unchanged fails", "ids": ["watch-1"], "count": 1, "rate": 0.3333},
-                    {"key": "confirm_filtered_scope", "label": "confirm filtered-out scope", "ids": ["scope-1"], "count": 1, "rate": 0.3333},
-                    {"key": "resolve_skipped_cases", "label": "resolve skipped cases", "ids": ["skip-1"], "count": 1, "rate": 0.3333},
+                    {"key": "fix_regressions", "label": "fix regressions", "ids": ["reg-1"], "count": 1, "rate": 0.3333, "source_case_rate": 0.25, "queue_share": 0.25},
+                    {"key": "watch_unchanged_fails", "label": "watch unchanged fails", "ids": ["watch-1"], "count": 1, "rate": 0.3333, "source_case_rate": 0.25, "queue_share": 0.25},
+                    {"key": "confirm_filtered_scope", "label": "confirm filtered-out scope", "ids": ["scope-1"], "count": 1, "rate": 0.3333, "source_case_rate": 0.25, "queue_share": 0.25},
+                    {"key": "resolve_skipped_cases", "label": "resolve skipped cases", "ids": ["skip-1"], "count": 1, "rate": 0.3333, "source_case_rate": 0.25, "queue_share": 0.25},
                 ],
             )
 
