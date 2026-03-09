@@ -3770,6 +3770,7 @@ if __name__ == "__main__":
             self.assertIn("- Reviewer queue total: 4 case(s)", markdown)
             self.assertIn("- Reviewer queue rate: 133.33% of active cases", markdown)
             self.assertIn("- Reviewer queue source-case rate: 100.00% of source cases", markdown)
+            self.assertIn("- Reviewer queue dominant focus: fix regressions", markdown)
             self.assertIn("- Reviewer queue: fix regressions: `reg-1` | watch unchanged fails: `watch-1` | confirm filtered-out scope: `scope-1` | resolve skipped cases: `skip-1`", markdown)
 
             pr_output = io.StringIO()

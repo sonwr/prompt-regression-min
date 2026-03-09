@@ -953,6 +953,18 @@ def main() -> None:
                     f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate, "
                     f"{reviewer_queue_summary.get('largest_group_queue_share', 0.0) * 100:.2f}% of queued follow-up)"
                 )
+                dominant_label_map = {
+                    "fix_regressions": "fix regressions",
+                    "watch_unchanged_fails": "watch unchanged fails",
+                    "confirm_filtered_scope": "confirm filtered-out scope",
+                    "resolve_skipped_cases": "resolve skipped cases",
+                }
+                dominant_key = reviewer_queue_summary.get('largest_group_key')
+                if dominant_key:
+                    markdown_lines.append(
+                        "- Reviewer queue dominant focus: "
+                        + dominant_label_map.get(dominant_key, dominant_key)
+                    )
                 if reviewer_queue_summary.get("follow_up_priority"):
                     markdown_lines.append(
                         "- Reviewer queue follow-up priority: "
