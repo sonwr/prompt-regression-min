@@ -3708,6 +3708,8 @@ if __name__ == "__main__":
                 ],
             )
             self.assertEqual(payload["reviewer_queue"]["largest_group_key"], "watch_unchanged_fails")
+            self.assertEqual(payload["reviewer_queue"]["largest_group_keys"], ["fix_regressions", "watch_unchanged_fails", "confirm_filtered_scope", "resolve_skipped_cases"])
+            self.assertEqual(payload["reviewer_queue"]["largest_group_labels"], ["fix regressions", "watch unchanged fails", "confirm filtered-out scope", "resolve skipped cases"])
             self.assertEqual(payload["reviewer_queue"]["largest_group_count"], 1)
             self.assertEqual(
                 payload["reviewer_queue"]["groups"],
@@ -3731,6 +3733,8 @@ if __name__ == "__main__":
         self.assertIsNone(payload["largest_group_label"])
         self.assertEqual(payload["largest_group_count"], 0)
         self.assertIsNone(payload["largest_group_priority_rank"])
+        self.assertEqual(payload["largest_group_keys"], [])
+        self.assertEqual(payload["largest_group_labels"], [])
         self.assertEqual(payload["groups"], [])
 
     def test_summary_json_exposes_largest_group_label_for_handoff_copy(self) -> None:
@@ -3748,6 +3752,8 @@ if __name__ == "__main__":
         self.assertEqual(payload["largest_group_key"], "fix_regressions")
         self.assertEqual(payload["largest_group_label"], "fix regressions")
         self.assertEqual(payload["largest_group_ids"], ["checkout-copy", "policy-note"])
+        self.assertEqual(payload["largest_group_keys"], ["fix_regressions"])
+        self.assertEqual(payload["largest_group_labels"], ["fix regressions"])
         self.assertEqual(payload["largest_group_queue_share"], 0.6667)
         self.assertEqual(payload["largest_group_priority_rank"], 1)
 

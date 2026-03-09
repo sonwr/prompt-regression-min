@@ -55,6 +55,16 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         if largest_group is None
         else follow_up_priority.index(str(largest_group["key"])) + 1
     )
+    largest_group_keys = [
+        str(group["key"])
+        for group in groups
+        if largest_group is not None and int(group["count"]) == int(largest_group["count"])
+    ]
+    largest_group_labels = [
+        str(group["label"])
+        for group in groups
+        if largest_group is not None and int(group["count"]) == int(largest_group["count"])
+    ]
     return {
         "total": total,
         "rate": round(rate, 4),
@@ -65,6 +75,8 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "group_count": len(groups),
         "follow_up_priority": follow_up_priority,
         "largest_group_priority_rank": largest_group_priority_rank,
+        "largest_group_keys": largest_group_keys,
+        "largest_group_labels": largest_group_labels,
         "largest_group_key": None if largest_group is None else largest_group["key"],
         "largest_group_label": None if largest_group is None else largest_group["label"],
         "largest_group_ids": [] if largest_group is None else list(largest_group["ids"]),
@@ -991,6 +1003,16 @@ def main() -> None:
                 if reviewer_queue_summary.get("largest_group_priority_rank") is not None:
                     markdown_lines.append(
                         f"- Reviewer queue next-focus priority rank: {reviewer_queue_summary.get('largest_group_priority_rank')} of {len(reviewer_queue_summary.get('follow_up_priority', []))}"
+                    )
+                if reviewer_queue_summary.get("largest_group_keys"):
+                    markdown_lines.append(
+                        "- Reviewer queue tied largest groups: "
+                        + ", ".join(str(key) for key in reviewer_queue_summary["largest_group_keys"])
+                    )
+                if reviewer_queue_summary.get("largest_group_labels"):
+                    markdown_lines.append(
+                        "- Reviewer queue tied largest labels: "
+                        + ", ".join(str(label) for label in reviewer_queue_summary["largest_group_labels"])
                     )
                 if reviewer_queue_summary.get("largest_group_ids"):
                     markdown_lines.append(
