@@ -200,6 +200,7 @@ For a rendered-line budget variant, open `examples/line_count_range_walkthrough.
 That walkthrough now also includes a PR-comment-ready FAIL summary snippet for reviewer notes and release-review threads.
 If you want a dedicated reviewer-note template, open `examples/word_count_pr_comment_playbook.md` for a generate -> paste -> rerun flow built around the committed word-count snapshots.
 If you need to decide the first rerun lane from reviewer-queue metadata, open `examples/reviewer_queue_next_focus_playbook.md` for a compact `dominant focus -> next-focus -> tie-mode` triage flow.
+If `next_focus_tie_mode` is `tied`, open `examples/reviewer_queue_tie_playbook.md` for a deterministic “keep the first priority lane, but preserve the tie in the pasted note” workflow.
 Committed reviewer-facing markdown output for the same fixture lives at `examples/artifacts/word-count-range.summary.md`, and the matching machine-readable gate payload now lives at `examples/artifacts/word-count-range.summary.json` for CI drift checks.
 A ready-to-paste reviewer note snapshot now also lives at `examples/artifacts/word-count-range.pr-comment.md`, regenerated alongside the markdown/json walkthrough artifacts.
 The walkthrough PASS fixture now also ships an approval-ready reviewer note snapshot at `examples/artifacts/walkthrough-pass.pr-comment.md`, and the matching FAIL fixture now ships a blocking note snapshot at `examples/artifacts/walkthrough-fail.pr-comment.md`, so teams can paste both approval and failure comment shapes from committed artifacts.
