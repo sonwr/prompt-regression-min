@@ -79,6 +79,8 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "largest_group_priority_rank": largest_group_priority_rank,
         "largest_group_keys": largest_group_keys,
         "largest_group_labels": largest_group_labels,
+        "largest_group_tie_count": len(largest_group_keys),
+        "largest_group_has_ties": len(largest_group_keys) > 1,
         "largest_group_key": None if largest_group is None else largest_group["key"],
         "largest_group_label": None if largest_group is None else largest_group["label"],
         "largest_group_ids": [] if largest_group is None else list(largest_group["ids"]),
@@ -1021,6 +1023,9 @@ def main() -> None:
                         "- Reviewer queue tied largest groups: "
                         + ", ".join(str(key) for key in reviewer_queue_summary["largest_group_keys"])
                     )
+                    markdown_lines.append(
+                        f"- Reviewer queue largest-group tie count: {reviewer_queue_summary.get('largest_group_tie_count', 0)}"
+                    )
                 if reviewer_queue_summary.get("largest_group_labels"):
                     markdown_lines.append(
                         "- Reviewer queue tied largest labels: "
@@ -1246,6 +1251,14 @@ def main() -> None:
                 if reviewer_queue_summary.get("largest_group_priority_rank") is not None:
                     pr_comment_lines.append(
                         f"- Reviewer queue next-focus priority rank: {reviewer_queue_summary.get('largest_group_priority_rank')} of {len(reviewer_queue_summary.get('follow_up_priority', []))}"
+                    )
+                if reviewer_queue_summary.get("largest_group_keys"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue tied largest groups: "
+                        + ", ".join(str(key) for key in reviewer_queue_summary["largest_group_keys"])
+                    )
+                    pr_comment_lines.append(
+                        f"- Reviewer queue largest-group tie count: {reviewer_queue_summary.get('largest_group_tie_count', 0)}"
                     )
                 if reviewer_queue_summary.get("largest_group_ids"):
                     pr_comment_lines.append(

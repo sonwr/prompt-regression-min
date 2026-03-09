@@ -25,6 +25,8 @@
 - Reviewer queue follow-up priority: fix_regressions
 - Reviewer queue follow-up labels: fix regressions
 - Reviewer queue next-focus priority rank: 1 of 1
+- Reviewer queue tied largest groups: fix_regressions
+- Reviewer queue largest-group tie count: 1
 - Reviewer queue largest group IDs: `release-note-bullets`, `release-note-short`
 - Reviewer queue (regressions): 2 case(s) / 100.00% of active cases / 100.00% of source cases
 - Reviewer queue: fix regressions: `release-note-bullets`, `release-note-short`
