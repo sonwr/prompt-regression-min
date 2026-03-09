@@ -81,7 +81,7 @@
 - Reviewer queue next-focus active-case rate: 50.00% of active cases
 - Reviewer queue next-focus source-case rate: 50.00% of source cases
 - Reviewer queue next-focus queue share: 100.00% of queued follow-up
-- Reviewer queue next-focus advantage: 1 case(s), 100.00% of queued follow-up, 50.00% of active cases
+- Reviewer queue next-focus advantage: 1 case(s), 100.00% of queued follow-up, 50.00% of active cases, 50.00% of source cases
 - Reviewer queue: fix regressions: `auth-login`
 - Fail reasons:
   - regressions 1 exceeded max 0

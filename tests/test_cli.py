@@ -116,6 +116,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Reviewer queue next-focus priority rank: 1 of 1", markdown)
         self.assertIn("- Reviewer queue next-focus tie mode: unique", markdown)
         self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", markdown)
+        self.assertIn("- Reviewer queue next-focus advantage: 2 case(s), 100.00% of queued follow-up, 100.00% of active cases, 100.00% of source cases", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
     def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
         root = Path(__file__).resolve().parents[1]
@@ -302,6 +303,7 @@ class PromptRegressionCliTests(unittest.TestCase):
                     "advantage_case_count": 0,
                     "advantage_queue_share": 0.0,
                     "advantage_active_case_rate": 0.0,
+                    "advantage_source_case_rate": 0.0,
                 },
             )
 
@@ -4095,6 +4097,7 @@ if __name__ == "__main__":
         self.assertEqual(payload["next_focus_advantage_case_count"], 2)
         self.assertEqual(payload["next_focus_advantage_queue_share"], 0.4)
         self.assertEqual(payload["next_focus_advantage_active_case_rate"], 0.3333)
+        self.assertEqual(payload["next_focus_advantage_source_case_rate"], 0.3333)
         self.assertEqual(
             payload["next_focus_group"],
             {
@@ -4111,6 +4114,7 @@ if __name__ == "__main__":
                 "advantage_case_count": 2,
                 "advantage_queue_share": 0.4,
                 "advantage_active_case_rate": 0.3333,
+                "advantage_source_case_rate": 0.3333,
             },
         )
 

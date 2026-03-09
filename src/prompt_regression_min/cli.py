@@ -84,6 +84,15 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         if next_focus_group is None
         else round(float(next_focus_group["rate"]) - (0.0 if second_focus_group is None else float(second_focus_group["rate"])), 4)
     )
+    next_focus_advantage_source_case_rate = (
+        0.0
+        if next_focus_group is None
+        else round(
+            float(next_focus_group["source_case_rate"])
+            - (0.0 if second_focus_group is None else float(second_focus_group["source_case_rate"])),
+            4,
+        )
+    )
     largest_group_keys = [
         str(group["key"])
         for group in groups
@@ -175,6 +184,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "next_focus_advantage_case_count": next_focus_advantage_case_count,
         "next_focus_advantage_queue_share": next_focus_advantage_queue_share,
         "next_focus_advantage_active_case_rate": next_focus_advantage_active_case_rate,
+        "next_focus_advantage_source_case_rate": next_focus_advantage_source_case_rate,
         "next_focus_group": {
             "key": next_focus_key,
             "label": next_focus_label,
@@ -197,6 +207,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             "advantage_case_count": next_focus_advantage_case_count,
             "advantage_queue_share": next_focus_advantage_queue_share,
             "advantage_active_case_rate": next_focus_advantage_active_case_rate,
+            "advantage_source_case_rate": next_focus_advantage_source_case_rate,
         },
         "largest_group_keys": largest_group_keys,
         "largest_group_labels": largest_group_labels,
@@ -1247,7 +1258,7 @@ def main() -> None:
                         f"- Reviewer queue next-focus queue share: {reviewer_queue_summary.get('next_focus_queue_share', reviewer_queue_summary.get('largest_group_queue_share', 0.0)) * 100:.2f}% of queued follow-up"
                     )
                     markdown_lines.append(
-                        f"- Reviewer queue next-focus advantage: {reviewer_queue_summary.get('next_focus_advantage_case_count', 0)} case(s), {reviewer_queue_summary.get('next_focus_advantage_queue_share', 0.0) * 100:.2f}% of queued follow-up, {reviewer_queue_summary.get('next_focus_advantage_active_case_rate', 0.0) * 100:.2f}% of active cases"
+                        f"- Reviewer queue next-focus advantage: {reviewer_queue_summary.get('next_focus_advantage_case_count', 0)} case(s), {reviewer_queue_summary.get('next_focus_advantage_queue_share', 0.0) * 100:.2f}% of queued follow-up, {reviewer_queue_summary.get('next_focus_advantage_active_case_rate', 0.0) * 100:.2f}% of active cases, {reviewer_queue_summary.get('next_focus_advantage_source_case_rate', 0.0) * 100:.2f}% of source cases"
                     )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
