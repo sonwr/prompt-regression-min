@@ -1030,6 +1030,10 @@ def main() -> None:
                     markdown_lines.append(
                         f"- Reviewer queue next-focus priority rank: {reviewer_queue_summary.get('largest_group_priority_rank')} of {len(reviewer_queue_summary.get('follow_up_priority', []))}"
                     )
+                markdown_lines.append(
+                    "- Reviewer queue next-focus tie mode: "
+                    + ("tied" if reviewer_queue_summary.get('largest_group_has_ties') else "unique")
+                )
                 if reviewer_queue_summary.get("largest_group_keys"):
                     markdown_lines.append(
                         "- Reviewer queue tied largest groups: "
@@ -1272,6 +1276,10 @@ def main() -> None:
                     pr_comment_lines.append(
                         f"- Reviewer queue next-focus priority rank: {reviewer_queue_summary.get('largest_group_priority_rank')} of {len(reviewer_queue_summary.get('follow_up_priority', []))}"
                     )
+                pr_comment_lines.append(
+                    "- Reviewer queue next-focus tie mode: "
+                    + ("tied" if reviewer_queue_summary.get('largest_group_has_ties') else "unique")
+                )
                 if reviewer_queue_summary.get("largest_group_keys"):
                     pr_comment_lines.append(
                         "- Reviewer queue tied largest groups: "

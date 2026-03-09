@@ -109,6 +109,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Reviewer queue next-focus active-case rate: 100.00% of active cases", markdown)
         self.assertIn("- Reviewer queue next-focus source-case rate: 100.00% of source cases", markdown)
         self.assertIn("- Reviewer queue next-focus priority rank: 1 of 1", markdown)
+        self.assertIn("- Reviewer queue next-focus tie mode: unique", markdown)
         self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
     def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
@@ -218,6 +219,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue next-focus active-case rate: 50.00% of active cases", pr_comment)
             self.assertIn("- Reviewer queue next-focus source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Reviewer queue next-focus priority rank: 1 of 1", pr_comment)
+            self.assertIn("- Reviewer queue next-focus tie mode: unique", pr_comment)
             self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", pr_comment)
             self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
@@ -274,6 +276,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue tied largest groups: fix_regressions, watch_unchanged_fails", pr_comment)
             self.assertIn("- Reviewer queue largest-group tie count: 2", pr_comment)
             self.assertIn("- Reviewer queue tied largest labels: fix regressions, watch unchanged fails", pr_comment)
+            self.assertIn("- Reviewer queue next-focus tie mode: tied", pr_comment)
 
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
