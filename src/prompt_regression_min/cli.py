@@ -981,6 +981,13 @@ def main() -> None:
                         "- Reviewer queue follow-up priority: "
                         + " -> ".join(str(key) for key in reviewer_queue_summary["follow_up_priority"])
                     )
+                    markdown_lines.append(
+                        "- Reviewer queue follow-up labels: "
+                        + " -> ".join(
+                            dominant_label_map.get(str(key), str(key))
+                            for key in reviewer_queue_summary["follow_up_priority"]
+                        )
+                    )
                 if reviewer_queue_summary.get("largest_group_priority_rank") is not None:
                     markdown_lines.append(
                         f"- Reviewer queue next-focus priority rank: {reviewer_queue_summary.get('largest_group_priority_rank')} of {len(reviewer_queue_summary.get('follow_up_priority', []))}"
@@ -1184,6 +1191,13 @@ def main() -> None:
                     pr_comment_lines.append(
                         "- Reviewer queue follow-up priority: "
                         + " -> ".join(str(key) for key in reviewer_queue_summary["follow_up_priority"])
+                    )
+                    pr_comment_lines.append(
+                        "- Reviewer queue follow-up labels: "
+                        + " -> ".join(
+                            dominant_label_map.get(str(key), str(key))
+                            for key in reviewer_queue_summary["follow_up_priority"]
+                        )
                     )
                 if reviewer_queue_summary.get("largest_group_priority_rank") is not None:
                     pr_comment_lines.append(
