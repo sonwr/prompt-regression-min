@@ -125,6 +125,14 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         for group in priority_sorted_groups
         if next_focus_group is not None and int(group["count"]) == int(next_focus_group["count"])
     ]
+    next_focus_tie_summary = (
+        "none"
+        if not next_focus_tie_keys
+        else ", ".join(
+            f"{key}=P{follow_up_priority_ranks.get(key, 0)} · {queue_label_by_key.get(key, key)}"
+            for key in next_focus_tie_keys
+        )
+    )
     largest_group_keys = [
         str(group["key"])
         for group in groups
@@ -243,6 +251,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         ),
         "next_focus_tie_keys": next_focus_tie_keys,
         "next_focus_tie_labels": next_focus_tie_labels,
+        "next_focus_tie_summary": next_focus_tie_summary,
         "next_focus_tie_count": len(next_focus_tie_keys),
         "next_focus_has_ties": len(next_focus_tie_keys) > 1,
         "next_focus_advantage_case_count": next_focus_advantage_case_count,
@@ -1369,6 +1378,10 @@ def main() -> None:
                         + str(reviewer_queue_summary.get("next_focus_advantage_label", "none"))
                     )
                     markdown_lines.append(
+                        "- Reviewer queue next-focus tie summary: "
+                        + str(reviewer_queue_summary.get("next_focus_tie_summary", "none"))
+                    )
+                    markdown_lines.append(
                         "- Reviewer queue next-focus advantage summary: "
                         + str(reviewer_queue_summary.get("next_focus_advantage_summary", "none"))
                     )
@@ -1710,6 +1723,10 @@ def main() -> None:
                     pr_comment_lines.append(
                         "- Reviewer queue next-focus advantage label: "
                         + str(reviewer_queue_summary.get("next_focus_advantage_label", "none"))
+                    )
+                    pr_comment_lines.append(
+                        "- Reviewer queue next-focus tie summary: "
+                        + str(reviewer_queue_summary.get("next_focus_tie_summary", "none"))
                     )
                     pr_comment_lines.append(
                         "- Reviewer queue next-focus advantage summary: "

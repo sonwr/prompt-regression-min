@@ -118,6 +118,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", markdown)
         self.assertIn("- Reviewer queue next-focus advantage: 2 case(s), 100.00% of queued follow-up, 100.00% of active cases, 100.00% of source cases", markdown)
         self.assertIn("- Reviewer queue next-focus advantage label: single queue", markdown)
+        self.assertIn("- Reviewer queue next-focus tie summary: fix_regressions=P1 · fix regressions", markdown)
         self.assertIn("- Reviewer queue next-focus advantage summary: single queue: +2 case(s), +100.00% queue share, +100.00% active-case rate, +100.00% source-case rate", markdown)
         self.assertIn("- Status: **FAIL**", markdown)
     def test_summary_markdown_includes_active_case_rate_for_filtered_shards(self) -> None:
@@ -235,6 +236,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue next-focus tie mode: unique", pr_comment)
             self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", pr_comment)
             self.assertIn("- Reviewer queue next-focus advantage label: single queue", pr_comment)
+            self.assertIn("- Reviewer queue next-focus tie summary: fix_regressions=P1 · fix regressions", pr_comment)
             self.assertIn("- Reviewer queue next-focus advantage summary: single queue: +1 case(s), +100.00% queue share, +50.00% active-case rate, +50.00% source-case rate", pr_comment)
             self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
@@ -302,6 +304,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(reviewer_queue["runner_up_priority_rank"], 2)
             self.assertEqual(reviewer_queue["runner_up_ids"], ["watch-1"])
             self.assertEqual(reviewer_queue["runner_up_summary"], "watch_unchanged_fails: `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)")
+            self.assertEqual(reviewer_queue["next_focus_tie_summary"], "fix_regressions=P1 · fix regressions, watch_unchanged_fails=P2 · watch unchanged fails")
             self.assertEqual(
                 reviewer_queue["next_focus_group"],
                 {
@@ -530,6 +533,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue runner-up active-case rate: 50.00% of active cases", pr_comment)
             self.assertIn("- Reviewer queue runner-up source-case rate: 50.00% of source cases", pr_comment)
             self.assertIn("- Reviewer queue runner-up queue share: 50.00% of queued follow-up", pr_comment)
+            self.assertIn("- Reviewer queue next-focus tie summary: fix_regressions=P1 · fix regressions, watch_unchanged_fails=P2 · watch unchanged fails", pr_comment)
             self.assertIn("- Reviewer queue runner-up summary: watch_unchanged_fails: `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)", pr_comment)
 
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:

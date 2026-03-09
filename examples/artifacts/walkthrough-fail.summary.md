@@ -84,6 +84,7 @@
 - Reviewer queue next-focus queue share: 100.00% of queued follow-up
 - Reviewer queue next-focus advantage: 1 case(s), 100.00% of queued follow-up, 50.00% of active cases, 50.00% of source cases
 - Reviewer queue next-focus advantage label: single queue
+- Reviewer queue next-focus tie summary: fix_regressions=P1 · fix regressions
 - Reviewer queue next-focus advantage summary: single queue: +1 case(s), +100.00% queue share, +50.00% active-case rate, +50.00% source-case rate
 - Reviewer queue: fix regressions: `auth-login`
 - Fail reasons:
