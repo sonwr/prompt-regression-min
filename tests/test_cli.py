@@ -223,6 +223,58 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue next-focus queue share: 100.00% of queued follow-up", pr_comment)
             self.assertIn("- Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases", pr_comment)
 
+    def test_summary_json_exposes_next_focus_alias_fields_for_bots(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_json = tmp_path / "summary.json"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "watch-1", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "reg-1", "output": "ok"},
+                    {"id": "watch-1", "output": "bad"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "reg-1", "output": "bad"},
+                    {"id": "watch-1", "output": "bad"},
+                ],
+            )
+
+            with self.assertRaises(SystemExit):
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm", "run",
+                        "-d", str(dataset),
+                        "-b", str(baseline),
+                        "-c", str(candidate),
+                        "--summary-json", str(summary_json),
+                        "--quiet",
+                    ],
+                ):
+                    cli.main()
+
+            payload = json.loads(summary_json.read_text(encoding="utf-8"))
+            reviewer_queue = payload["reviewer_queue"]
+            self.assertEqual(reviewer_queue["next_focus_key"], "watch_unchanged_fails")
+            self.assertEqual(reviewer_queue["next_focus_label"], "watch unchanged fails")
+            self.assertEqual(reviewer_queue["next_focus_ids"], ["watch-1"])
+            self.assertEqual(reviewer_queue["next_focus_case_count"], 1)
+            self.assertEqual(reviewer_queue["next_focus_tie_mode"], "tied")
+
     def test_summary_json_exposes_reviewer_queue_group_maps_for_bots(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

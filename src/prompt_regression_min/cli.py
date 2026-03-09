@@ -58,6 +58,13 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         if largest_group is None
         else follow_up_priority.index(str(largest_group["key"])) + 1
     )
+    next_focus_key = None if largest_group is None else str(largest_group["key"])
+    next_focus_label = None if largest_group is None else str(largest_group["label"])
+    next_focus_ids = [] if largest_group is None else list(largest_group["ids"])
+    next_focus_tie_mode = "tied" if largest_group is not None and any(
+        int(group["count"]) == int(largest_group["count"]) and str(group["key"]) != next_focus_key
+        for group in groups
+    ) else "unique"
     largest_group_keys = [
         str(group["key"])
         for group in groups
@@ -105,6 +112,11 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "follow_up_priority": follow_up_priority,
         "follow_up_priority_ranks": follow_up_priority_ranks,
         "largest_group_priority_rank": largest_group_priority_rank,
+        "next_focus_key": next_focus_key,
+        "next_focus_label": next_focus_label,
+        "next_focus_ids": next_focus_ids,
+        "next_focus_case_count": 0 if largest_group is None else int(largest_group["count"]),
+        "next_focus_tie_mode": next_focus_tie_mode,
         "largest_group_keys": largest_group_keys,
         "largest_group_labels": largest_group_labels,
         "largest_group_tie_count": len(largest_group_keys),
