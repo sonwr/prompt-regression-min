@@ -255,6 +255,44 @@ class RegressionCoreTests(unittest.TestCase):
 
             self.assertIn("Unsupported regex flag in dataset id=case-1: NOPE", str(exc.exception))
 
+    def test_run_regression_supports_byte_count_range_for_multibyte_outputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "byte_count_range", "min_bytes": 6, "max_bytes": 6}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "가나"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "abc"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
+    def test_run_regression_rejects_byte_count_range_without_bounds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "byte_count_range"}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "가나"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "가나"}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertIn("set min_bytes, max_bytes, or both", str(exc.exception))
+
     def test_run_regression_supports_exact_ci_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

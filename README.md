@@ -154,6 +154,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `char_count_range` (enforces lower/upper output-length bounds using raw character counts)
   - `byte_count_range` (enforces UTF-8 byte-length bounds for UI labels, commit titles, or multilingual outputs)
 - Example fixture trio for deterministic release-note length checks: `examples/dataset/word_count_range_release_notes.jsonl` + matching outputs
+- Multibyte-safe byte-budget coverage is part of the core contract: use `byte_count_range` when UI labels, commit titles, or Korean/Japanese outputs must stay within a strict UTF-8 byte ceiling.
 - Produces:
   - terminal summary (including `outcome_counts` rollup and explicit `unchanged_pass` / `unchanged_fail` counters)
   - machine-readable JSON report (including `summary.regression_ids` / `summary.improved_ids`)
