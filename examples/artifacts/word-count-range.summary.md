@@ -78,6 +78,7 @@
 - Reviewer queue next-focus priority label: P1 · fix regressions
 - Reviewer queue next focus: fix_regressions: `release-note-bullets`, `release-note-short`
 - Reviewer queue next-focus action summary: P1 · fix regressions -> `release-note-bullets`, `release-note-short`
+- Reviewer queue next-focus handoff summary: fix_regressions=P1 · fix regressions -> `release-note-bullets`, `release-note-short` (2 case(s), 100.00% active-case rate, 100.00% source-case rate, 100.00% of queued follow-up)
 - Reviewer queue next-focus case count: 2
 - Reviewer queue next-focus active-case rate: 100.00% of active cases
 - Reviewer queue next-focus source-case rate: 100.00% of source cases

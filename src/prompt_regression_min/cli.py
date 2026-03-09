@@ -133,6 +133,28 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             for key in next_focus_tie_keys
         )
     )
+    next_focus_handoff_summary = (
+        "none"
+        if next_focus_group is None
+        else (
+            f"{next_focus_key}=P{follow_up_priority_ranks.get(next_focus_key, 0)} · {queue_label_by_key.get(next_focus_key, next_focus_key)}"
+            + f" -> {', '.join(f'`{case_id}`' for case_id in next_focus_ids)}"
+            + f" ({int(next_focus_group['count'])} case(s), {float(next_focus_group['rate']) * 100:.2f}% active-case rate, "
+            + f"{float(next_focus_group['source_case_rate']) * 100:.2f}% source-case rate, "
+            + f"{(0.0 if total == 0 else round(float(next_focus_group['count']) / total, 4)) * 100:.2f}% of queued follow-up)"
+        )
+    )
+    runner_up_handoff_summary = (
+        "none"
+        if second_focus_group is None
+        else (
+            f"{runner_up_key}=P{follow_up_priority_ranks.get(runner_up_key, 0)} · {queue_label_by_key.get(runner_up_key, runner_up_key)}"
+            + f" -> {', '.join(f'`{case_id}`' for case_id in runner_up_ids)}"
+            + f" ({int(second_focus_group['count'])} case(s), {float(second_focus_group['rate']) * 100:.2f}% active-case rate, "
+            + f"{float(second_focus_group['source_case_rate']) * 100:.2f}% source-case rate, "
+            + f"{(0.0 if total == 0 else round(float(second_focus_group['count']) / total, 4)) * 100:.2f}% of queued follow-up)"
+        )
+    )
     largest_group_keys = [
         str(group["key"])
         for group in groups
@@ -252,6 +274,8 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "next_focus_tie_keys": next_focus_tie_keys,
         "next_focus_tie_labels": next_focus_tie_labels,
         "next_focus_tie_summary": next_focus_tie_summary,
+        "next_focus_handoff_summary": next_focus_handoff_summary,
+        "runner_up_handoff_summary": runner_up_handoff_summary,
         "next_focus_tie_count": len(next_focus_tie_keys),
         "next_focus_has_ties": len(next_focus_tie_keys) > 1,
         "next_focus_advantage_case_count": next_focus_advantage_case_count,
@@ -1334,6 +1358,10 @@ def main() -> None:
                         )
                     )
                     markdown_lines.append(
+                        "- Reviewer queue next-focus handoff summary: "
+                        + str(reviewer_queue_summary.get("next_focus_handoff_summary", "none"))
+                    )
+                    markdown_lines.append(
                         f"- Reviewer queue next-focus case count: {reviewer_queue_summary.get('next_focus_case_count', reviewer_queue_summary.get('largest_group_count', 0))}"
                     )
                     if reviewer_queue_summary.get("runner_up_key"):
@@ -1368,6 +1396,9 @@ def main() -> None:
                         )
                         markdown_lines.append(
                             "- Reviewer queue runner-up summary: " + str(reviewer_queue_summary.get("runner_up_summary", "none"))
+                        )
+                        markdown_lines.append(
+                            "- Reviewer queue runner-up handoff summary: " + str(reviewer_queue_summary.get("runner_up_handoff_summary", "none"))
                         )
                     if reviewer_queue_summary.get("runner_up_key"):
                         markdown_lines.append(
@@ -1691,6 +1722,18 @@ def main() -> None:
                         )
                     )
                     pr_comment_lines.append(
+                        "- Reviewer queue next-focus action summary: "
+                        + str(reviewer_queue_summary.get("next_focus_priority_label", reviewer_queue_summary.get("next_focus_key") or "none"))
+                        + " -> "
+                        + ", ".join(
+                            f"`{case_id}`" for case_id in reviewer_queue_summary.get("next_focus_ids", reviewer_queue_summary["largest_group_ids"])
+                        )
+                    )
+                    pr_comment_lines.append(
+                        "- Reviewer queue next-focus handoff summary: "
+                        + str(reviewer_queue_summary.get("next_focus_handoff_summary", "none"))
+                    )
+                    pr_comment_lines.append(
                         f"- Reviewer queue next-focus case count: {reviewer_queue_summary.get('next_focus_case_count', reviewer_queue_summary.get('largest_group_count', 0))}"
                     )
                     if reviewer_queue_summary.get("runner_up_key"):
@@ -1725,6 +1768,9 @@ def main() -> None:
                         )
                         pr_comment_lines.append(
                             "- Reviewer queue runner-up summary: " + str(reviewer_queue_summary.get("runner_up_summary", "none"))
+                        )
+                        pr_comment_lines.append(
+                            "- Reviewer queue runner-up handoff summary: " + str(reviewer_queue_summary.get("runner_up_handoff_summary", "none"))
                         )
                     pr_comment_lines.append(
                         f"- Reviewer queue next-focus active-case rate: {reviewer_queue_summary.get('group_rates_by_key', {}).get(str(reviewer_queue_summary.get('next_focus_key')), reviewer_queue_summary.get('largest_group_rate', 0.0)) * 100:.2f}% of active cases"

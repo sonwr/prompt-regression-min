@@ -304,6 +304,8 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(reviewer_queue["runner_up_priority_rank"], 2)
             self.assertEqual(reviewer_queue["runner_up_ids"], ["watch-1"])
             self.assertEqual(reviewer_queue["runner_up_summary"], "watch_unchanged_fails: `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)")
+            self.assertEqual(reviewer_queue["next_focus_handoff_summary"], "fix_regressions=P1 · fix regressions -> `reg-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)")
+            self.assertEqual(reviewer_queue["runner_up_handoff_summary"], "watch_unchanged_fails=P2 · watch unchanged fails -> `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)")
             self.assertEqual(reviewer_queue["next_focus_tie_summary"], "fix_regressions=P1 · fix regressions, watch_unchanged_fails=P2 · watch unchanged fails")
             self.assertEqual(
                 reviewer_queue["next_focus_group"],
@@ -535,6 +537,8 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue runner-up queue share: 50.00% of queued follow-up", pr_comment)
             self.assertIn("- Reviewer queue next-focus tie summary: fix_regressions=P1 · fix regressions, watch_unchanged_fails=P2 · watch unchanged fails", pr_comment)
             self.assertIn("- Reviewer queue runner-up summary: watch_unchanged_fails: `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)", pr_comment)
+            self.assertIn("- Reviewer queue next-focus handoff summary: fix_regressions=P1 · fix regressions -> `reg-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)", pr_comment)
+            self.assertIn("- Reviewer queue runner-up handoff summary: watch_unchanged_fails=P2 · watch unchanged fails -> `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)", pr_comment)
 
     def test_summary_pr_comment_includes_improvement_rate_for_reviewer_triage(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
