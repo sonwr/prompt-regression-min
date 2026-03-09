@@ -291,7 +291,7 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
             if flag_name not in REGEX_FLAG_MAP:
                 supported_flags = ", ".join(REGEX_FLAG_MAP)
                 raise ValueError(
-                    f"Unsupported regex flag: {raw_flag_name}. Supported flags: {supported_flags}"
+                    f"Unsupported regex flag: {flag_name}. Supported flags: {supported_flags}"
                 )
             flags |= REGEX_FLAG_MAP[flag_name]
 
@@ -537,9 +537,8 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
             if flag_name not in REGEX_FLAG_MAP:
                 supported_flags = ", ".join(REGEX_FLAG_MAP)
                 raise ValueError(
-                    f"Unsupported regex flag in dataset id={case_id}: {raw_flag_name}. Supported flags: {supported_flags}"
+                    f"Unsupported regex flag in dataset id={case_id}: {flag_name}. Supported flags: {supported_flags}"
                 )
-            normalized_flags.append(flag_name)
 
         flags_value = 0
         for flag_name in normalized_flags:

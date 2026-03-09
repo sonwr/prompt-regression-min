@@ -91,7 +91,26 @@ class RegressionCoreTests(unittest.TestCase):
             with self.assertRaises(ValueError) as exc:
                 run_regression(str(dataset), str(baseline), str(candidate))
 
-            self.assertIn("expected.flags as a list or string", str(exc.exception))
+            self.assertIn("must be a list or string", str(exc.exception))
+
+    def test_run_regression_rejects_unsupported_regex_flag_from_pipe_string(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "regex", "pattern": "alpha", "flags": "ignorecase | nope"}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "alpha"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "alpha"}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertIn("Unsupported regex flag in dataset id=case-1: NOPE", str(exc.exception))
 
     def test_run_regression_supports_exact_ci_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
