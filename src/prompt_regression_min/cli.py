@@ -940,9 +940,15 @@ def main() -> None:
                 pr_comment_lines.append(
                     "- Filtered-out IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["filtered_out_ids"])
                 )
+                pr_comment_lines.append(
+                    f"- Filtered-out rate: {summary.get('filtered_out_rate', 0.0) * 100:.2f}% of source cases"
+                )
             if summary.get("skipped_ids"):
                 pr_comment_lines.append(
                     "- Skipped IDs: " + ", ".join(f"`{case_id}`" for case_id in summary["skipped_ids"])
+                )
+                pr_comment_lines.append(
+                    f"- Skipped-case rate: {summary.get('skipped_rate', 0.0) * 100:.2f}% of active cases"
                 )
             reviewer_queue = []
             reviewer_queue_total = 0
