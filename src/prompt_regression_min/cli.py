@@ -12,6 +12,7 @@ from .core import run_regression
 
 def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
     active_cases = int(summary.get("active_cases", summary.get("cases", 0)) or 0)
+    dataset_cases = int(summary.get("dataset_cases", summary.get("cases", active_cases)) or 0)
     groups: list[dict[str, object]] = []
     total = 0
     queue_specs = [
@@ -25,12 +26,14 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
             continue
         count = len(ids)
         group_rate = (count / active_cases) if active_cases else 0.0
+        group_source_case_rate = (count / dataset_cases) if dataset_cases else 0.0
         groups.append({
             "key": key,
             "label": label,
             "ids": ids,
             "count": count,
             "rate": round(group_rate, 4),
+            "source_case_rate": round(group_source_case_rate, 4),
         })
         total += len(ids)
     rate = (total / active_cases) if active_cases else 0.0
@@ -39,10 +42,12 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         "total": total,
         "rate": round(rate, 4),
         "active_cases": active_cases,
+        "dataset_cases": dataset_cases,
         "groups": groups,
         "group_count": len(groups),
         "largest_group_key": None if largest_group is None else largest_group["key"],
         "largest_group_count": 0 if largest_group is None else int(largest_group["count"]),
+        "largest_group_source_case_rate": 0.0 if largest_group is None else float(largest_group["source_case_rate"]),
     }
 
 
@@ -919,7 +924,8 @@ def main() -> None:
                     "- Reviewer queue largest group: "
                     f"{reviewer_queue_summary.get('largest_group_key') or 'none'} "
                     f"({reviewer_queue_summary.get('largest_group_count', 0)} case(s), "
-                    f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate)"
+                    f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate, "
+                    f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate)"
                 )
                 markdown_lines.append("- Reviewer queue: " + " | ".join(review_queue))
             if fail_reasons:
@@ -1058,7 +1064,8 @@ def main() -> None:
                     "- Reviewer queue largest group: "
                     f"{reviewer_queue_summary.get('largest_group_key') or 'none'} "
                     f"({reviewer_queue_summary.get('largest_group_count', 0)} case(s), "
-                    f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate)"
+                    f"{reviewer_queue_summary.get('rate', 0.0) * 100:.2f}% overall queue rate, "
+                    f"{reviewer_queue_summary.get('largest_group_source_case_rate', 0.0) * 100:.2f}% source-case rate)"
                 )
                 if regression_ids:
                     pr_comment_lines.append(

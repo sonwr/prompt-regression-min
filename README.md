@@ -209,6 +209,7 @@ PR-comment output now also surfaces `Tool version` plus `Required schema version
 PR-comment output now also surfaces `Selection rate` and `Active-case rate`, making shard coverage and post-filter execution scope visible in paste-ready reviewer notes without opening the JSON or markdown artifacts.
 PR-comment output now also surfaces reviewer-queue breakdown lines (`regressions`, `watchlist`, `filtered-out scope`, `skipped cases`) so reviewers can see what kind of follow-up work dominates a rerun without opening the JSON artifact.
 Markdown/PR-comment summaries now also expose `Reviewer queue source-case rate`, so shard-heavy reruns can distinguish active-case overload from total dataset impact without opening JSON.
+The `Reviewer queue largest group` line now also shows source-case rate, so the dominant rerun bucket is easy to size against the full dataset without opening JSON.
 PR-comment output now also surfaces `Regression rate` and `Improvement rate`, so reviewers can gauge how concentrated the changed outcomes are without opening the JSON artifact.
 Markdown/PR-comment summaries now also expose `Regression source-case rate`, `Improvement source-case rate`, `Changed source-case rate`, and `Watchlist source-case rate`, so reviewers can tell whether regressions/watchlists are shard-local or source-dataset-wide without opening JSON.
 PR-comment output now also carries `Unchanged fail IDs` plus a watchlist rate, so reviewers can separate known-bad carryover cases from newly regressed IDs without opening the JSON artifact.
