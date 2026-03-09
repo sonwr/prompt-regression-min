@@ -104,6 +104,7 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("- Reviewer queue follow-up priority: fix_regressions", markdown)
         self.assertIn("- Reviewer queue follow-up labels: fix regressions", markdown)
         self.assertIn("- Reviewer queue priority ranks: fix_regressions=P1", markdown)
+        self.assertIn("- Reviewer queue next-focus key: fix_regressions", markdown)
         self.assertIn("- Reviewer queue next-focus label: fix regressions", markdown)
         self.assertIn("- Reviewer queue next-focus priority label: P1 · fix regressions", markdown)
         self.assertIn("- Reviewer queue next focus: fix_regressions: `release-note-bullets`, `release-note-short`", markdown)
@@ -217,6 +218,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Reviewer queue follow-up priority: fix_regressions", pr_comment)
             self.assertIn("- Reviewer queue follow-up labels: fix regressions", pr_comment)
             self.assertIn("- Reviewer queue priority ranks: fix_regressions=P1", pr_comment)
+            self.assertIn("- Reviewer queue next-focus key: fix_regressions", pr_comment)
             self.assertIn("- Reviewer queue next-focus label: fix regressions", pr_comment)
             self.assertIn("- Reviewer queue next focus: fix_regressions: `reg-1`", pr_comment)
             self.assertIn("- Reviewer queue next-focus case count: 1", pr_comment)
@@ -277,6 +279,7 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertEqual(reviewer_queue["next_focus_label"], "watch unchanged fails")
             self.assertEqual(reviewer_queue["next_focus_ids"], ["watch-1"])
             self.assertEqual(reviewer_queue["next_focus_case_count"], 1)
+            self.assertEqual(reviewer_queue["next_focus_queue_share"], 0.5)
             self.assertEqual(reviewer_queue["next_focus_tie_mode"], "tied")
 
     def test_summary_json_exposes_reviewer_queue_group_maps_for_bots(self) -> None:

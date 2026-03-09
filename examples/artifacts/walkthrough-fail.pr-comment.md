@@ -37,6 +37,7 @@
 - Reviewer queue largest group IDs: `auth-login`
 - Reviewer queue (regressions): 1 case(s) / 50.00% of active cases / 50.00% of source cases
 - Reviewer queue: fix regressions: `auth-login`
+- Reviewer queue next-focus key: fix_regressions
 - Reviewer queue next-focus label: fix regressions
 - Reviewer queue next-focus priority label: P1 · fix regressions
 - Reviewer queue next focus: fix_regressions: `auth-login`

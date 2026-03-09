@@ -34,6 +34,7 @@
 - Reviewer queue largest group IDs: `release-note-bullets`, `release-note-short`
 - Reviewer queue (regressions): 2 case(s) / 100.00% of active cases / 100.00% of source cases
 - Reviewer queue: fix regressions: `release-note-bullets`, `release-note-short`
+- Reviewer queue next-focus key: fix_regressions
 - Reviewer queue next-focus label: fix regressions
 - Reviewer queue next-focus priority label: P1 · fix regressions
 - Reviewer queue next focus: fix_regressions: `release-note-bullets`, `release-note-short`

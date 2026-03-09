@@ -126,6 +126,7 @@ def _build_reviewer_queue(summary: dict[str, object]) -> dict[str, object]:
         ),
         "next_focus_ids": next_focus_ids,
         "next_focus_case_count": 0 if largest_group is None else int(largest_group["count"]),
+        "next_focus_queue_share": 0.0 if largest_group is None or total == 0 else round(float(largest_group["count"]) / total, 4),
         "next_focus_tie_mode": next_focus_tie_mode,
         "largest_group_keys": largest_group_keys,
         "largest_group_labels": largest_group_labels,
@@ -1108,6 +1109,10 @@ def main() -> None:
                             f"`{case_id}`" for case_id in reviewer_queue_summary["largest_group_ids"]
                         )
                     )
+                    markdown_lines.append(
+                        "- Reviewer queue next-focus key: "
+                        + str(reviewer_queue_summary.get("next_focus_key") or reviewer_queue_summary.get("largest_group_key") or "none")
+                    )
                     if dominant_label:
                         markdown_lines.append(
                             "- Reviewer queue next-focus label: " + dominant_label
@@ -1390,6 +1395,10 @@ def main() -> None:
                     )
                 pr_comment_lines.append("- Reviewer queue: " + " | ".join(reviewer_queue))
                 if reviewer_queue_summary.get("largest_group_ids"):
+                    pr_comment_lines.append(
+                        "- Reviewer queue next-focus key: "
+                        + str(reviewer_queue_summary.get("next_focus_key") or reviewer_queue_summary.get("largest_group_key") or "none")
+                    )
                     if dominant_label:
                         pr_comment_lines.append(
                             "- Reviewer queue next-focus label: " + dominant_label

@@ -70,6 +70,7 @@
 - Reviewer queue largest-group tie count: 1
 - Reviewer queue tied largest labels: fix regressions
 - Reviewer queue largest group IDs: `release-note-bullets`, `release-note-short`
+- Reviewer queue next-focus key: fix_regressions
 - Reviewer queue next-focus label: fix regressions
 - Reviewer queue next-focus priority label: P1 · fix regressions
 - Reviewer queue next focus: fix_regressions: `release-note-bullets`, `release-note-short`
