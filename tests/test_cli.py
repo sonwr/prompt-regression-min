@@ -3083,6 +3083,43 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Why it failed:", rendered)
             self.assertIn("keep the PR blocked", rendered)
 
+    def test_cli_applies_custom_summary_pr_comment_title_to_stdout(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "auth-login", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "auth-login", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "auth-login", "output": "nope"}])
+
+            stdout = io.StringIO()
+            with mock.patch(
+                "sys.argv",
+                [
+                    "prm",
+                    "run",
+                    "-d",
+                    str(dataset),
+                    "-b",
+                    str(baseline),
+                    "-c",
+                    str(candidate),
+                    "--summary-pr-comment",
+                    "-",
+                    "--summary-pr-comment-title",
+                    "stdout blocker note",
+                ],
+            ), mock.patch("sys.stdout", stdout):
+                with self.assertRaises(SystemExit) as ctx:
+                    cli.main()
+
+            self.assertEqual(ctx.exception.code, 1)
+            rendered = stdout.getvalue()
+            self.assertIn("## stdout blocker note", rendered)
+            self.assertNotIn("## prompt-regression-min summary", rendered)
+
     def test_cli_prints_summary_markdown_to_stdout_when_dash_is_used(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

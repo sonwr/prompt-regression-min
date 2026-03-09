@@ -37,6 +37,22 @@ python -m prompt_regression_min run \
 3. Hand that stdout block to the PR bot/action without rewriting the text.
 4. If the note title should differ from the archived markdown title, set both title flags explicitly.
 
+## Copy-paste shell capture
+
+```bash
+PR_NOTE="$(python -m prompt_regression_min run \
+  --dataset examples/dataset/walkthrough_fail_artifact_demo.jsonl \
+  --baseline examples/outputs/walkthrough_fail_artifact_demo.baseline.jsonl \
+  --candidate examples/outputs/walkthrough_fail_artifact_demo.candidate.jsonl \
+  --summary-pr-comment - \
+  --summary-pr-comment-title "stdout blocker note" \
+  --quiet || true)"
+
+printf '%s\n' "$PR_NOTE"
+```
+
+This keeps the stdout heading stable for PR helpers that only receive one pasted markdown payload.
+
 ## Failure recovery tip
 
 If stdout and the saved markdown disagree, regenerate both from one command instead of patching the PR note manually. That keeps reviewer comments reproducible across reruns.
