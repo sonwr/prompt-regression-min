@@ -202,6 +202,7 @@ For a rendered-line budget variant, open `examples/line_count_range_walkthrough.
 For short memo/release-summary structure checks, open `examples/paragraph_count_range_walkthrough.md` to keep paragraph budgets deterministic without introducing semantic scorers.
 That walkthrough now also includes a PR-comment-ready FAIL summary snippet for reviewer notes and release-review threads.
 For multilingual byte-budget checks, open `examples/byte_count_range_walkthrough.md` to keep UTF-8 storage and transport limits explicit before a copy change ships.
+For sentence-budget reviewer notes, open `examples/sentence_count_range_walkthrough.md` to keep short summaries and approval comments within a deterministic sentence cap.
 If you want a dedicated reviewer-note template, open `examples/word_count_pr_comment_playbook.md` for a generate -> paste -> rerun flow built around the committed word-count snapshots.
 If you need to decide the first rerun lane from reviewer-queue metadata, open `examples/reviewer_queue_next_focus_playbook.md` for a compact `dominant focus -> next-focus -> tie-mode` triage flow.
 If you need to justify the documented `P1 -> P2` queue order in one short reviewer note, open `examples/reviewer_queue_priority_rank_playbook.md`.
