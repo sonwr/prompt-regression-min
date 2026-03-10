@@ -72,6 +72,7 @@ If you need a queue-share-first rule card for picking the dominant reviewer focu
 If you need a copy-ready next-focus reviewer note without reopening JSON, open `examples/reviewer_queue_next_focus_handoff_card.md`.
 If you need a final yes/no check before posting the reviewer handoff, open `examples/reviewer_queue_post_ready_check.md`.
 If you need a compact audit for whether the dominant reviewer queue really deserves the next-focus callout, open `examples/reviewer_queue_dominant_focus_checklist.md`.
+If you need a short evidence-first review pass before posting the selected queue, open `examples/reviewer_queue_priority_audit.md`.
 
 ---
 
