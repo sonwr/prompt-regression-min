@@ -21,6 +21,7 @@ Minimal, deterministic regression checks for prompt and workflow changes in LLM-
 - [CLI Reference](#cli-reference)
 - [Example Output](#example-output)
 - [PR Comment Tips](#pr-comment-tips)
+- [JSONL Case Hygiene](#jsonl-case-hygiene)
 - [CI/CD Integration](#cicd-integration)
 - [Development Direction](#development-direction)
 - [Quality and Contribution Guidelines](#quality-and-contribution-guidelines)
@@ -750,6 +751,10 @@ This keeps the body deterministic while making pasted PR comments easier to scan
 The same title override is preserved when `--summary-markdown <path>` writes a file, so CI artifacts and pasted PR comments can keep the same workflow-specific heading. Markdown summaries now also list `Unchanged pass IDs` when available, which makes reviewer handoff easier because the stable controls remain visible next to regressions and improvements.
 
 ---
+
+## JSONL Case Hygiene
+
+When you add or review evaluation cases, use `examples/jsonl_case_hygiene.md` to keep ids stable, expectations deterministic, and failure diffs easy to debug.
 
 ## CI/CD Integration
 
