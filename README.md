@@ -209,6 +209,7 @@ If `next_focus_tie_mode` is `tied`, open `examples/reviewer_queue_tie_playbook.m
 If you want the first rerun lane plus the likely second lane in one reviewer handoff, open `examples/reviewer_queue_runner_up_playbook.md` for a compact `primary lane + runner-up lane` paste pattern.
 If you need to justify why the dominant lane should go first, open `examples/reviewer_queue_advantage_playbook.md` for a compact `label + advantage summary` reviewer-note pattern.
 If you need one short explanation of what kind of follow-up dominates the shard, open `examples/reviewer_queue_queue_mix_playbook.md` for a queue-share-driven reviewer note.
+If the run is clean and `reviewer_queue.total` is `0`, open `examples/reviewer_queue_zero_queue_playbook.md` for a short "nothing to route" handoff line instead of improvising reviewer-note wording.
 If filtered-out cases, skipped cases, or unchanged-fail watchlists are muddying the handoff, open `examples/reviewer_queue_filter_playbook.md` before trusting the queue priority string.
 Reviewer-queue JSON and paste-ready summaries now also expose a structured runner-up lane (`runner_up_key`, `runner_up_priority_label`, `runner_up_summary`) so rerun handoffs can keep the second queue branch visible without reopening the full artifact.
 They now also emit `next_focus_tie_summary`, a paste-ready `key=P# · label` line for tied first lanes, so PR comments can preserve deterministic rerun ordering without re-reading the full JSON artifact.
