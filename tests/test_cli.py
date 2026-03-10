@@ -473,6 +473,67 @@ class PromptRegressionCliTests(unittest.TestCase):
             )
             self.assertEqual(reviewer_queue["follow_up_priority"], ["fix_regressions", "watch_unchanged_fails", "resolve_skipped_cases"])
 
+    def test_summary_json_surfaces_runner_up_handoff_summary_for_tied_queue(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+            summary_json = tmp_path / "summary.json"
+
+            _write_jsonl(
+                dataset,
+                [
+                    {"id": "reg-1", "expected": {"type": "substring", "value": "ok"}},
+                    {"id": "watch-1", "expected": {"type": "substring", "value": "ok"}},
+                ],
+            )
+            _write_jsonl(
+                baseline,
+                [
+                    {"id": "reg-1", "output": "ok"},
+                    {"id": "watch-1", "output": "bad"},
+                ],
+            )
+            _write_jsonl(
+                candidate,
+                [
+                    {"id": "reg-1", "output": "bad"},
+                    {"id": "watch-1", "output": "bad"},
+                ],
+            )
+
+            with self.assertRaises(SystemExit):
+                with mock.patch(
+                    "sys.argv",
+                    [
+                        "prm",
+                        "run",
+                        "-d",
+                        str(dataset),
+                        "-b",
+                        str(baseline),
+                        "-c",
+                        str(candidate),
+                        "--summary-json",
+                        str(summary_json),
+                        "--quiet",
+                    ],
+                ):
+                    cli.main()
+
+            payload = json.loads(summary_json.read_text(encoding="utf-8"))
+            reviewer_queue = payload["reviewer_queue"]
+            self.assertEqual(reviewer_queue["next_focus_tie_mode"], "tied")
+            self.assertEqual(
+                reviewer_queue["runner_up_handoff_summary"],
+                "watch_unchanged_fails=P2 · watch unchanged fails -> `watch-1` (1 case(s), 50.00% active-case rate, 50.00% source-case rate, 50.00% of queued follow-up)",
+            )
+            self.assertEqual(
+                reviewer_queue["next_focus_tie_summary"],
+                "fix_regressions=P1 · fix regressions, watch_unchanged_fails=P2 · watch unchanged fails",
+            )
+
     def test_summary_pr_comment_surfaces_tied_largest_group_labels(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
