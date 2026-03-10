@@ -84,6 +84,7 @@ If you need a one-screen exit check before posting the final priority-rank hando
 If you need a ready-to-paste owner note once the priority rank is already decided, open `examples/reviewer_queue_priority_rank_owner_note.md`.
 If you need a compact last-pass audit before trusting the exposed priority rank in a human handoff, open `examples/reviewer_queue_priority_rank_quick_audit.md`.
 If you need a deterministic tie-break rule before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_tie_break_card.md`.
+If you need the shortest reviewer-ready status line once the next focus is settled, open `examples/reviewer_queue_next_focus_quick_brief.md`.
 
 ---
 
