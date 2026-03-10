@@ -16,9 +16,11 @@ If the downstream system enforces bytes, test bytes.
 ## Minimal dataset pattern
 
 ```jsonl
-{"id":"ui-label-ko","input":"Generate a short Korean CTA label.","expected":{"type":"byte_count_range","min":1,"max":24}}
-{"id":"commit-title","input":"Write a concise commit title.","expected":{"type":"byte_count_range","min":1,"max":72}}
+{"id":"ui-label-ko","input":"Generate a short Korean CTA label.","expected":{"type":"byte_count_range","min_bytes":1,"max_bytes":24}}
+{"id":"commit-title","input":"Write a concise commit title.","expected":{"type":"byte_count_range","min_bytes":1,"max_bytes":72}}
 ```
+
+Use `min_bytes` / `max_bytes` explicitly so the dataset matches the validator contract used by `prompt-regression-min`.
 
 ## Typical workflow
 
