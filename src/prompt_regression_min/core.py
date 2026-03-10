@@ -72,7 +72,7 @@ def _coerce_regex_flags(raw_flags: Any, kind: str) -> list[str]:
         tokens = [token for token in re.split(r"[|,\s]+", raw_flags) if token]
         return [_normalize_regex_flag_name(token) for token in tokens]
     if isinstance(raw_flags, list):
-        return [_normalize_regex_flag_name(token) for token in raw_flags]
+        return [normalized for token in raw_flags if (normalized := _normalize_regex_flag_name(token))]
     raise ValueError(f"{kind} expectation requires expected.flags as a list or string")
 
 
