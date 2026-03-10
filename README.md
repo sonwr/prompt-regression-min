@@ -94,6 +94,7 @@ If you need a one-sentence owner-facing update once the next focus is already kn
 If you need a one-line explanation for why the selected queue still wins when the lead is narrow, open `examples/reviewer_queue_priority_margin_card.md`.
 If you need a compact last-pass audit before trusting that narrow lead in a human handoff, open `examples/reviewer_queue_priority_margin_audit.md`.
 If you need a compact rule card for breaking reviewer handoff ties that share the same priority rank, open `examples/reviewer_queue_priority_rank_tie_card.md`.
+If you need a one-line confidence qualifier when the exposed priority-rank winner still has a visible runner-up, open `examples/reviewer_queue_priority_rank_confidence_note.md`.
 If you need the shortest rank-first route from exposed queue metadata to a human handoff, open `examples/reviewer_queue_priority_rank_sequence.md`.
 
 ---
