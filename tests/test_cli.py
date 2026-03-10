@@ -21,6 +21,24 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
 
 
 class PromptRegressionCliTests(unittest.TestCase):
+    def test_build_reviewer_queue_prioritizes_regressions_over_improvements(self) -> None:
+        queue = _build_reviewer_queue(
+            {
+                "active_cases": 4,
+                "dataset_cases": 8,
+                "regression_ids": ["reg-1", "reg-2"],
+                "improved_ids": ["imp-1", "imp-2"],
+            }
+        )
+
+        self.assertEqual(queue["group_keys"], ["fix_regressions"])
+        self.assertEqual(queue["group_labels"], ["fix regressions"])
+        self.assertEqual(queue["largest_group"]["case_count"], 2)
+        self.assertFalse(queue["largest_group"]["has_ties"])
+        self.assertEqual(queue["largest_group"]["source_case_rate"], 0.25)
+        self.assertEqual(queue["largest_group"]["queue_share"], 1.0)
+        self.assertEqual(queue["follow_up_priority_summary"], "fix_regressions")
+
     def test_build_reviewer_queue_tracks_empty_queue_without_crashing(self) -> None:
         queue = _build_reviewer_queue({"active_cases": 0, "dataset_cases": 0})
 
