@@ -109,6 +109,7 @@ If you need a compact wording note for a tied priority rank with only a narrow m
 If you need a one-line confidence qualifier when the exposed priority-rank winner still has a visible runner-up, open `examples/reviewer_queue_priority_rank_confidence_note.md`.
 If you need a compact bridge sentence when the next-focus winner still has a narrow lead, open `examples/reviewer_queue_next_focus_gap_bridge.md`.
 If you need a quick post-versus-hold decision before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_decider.md`.
+If you need a compact command-first reminder for turning the chosen queue into a quick owner status update, open `examples/reviewer_queue_owner_status_command.md`.
 If you need the shortest rank-first route from exposed queue metadata to a human handoff, open `examples/reviewer_queue_priority_rank_sequence.md`.
 
 ---
