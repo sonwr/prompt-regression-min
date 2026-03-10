@@ -64,6 +64,21 @@ class PromptRegressionCliTests(unittest.TestCase):
             "has_ties": False,
         })
 
+    def test_build_reviewer_queue_uses_dataset_rate_when_filtered_cases_have_no_active_window(self) -> None:
+        queue = _build_reviewer_queue(
+            {
+                "active_cases": 0,
+                "dataset_cases": 5,
+                "filtered_out_ids": ["scope-1", "scope-2"],
+            }
+        )
+
+        self.assertEqual(queue["total"], 2)
+        self.assertEqual(queue["rate"], 0.0)
+        self.assertEqual(queue["source_case_rate"], 0.4)
+        self.assertEqual(queue["group_source_case_rates_by_key"], {"confirm_filtered_scope": 0.4})
+        self.assertEqual(queue["queue_mix_summary"], "confirm_filtered_scope=2 case(s)/100.00% queue share/0.00% active-case rate/40.00% source-case rate")
+
     def test_build_reviewer_queue_breaks_equal_counts_by_priority_order(self) -> None:
         queue = _build_reviewer_queue(
             {
