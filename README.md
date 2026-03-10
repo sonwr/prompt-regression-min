@@ -206,6 +206,7 @@ If you want a dedicated reviewer-note template, open `examples/word_count_pr_com
 If you need to decide the first rerun lane from reviewer-queue metadata, open `examples/reviewer_queue_next_focus_playbook.md` for a compact `dominant focus -> next-focus -> tie-mode` triage flow.
 If you need to justify the documented `P1 -> P2` queue order in one short reviewer note, open `examples/reviewer_queue_priority_rank_playbook.md`.
 If `next_focus_tie_mode` is `tied`, open `examples/reviewer_queue_tie_playbook.md` for a deterministic “keep the first priority lane, but preserve the tie in the pasted note” workflow.
+If you need the tied first lane and the likely second lane in one short note, open `examples/reviewer_queue_tie_and_runner_up_playbook.md` for a combined tie + runner-up handoff pattern.
 If you want the first rerun lane plus the likely second lane in one reviewer handoff, open `examples/reviewer_queue_runner_up_playbook.md` for a compact `primary lane + runner-up lane` paste pattern.
 If you need to justify why the dominant lane should go first, open `examples/reviewer_queue_advantage_playbook.md` for a compact `label + advantage summary` reviewer-note pattern.
 If you need one short explanation of what kind of follow-up dominates the shard, open `examples/reviewer_queue_queue_mix_playbook.md` for a queue-share-driven reviewer note.
