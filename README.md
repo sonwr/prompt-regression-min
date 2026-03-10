@@ -98,6 +98,7 @@ If you need the shortest owner-facing line after the rank is already exposed, op
 If you need a compact last-pass audit before trusting the exposed priority rank in a human handoff, open `examples/reviewer_queue_priority_rank_quick_audit.md`.
 If you need a compact check for whether the visible priority-rank lead is large enough to post without hiding the runner-up, open `examples/reviewer_queue_priority_rank_gap_check.md`.
 If you need a one-sentence note for a winner that still has only a narrow lead, open `examples/reviewer_queue_priority_rank_gap_summary.md`.
+If you need a compact wording note for keeping that exposed winner intentionally scope-limited, open `examples/reviewer_queue_priority_rank_scope_note.md`.
 If you need a deterministic tie-break rule before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_tie_break_card.md`.
 If you need a compact reference for how to word unique, rank-tied, or share-tied reviewer handoffs, open `examples/reviewer_queue_tie_mode_quick_reference.md`.
 If you need a one-line reviewer note that keeps the current winner and tie context together, open `examples/reviewer_queue_tie_handoff_note.md`.
