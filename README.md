@@ -58,6 +58,7 @@ python3 -m unittest tests/test_core.py tests/test_cli.py
 ```
 
 That keeps the README examples, CLI output, and summary payload expectations moving together.
+If you need a compact phrase set for reviewer-queue handoffs, start with `examples/reviewer_queue_priority_labels.md`.
 
 ---
 
