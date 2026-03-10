@@ -192,7 +192,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `ends_with_ci`
   - `not_ends_with`
   - `not_ends_with_ci`
-  - `regex` (with optional `IGNORECASE`, `MULTILINE`, `DOTALL`, `VERBOSE` flags; `expected.flags` accepts either a list or a comma/pipe/whitespace-delimited string, newline-delimited flag strings also work, blank list entries are ignored, `expected.flag` works as a single-flag alias, and case/whitespace-insensitive tokens like `" ignorecase "` are normalized)
+  - `regex` (with optional `IGNORECASE`, `MULTILINE`, `DOTALL`, `VERBOSE` flags; short aliases `i`, `m`, `s`, `x` also work; `expected.flags` accepts either a list or a comma/pipe/whitespace-delimited string, newline-delimited flag strings also work, blank list entries are ignored, `expected.flag` works as a single-flag alias, and case/whitespace-insensitive tokens like `" ignorecase "` are normalized)
   - `regex_ci` (alias of `regex` with implicit `IGNORECASE`)
   - `regex_fullmatch` (same flags, but requires the entire output to match)
   - `regex_fullmatch_ci` (alias of `regex_fullmatch` with implicit `IGNORECASE`)
@@ -320,6 +320,7 @@ For practical threshold combinations you can copy into CI, see `examples/gate_po
 For a focused pass-rate + trend + stable-core gating recipe, see `examples/pass_rate_gate_walkthrough.md`.
 For a trend-label-specific reviewer handoff recipe, see `examples/pass_rate_trend_gate_walkthrough.md`.
 For a compact expectation-picking rubric when writing new dataset cases, see `examples/expectation_selection_guide.md`.
+For compact regex authoring with short flag aliases, see `examples/regex_flag_aliases.md`.
 For shard-focused reviewer workflows that must make filtered-out scope obvious, see `examples/shard_filter_walkthrough.md`.
 For dual-output reviewer/CI handoffs that combine summary JSON with markdown, see `examples/summary_json_handoff.md`.
 For reviewer-queue triage notes that explain filtered scope, stable watchlists, and rerun load in one place, see `examples/reviewer_queue_triage.md`.

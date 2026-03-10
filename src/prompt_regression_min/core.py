@@ -53,9 +53,13 @@ SUPPORTED_EXPECTED_TYPES = (
 )
 REGEX_FLAG_MAP = {
     "IGNORECASE": re.IGNORECASE,
+    "I": re.IGNORECASE,
     "MULTILINE": re.MULTILINE,
+    "M": re.MULTILINE,
     "DOTALL": re.DOTALL,
+    "S": re.DOTALL,
     "VERBOSE": re.VERBOSE,
+    "X": re.VERBOSE,
 }
 
 
