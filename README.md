@@ -118,6 +118,7 @@ If you need a one-line confidence qualifier when the exposed priority-rank winne
 If you need a compact bridge sentence when the next-focus winner still has a narrow lead, open `examples/reviewer_queue_next_focus_gap_bridge.md`.
 If you need a compact rule for when an exposed priority rank should still stay on hold instead of becoming a decisive handoff, open `examples/reviewer_queue_priority_rank_hold_boundary.md`.
 If you need a quick post-versus-hold decision before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_decider.md`.
+If you need a compact rank-first note for whether to hold or post the exposed winner, open `examples/reviewer_queue_priority_rank_hold_vs_post.md`.
 If you need a compact command-first reminder for turning the chosen queue into a quick owner status update, open `examples/reviewer_queue_owner_status_command.md`.
 If you need the shortest rank-first route from exposed queue metadata to a human handoff, open `examples/reviewer_queue_priority_rank_sequence.md`.
 If you need a compact winner-only sentence once the exposed priority rank is already trustworthy, open `examples/reviewer_queue_priority_rank_winner_note.md`.
