@@ -79,6 +79,7 @@ If you need a compact audit for whether the dominant reviewer queue really deser
 If you need a short evidence-first review pass before posting the selected queue, open `examples/reviewer_queue_priority_audit.md`.
 If you need a compact reminder for the next reviewer follow-up sentence, open `examples/reviewer_queue_followup_priority_card.md`.
 If you need a single-line reviewer handoff after the next-focus queue is chosen, open `examples/reviewer_queue_next_focus_status_line.md`.
+If you need that handoff to keep source-dataset impact visible in one sentence, open `examples/reviewer_queue_source_case_note.md`.
 If you need a quick rank-first phrase for the queue that should be handled next, open `examples/reviewer_queue_priority_rank_card.md`.
 If you need a single-line reviewer update once the rank is already known, open `examples/reviewer_queue_priority_rank_status_line.md`.
 If you need a one-line note for explaining that the exposed priority-rank lead is still narrow, open `examples/reviewer_queue_priority_rank_margin_note.md`.
