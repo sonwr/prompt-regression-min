@@ -1803,7 +1803,24 @@ if __name__ == "__main__":
             self.assertEqual(report["summary"]["regressions"], 1)
             self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
 
+    def test_run_regression_supports_line_count_range_with_crlf_outputs(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
 
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "line_count_range", "min_lines": 2, "max_lines": 2}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "alpha\r\nbeta"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "alpha\r\nbeta"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 0)
+            self.assertEqual(report["summary"]["unchanged_pass"], 1)
 
     def test_run_regression_supports_paragraph_count_range_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
