@@ -66,6 +66,7 @@ If you need a fast pre-commit review pass for next-focus handoffs, open `example
 If you need to explain why one queue became the next reviewer focus, open `examples/reviewer_queue_next_focus_playbook.md`.
 If you need a one-sentence reviewer note for the unique next-focus queue, open `examples/reviewer_queue_next_focus_one_liner.md`.
 If you need a shortest-path order for turning queue metadata into a human handoff, open `examples/reviewer_queue_handoff_sequence.md`.
+If you need a compact rule card for choosing the next reviewer queue during ties or close calls, open `examples/reviewer_queue_priority_decision_card.md`.
 
 ---
 
