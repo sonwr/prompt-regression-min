@@ -97,6 +97,7 @@ If you need a compact last-pass audit before trusting that narrow lead in a huma
 If you need a compact rule card for breaking reviewer handoff ties that share the same priority rank, open `examples/reviewer_queue_priority_rank_tie_card.md`.
 If you need a one-line confidence qualifier when the exposed priority-rank winner still has a visible runner-up, open `examples/reviewer_queue_priority_rank_confidence_note.md`.
 If you need a compact bridge sentence when the next-focus winner still has a narrow lead, open `examples/reviewer_queue_next_focus_gap_bridge.md`.
+If you need a quick post-versus-hold decision before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_decider.md`.
 If you need the shortest rank-first route from exposed queue metadata to a human handoff, open `examples/reviewer_queue_priority_rank_sequence.md`.
 
 ---
