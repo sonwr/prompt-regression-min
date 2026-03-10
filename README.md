@@ -79,6 +79,7 @@ If you need a short evidence-first review pass before posting the selected queue
 If you need a compact reminder for the next reviewer follow-up sentence, open `examples/reviewer_queue_followup_priority_card.md`.
 If you need a quick rank-first phrase for the queue that should be handled next, open `examples/reviewer_queue_priority_rank_card.md`.
 If you need a compact pre-post audit before trusting the exposed priority rank, open `examples/reviewer_queue_priority_rank_checklist.md`.
+If you need a one-screen exit check before posting the final priority-rank handoff, open `examples/reviewer_queue_priority_rank_exit_check.md`.
 If you need a deterministic tie-break rule before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_tie_break_card.md`.
 
 ---
