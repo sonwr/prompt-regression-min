@@ -89,6 +89,7 @@ If you need a compact sentence for keeping a narrow priority-rank lead credible 
 If you need a final yes/no rule before posting that priority-rank winner publicly, open `examples/reviewer_queue_priority_rank_posting_rule.md`.
 If you need a one-screen exit check before posting the final priority-rank handoff, open `examples/reviewer_queue_priority_rank_exit_check.md`.
 If you need a compact ready-to-post cue after the priority-rank winner is exposed, open `examples/reviewer_queue_priority_rank_ready_signal.md`.
+If you need a last-pass human-handoff check before posting that winner, use `examples/reviewer_queue_priority_rank_ready_signal.md` to confirm the winner, tie mode, narrow-lead context, and next action still align.
 If you need a ready-to-paste owner note once the priority rank is already decided, open `examples/reviewer_queue_priority_rank_owner_note.md`.
 If you need a compact last-pass audit before trusting the exposed priority rank in a human handoff, open `examples/reviewer_queue_priority_rank_quick_audit.md`.
 If you need a compact check for whether the visible priority-rank lead is large enough to post without hiding the runner-up, open `examples/reviewer_queue_priority_rank_gap_check.md`.
