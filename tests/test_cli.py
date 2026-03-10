@@ -84,6 +84,27 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertEqual(queue["next_focus_tie_mode"], "tied")
         self.assertEqual(queue["next_focus_advantage_label"], "tied lead")
 
+    def test_build_reviewer_queue_tracks_runner_up_gap_metrics_for_unique_lead(self) -> None:
+        queue = _build_reviewer_queue(
+            {
+                "active_cases": 6,
+                "dataset_cases": 12,
+                "regression_ids": ["reg-1", "reg-2", "reg-3"],
+                "filtered_out_ids": ["scope-1"],
+            }
+        )
+
+        self.assertEqual(queue["next_focus_key"], "fix_regressions")
+        self.assertEqual(queue["runner_up_key"], "confirm_filtered_scope")
+        self.assertEqual(queue["next_focus_tie_mode"], "unique")
+        self.assertEqual(queue["next_focus_advantage_label"], "clear lead")
+        self.assertEqual(queue["next_focus_advantage_direction"], "ahead")
+        self.assertEqual(queue["next_focus_advantage_case_count"], 2)
+        self.assertEqual(queue["next_focus_advantage_queue_share"], 0.5)
+        self.assertEqual(queue["next_focus_advantage_active_case_rate"], 0.3333)
+        self.assertEqual(queue["next_focus_advantage_source_case_rate"], 0.1667)
+        self.assertIn("clear lead: +2 case(s), +50.00% queue share", queue["next_focus_advantage_summary"])
+
     def test_cli_emits_summary_pr_comment_to_stdout(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
