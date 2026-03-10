@@ -76,6 +76,7 @@ If you need a compact last-mile check for whether the handoff sentence is actual
 If you need a compact audit for whether the dominant reviewer queue really deserves the next-focus callout, open `examples/reviewer_queue_dominant_focus_checklist.md`.
 If you need a short evidence-first review pass before posting the selected queue, open `examples/reviewer_queue_priority_audit.md`.
 If you need a compact reminder for the next reviewer follow-up sentence, open `examples/reviewer_queue_followup_priority_card.md`.
+If you need a deterministic tie-break rule before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_tie_break_card.md`.
 
 ---
 
