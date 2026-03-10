@@ -64,6 +64,26 @@ class PromptRegressionCliTests(unittest.TestCase):
             "has_ties": False,
         })
 
+    def test_build_reviewer_queue_breaks_equal_counts_by_priority_order(self) -> None:
+        queue = _build_reviewer_queue(
+            {
+                "active_cases": 6,
+                "dataset_cases": 8,
+                "unchanged_fail_ids": ["stuck-1", "stuck-2"],
+                "filtered_out_ids": ["scope-1", "scope-2"],
+                "skipped_ids": ["skip-1", "skip-2"],
+            }
+        )
+
+        self.assertEqual(
+            queue["group_keys"],
+            ["watch_unchanged_fails", "confirm_filtered_scope", "resolve_skipped_cases"],
+        )
+        self.assertEqual(queue["follow_up_priority_summary"], "watch_unchanged_fails -> confirm_filtered_scope -> resolve_skipped_cases")
+        self.assertEqual(queue["next_focus_key"], "watch_unchanged_fails")
+        self.assertEqual(queue["next_focus_tie_mode"], "tied")
+        self.assertEqual(queue["next_focus_advantage_label"], "tied lead")
+
     def test_cli_emits_summary_pr_comment_to_stdout(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
