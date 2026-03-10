@@ -49,6 +49,16 @@ It compares **baseline** and **candidate** outputs on the same test set and repo
 
 The goal is to become a lightweight quality gate that is easy to adopt in any repo.
 
+## Quick validation loop
+
+When updating CLI summaries, examples, or docs, run the smallest reproducible local check first:
+
+```bash
+python3 -m unittest tests/test_core.py tests/test_cli.py
+```
+
+That keeps the README examples, CLI output, and summary payload expectations moving together.
+
 ---
 
 ## Vision
