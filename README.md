@@ -62,6 +62,7 @@ For release-wide CLI or summary payload edits, run `python3 -m unittest discover
 If you need a compact phrase set for reviewer-queue handoffs, start with `examples/reviewer_queue_priority_labels.md`.
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a fast pre-commit review pass for next-focus handoffs, open `examples/reviewer_queue_followup_checklist.md`.
+If you need to explain why one queue became the next reviewer focus, open `examples/reviewer_queue_next_focus_playbook.md`.
 
 ---
 
