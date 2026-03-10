@@ -973,6 +973,8 @@ When a PR only touches one feature area, prefer a shard run that still makes ski
 3. Treat filtered-out budgets as a release gate, not just an informational metric.
 4. Use a markdown or PR-comment summary so reviewers do not need raw JSON to see scope loss.
 
+If you need a copy-ready one-liner for that public handoff, use `examples/reviewer_queue_scope_status_examples.md`.
+
 This keeps shard runs deterministic while preserving reviewer trust in what was, and was not, exercised.
 
 ## License
