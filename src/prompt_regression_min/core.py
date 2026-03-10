@@ -805,6 +805,7 @@ def run_regression(
     changed = len(changed_ids)
     regression_rate = round(regressions / len(results), 4)
     changed_rate = round(changed / len(results), 4)
+    improvement_rate = round(improved / len(results), 4)
 
     baseline_pass_rate = round(baseline_passes / len(results), 4) if results else 0.0
     candidate_pass_rate = round(candidate_passes / len(results), 4) if results else 0.0
@@ -862,6 +863,7 @@ def run_regression(
         "regressions": regressions,
         "regression_rate": regression_rate,
         "improved": improved,
+        "improvement_rate": improvement_rate,
         "changed": changed,
         "changed_ids": changed_ids,
         "changed_rate": changed_rate,

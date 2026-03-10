@@ -1732,6 +1732,7 @@ class RegressionCoreTests(unittest.TestCase):
 
             report = run_regression(str(dataset), str(baseline), str(candidate))
             self.assertEqual(report["summary"]["pass_rate_trend"], "improving")
+            self.assertEqual(report["summary"]["improvement_rate"], 1.0)
 
     def test_run_regression_sets_pass_rate_trend_to_regressing(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
