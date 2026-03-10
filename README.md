@@ -269,6 +269,7 @@ Those PR-comment snapshots keep the same schema marker, explicit pass-rate trend
 `./scripts/regenerate_walkthrough_artifacts.sh` now regenerates those PR-comment snapshots from the same CLI contract via `--summary-pr-comment`, so reviewer-note wording stays formatter-consistent with the committed markdown/JSON summaries.
 Need to pipe the reviewer note directly into CI or a PR bot? `--summary-pr-comment -` now shares the same stdout ergonomics as `--summary-markdown -`, so workflows can render or post the ready-to-paste note without creating a temp file first. For a copy-paste CI example (including a shell capture that preserves a custom stdout title), open `examples/ci_pr_comment_stdout.md`.
 Need a reviewer-note heading that differs from the markdown artifact title? Use `--summary-pr-comment-title` so PR-comment snapshots can say `review snapshot` or `release blocker note` without changing `--summary-markdown-title`. The committed word-count snapshots demonstrate this split directly: markdown keeps `word-count release-note gate`, while the PR-comment artifact uses `word-count blocker note` for paste-ready reviewer language. CI now also asserts the committed walkthrough PR-comment snapshots keep their custom headings (`walkthrough approval note` / `walkthrough blocker note`) so reviewer-note formatting cannot silently fall back to the default title.
+Need the shortest example for pretty JSON handoff plus reviewer-facing markdown in the same run? Open `examples/ci_pretty_json_and_pr_comment.md`.
 Regex expectations also support the `VERBOSE` flag now, so multiline commented patterns can stay readable in committed datasets without losing deterministic matching.
 PR-comment output now also carries `Filtered-out IDs` and `Skipped IDs` when filters or disabled cases shrink the active scope, so reviewers can see scope exclusions without opening the JSON artifact.
 PR-comment output now also surfaces `Filtered-out rate` and `Skipped-case rate`, so reviewers can gauge how much scope moved out of the shard without opening the JSON artifact.
@@ -680,6 +681,7 @@ Use `--summary-json` for CI parsers:
 - `--summary-json` (no value): print compact JSON payload to stdout
 - `--summary-json artifacts/summary.json`: write JSON payload to file
 - `--summary-json-pretty`: pretty-print summary JSON (`indent=2`) for stdout/file outputs
+- Combined CI example: `examples/ci_pretty_json_and_pr_comment.md`
 - `--summary-markdown artifacts/summary.md`: write a compact markdown summary for PR comments/release notes
   - Markdown summaries now echo `Tool version` plus `Required schema version gate` so reviewers can see both the producing build and whether the artifact was generated under an explicit compatibility contract or free-run mode.
   - Markdown summaries also include filtered/skipped/unchanged-fail case IDs when present, making shard drift and lingering broken flows reviewable without opening the JSON payload first.
