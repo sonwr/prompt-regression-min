@@ -1,16 +1,20 @@
-# Reviewer queue priority-rank ready signal
+# reviewer_queue_priority_rank_ready_signal
 
-Use this quick check after the CLI exposes a priority-rank winner and you need to decide whether that result is ready for a human handoff.
+Use this note when the reviewer queue already exposes a priority-rank winner and you need a fast post-or-hold decision.
 
-Call the exposed queue **ready to post** only when all of the following are true:
+## Ready signal
 
-1. the winning queue is named clearly,
-2. the displayed priority rank is unique or the tie mode is explained,
-3. the margin or runner-up context is visible when the lead is narrow,
-4. the suggested next action still matches the queue that won.
+Call the handoff ready only when all four checks pass:
 
-If one of those checks fails, keep the result in review and inspect the JSON or markdown summary before posting a human-facing handoff.
+1. the winner queue key is explicit,
+2. the visible priority rank is not contradicted by tie metadata,
+3. the runner-up context is still visible when the lead is narrow,
+4. the next action names who should review next.
 
-## One-line handoff cue
+## Post now
 
-`Ready to post:` the priority-rank winner is explicit, the lead is credible, and the runner-up context is not hidden.
+Post the handoff when the winner, rank, tie mode, and next action fit in one sentence without reopening the JSON output.
+
+## Hold
+
+Hold the handoff when the exposed rank still needs a margin note, runner-up qualifier, or tie-break explanation.
