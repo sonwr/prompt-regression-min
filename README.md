@@ -79,6 +79,7 @@ If you need a compact audit for whether the dominant reviewer queue really deser
 If you need a short evidence-first review pass before posting the selected queue, open `examples/reviewer_queue_priority_audit.md`.
 If you need a compact reminder for the next reviewer follow-up sentence, open `examples/reviewer_queue_followup_priority_card.md`.
 If you need a quick rank-first phrase for the queue that should be handled next, open `examples/reviewer_queue_priority_rank_card.md`.
+If you need a single-line reviewer update once the rank is already known, open `examples/reviewer_queue_priority_rank_status_line.md`.
 If you need a compact pre-post audit before trusting the exposed priority rank, open `examples/reviewer_queue_priority_rank_checklist.md`.
 If you need a one-screen exit check before posting the final priority-rank handoff, open `examples/reviewer_queue_priority_rank_exit_check.md`.
 If you need a ready-to-paste owner note once the priority rank is already decided, open `examples/reviewer_queue_priority_rank_owner_note.md`.
