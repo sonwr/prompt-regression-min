@@ -13,6 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from prompt_regression_min import cli
+from prompt_regression_min.cli import _build_reviewer_queue
 
 
 def _write_jsonl(path: Path, rows: list[dict]) -> None:
@@ -20,6 +21,31 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
 
 
 class PromptRegressionCliTests(unittest.TestCase):
+    def test_build_reviewer_queue_tracks_empty_queue_without_crashing(self) -> None:
+        queue = _build_reviewer_queue({"active_cases": 0, "dataset_cases": 0})
+
+        self.assertEqual(queue["total"], 0)
+        self.assertEqual(queue["group_count"], 0)
+        self.assertEqual(queue["queue_mix_summary"], "none")
+        self.assertEqual(queue["follow_up_priority_summary"], "none")
+        self.assertEqual(queue["next_focus_handoff_summary"], "none")
+        self.assertEqual(queue["runner_up_handoff_summary"], "none")
+        self.assertEqual(queue["largest_group"], {
+            "key": None,
+            "label": None,
+            "priority_label": None,
+            "priority_rank": None,
+            "ids": [],
+            "case_count": 0,
+            "active_case_rate": 0.0,
+            "source_case_rate": 0.0,
+            "queue_share": 0.0,
+            "tie_count": 0,
+            "tie_keys": [],
+            "tie_labels": [],
+            "has_ties": False,
+        })
+
     def test_cli_emits_summary_pr_comment_to_stdout(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)
