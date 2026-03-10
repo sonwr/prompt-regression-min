@@ -60,6 +60,7 @@ python3 -m unittest tests/test_core.py tests/test_cli.py
 That keeps the README examples, CLI output, and summary payload expectations moving together.
 For release-wide CLI or summary payload edits, run `python3 -m unittest discover -s tests` so the full regression and rendering contract stays aligned.
 If you need a compact phrase set for reviewer-queue handoffs, start with `examples/reviewer_queue_priority_labels.md`.
+If you need a one-line PR-comment handoff sentence, open `examples/reviewer_queue_priority_handoff_card.md`.
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a fast pre-commit review pass for next-focus handoffs, open `examples/reviewer_queue_followup_checklist.md`.
 If you need to explain why one queue became the next reviewer focus, open `examples/reviewer_queue_next_focus_playbook.md`.
