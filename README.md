@@ -1070,3 +1070,5 @@ If you need a compact reminder to review the JSON summary artifact next to the m
 If you need a one-line reviewer update once the winner and shared bundle are already known, open `examples/reviewer_queue_priority_rank_ready_post.md`.
 
 If you need a short reviewer note for queue-share-first tie resolution, open `examples/reviewer_queue_queue_share_tiebreak_note.md`.
+
+If you need a compact handoff that keeps the active reviewer queue explicitly paired with the shared report bundle scope, open `examples/reviewer_queue_report_bundle_scope_handoff.md`.
