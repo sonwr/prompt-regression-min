@@ -196,6 +196,12 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("examples/reviewer_queue_priority_rank_scope_tiebreak.md", readme)
         self.assertTrue((ROOT / "examples" / "reviewer_queue_priority_rank_scope_tiebreak.md").exists())
 
+    def test_readme_mentions_priority_rank_narrow_lead_rule_example(self) -> None:
+        readme = README_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("examples/reviewer_queue_priority_rank_narrow_lead_rule.md", readme)
+        self.assertTrue((ROOT / "examples" / "reviewer_queue_priority_rank_narrow_lead_rule.md").exists())
+
     def test_readme_example_references_resolve_to_existing_files(self) -> None:
         readme = README_PATH.read_text(encoding="utf-8")
         example_refs = sorted(set(re.findall(r"`(examples/[^`]+\.md)`", readme)))

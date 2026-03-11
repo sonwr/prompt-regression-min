@@ -102,6 +102,7 @@ If you need that handoff to keep source-dataset impact visible in one sentence, 
 If you need a quick rank-first phrase for the queue that should be handled next, open `examples/reviewer_queue_priority_rank_card.md`.
 If you need a single-line reviewer update once the rank is already known, open `examples/reviewer_queue_priority_rank_status_line.md`.
 If you need a one-line note for explaining that the exposed priority-rank lead is still narrow, open `examples/reviewer_queue_priority_rank_margin_note.md`.
+If you need a compact rule for keeping a reported winner narrow when the queue lead is real but still modest, open `examples/reviewer_queue_priority_rank_narrow_lead_rule.md`.
 If you need a slightly fuller one-sentence handoff that still keeps the runner-up visible, open `examples/reviewer_queue_priority_rank_margin_summary.md`.
 If you need a compact yes/no gate before posting a narrow priority-rank winner, open `examples/reviewer_queue_priority_rank_margin_gate.md`.
 If you need a compact pre-post audit before trusting the exposed priority rank, open `examples/reviewer_queue_priority_rank_checklist.md`.
