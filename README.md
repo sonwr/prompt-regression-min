@@ -1003,3 +1003,8 @@ It groups case IDs into four follow-up buckets:
 - `resolve_skipped_cases`
 
 This keeps markdown/PR-comment handoffs and machine-readable JSON aligned.
+
+
+## Report bundle shortcut
+
+If reviewers need both human and machine outputs from the same run, start with `examples/reviewer_queue_report_dir_walkthrough.md` and `examples/summary_json_handoff.md` so the markdown/PR-comment handoff and the JSON contract stay generated from one deterministic command.
