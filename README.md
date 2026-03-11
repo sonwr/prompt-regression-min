@@ -189,6 +189,7 @@ If you need a one-sentence owner-facing update once the next focus is already kn
 If you need a one-line explanation for why the selected queue still wins when the lead is narrow, open `examples/reviewer_queue_priority_margin_card.md`.
 If you need a compact last-pass audit before trusting that narrow lead in a human handoff, open `examples/reviewer_queue_priority_margin_audit.md`.
 If you need a compact rule card for breaking reviewer handoff ties that share the same priority rank, open `examples/reviewer_queue_priority_rank_tie_card.md`.
+If you need a one-line reopen cue for that same tied-rank case with bundle-proof language, open `examples/reviewer_queue_priority_rank_reopen_tiebreak.md`.
 If you need a quick checklist before calling that tie a real shared next focus, open `examples/reviewer_queue_priority_rank_tie_checklist.md`.
 If you need a compact wording note for a tied priority rank with only a narrow margin cue, open `examples/reviewer_queue_priority_rank_tie_margin_note.md`.
 If you need a one-line confidence qualifier when the exposed priority-rank winner still has a visible runner-up, open `examples/reviewer_queue_priority_rank_confidence_note.md`.
