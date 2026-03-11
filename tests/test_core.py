@@ -113,6 +113,25 @@ class RegressionCoreTests(unittest.TestCase):
             self.assertEqual(report["summary"]["unchanged_pass"], 1)
             self.assertEqual(report["summary"]["improved"], 0)
 
+    def test_run_regression_ignores_inverted_sentence_punctuation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "sentence_count_range", "min_sentences": 2, "max_sentences": 2}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "¿Listo? ¡Vamos!"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "Listo? Vamos!"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 0)
+            self.assertEqual(report["summary"]["unchanged_pass"], 1)
+
     def test_run_regression_supports_contains_all_ordered_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

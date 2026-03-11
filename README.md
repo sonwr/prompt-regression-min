@@ -236,7 +236,7 @@ Readable code, inspectable data format, and practical docs over hype.
   - `word_count_range` (enforces lower/upper output-length bounds using whitespace-delimited word counts)
   - `line_count_range` (enforces lower/upper output-length bounds using newline-delimited line counts)
   - `paragraph_count_range` (enforces lower/upper output-length bounds using blank-line-delimited paragraph counts for release notes, summaries, or email drafts)
-  - `sentence_count_range` (enforces lower/upper output-length bounds using punctuation-delimited sentence counts for summaries, reviewer notes, or support replies, including multilingual `. ! ? 。 ！ ？` sentence endings)
+  - `sentence_count_range` (enforces lower/upper output-length bounds using punctuation-delimited sentence counts for summaries, reviewer notes, or support replies, including multilingual `. ! ? 。 ！ ？` sentence endings while ignoring inverted Spanish openers `¿` / `¡`)
   - `char_count_range` (enforces lower/upper output-length bounds using raw character counts)
   - `byte_count_range` (enforces UTF-8 byte-length bounds for UI labels, commit titles, or multilingual outputs)
 - Example fixture trio for deterministic release-note length checks: `examples/dataset/word_count_range_release_notes.jsonl` + matching outputs

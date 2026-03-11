@@ -105,7 +105,8 @@ def _count_paragraphs(value: str) -> int:
 def _count_sentences(value: str) -> int:
     if not value.strip():
         return 0
-    return len(re.findall(r"[^.!?…。！？\n]+(?:[.!?…。！？]+|$)", value.strip()))
+    cleaned = re.sub(r"[¿¡]", "", value.strip())
+    return len(re.findall(r"[^.!?…。！？\n]+(?:[.!?…。！？]+|$)", cleaned))
 
 
 @dataclass
