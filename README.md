@@ -65,6 +65,7 @@ If you need a compact owner handoff template after queue selection, open `exampl
 If you need a compact reviewer note for JSON-exposed scaffold presets, open `examples/reviewer_queue_presets_json_handoff.md`.
 If you need a compact note for title-ready reviewer bundles that still need deterministic shared artifact naming, open `examples/reviewer_queue_title_and_basename_handoff.md`.
 If you need a one-line note that points reviewers to the full summary artifact bundle, open `examples/reviewer_queue_artifact_bundle_note.md`.
+If you need a markdown-first reopen cue for the same handoff, open `examples/reviewer_queue_markdown_bundle_note.md`.
 If you need a two-line handoff that pairs the active reviewer queue with the exact artifact bundle to reopen first, open `examples/reviewer_queue_artifact_reopen_line.md`.
 If you need a compact naming rule for that JSON/HTML reviewer bundle, open `examples/reviewer_queue_report_bundle_name_note.md`.
 If you need a compact pre-post audit for reopening the JSON summary, HTML report, and queue handoff together, open `examples/reviewer_queue_report_bundle_reopen_check.md`.

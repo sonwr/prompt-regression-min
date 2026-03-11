@@ -4562,6 +4562,13 @@ if __name__ == "__main__":
         self.assertIn("examples/reviewer_queue_artifact_bundle_note.md", readme)
         self.assertTrue((repo_root / "examples" / "reviewer_queue_artifact_bundle_note.md").exists())
 
+    def test_readme_links_markdown_bundle_note_example(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        readme = (repo_root / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("examples/reviewer_queue_markdown_bundle_note.md", readme)
+        self.assertTrue((repo_root / "examples" / "reviewer_queue_markdown_bundle_note.md").exists())
+
     def test_readme_links_title_and_basename_handoff_example(self) -> None:
         repo_root = ROOT
         readme = (repo_root / "README.md").read_text(encoding="utf-8")
