@@ -95,6 +95,7 @@ If you need a one-line note for the queue that stays next after the current focu
 If you need a compact reviewer handoff for a small but still non-empty rerun queue, open `examples/reviewer_queue_small_batch_handoff.md`.
 If you need a one-line reminder to keep the rerun winner paired with its report bundle in a release review, open `examples/reviewer_queue_release_gate_bundle_scope_card.md`.
 If you need a one-line reviewer update once the priority-rank winner is already trustworthy, open `examples/reviewer_queue_priority_rank_quick_post.md`.
+If you need a compact reviewer note for the ranked winner before reopening the bundle, open `examples/reviewer_queue_priority_rank_triage_card.md`.
 If you need a compact priority-rank note that keeps both the winner and the runner-up visible in one sentence, open `examples/reviewer_queue_priority_rank_runner_up_note.md`.
 If you need a fast pre-commit review pass for next-focus handoffs, open `examples/reviewer_queue_followup_checklist.md`.
 If you need to explain why one queue became the next reviewer focus, open `examples/reviewer_queue_next_focus_playbook.md`.
