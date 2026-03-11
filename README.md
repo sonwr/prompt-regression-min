@@ -79,6 +79,7 @@ If you need a one-line follow-up for a queue that is already stable enough to tr
 If you need a compact gate for deciding whether that same stable queue still has a believable shared report bundle behind it, open `examples/reviewer_queue_stable_bundle_gate.md`.
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a one-line reviewer update specifically for HTML-ready queue reports, open `examples/reviewer_queue_html_report_status_line.md`.
+If you need a compact gate before trusting that HTML-ready handoff, open `examples/reviewer_queue_html_report_gate.md`.
 If you need a quick artifact check before claiming the HTML-ready bundle is reviewable, open `examples/reviewer_queue_html_report_bundle_check.md`.
 If you need a compact note for keeping reviewer-facing bundle filenames stable with `--report-file-stem`, open `examples/reviewer_queue_report_file_stem_note.md`.
 If the HTML summary layout changed and you need a visual reviewer pass, open `examples/reviewer_queue_html_report_visual_check.md`.
