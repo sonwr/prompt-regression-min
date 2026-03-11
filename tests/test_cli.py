@@ -4525,6 +4525,13 @@ if __name__ == "__main__":
             self.assertIn("- Reviewer queue top-two summary: P1 · fix regressions vs P2 · watch unchanged fails", pr_comment)
             self.assertIn("- Reviewer queue top-two handoff summary: fix_regressions=P1 · fix regressions -> `reg-1`, `reg-2` (2 case(s), 33.33% active-case rate, 33.33% source-case rate, 40.00% of queued follow-up) || watch_unchanged_fails=P2 · watch unchanged fails -> `watch-1` (1 case(s), 16.67% active-case rate, 16.67% source-case rate, 20.00% of queued follow-up)", pr_comment)
 
+    def test_readme_links_artifact_bundle_note_example(self) -> None:
+        repo_root = Path(__file__).resolve().parents[1]
+        readme = (repo_root / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("examples/reviewer_queue_artifact_bundle_note.md", readme)
+        self.assertTrue((repo_root / "examples" / "reviewer_queue_artifact_bundle_note.md").exists())
+
     def test_readme_links_title_and_basename_handoff_example(self) -> None:
         repo_root = ROOT
         readme = (repo_root / "README.md").read_text(encoding="utf-8")
