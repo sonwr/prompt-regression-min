@@ -148,6 +148,7 @@ If you need a compact reviewer note for bundles that also keep the runner-up que
 If you need a compact triage card that pairs the exposed winner with the immediate reviewer action, open `examples/reviewer_queue_priority_rank_triage_card.md`.
 If you need a shortest-path note for reopening the runner-up after the winner is already posted, open `examples/reviewer_queue_runner_up_note.md`.
 If you need a compact queue-scoped handoff sentence that keeps queue share and source-case impact together, open `examples/reviewer_queue_scope_handoff_card.md`.
+If you need a one-line bridge from source-case impact to the owner who should act next, open `examples/reviewer_queue_source_case_owner_bridge.md`.
 If you need a broader rule for keeping that queue-scoped sentence intentionally narrow, open `examples/reviewer_queue_scope_status_rule.md`.
 If you need a compact last-pass audit before posting a priority-rank winner as a queue-scoped handoff, open `examples/reviewer_queue_priority_rank_scope_checklist.md`.
 If you need a deterministic tie-break rule before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_tie_break_card.md`.
