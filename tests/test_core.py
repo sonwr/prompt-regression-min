@@ -2147,3 +2147,36 @@ if __name__ == "__main__":
         self.assertEqual(summary["baseline_passes"], 1)
         self.assertEqual(summary["candidate_passes"], 1)
         self.assertEqual(summary["unchanged_pass_ids"], ["unicode-ellipsis"])
+
+
+    def test_run_regression_allows_char_count_range_with_single_bound(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "case-1", "expected": {"type": "char_count_range", "max_chars": 6}}])
+            _write_jsonl(baseline, [{"id": "case-1", "output": "launch"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "tool"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 0)
+            self.assertEqual(report["summary"]["unchanged_pass"], 1)
+
+    def test_run_regression_rejects_invalid_byte_count_range_bounds(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "case-1", "expected": {"type": "byte_count_range", "min_bytes": 8, "max_bytes": 3}}])
+            _write_jsonl(baseline, [{"id": "case-1", "output": "launch"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "tool"}])
+
+            with self.assertRaises(ValueError) as exc:
+                run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertIn("Invalid byte_count_range expectation", str(exc.exception))
