@@ -1103,6 +1103,7 @@ If you need a quick note for keeping reviewer-queue source-case rate visible bes
 If you need a one-line reviewer handoff pattern that keeps next-focus scope tied to source-case impact, open `examples/reviewer_queue_source_case_scope_note.md`.
 If you need a compact rule for keeping stdout-first summaries tied to one explicit owner line, open `docs/CLI_SUMMARY_STDOUT_OWNER_NOTE.md`.
 If you need a one-line reviewer update once the winner and shared bundle are already known, open `examples/reviewer_queue_priority_rank_ready_post.md`.
+If you need the same handoff phrased as a bundle-first ready-to-post cue, open `examples/reviewer_queue_priority_rank_bundle_ready_post.md`.
 
 If you need a short reviewer note for queue-share-first tie resolution, open `examples/reviewer_queue_queue_share_tiebreak_note.md`.
 
