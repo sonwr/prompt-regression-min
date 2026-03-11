@@ -90,6 +90,7 @@ If you need a slightly fuller one-card update for the same HTML-ready bundle han
 If you need a compact replay note for reopening the queue decision together with its saved artifact bundle, open `examples/reviewer_queue_bundle_replay_note.md`.
 If you need the same update to stay explicitly scoped to the shared report bundle, open `examples/reviewer_queue_report_bundle_scope_status_line.md`.
 If you need a compact gate before trusting that HTML-ready handoff, open `examples/reviewer_queue_html_report_gate.md`.
+If you need a compact owner-facing gate before reposting a saved reviewer queue bundle, open `examples/reviewer_queue_report_bundle_owner_gate.md`.
 If you need a quick reopen check before posting that HTML-ready handoff, open `examples/reviewer_queue_html_report_download_gate.md`.
 If you need a quick artifact check before claiming the HTML-ready bundle is reviewable, open `examples/reviewer_queue_html_report_bundle_check.md`.
 If you need a compact note for keeping reviewer-facing bundle filenames stable with `--report-file-stem`, open `examples/reviewer_queue_report_file_stem_note.md`.
