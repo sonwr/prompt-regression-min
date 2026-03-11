@@ -2077,3 +2077,23 @@ if __name__ == "__main__":
                 run_regression(str(dataset), str(baseline), str(candidate))
 
             self.assertIn("min_chars must be <= max_chars", str(exc.exception))
+
+
+    def test_sentence_count_range_treats_unicode_ellipsis_as_sentence_boundary(self) -> None:
+        summary = run_regression(
+            dataset_path=self._write_jsonl(
+                "dataset.jsonl",
+                [
+                    {
+                        "id": "unicode-ellipsis",
+                        "expected": {"type": "sentence_count_range", "min_sentences": 2, "max_sentences": 2},
+                    }
+                ],
+            ),
+            baseline_path=self._write_jsonl("baseline.jsonl", [{"id": "unicode-ellipsis", "output": "Alpha… Beta!"}]),
+            candidate_path=self._write_jsonl("candidate.jsonl", [{"id": "unicode-ellipsis", "output": "Alpha… Beta!"}]),
+        )
+
+        self.assertEqual(summary["baseline_passes"], 1)
+        self.assertEqual(summary["candidate_passes"], 1)
+        self.assertEqual(summary["unchanged_pass_ids"], ["unicode-ellipsis"])
