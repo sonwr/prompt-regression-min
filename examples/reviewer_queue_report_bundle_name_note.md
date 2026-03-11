@@ -1,10 +1,11 @@
 # Reviewer queue report bundle name note
 
-When the CLI emits JSON and HTML review artifacts together, keep the basename stable and reviewer-readable.
+Keep reviewer-facing report bundles on one stable basename whenever JSON, markdown, and HTML artifacts are meant to travel together.
 
-Prefer a short bundle name that answers two questions immediately:
+Recommended rule:
 
-1. Which reviewer queue is currently in focus?
-2. Which report bundle should be reopened first?
+- set `--report-file-stem` once per handoff
+- reuse the same stem for JSON, markdown, and HTML outputs
+- mention that shared basename in the human reviewer note
 
-Example pattern: `regressions-first-review-bundle`.
+This keeps reopen commands, CI artifacts, and review comments pointing at the same bundle without filename drift.
