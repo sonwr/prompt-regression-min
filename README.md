@@ -1083,6 +1083,7 @@ If you need the quickest stdout-first handoff for JSON or markdown summaries, op
 If you need that stdout-first summary to keep a stable human-readable heading in CI or pasted handoffs, open `docs/CLI_SUMMARY_STDOUT_TITLE_NOTE.md`.
 If you need the same stdout-first pattern for reviewer-note markdown, open `docs/CLI_SUMMARY_PR_COMMENT_STDOUT_NOTE.md`.
 If you need a compact rule for keeping parser-facing summary automation tied to an explicit schema gate, open `docs/CLI_SUMMARY_SCHEMA_GATE_NOTE.md`.
+If you need a compact reminder to pair `--quiet` stdout handoffs with the same summary-schema expectation, open `docs/CLI_SUMMARY_QUIET_SCHEMA_NOTE.md`.
 If you need a compact reminder to review the JSON summary artifact next to the markdown handoff, open `docs/CLI_SUMMARY_ARTIFACT_NOTE.md`.
 If you need a quick note for keeping reviewer-queue source-case rate visible beside active-case rate in CLI summaries, open `docs/CLI_REVIEWER_QUEUE_SOURCE_CASE_RATE_NOTE.md`.
 If you need a one-line reviewer update once the winner and shared bundle are already known, open `examples/reviewer_queue_priority_rank_ready_post.md`.
