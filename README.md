@@ -113,6 +113,7 @@ If you need a one-sentence note for a winner that still has only a narrow lead, 
 If you need a compact wording note for keeping that exposed winner intentionally scope-limited, open `examples/reviewer_queue_priority_rank_scope_note.md`.
 If you need copy-ready examples for winner-only, narrow-lead, or shared-focus scope wording, open `examples/reviewer_queue_priority_rank_scope_examples.md`.
 If you need a one-line queue-scoped update once the priority-rank winner is already known, open `examples/reviewer_queue_priority_rank_scope_status_line.md`.
+If you need the shortest winner-first path before opening the larger tie/hold playbooks, open `examples/reviewer_queue_priority_rank_scope_quickstart.md`.
 If you need the shortest winner-first wording path before opening the larger playbooks, start with `examples/reviewer_queue_priority_rank_scope_quickstart.md`.
 If you need a one-line release-gate note once the priority-rank winner is stable enough to drive the next ship/no-ship conversation, open `examples/reviewer_queue_priority_rank_release_gate.md`.
 If you need a compact triage card that pairs the exposed winner with the immediate reviewer action, open `examples/reviewer_queue_priority_rank_triage_card.md`.

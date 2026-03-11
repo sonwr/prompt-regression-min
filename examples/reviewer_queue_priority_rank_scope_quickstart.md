@@ -1,21 +1,26 @@
 # reviewer_queue_priority_rank_scope_quickstart
 
-Use this when `summary.reviewer_queue` already exposes a winner and you need a short, scope-limited human handoff.
+Use this when the reviewer queue already exposes a clear priority-rank winner and you need the shortest human handoff without reopening the larger playbooks.
 
-## Quick rule
+## Fast path
 
-Post the winner only when all three stay visible in one sentence:
+1. Confirm `summary.reviewer_queue.next_focus_key` is present.
+2. Confirm `summary.reviewer_queue.next_focus_tie_mode` is `unique`.
+3. Copy the existing `next_focus_handoff_summary` or `next_focus_group` details.
+4. Keep the note scope-limited to the current queue winner; do not imply broader rerun coverage.
 
-1. priority label (`P1`, `P2`, ...)
-2. winning queue label
-3. scope cue (`next`, `narrow lead`, or `shared focus`)
+## One-line handoff pattern
 
-## Minimal handoff shapes
+```text
+Next reviewer focus: <priority label> · <queue label> · ids=<case ids> · active=<active-case rate> · source=<source-case rate>.
+```
 
-- Unique winner: `Next reviewer focus: P1 fix regressions.`
-- Narrow lead: `Next reviewer focus: P1 fix regressions (narrow lead over watch unchanged fails).`
-- Shared focus: `Next reviewer focus: shared P1 lanes — fix regressions / watch unchanged fails.`
+## Hold instead of post
 
-## Guardrail
+Stay on hold when any of these is true:
 
-Do not hide the runner-up when the queue share or priority-rank lead is visibly narrow.
+- `next_focus_tie_mode` is `tied`
+- the winner still needs a boundary qualifier
+- filtered-out or skipped scope is the real review blocker
+
+If that happens, switch to the fuller tie/hold playbooks before posting the handoff.
