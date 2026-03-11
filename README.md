@@ -133,6 +133,7 @@ If you need the shortest winner-first path before opening the larger tie/hold pl
 If you need the shortest winner-first wording path before opening the larger playbooks, start with `examples/reviewer_queue_priority_rank_scope_quickstart.md`.
 If you need a one-line release-gate note once the priority-rank winner is stable enough to drive the next ship/no-ship conversation, open `examples/reviewer_queue_priority_rank_release_gate.md`.
 If you need a compact note that keeps the winning queue plus the shared JSON/Markdown/HTML report bundle visible in one release-gate handoff, open `examples/reviewer_queue_release_gate_bundle_note.md`.
+If you need a compact reviewer note for bundles that also keep the runner-up queue visible beside the current winner, open `examples/reviewer_queue_bundle_runner_up_note.md`.
 If you need a compact triage card that pairs the exposed winner with the immediate reviewer action, open `examples/reviewer_queue_priority_rank_triage_card.md`.
 If you need a shortest-path note for reopening the runner-up after the winner is already posted, open `examples/reviewer_queue_runner_up_note.md`.
 If you need a compact queue-scoped handoff sentence that keeps queue share and source-case impact together, open `examples/reviewer_queue_scope_handoff_card.md`.
