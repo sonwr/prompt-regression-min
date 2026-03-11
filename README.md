@@ -76,6 +76,7 @@ If you need a one-line reviewer update specifically for HTML-ready queue reports
 If you need a quick artifact check before claiming the HTML-ready bundle is reviewable, open `examples/reviewer_queue_html_report_bundle_check.md`.
 If the HTML summary layout changed and you need a visual reviewer pass, open `examples/reviewer_queue_html_report_visual_check.md`.
 If you need a one-line note for the queue that stays next after the current focus, open `examples/reviewer_queue_runner_up_handoff_card.md`.
+If you need a compact reviewer handoff for a small but still non-empty rerun queue, open `examples/reviewer_queue_small_batch_handoff.md`.
 If you need a one-line reviewer update once the priority-rank winner is already trustworthy, open `examples/reviewer_queue_priority_rank_quick_post.md`.
 If you need a compact priority-rank note that keeps both the winner and the runner-up visible in one sentence, open `examples/reviewer_queue_priority_rank_runner_up_note.md`.
 If you need a fast pre-commit review pass for next-focus handoffs, open `examples/reviewer_queue_followup_checklist.md`.
