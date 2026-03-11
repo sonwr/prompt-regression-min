@@ -126,6 +126,7 @@ If you need a compact example that explains source-case rate when the active win
 If you need a quick rank-first phrase for the queue that should be handled next, open `examples/reviewer_queue_priority_rank_card.md`.
 If you need a single-line reviewer update once the rank is already known, open `examples/reviewer_queue_priority_rank_status_line.md`.
 If you need a one-line note for explaining that the exposed priority-rank lead is still narrow, open `examples/reviewer_queue_priority_rank_margin_note.md`.
+- `examples/reviewer_queue_next_focus_owner_ping.md` — owner ping line when the next-focus queue is clear but still needs a named action.
 If you need a compact note that keeps the runner-up visible when the next-focus lead is real but still close, open `examples/reviewer_queue_runner_up_boundary_note.md`.
 If you need a compact rule for keeping a reported winner narrow when the queue lead is real but still modest, open `examples/reviewer_queue_priority_rank_narrow_lead_rule.md`.
 If you need a slightly fuller one-sentence handoff that still keeps the runner-up visible, open `examples/reviewer_queue_priority_rank_margin_summary.md`.
