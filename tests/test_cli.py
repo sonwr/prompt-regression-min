@@ -142,6 +142,12 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("examples/reviewer_queue_priority_rank_release_gate.md", readme)
         self.assertTrue((ROOT / "examples" / "reviewer_queue_priority_rank_release_gate.md").exists())
 
+    def test_readme_mentions_priority_rank_hold_note_example(self) -> None:
+        readme = README_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("examples/reviewer_queue_priority_rank_hold_note.md", readme)
+        self.assertTrue((ROOT / "examples" / "reviewer_queue_priority_rank_hold_note.md").exists())
+
     def test_readme_mentions_owner_status_ready_check_example(self) -> None:
         readme = README_PATH.read_text(encoding="utf-8")
 
