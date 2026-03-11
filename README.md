@@ -138,6 +138,7 @@ If you need a compact wording note for a tied priority rank with only a narrow m
 If you need a one-line confidence qualifier when the exposed priority-rank winner still has a visible runner-up, open `examples/reviewer_queue_priority_rank_confidence_note.md`.
 If you need a compact bridge sentence when the next-focus winner still has a narrow lead, open `examples/reviewer_queue_next_focus_gap_bridge.md`.
 If you need a compact rule for when an exposed priority rank should still stay on hold instead of becoming a decisive handoff, open `examples/reviewer_queue_priority_rank_hold_boundary.md`.
+If you need copy-ready hold wording examples before posting that scoped update, open `examples/reviewer_queue_priority_rank_hold_examples.md`.
 If you need a one-line reviewer note for that hold state without reopening the longer checklist, open `examples/reviewer_queue_priority_rank_hold_note.md`.
 If you need a copy-ready sentence for that hold state without reopening the larger playbook, open `examples/reviewer_queue_next_focus_hold_note.md`.
 If you need a quick post-versus-hold decision before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_decider.md`.
