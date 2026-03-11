@@ -83,6 +83,7 @@ If you need a one-line follow-up for a queue that is already stable enough to tr
 If you need a compact gate for deciding whether that same stable queue still has a believable shared report bundle behind it, open `examples/reviewer_queue_stable_bundle_gate.md`.
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a one-line reviewer update specifically for HTML-ready queue reports, open `examples/reviewer_queue_html_report_status_line.md`.
+If you need a quick one-line note that explains the winning queue using queue share alone, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a slightly fuller one-card update for the same HTML-ready bundle handoff, open `examples/reviewer_queue_html_bundle_status_card.md`.
 If you need a compact replay note for reopening the queue decision together with its saved artifact bundle, open `examples/reviewer_queue_bundle_replay_note.md`.
 If you need the same update to stay explicitly scoped to the shared report bundle, open `examples/reviewer_queue_report_bundle_scope_status_line.md`.
