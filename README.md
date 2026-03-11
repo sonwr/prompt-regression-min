@@ -69,6 +69,7 @@ If you need a one-line note that points reviewers to the full summary artifact b
 If you need a markdown-first reopen cue for the same handoff, open `examples/reviewer_queue_markdown_bundle_note.md`.
 If you need a two-line handoff that pairs the active reviewer queue with the exact artifact bundle to reopen first, open `examples/reviewer_queue_artifact_reopen_line.md`.
 If you need a compact naming rule for that JSON/HTML reviewer bundle, open `examples/reviewer_queue_report_bundle_name_note.md`.
+If you need a compact example for reviewer-queue markdown/json/html bundle checks before posting a short status, open `examples/reviewer_queue_bundle_gate_note.md`.
 If you need a one-line scope-safe note that names the active reviewer queue and the shared JSON/Markdown/HTML bundle together, open `examples/reviewer_queue_report_bundle_scope_note.md`.
 If you need a compact pre-post audit for reopening the JSON summary, HTML report, and queue handoff together, open `examples/reviewer_queue_report_bundle_reopen_check.md`.
 If you need a shorter handoff sentence that names the recommendation, queue lead, and shared report bundle together, open `examples/reviewer_queue_report_bundle_handoff.md`.
