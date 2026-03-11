@@ -88,6 +88,7 @@ If you need a compact gate before trusting that HTML-ready handoff, open `exampl
 If you need a quick reopen check before posting that HTML-ready handoff, open `examples/reviewer_queue_html_report_download_gate.md`.
 If you need a quick artifact check before claiming the HTML-ready bundle is reviewable, open `examples/reviewer_queue_html_report_bundle_check.md`.
 If you need a compact note for keeping reviewer-facing bundle filenames stable with `--report-file-stem`, open `examples/reviewer_queue_report_file_stem_note.md`.
+If you need the shortest reviewer cue for a queue summary that already includes the baseline vs candidate case counts, open `examples/reviewer_queue_case_count_status_line.md`.
 If the HTML summary layout changed and you need a visual reviewer pass, open `examples/reviewer_queue_html_report_visual_check.md`.
 If you need a one-line note for the queue that stays next after the current focus, open `examples/reviewer_queue_runner_up_handoff_card.md`.
 If you need a compact reviewer handoff for a small but still non-empty rerun queue, open `examples/reviewer_queue_small_batch_handoff.md`.
