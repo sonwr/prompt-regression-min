@@ -136,6 +136,12 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("examples/reviewer_queue_priority_rank_triage_card.md", readme)
         self.assertTrue((ROOT / "examples" / "reviewer_queue_priority_rank_triage_card.md").exists())
 
+    def test_readme_mentions_runner_up_note_example(self) -> None:
+        readme = README_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("examples/reviewer_queue_runner_up_note.md", readme)
+        self.assertTrue((ROOT / "examples" / "reviewer_queue_runner_up_note.md").exists())
+
     def test_readme_mentions_report_bundle_name_note_example(self) -> None:
         readme = README_PATH.read_text(encoding="utf-8")
 
