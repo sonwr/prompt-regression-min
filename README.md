@@ -106,6 +106,7 @@ If you need a compact four-step tie-break before forcing a single next-focus que
 If you need a quick top-two comparison before posting a near-tied reviewer handoff, open `examples/reviewer_queue_top_two_checklist.md`.
 If you need a compact reminder for the next reviewer follow-up sentence, open `examples/reviewer_queue_followup_priority_card.md`.
 If you need a single-line reviewer handoff after the next-focus queue is chosen, open `examples/reviewer_queue_next_focus_status_line.md`.
+If you need a short status-card version once the priority-rank winner is already known, open `examples/reviewer_queue_priority_rank_status_card.md`.
 If you need that handoff to keep source-dataset impact visible in one sentence, open `examples/reviewer_queue_source_case_note.md`.
 If you need a compact note for keeping a priority-rank winner paired with `source_case_rate` before posting, open `examples/reviewer_queue_priority_rank_source_case_gate.md`.
 If you need a compact example that explains source-case rate when the active window is empty, open `examples/reviewer_queue_source_case_rate_note.md`.
