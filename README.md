@@ -131,6 +131,7 @@ If you need a compact queue-scoped handoff sentence that keeps queue share and s
 If you need a broader rule for keeping that queue-scoped sentence intentionally narrow, open `examples/reviewer_queue_scope_status_rule.md`.
 If you need a compact last-pass audit before posting a priority-rank winner as a queue-scoped handoff, open `examples/reviewer_queue_priority_rank_scope_checklist.md`.
 If you need a deterministic tie-break rule before naming the next reviewer focus, open `examples/reviewer_queue_next_focus_tie_break_card.md`.
+If you need a compact note that keeps every tied first lane visible in one handoff, open `examples/reviewer_queue_next_focus_tie_summary.md`.
 If you need a compact reference for how to word unique, rank-tied, or share-tied reviewer handoffs, open `examples/reviewer_queue_tie_mode_quick_reference.md`.
 If you need a one-line reviewer note that keeps the current winner and tie context together, open `examples/reviewer_queue_tie_handoff_note.md`.
 If you need the shortest reviewer-ready status line once the next focus is settled, open `examples/reviewer_queue_next_focus_quick_brief.md`.
