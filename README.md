@@ -66,6 +66,7 @@ If you need a compact reviewer note for JSON-exposed scaffold presets, open `exa
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a one-line reviewer update specifically for HTML-ready queue reports, open `examples/reviewer_queue_html_report_status_line.md`.
 If you need a one-line note for the queue that stays next after the current focus, open `examples/reviewer_queue_runner_up_handoff_card.md`.
+If you need a one-line reviewer update once the priority-rank winner is already trustworthy, open `examples/reviewer_queue_priority_rank_quick_post.md`.
 If you need a compact priority-rank note that keeps both the winner and the runner-up visible in one sentence, open `examples/reviewer_queue_priority_rank_runner_up_note.md`.
 If you need a fast pre-commit review pass for next-focus handoffs, open `examples/reviewer_queue_followup_checklist.md`.
 If you need to explain why one queue became the next reviewer focus, open `examples/reviewer_queue_next_focus_playbook.md`.
