@@ -1,13 +1,13 @@
-# Reviewer queue title and basename handoff
+# reviewer queue title and basename handoff
 
-Use this note when a regression bundle already has a human-facing report title and you need a compact reviewer handoff without renaming the artifact set manually.
+Use this note when a reviewer-ready regression bundle needs both a human-facing title and a stable `--report-file-stem` basename.
 
-## Handoff line
+## One-line handoff
 
-`Title is ready for reviewers; keep the shared bundle basename deterministic so markdown/html/json artifacts stay aligned.`
+Winner: the selected reviewer queue is ready to reopen with one human title for the summary and one stable basename for the shared JSON/Markdown/HTML artifacts.
 
-## Quick check
+## Quick review questions
 
-- Confirm the title is the human-facing phrase.
-- Confirm the bundle basename stays slug-safe and stable.
-- Confirm reviewer notes refer to the same artifact family.
+- Does the title explain why this queue won without reopening the raw JSON?
+- Does the basename stay stable across CI reruns and local replay?
+- Can the reviewer find the JSON, markdown, and HTML artifacts from the same bundle name?
