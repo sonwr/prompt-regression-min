@@ -1095,3 +1095,6 @@ If you need a short reviewer note for queue-share-first tie resolution, open `ex
 If you need a compact handoff that keeps the active reviewer queue explicitly paired with the shared report bundle scope, open `examples/reviewer_queue_report_bundle_scope_handoff.md`.
 
 If you need a compact bot-facing note for the reviewer-queue per-group maps in `summary.json`, open `examples/reviewer_queue_priority_rank_group_map.md`.
+
+
+If you need a compact note for preserving `report_author` / `report_authors` ownership fields inside reviewer-queue bundles, open `examples/reviewer_queue_report_owner_alias_note.md`.
