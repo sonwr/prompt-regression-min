@@ -185,6 +185,7 @@ If you need the shortest rank-first route from exposed queue metadata to a human
 If you need a compact winner-only sentence once the exposed priority rank is already trustworthy, open `examples/reviewer_queue_priority_rank_winner_note.md`.
 
 ---
+If you need one compact explanation for why the next queue is ahead, tied, or solo, open `examples/reviewer_queue_next_focus_advantage_summary.md`.
 
 ## Vision
 
