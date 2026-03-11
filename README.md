@@ -62,6 +62,7 @@ For release-wide CLI or summary payload edits, run `python3 -m unittest discover
 If you need a compact phrase set for reviewer-queue handoffs, start with `examples/reviewer_queue_priority_labels.md`.
 If you need a one-line PR-comment handoff sentence, open `examples/reviewer_queue_priority_handoff_card.md`.
 If you need a compact owner handoff template after queue selection, open `examples/reviewer_queue_owner_handoff_template.md`.
+If you need a compact reviewer note for JSON-exposed scaffold presets, open `examples/reviewer_queue_presets_json_handoff.md`.
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a one-line reviewer update specifically for HTML-ready queue reports, open `examples/reviewer_queue_html_report_status_line.md`.
 If you need a one-line note for the queue that stays next after the current focus, open `examples/reviewer_queue_runner_up_handoff_card.md`.
