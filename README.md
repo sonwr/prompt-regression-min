@@ -68,6 +68,7 @@ If you need a one-line note that points reviewers to the full summary artifact b
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a one-line reviewer update specifically for HTML-ready queue reports, open `examples/reviewer_queue_html_report_status_line.md`.
 If you need a quick artifact check before claiming the HTML-ready bundle is reviewable, open `examples/reviewer_queue_html_report_bundle_check.md`.
+If the HTML summary layout changed and you need a visual reviewer pass, open `examples/reviewer_queue_html_report_visual_check.md`.
 If you need a one-line note for the queue that stays next after the current focus, open `examples/reviewer_queue_runner_up_handoff_card.md`.
 If you need a one-line reviewer update once the priority-rank winner is already trustworthy, open `examples/reviewer_queue_priority_rank_quick_post.md`.
 If you need a compact priority-rank note that keeps both the winner and the runner-up visible in one sentence, open `examples/reviewer_queue_priority_rank_runner_up_note.md`.
