@@ -1049,4 +1049,5 @@ If you need a compact naming note for keeping JSON plus markdown/PR-comment arti
 
 If you need a compact note for keeping CLI JSON baselines reviewable in docs and CI together, open `docs/CLI_JSON_BASELINE_NOTE.md`.
 If you need the quickest stdout-first handoff for JSON or markdown summaries, open `docs/CLI_SUMMARY_STDOUT_NOTE.md`.
+If you need the same stdout-first pattern for reviewer-note markdown, open `docs/CLI_SUMMARY_PR_COMMENT_STDOUT_NOTE.md`.
 If you need a compact reminder to review the JSON summary artifact next to the markdown handoff, open `docs/CLI_SUMMARY_ARTIFACT_NOTE.md`.
