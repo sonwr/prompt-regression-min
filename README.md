@@ -315,6 +315,7 @@ If you need one short explanation of what kind of follow-up dominates the shard,
 If you need a compact rule for `next_focus_advantage_direction` (`none` / `tied` / `solo` / `ahead`), open `examples/reviewer_queue_advantage_direction_guide.md`.
 If the run is clean and `reviewer_queue.total` is `0`, open `examples/reviewer_queue_zero_queue_playbook.md` for a short "nothing to route" handoff line instead of improvising reviewer-note wording.
 If filtered-out cases, skipped cases, or unchanged-fail watchlists are muddying the handoff, open `examples/reviewer_queue_filter_playbook.md` before trusting the queue priority string.
+If you need a one-line reviewer note that names the winner and the second lane together, open `examples/reviewer_queue_dual_lane_status_line.md`.
 Reviewer-queue JSON and paste-ready summaries now also expose a structured runner-up lane (`runner_up_key`, `runner_up_priority_label`, `runner_up_summary`) so rerun handoffs can keep the second queue branch visible without reopening the full artifact.
 They now also emit `next_focus_tie_summary`, a paste-ready `key=P# · label` line for tied first lanes, so PR comments can preserve deterministic rerun ordering without re-reading the full JSON artifact.
 Committed reviewer-facing markdown output for the same fixture lives at `examples/artifacts/word-count-range.summary.md`, and the matching machine-readable gate payload now lives at `examples/artifacts/word-count-range.summary.json` for CI drift checks.
