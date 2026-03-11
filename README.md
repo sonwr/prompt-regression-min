@@ -1096,6 +1096,7 @@ If you need a compact rule for keeping parser-facing summary automation tied to 
 If you need a compact reminder to pair `--quiet` stdout handoffs with the same summary-schema expectation, open `docs/CLI_SUMMARY_QUIET_SCHEMA_NOTE.md`.
 If you need a compact reminder to review the JSON summary artifact next to the markdown handoff, open `docs/CLI_SUMMARY_ARTIFACT_NOTE.md`.
 If you need a quick note for keeping reviewer-queue source-case rate visible beside active-case rate in CLI summaries, open `docs/CLI_REVIEWER_QUEUE_SOURCE_CASE_RATE_NOTE.md`.
+If you need a one-line reviewer handoff pattern that keeps next-focus scope tied to source-case impact, open `examples/reviewer_queue_source_case_scope_note.md`.
 If you need a compact rule for keeping stdout-first summaries tied to one explicit owner line, open `docs/CLI_SUMMARY_STDOUT_OWNER_NOTE.md`.
 If you need a one-line reviewer update once the winner and shared bundle are already known, open `examples/reviewer_queue_priority_rank_ready_post.md`.
 
