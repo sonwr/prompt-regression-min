@@ -75,6 +75,7 @@ If you need a compact pre-post audit for reopening the JSON summary, HTML report
 If you need a shorter handoff sentence that names the recommendation, queue lead, and shared report bundle together, open `examples/reviewer_queue_report_bundle_handoff.md`.
 If you need a shorter handoff sentence that names the recommendation, queue lead, and shared report bundle together, open `examples/reviewer_queue_report_bundle_handoff.md`.
 If you need a one-line follow-up for a queue that is already stable enough to trust, open `examples/reviewer_queue_stable_bundle_handoff.md`.
+If you need a compact gate for deciding whether that same stable queue still has a believable shared report bundle behind it, open `examples/reviewer_queue_stable_bundle_gate.md`.
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a one-line reviewer update specifically for HTML-ready queue reports, open `examples/reviewer_queue_html_report_status_line.md`.
 If you need a quick artifact check before claiming the HTML-ready bundle is reviewable, open `examples/reviewer_queue_html_report_bundle_check.md`.
