@@ -66,6 +66,7 @@ If you need a compact reviewer note for JSON-exposed scaffold presets, open `exa
 If you need a compact note for title-ready reviewer bundles that still need deterministic shared artifact naming, open `examples/reviewer_queue_title_and_basename_handoff.md`.
 If you need a one-line note that points reviewers to the full summary artifact bundle, open `examples/reviewer_queue_artifact_bundle_note.md`.
 If you need a two-line handoff that pairs the active reviewer queue with the exact artifact bundle to reopen first, open `examples/reviewer_queue_artifact_reopen_line.md`.
+If you need a compact pre-post audit for reopening the JSON summary, HTML report, and queue handoff together, open `examples/reviewer_queue_report_bundle_reopen_check.md`.
 If you need a shorter handoff sentence that names the recommendation, queue lead, and shared report bundle together, open `examples/reviewer_queue_report_bundle_handoff.md`.
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a one-line reviewer update specifically for HTML-ready queue reports, open `examples/reviewer_queue_html_report_status_line.md`.

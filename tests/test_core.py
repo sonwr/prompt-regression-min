@@ -16,6 +16,14 @@ def _write_jsonl(path: Path, rows: list[dict]) -> None:
 
 
 class RegressionCoreTests(unittest.TestCase):
+    def test_readme_mentions_report_bundle_reopen_check(self) -> None:
+        readme = (Path(__file__).resolve().parents[1] / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("examples/reviewer_queue_report_bundle_reopen_check.md", readme)
+        self.assertTrue(
+            (Path(__file__).resolve().parents[1] / "examples" / "reviewer_queue_report_bundle_reopen_check.md").exists()
+        )
+
 
     def test_run_regression_supports_paragraph_count_range_expectation(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
