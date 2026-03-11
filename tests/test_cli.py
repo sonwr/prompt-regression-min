@@ -3,6 +3,7 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import os
 import sys
 import tempfile
 import subprocess
@@ -1397,6 +1398,41 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Changed-case rate: 66.67%", rendered)
             self.assertNotIn("prompt-regression-min summary\n- cases:", rendered)
 
+
+    def test_cli_blank_summary_markdown_title_falls_back_to_default(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "keep-pass", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "keep-pass", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "keep-pass", "output": "ok"}])
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "prompt_regression_min.cli",
+                    "run",
+                    "-d", str(dataset),
+                    "-b", str(baseline),
+                    "-c", str(candidate),
+                    "--summary-markdown", "-",
+                    "--summary-markdown-title", "   ",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+                env={**os.environ, "PYTHONPATH": str(ROOT / "src")},
+            )
+
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("## prompt-regression-min summary", result.stdout)
+        self.assertNotIn("##    ", result.stdout)
+        self.assertEqual(result.stderr, "")
 
     def test_cli_allows_custom_summary_markdown_title(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -3600,6 +3636,41 @@ class PromptRegressionCliTests(unittest.TestCase):
             self.assertIn("- Skipped-case rate: 100.00% of active cases", rendered)
             self.assertIn("- Skipped source-case rate: 33.33% of source cases", rendered)
 
+
+    def test_cli_blank_summary_pr_comment_title_falls_back_to_default(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(dataset, [{"id": "keep-pass", "expected": {"type": "substring", "value": "ok"}}])
+            _write_jsonl(baseline, [{"id": "keep-pass", "output": "ok"}])
+            _write_jsonl(candidate, [{"id": "keep-pass", "output": "ok"}])
+
+            result = subprocess.run(
+                [
+                    sys.executable,
+                    "-m",
+                    "prompt_regression_min.cli",
+                    "run",
+                    "-d", str(dataset),
+                    "-b", str(baseline),
+                    "-c", str(candidate),
+                    "--summary-pr-comment", "-",
+                    "--summary-pr-comment-title", "   ",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+                env={**os.environ, "PYTHONPATH": str(ROOT / "src")},
+            )
+
+        self.assertEqual(result.returncode, 0)
+        self.assertIn("## prompt-regression-min summary", result.stdout)
+        self.assertNotIn("##    ", result.stdout)
+        self.assertEqual(result.stderr, "")
 
     def test_cli_allows_custom_summary_pr_comment_title_without_changing_markdown_title(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

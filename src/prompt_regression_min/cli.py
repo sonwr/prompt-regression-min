@@ -637,6 +637,11 @@ def _build_parser() -> argparse.ArgumentParser:
     return parser
 
 
+def _normalize_heading(value: str, fallback: str) -> str:
+    normalized = value.strip()
+    return normalized or fallback
+
+
 def main() -> None:
     parser = _build_parser()
     args = parser.parse_args()
@@ -722,6 +727,14 @@ def main() -> None:
             raise SystemExit(2)
 
         summary = report["summary"]
+        summary_markdown_title = _normalize_heading(
+            args.summary_markdown_title,
+            "prompt-regression-min summary",
+        )
+        summary_pr_comment_title = _normalize_heading(
+            args.summary_pr_comment_title,
+            "prompt-regression-min summary",
+        )
 
         def emit(line: str) -> None:
             if not args.quiet:
@@ -974,7 +987,7 @@ def main() -> None:
 
         if args.summary_markdown:
             markdown_lines = [
-                f"## {args.summary_markdown_title}",
+                f"## {summary_markdown_title}",
                 "",
                 f"- Tool version: `{__version__}`",
                 "- Summary schema version: `1`",
@@ -1475,7 +1488,7 @@ def main() -> None:
 
         if args.summary_pr_comment:
             pr_comment_lines = [
-                f"## {args.summary_pr_comment_title}",
+                f"## {summary_pr_comment_title}",
                 f"- Status: **{status}**",
                 "- Summary schema version: `1`",
                 f"- Tool version: `{__version__}`",
