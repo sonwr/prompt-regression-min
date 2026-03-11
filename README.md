@@ -82,6 +82,7 @@ If you need a one-line reviewer update specifically for HTML-ready queue reports
 If you need a slightly fuller one-card update for the same HTML-ready bundle handoff, open `examples/reviewer_queue_html_bundle_status_card.md`.
 If you need the same update to stay explicitly scoped to the shared report bundle, open `examples/reviewer_queue_report_bundle_scope_status_line.md`.
 If you need a compact gate before trusting that HTML-ready handoff, open `examples/reviewer_queue_html_report_gate.md`.
+If you need a quick reopen check before posting that HTML-ready handoff, open `examples/reviewer_queue_html_report_download_gate.md`.
 If you need a quick artifact check before claiming the HTML-ready bundle is reviewable, open `examples/reviewer_queue_html_report_bundle_check.md`.
 If you need a compact note for keeping reviewer-facing bundle filenames stable with `--report-file-stem`, open `examples/reviewer_queue_report_file_stem_note.md`.
 If the HTML summary layout changed and you need a visual reviewer pass, open `examples/reviewer_queue_html_report_visual_check.md`.
