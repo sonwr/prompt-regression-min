@@ -124,6 +124,7 @@ If you need a compact last-pass audit before trusting the exposed priority rank 
 If you need a compact check for whether the visible priority-rank lead is large enough to post without hiding the runner-up, open `examples/reviewer_queue_priority_rank_gap_check.md`.
 If you need a one-sentence note for a winner that still has only a narrow lead, open `examples/reviewer_queue_priority_rank_gap_summary.md`.
 If you need a compact wording note for keeping that exposed winner intentionally scope-limited, open `examples/reviewer_queue_priority_rank_scope_note.md`.
+If you need the shortest winner-first wording path before the larger scope examples, open `examples/reviewer_queue_priority_rank_scope_quickstart.md`.
 If you need a one-screen release-note version of that same scope rule, open `examples/reviewer_queue_priority_rank_scope_release_note.md`.
 If you need copy-ready examples for winner-only, narrow-lead, or shared-focus scope wording, open `examples/reviewer_queue_priority_rank_scope_examples.md`.
 If you need a one-line queue-scoped update once the priority-rank winner is already known, open `examples/reviewer_queue_priority_rank_scope_status_line.md`.
