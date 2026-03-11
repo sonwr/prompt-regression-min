@@ -1101,3 +1101,6 @@ If you need a compact bot-facing note for the reviewer-queue per-group maps in `
 
 
 If you need a compact note for preserving `report_author` / `report_authors` ownership fields inside reviewer-queue bundles, open `examples/reviewer_queue_report_owner_alias_note.md`.
+
+
+If you need a compact reviewer note for one owner-routable next-focus summary after `--summary-pr-comment`, open `examples/reviewer_queue_priority_rank_owner_summary.md`.
