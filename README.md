@@ -72,6 +72,7 @@ If you need a compact naming rule for that JSON/HTML reviewer bundle, open `exam
 If you need a compact example for reviewer-queue markdown/json/html bundle checks before posting a short status, open `examples/reviewer_queue_bundle_gate_note.md`.
 If you need a one-line scope-safe note that names the active reviewer queue and the shared JSON/Markdown/HTML bundle together, open `examples/reviewer_queue_report_bundle_scope_note.md`.
 If you need a compact pre-post audit for reopening the JSON summary, HTML report, and queue handoff together, open `examples/reviewer_queue_report_bundle_reopen_check.md`.
+If you need a one-line reviewer note for reopening the queue with the shared JSON, markdown, and HTML bundle, open `examples/reviewer_queue_html_bundle_reopen_note.md`.
 If you need a shorter handoff sentence that names the recommendation, queue lead, and shared report bundle together, open `examples/reviewer_queue_report_bundle_handoff.md`.
 If you need a shorter handoff sentence that names the recommendation, queue lead, and shared report bundle together, open `examples/reviewer_queue_report_bundle_handoff.md`.
 If you need a one-line follow-up for a queue that is already stable enough to trust, open `examples/reviewer_queue_stable_bundle_handoff.md`.
