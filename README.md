@@ -113,7 +113,8 @@ If you need a compact wording note for keeping that exposed winner intentionally
 If you need copy-ready examples for winner-only, narrow-lead, or shared-focus scope wording, open `examples/reviewer_queue_priority_rank_scope_examples.md`.
 If you need a one-line queue-scoped update once the priority-rank winner is already known, open `examples/reviewer_queue_priority_rank_scope_status_line.md`.
 If you need the shortest winner-first wording path before opening the larger playbooks, start with `examples/reviewer_queue_priority_rank_scope_quickstart.md`.
-If you need a one-line release-gate note once the priority-rank winner is stable enough to drive the next ship/no-ship conversation, open `examples/reviewer_queue_priority_rank_release_gate.md`.
+If you need a one-line release-gate note once the priority-rank winner is stable enough to drive the next ship/no-ship conversation, open `examples/reviewer_queue_priority_rank_release_gate.md
+- `examples/reviewer_queue_priority_rank_triage_card.md``.
 If you need a compact queue-scoped handoff sentence that keeps queue share and source-case impact together, open `examples/reviewer_queue_scope_handoff_card.md`.
 If you need a broader rule for keeping that queue-scoped sentence intentionally narrow, open `examples/reviewer_queue_scope_status_rule.md`.
 If you need a compact last-pass audit before posting a priority-rank winner as a queue-scoped handoff, open `examples/reviewer_queue_priority_rank_scope_checklist.md`.
