@@ -1028,3 +1028,5 @@ This keeps markdown/PR-comment handoffs and machine-readable JSON aligned.
 ## Report bundle shortcut
 
 If reviewers need both human and machine outputs from the same run, start with `examples/reviewer_queue_report_dir_walkthrough.md` and `examples/summary_json_handoff.md` so the markdown/PR-comment handoff and the JSON contract stay generated from one deterministic command.
+If you need the shortest reopen path for that same reviewer bundle, open `examples/reviewer_queue_report_bundle_quickstart.md`.
+
