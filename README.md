@@ -365,6 +365,7 @@ If you want the first rerun lane plus the likely second lane in one reviewer han
 If you need to justify why the dominant lane should go first, open `examples/reviewer_queue_advantage_playbook.md` for a compact `label + advantage summary` reviewer-note pattern.
 If you need one short explanation of what kind of follow-up dominates the shard, open `examples/reviewer_queue_queue_mix_playbook.md` for a queue-share-driven reviewer note.
 If you need a compact rule for `next_focus_advantage_direction` (`none` / `tied` / `solo` / `ahead`), open `examples/reviewer_queue_advantage_direction_guide.md`.
+If you need the shortest human-facing repost pattern once that direction is already known, open `examples/reviewer_queue_advantage_direction_quickstart.md`.
 If the run is clean and `reviewer_queue.total` is `0`, open `examples/reviewer_queue_zero_queue_playbook.md` for a short "nothing to route" handoff line instead of improvising reviewer-note wording.
 If you need the shortest explanation of why one rerun lane should go first, open `examples/reviewer_queue_priority_alias_note.md` for a compact `follow_up_priority_summary` handoff pattern.
 If you need the queue-mix rationale in one reviewer-ready sentence, open `examples/reviewer_queue_priority_mix_summary.md`.
