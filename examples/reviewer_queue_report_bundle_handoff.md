@@ -1,1 +1,7 @@
-If the reviewer queue already looks stable, point reviewers to the full report bundle by naming the recommendation, the queue lead, and the shared artifact basename in one sentence.
+# reviewer queue report bundle handoff
+
+Use this when one reviewer queue already leads and you want a single sentence that keeps the recommendation, queue lead, and shared artifact bundle together.
+
+## Copy-ready line
+
+`Recommendation stays review-ready: reopen the shared report bundle first, keep fix_regressions as the lead queue, and verify the runner-up only if the bundle evidence changes.`
