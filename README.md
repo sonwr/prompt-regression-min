@@ -117,6 +117,7 @@ If you need a short audit for whether the selected queue actually has a convinci
 If you need a final yes/no check before posting the reviewer handoff, open `examples/reviewer_queue_post_ready_check.md`.
 If you need a compact last-mile check for whether the handoff sentence is actually human-ready, open `examples/reviewer_queue_handoff_ready_check.md`.
 If you need the shortest queue-first note that keeps the selected reviewer lane paired with its saved markdown/html/json report bundle, open `examples/reviewer_queue_bundle_start_note.md`.
+If you need one compact gate that keeps the selected reviewer queue tied to its saved report bundle before sharing the handoff, open `examples/reviewer_queue_report_bundle_gate.md`.
 If you need a compact audit for whether the dominant reviewer queue really deserves the next-focus callout, open `examples/reviewer_queue_dominant_focus_checklist.md`.
 If you need a short reopen handoff for the next reviewer queue plus its saved artifact bundle, open `docs/CLI_REVIEWER_QUEUE_REOPEN_NOTE.md`.
 If you need a one-line gate note for pairing the next-focus reviewer queue with one saved artifact path, open `examples/reviewer_queue_next_focus_gate_note.md`.
