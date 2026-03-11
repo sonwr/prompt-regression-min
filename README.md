@@ -1110,3 +1110,5 @@ If you need a compact note for preserving `report_author` / `report_authors` own
 
 
 If you need a compact reviewer note for one owner-routable next-focus summary after `--summary-pr-comment`, open `examples/reviewer_queue_priority_rank_owner_summary.md`.
+
+If you want a compact source-provenance reminder before handing off a generated scenario report bundle, open `examples/reviewer_queue_pass_rate_trend_owner_handoff.md`.
