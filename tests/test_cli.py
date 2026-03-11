@@ -7,13 +7,17 @@ import sys
 import tempfile
 import subprocess
 import unittest
+import re
 from unittest import mock
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
 from prompt_regression_min import cli
 from prompt_regression_min.cli import _build_reviewer_queue
+
+README_PATH = ROOT / "README.md"
 
 
 def _write_jsonl(path: Path, rows: list[dict]) -> None:
@@ -119,6 +123,14 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertEqual(queue["next_focus_advantage_active_case_rate"], 0.3333)
         self.assertEqual(queue["next_focus_advantage_source_case_rate"], 0.1667)
         self.assertIn("clear lead: +2 case(s), +50.00% queue share", queue["next_focus_advantage_summary"])
+
+    def test_readme_example_references_resolve_to_existing_files(self) -> None:
+        readme = README_PATH.read_text(encoding="utf-8")
+        example_refs = sorted(set(re.findall(r"`(examples/[^`]+\.md)`", readme)))
+
+        self.assertGreater(len(example_refs), 10)
+        missing = [path for path in example_refs if not (ROOT / path).exists()]
+        self.assertEqual(missing, [])
 
     def test_cli_emits_summary_pr_comment_to_stdout(self):
         with tempfile.TemporaryDirectory() as tmpdir:
