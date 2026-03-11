@@ -65,6 +65,7 @@ If you need a compact phrase set for reviewer-queue handoffs, start with `exampl
 If you need a one-line PR-comment handoff sentence, open `examples/reviewer_queue_priority_handoff_card.md`.
 If you need a compact owner handoff template after queue selection, open `examples/reviewer_queue_owner_handoff_template.md`.
 If you need a compact reviewer note for JSON-exposed scaffold presets, open `examples/reviewer_queue_presets_json_handoff.md`.
+If you need a compact rule for naming the winning queue, shared report bundle, and owner in that order, open `examples/reviewer_queue_report_bundle_priority_note.md`.
 If you need a compact note for title-ready reviewer bundles that still need deterministic shared artifact naming, open `examples/reviewer_queue_title_and_basename_handoff.md`.
 If you need the shortest reviewer handoff that reopens both JSON and markdown artifacts together, open `examples/reviewer_queue_json_bundle_quickstart.md`.
 If you need a one-line note that points reviewers to the full summary artifact bundle, open `examples/reviewer_queue_artifact_bundle_note.md`.
