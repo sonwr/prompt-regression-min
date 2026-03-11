@@ -115,6 +115,7 @@ If you need a compact last-mile check for whether the handoff sentence is actual
 If you need the shortest queue-first note that keeps the selected reviewer lane paired with its saved markdown/html/json report bundle, open `examples/reviewer_queue_bundle_start_note.md`.
 If you need a compact audit for whether the dominant reviewer queue really deserves the next-focus callout, open `examples/reviewer_queue_dominant_focus_checklist.md`.
 If you need a short reopen handoff for the next reviewer queue plus its saved artifact bundle, open `docs/CLI_REVIEWER_QUEUE_REOPEN_NOTE.md`.
+If you need a one-line gate note for pairing the next-focus reviewer queue with one saved artifact path, open `examples/reviewer_queue_next_focus_gate_note.md`.
 If you need a compact reminder to keep one explicit owner with that saved summary bundle, open `docs/CLI_SUMMARY_REPORT_OWNER_NOTE.md`.
 If you need a one-line owner-ready handoff that still keeps the active reviewer queue tied to its shared artifact bundle, open `examples/reviewer_queue_bundle_owner_ready_note.md`.
 If you need a short evidence-first review pass before posting the selected queue, open `examples/reviewer_queue_priority_audit.md`.
