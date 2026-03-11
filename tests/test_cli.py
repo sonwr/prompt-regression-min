@@ -124,6 +124,12 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertEqual(queue["next_focus_advantage_source_case_rate"], 0.1667)
         self.assertIn("clear lead: +2 case(s), +50.00% queue share", queue["next_focus_advantage_summary"])
 
+    def test_readme_mentions_priority_rank_quick_post_example(self) -> None:
+        readme = README_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("examples/reviewer_queue_priority_rank_quick_post.md", readme)
+        self.assertTrue((ROOT / "examples" / "reviewer_queue_priority_rank_quick_post.md").exists())
+
     def test_readme_example_references_resolve_to_existing_files(self) -> None:
         readme = README_PATH.read_text(encoding="utf-8")
         example_refs = sorted(set(re.findall(r"`(examples/[^`]+\.md)`", readme)))
