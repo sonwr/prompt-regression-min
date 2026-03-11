@@ -4540,3 +4540,12 @@ if __name__ == "__main__":
         self.assertTrue(example.exists())
         self.assertIn("examples/reviewer_queue_title_and_basename_handoff.md", readme)
         self.assertIn("bundle basename", example.read_text(encoding="utf-8"))
+
+    def test_readme_links_report_bundle_handoff_example(self) -> None:
+        repo_root = ROOT
+        readme = (repo_root / "README.md").read_text(encoding="utf-8")
+        example = repo_root / "examples" / "reviewer_queue_report_bundle_handoff.md"
+
+        self.assertTrue(example.exists())
+        self.assertIn("examples/reviewer_queue_report_bundle_handoff.md", readme)
+        self.assertIn("shared artifact basename", example.read_text(encoding="utf-8"))
