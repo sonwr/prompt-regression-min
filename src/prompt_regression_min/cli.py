@@ -971,7 +971,7 @@ def main() -> None:
                 try:
                     summary_path.parent.mkdir(parents=True, exist_ok=True)
                     summary_path.write_text(
-                        json.dumps(payload, ensure_ascii=False, indent=json_indent),
+                        json.dumps(payload, ensure_ascii=False, indent=json_indent) + "\n",
                         encoding="utf-8",
                     )
                 except OSError as exc:
