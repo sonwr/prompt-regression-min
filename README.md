@@ -1016,6 +1016,7 @@ When a PR only touches one feature area, prefer a shard run that still makes ski
 4. Use a markdown or PR-comment summary so reviewers do not need raw JSON to see scope loss.
 
 If you need a copy-ready one-liner for that public handoff, use `examples/reviewer_queue_scope_status_examples.md`.
+If you want a compact note that separates filtered-out scope from skipped-case rerun debt in the same reviewer update, open `examples/reviewer_queue_scope_vs_skip_note.md`.
 
 This keeps shard runs deterministic while preserving reviewer trust in what was, and was not, exercised.
 
