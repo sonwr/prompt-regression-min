@@ -1058,5 +1058,6 @@ If you need a compact note for keeping CLI JSON baselines reviewable in docs and
 If you need the quickest stdout-first handoff for JSON or markdown summaries, open `docs/CLI_SUMMARY_STDOUT_NOTE.md`.
 If you need that stdout-first summary to keep a stable human-readable heading in CI or pasted handoffs, open `docs/CLI_SUMMARY_STDOUT_TITLE_NOTE.md`.
 If you need the same stdout-first pattern for reviewer-note markdown, open `docs/CLI_SUMMARY_PR_COMMENT_STDOUT_NOTE.md`.
+If you need a compact rule for keeping parser-facing summary automation tied to an explicit schema gate, open `docs/CLI_SUMMARY_SCHEMA_GATE_NOTE.md`.
 If you need a compact reminder to review the JSON summary artifact next to the markdown handoff, open `docs/CLI_SUMMARY_ARTIFACT_NOTE.md`.
 If you need a one-line reviewer update once the winner and shared bundle are already known, open `examples/reviewer_queue_priority_rank_ready_post.md`.
