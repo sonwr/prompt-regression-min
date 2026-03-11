@@ -97,6 +97,7 @@ If you need the shortest reviewer cue for a queue summary that already includes 
 If the HTML summary layout changed and you need a visual reviewer pass, open `examples/reviewer_queue_html_report_visual_check.md`.
 If you need a one-line note for the queue that stays next after the current focus, open `examples/reviewer_queue_runner_up_handoff_card.md`.
 If you need a compact reviewer handoff for a small but still non-empty rerun queue, open `examples/reviewer_queue_small_batch_handoff.md`.
+If you need a compact yes/no note for whether the current next-focus queue still has enough evidence to justify a short progress post, open `examples/reviewer_queue_progress_post_gate.md`.
 If you need a one-line reminder to keep the rerun winner paired with its report bundle in a release review, open `examples/reviewer_queue_release_gate_bundle_scope_card.md`.
 If you need a one-line reviewer update once the priority-rank winner is already trustworthy, open `examples/reviewer_queue_priority_rank_quick_post.md`.
 If you need a compact reviewer note for the ranked winner before reopening the bundle, open `examples/reviewer_queue_priority_rank_triage_card.md`.
