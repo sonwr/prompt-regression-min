@@ -110,6 +110,7 @@ If you need a final yes/no check before posting the reviewer handoff, open `exam
 If you need a compact last-mile check for whether the handoff sentence is actually human-ready, open `examples/reviewer_queue_handoff_ready_check.md`.
 If you need a compact audit for whether the dominant reviewer queue really deserves the next-focus callout, open `examples/reviewer_queue_dominant_focus_checklist.md`.
 If you need a short reopen handoff for the next reviewer queue plus its saved artifact bundle, open `docs/CLI_REVIEWER_QUEUE_REOPEN_NOTE.md`.
+If you need a compact reminder to keep one explicit owner with that saved summary bundle, open `docs/CLI_SUMMARY_REPORT_OWNER_NOTE.md`.
 If you need a short evidence-first review pass before posting the selected queue, open `examples/reviewer_queue_priority_audit.md`.
 If you need a compact four-step tie-break before forcing a single next-focus queue, open `examples/reviewer_queue_tie_break_sequence.md`.
 If you need a quick top-two comparison before posting a near-tied reviewer handoff, open `examples/reviewer_queue_top_two_checklist.md`.
