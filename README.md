@@ -325,6 +325,7 @@ If you need one short explanation of what kind of follow-up dominates the shard,
 If you need a compact rule for `next_focus_advantage_direction` (`none` / `tied` / `solo` / `ahead`), open `examples/reviewer_queue_advantage_direction_guide.md`.
 If the run is clean and `reviewer_queue.total` is `0`, open `examples/reviewer_queue_zero_queue_playbook.md` for a short "nothing to route" handoff line instead of improvising reviewer-note wording.
 If you need the shortest explanation of why one rerun lane should go first, open `examples/reviewer_queue_priority_alias_note.md` for a compact `follow_up_priority_summary` handoff pattern.
+If you need the queue-mix rationale in one reviewer-ready sentence, open `examples/reviewer_queue_priority_mix_summary.md`.
 If filtered-out cases, skipped cases, or unchanged-fail watchlists are muddying the handoff, open `examples/reviewer_queue_filter_playbook.md` before trusting the queue priority string.
 If you need a one-line reviewer note that names the winner and the second lane together, open `examples/reviewer_queue_dual_lane_status_line.md`.
 Reviewer-queue JSON and paste-ready summaries now also expose a structured runner-up lane (`runner_up_key`, `runner_up_priority_label`, `runner_up_summary`) so rerun handoffs can keep the second queue branch visible without reopening the full artifact.
