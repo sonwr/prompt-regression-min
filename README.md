@@ -1244,3 +1244,4 @@ If you need a compact watcher-facing handoff after the winning reviewer-queue la
 If you need a short PM note for keeping queue mix visible beside the reviewer queue report bundle before a rerun, open `docs/REPORT_QUEUE_MIX_NOTE.md`.
 
 If you need a short note for keeping queue share and source-case rate readable in the same follow-up lane, open `docs/CLI_REVIEWER_QUEUE_SHARE_SOURCE_CASE_NOTE.md`.
+- Reviewer-queue bundle + queue-mix note: `examples/reviewer_queue_bundle_queue_mix_note.md`
