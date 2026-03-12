@@ -1,5 +1,8 @@
-# CLI summary validate-command + bundle-status note
+# CLI summary validate-command-bundle status note
 
-Keep the smallest summary/doc change tied to one explicit validation command and one saved-bundle status line before push.
+Keep the smallest summary-proof loop explicit:
+- run one deterministic validation command,
+- regenerate one saved JSON/Markdown/HTML bundle,
+- report one honest status line that matches the saved artifacts.
 
-That keeps the README note, the validation proof, and the reviewer handoff readable as the same narrow slice.
+That keeps reviewer-facing summary wording anchored to reproducible command output.
