@@ -69,6 +69,7 @@ If you need the matching compact reminder to validate first and only then reopen
 If you need a compact note for keeping each repo pass to one small validated improvement, open `docs/CLI_SUMMARY_SMALL_VALIDATED_SLICE_NOTE.md`.
 If you need a compact reminder to keep one reviewer-download bundle validated before widening summary formatting, open `docs/CLI_SUMMARY_REPORT_DOWNLOAD_BUNDLE_NOTE.md`.
 If you need the smallest validation-loop note for summary/doc edits, open `docs/CLI_SUMMARY_VALIDATE_SMALLEST_LOOP_NOTE.md`.
+If you need a compact one-line status cue for that same validate-first loop, open `docs/CLI_SUMMARY_VALIDATE_SMALL_LOOP_STATUS_NOTE.md`.
 If you need a compact reminder to keep `--require-summary-schema-version` visible whenever a saved summary bundle feeds CI or automation, open `docs/CLI_SUMMARY_SCHEMA_VERSION_NOTE.md`.
 If you need a compact reminder for when a summary/doc change is broad enough to justify the full discovery pass before push, open `docs/CLI_SUMMARY_DISCOVER_THEN_PUSH_NOTE.md`.
 If you need a compact reminder that quiet stdout can still keep a different PR-comment heading from the saved markdown heading, open `docs/CLI_SUMMARY_QUIET_TITLE_SPLIT_NOTE.md`.
