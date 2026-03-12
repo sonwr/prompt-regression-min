@@ -92,6 +92,7 @@ If you need a compact gate for deciding whether that same stable queue still has
 If you need a one-sentence summary based on queue share and source-case rate, open `examples/reviewer_queue_share_quick_note.md`.
 If you need a one-line reviewer update specifically for HTML-ready queue reports, open `examples/reviewer_queue_html_report_status_line.md`.
 If you need a one-line reviewer update that also names the regenerated JSON/Markdown/HTML bundle, open `examples/reviewer_queue_report_bundle_status_line.md`.
+If you need a compact reminder to keep the saved JSON/Markdown/HTML report paths visible in that same handoff, open `docs/CLI_SUMMARY_REPORT_PATHS_NOTE.md`.
 If you need a quick one-line note that explains the winning queue using queue share alone, open `examples/reviewer_queue_share_quick_note.md`.
 If you need the matching handoff when queue share and source-case rate should stay visible together, open `examples/reviewer_queue_share_and_source_case_handoff.md`.
 If you need a slightly fuller one-card update for the same HTML-ready bundle handoff, open `examples/reviewer_queue_html_bundle_status_card.md`.
