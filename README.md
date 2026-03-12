@@ -1202,3 +1202,5 @@ If you need a compact follow-up for summary bundles that keeps the machine-reada
 If you need a compact reviewer cue for keeping the exposed queue priority label aligned with the saved summary bundle, open `docs/CLI_SUMMARY_REPORT_PRIORITY_LABEL_NOTE.md`.
 
 - `examples/reviewer_queue_priority_rank_owner_ping.md` — compact owner ping that keeps the leading queue slice tied to the latest summary artifact.
+
+If you need a compact watcher-facing handoff after the winning reviewer-queue lane is already exposed, open `examples/reviewer_queue_priority_rank_watchers_note.md`.
