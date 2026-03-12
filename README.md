@@ -66,6 +66,7 @@ If you need a compact reminder for one summary run that saves JSON, Markdown, an
 If you need a compact note for one status line that still names the saved JSON/Markdown/HTML bundle clearly, open `docs/CLI_SUMMARY_OUTPUT_BUNDLE_STATUS_NOTE.md`.
 If you need a compact reminder to keep one saved summary bundle tied to the exact stdout recommendation line, open `docs/CLI_SUMMARY_STDOUT_BUNDLE_PAIR_NOTE.md`.
 If you need a compact note for keeping the same report basename across saved JSON, Markdown, and HTML artifacts, open `docs/CLI_SUMMARY_SHARED_BASENAME_NOTE.md`.
+If you need a compact reviewer note for driving the saved summary bundle from one output slug instead of hand-typed filenames, open `docs/CLI_SUMMARY_OUTPUT_SLUG_NOTE.md`.
 If you need a compact reminder that `--summary-markdown-title` and `--summary-pr-comment-title` can diverge even when quiet stdout stays on, open `docs/CLI_SUMMARY_QUIET_DUAL_TITLE_NOTE.md`.
 For release-wide CLI or summary payload edits, run `python3 -m unittest discover -s tests` so the full regression and rendering contract stays aligned.
 If you need one short note that explains why the reviewer queue priority stays regressions first, open `docs/REVIEWER_QUEUE_PRIORITY_LADDER.md`.
@@ -76,6 +77,7 @@ If you need a compact owner handoff template after queue selection, open `exampl
 If you need a compact reviewer note for JSON-exposed scaffold presets, open `examples/reviewer_queue_presets_json_handoff.md`.
 If you need a compact rule for naming the winning queue, shared report bundle, and owner in that order, open `examples/reviewer_queue_report_bundle_priority_note.md`.
 If you need a compact note for title-ready reviewer bundles that still need deterministic shared artifact naming, open `examples/reviewer_queue_title_and_basename_handoff.md`.
+If you need a compact reviewer note for one queue handoff that reuses a single output slug across the saved JSON/Markdown/HTML bundle, open `examples/reviewer_queue_output_slug_bundle_note.md`.
 If you need a compact note for keeping the queue winner, pass-rate trend gate, and saved summary bundle in one reviewer handoff, open `examples/reviewer_queue_trend_bundle_handoff.md`.
 If you need the shortest reviewer handoff that reopens both JSON and markdown artifacts together, open `examples/reviewer_queue_json_bundle_quickstart.md`.
 If you need a one-line note that points reviewers to the full summary artifact bundle, open `examples/reviewer_queue_artifact_bundle_note.md`.

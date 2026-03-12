@@ -209,6 +209,18 @@ class PromptRegressionCliTests(unittest.TestCase):
         self.assertIn("examples/reviewer_queue_priority_rank_queue_share_status.md", readme)
         self.assertTrue((ROOT / "examples" / "reviewer_queue_priority_rank_queue_share_status.md").exists())
 
+    def test_readme_mentions_output_slug_note(self) -> None:
+        readme = README_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("docs/CLI_SUMMARY_OUTPUT_SLUG_NOTE.md", readme)
+        self.assertTrue((ROOT / "docs" / "CLI_SUMMARY_OUTPUT_SLUG_NOTE.md").exists())
+
+    def test_readme_mentions_output_slug_bundle_example(self) -> None:
+        readme = README_PATH.read_text(encoding="utf-8")
+
+        self.assertIn("examples/reviewer_queue_output_slug_bundle_note.md", readme)
+        self.assertTrue((ROOT / "examples" / "reviewer_queue_output_slug_bundle_note.md").exists())
+
     def test_readme_mentions_priority_rank_scope_tiebreak_example(self) -> None:
         readme = README_PATH.read_text(encoding="utf-8")
 
