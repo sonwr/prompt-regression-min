@@ -66,6 +66,7 @@ If you need a compact reminder for one summary run that saves JSON, Markdown, an
 If you need a compact note for one status line that still names the saved JSON/Markdown/HTML bundle clearly, open `docs/CLI_SUMMARY_OUTPUT_BUNDLE_STATUS_NOTE.md`.
 If you need a compact reminder to keep one saved summary bundle tied to the exact stdout recommendation line, open `docs/CLI_SUMMARY_STDOUT_BUNDLE_PAIR_NOTE.md`.
 If you need a compact note for keeping the same report basename across saved JSON, Markdown, and HTML artifacts, open `docs/CLI_SUMMARY_SHARED_BASENAME_NOTE.md`.
+If you need a compact reminder that `--summary-markdown-title` and `--summary-pr-comment-title` can diverge even when quiet stdout stays on, open `docs/CLI_SUMMARY_QUIET_DUAL_TITLE_NOTE.md`.
 For release-wide CLI or summary payload edits, run `python3 -m unittest discover -s tests` so the full regression and rendering contract stays aligned.
 If you need one short note that explains why the reviewer queue priority stays regressions first, open `docs/REVIEWER_QUEUE_PRIORITY_LADDER.md`.
 If you need a compact phrase set for reviewer-queue handoffs, start with `examples/reviewer_queue_priority_labels.md`.
