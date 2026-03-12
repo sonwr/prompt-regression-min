@@ -1231,3 +1231,5 @@ If you need a compact reviewer cue for keeping the exposed queue priority label 
 - `examples/reviewer_queue_priority_rank_owner_ping.md` — compact owner ping that keeps the leading queue slice tied to the latest summary artifact.
 
 If you need a compact watcher-facing handoff after the winning reviewer-queue lane is already exposed, open `examples/reviewer_queue_priority_rank_watchers_note.md`.
+
+If you need a short PM note for keeping queue mix visible beside the reviewer queue report bundle before a rerun, open `docs/REPORT_QUEUE_MIX_NOTE.md`.
