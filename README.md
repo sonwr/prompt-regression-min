@@ -195,6 +195,7 @@ If you need a compact pre-post audit before trusting the exposed priority rank, 
 If you need a compact sentence for keeping a narrow priority-rank lead credible without hiding the runner-up, open `examples/reviewer_queue_priority_rank_boundary_note.md`.
 If you need a final yes/no rule before posting that priority-rank winner publicly, open `examples/reviewer_queue_priority_rank_posting_rule.md`.
 If you need a one-screen exit check before posting the final priority-rank handoff, open `examples/reviewer_queue_priority_rank_exit_check.md`.
+If you need a compact reminder for reading the full queue mix before calling the next reviewer focus, open `examples/reviewer_queue_queue_mix_quick_note.md`.
 If you need a compact ready-to-post cue after the priority-rank winner is exposed, open `examples/reviewer_queue_priority_rank_ready_signal.md`.
 If you need a last-pass post-ready audit before sending that winner to reviewers, open `examples/reviewer_queue_priority_rank_post_ready_check.md`.
 If you need a last-pass human-handoff check before posting that winner, use `examples/reviewer_queue_priority_rank_ready_signal.md` to confirm the winner, tie mode, narrow-lead context, and next action still align.
