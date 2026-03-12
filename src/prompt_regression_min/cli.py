@@ -1065,6 +1065,22 @@ def main() -> None:
                     f"filtered_out={summary.get('filtered_out_cases', 0)}"
                 ),
             ]
+            if summary.get("skipped_ids"):
+                markdown_lines.append(
+                    "- Skipped IDs (%d): %s"
+                    % (
+                        len(summary.get("skipped_ids", [])),
+                        ", ".join(f"`{case_id}`" for case_id in summary.get("skipped_ids", [])),
+                    )
+                )
+            if summary.get("filtered_out_ids"):
+                markdown_lines.append(
+                    "- Filtered-out IDs (%d): %s"
+                    % (
+                        len(summary.get("filtered_out_ids", [])),
+                        ", ".join(f"`{case_id}`" for case_id in summary.get("filtered_out_ids", [])),
+                    )
+                )
             markdown_lines.append("- Gate snapshot:")
             gate_lines = [
                 f"  - max_regressions={args.max_regressions}",
