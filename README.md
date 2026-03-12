@@ -1148,6 +1148,7 @@ If you need a compact note for preserving `report_author` / `report_authors` own
 If you need a compact reviewer note for one owner-routable next-focus summary after `--summary-pr-comment`, open `examples/reviewer_queue_priority_rank_owner_summary.md`.
 
 If you want a compact source-provenance reminder before handing off a generated scenario report bundle, open `examples/reviewer_queue_pass_rate_trend_owner_handoff.md`.
+If you need a compact title check before posting one saved reviewer queue bundle, open `examples/reviewer_queue_report_bundle_title_gate.md`.
 If you need a shorter reminder to keep reviewer handoff copy pinned to the top priority lane first, open `docs/CLI_REVIEWER_QUEUE_PRIORITY_LANE_NOTE.md`.
 If you need a short contract note for keeping JSON, markdown, and HTML summary artifacts aligned in one handoff, open `docs/CLI_SUMMARY_JSON_MARKDOWN_HTML_NOTE.md`.
 If you want a tiny reviewer-ready stdout example with an explicit owner handoff, open `examples/summary_stdout_owner_handoff.md`.
