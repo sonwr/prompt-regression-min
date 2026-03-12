@@ -239,6 +239,25 @@ class RegressionCoreTests(unittest.TestCase):
             self.assertEqual(report["summary"]["regressions"], 1)
             self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
 
+    def test_run_regression_supports_regex_flags_alias(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp_path = Path(tmpdir)
+            dataset = tmp_path / "dataset.jsonl"
+            baseline = tmp_path / "baseline.jsonl"
+            candidate = tmp_path / "candidate.jsonl"
+
+            _write_jsonl(
+                dataset,
+                [{"id": "case-1", "expected": {"type": "regex", "pattern": "^alpha.+omega$", "regex_flags": "ignorecase,dotall"}}],
+            )
+            _write_jsonl(baseline, [{"id": "case-1", "output": "ALPHA\nmid\nomega"}])
+            _write_jsonl(candidate, [{"id": "case-1", "output": "omega\nmid\nalpha"}])
+
+            report = run_regression(str(dataset), str(baseline), str(candidate))
+
+            self.assertEqual(report["summary"]["regressions"], 1)
+            self.assertEqual(report["summary"]["regression_ids"], ["case-1"])
+
     def test_run_regression_supports_regex_flags_as_comma_delimited_string(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp_path = Path(tmpdir)

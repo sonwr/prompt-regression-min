@@ -81,9 +81,10 @@ def _coerce_regex_flags(raw_flags: Any, kind: str) -> list[str]:
 
 
 def _get_regex_flag_input(expected: dict[str, Any]) -> Any:
-    if "flags" in expected:
-        return expected.get("flags")
-    return expected.get("flag")
+    for key in ("flags", "flag", "regex_flags", "regex_flag"):
+        if key in expected:
+            return expected.get(key)
+    return None
 
 
 def _count_words(value: str) -> int:
