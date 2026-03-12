@@ -1193,3 +1193,5 @@ If you want a compact replay note for regex expectations that keep `expected.fla
 If you need a compact follow-up for summary bundles that keeps the machine-readable JSON path and the reviewer-facing markdown path visible together, open `docs/CLI_SUMMARY_BUNDLE_PATHS_NOTE.md`.
 
 If you need a compact reviewer cue for keeping the exposed queue priority label aligned with the saved summary bundle, open `docs/CLI_SUMMARY_REPORT_PRIORITY_LABEL_NOTE.md`.
+
+- `examples/reviewer_queue_priority_rank_owner_ping.md` — compact owner ping that keeps the leading queue slice tied to the latest summary artifact.
