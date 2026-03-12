@@ -310,6 +310,8 @@ without losing simplicity.
 
 ---
 
+If you need a compact note for keeping the first reviewer-queue handoff limited to one owner lane, one queue metric, and one rerun cue, open `docs/CLI_REVIEWER_QUEUE_OWNER_LANE_SCOPE.md`.
+
 ## Philosophy
 
 ### 1) Determinism first
