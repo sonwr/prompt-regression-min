@@ -184,6 +184,7 @@ If you need a one-screen exit check before posting the final priority-rank hando
 If you need a compact ready-to-post cue after the priority-rank winner is exposed, open `examples/reviewer_queue_priority_rank_ready_signal.md`.
 If you need a last-pass post-ready audit before sending that winner to reviewers, open `examples/reviewer_queue_priority_rank_post_ready_check.md`.
 If you need a last-pass human-handoff check before posting that winner, use `examples/reviewer_queue_priority_rank_ready_signal.md` to confirm the winner, tie mode, narrow-lead context, and next action still align.
+If you need a one-line bridge that keeps the winner first while preserving the runner-up queue, open `examples/reviewer_queue_priority_rank_runner_up_bridge.md`.
 If you need a ready-to-paste owner note once the priority rank is already decided, open `examples/reviewer_queue_priority_rank_owner_note.md`.
 If you need a 30-second owner-ready audit before posting that winner, open `examples/reviewer_queue_priority_rank_owner_ready_check.md`.
 If you need a short owner-ready bridge from the exposed winner to one reviewable handoff sentence, open `examples/reviewer_queue_priority_rank_owner_ready_bridge.md`.
