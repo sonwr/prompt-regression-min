@@ -1251,3 +1251,5 @@ If you need a short PM note for keeping queue mix visible beside the reviewer qu
 
 If you need a short note for keeping queue share and source-case rate readable in the same follow-up lane, open `docs/CLI_REVIEWER_QUEUE_SHARE_SOURCE_CASE_NOTE.md`.
 - Reviewer-queue bundle + queue-mix note: `examples/reviewer_queue_bundle_queue_mix_note.md`
+
+If you need a compact reviewer handoff that keeps the selected priority rank tied to the shared JSON/Markdown/HTML bundle scope, open `examples/reviewer_queue_priority_rank_bundle_scope_note.md`.
