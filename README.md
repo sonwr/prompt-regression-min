@@ -119,6 +119,7 @@ If you need a one-sentence summary based on queue share and source-case rate, op
 If you need a one-line reviewer update specifically for HTML-ready queue reports, open `examples/reviewer_queue_html_report_status_line.md`.
 If you need a one-line reviewer update that also names the regenerated JSON/Markdown/HTML bundle, open `examples/reviewer_queue_report_bundle_status_line.md`.
 If you need a compact maintainer reminder to keep one CLI summary change tied to one validated review bundle before push, open `docs/CLI_SUMMARY_ONE_CHANGE_ONE_BUNDLE_NOTE.md`.
+If you need a compact maintainer reminder to keep the smallest summary change paired with one explicit validation command and one saved bundle status line, open `docs/CLI_SUMMARY_VALIDATE_COMMAND_BUNDLE_STATUS_NOTE.md`.
 If you need a compact validate-then-post reminder that keeps the smallest local unittest loop tied to the regenerated bundle handoff, open `examples/reviewer_queue_validate_then_bundle_handoff.md`.
 If you need a compact note for splitting the progress headline from the saved summary bundle title in reviewer-facing updates, open `examples/reviewer_queue_progress_title_split.md`.
 If you need a compact handoff that keeps the winning reviewer queue, its priority rank, and the shared artifact bundle visible together, open `examples/reviewer_queue_priority_rank_bundle_handoff.md`.
