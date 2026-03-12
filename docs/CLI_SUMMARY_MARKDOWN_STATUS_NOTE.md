@@ -1,9 +1,12 @@
 # CLI summary markdown status note
 
-Keep summary output predictable:
+If one run saves a Markdown summary, keep the short stdout verdict aligned with the same regression result.
 
-- print the short stdout summary in the same run that writes `--summary-markdown`;
-- keep the markdown artifact path visible in logs or CI output;
-- reuse the same artifact when sharing a reviewer handoff.
+Recommended review loop:
 
-That keeps the human-readable status line and saved Markdown summary coupled.
+1. run the CLI once,
+2. read the stdout status line,
+3. open the saved Markdown summary,
+4. confirm both describe the same pass/fail and recommendation.
+
+That pairing keeps human-ready release notes and machine-readable CI output in the same deterministic handoff.
