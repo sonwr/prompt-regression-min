@@ -1122,6 +1122,7 @@ If reviewers need both human and machine outputs from the same run, start with `
 If you need the shortest reopen path for that same reviewer bundle, open `examples/reviewer_queue_report_bundle_quickstart.md`.
 If you need an even smaller report-dir reopen cue for the same shared bundle, open `examples/reviewer_queue_report_dir_reopen.md`.
 If you need a compact naming note for keeping JSON plus markdown/PR-comment artifacts under one shared rerun bundle, open `examples/reviewer_queue_report_bundle_alias_note.md`.
+If you need a tiny stdin-first reminder for keeping JSON, markdown, and PR-comment outputs under one shared basename, open `examples/summary_stdin_bundle_note.md`.
 
 
 If you need a compact note for keeping CLI JSON baselines reviewable in docs and CI together, open `docs/CLI_JSON_BASELINE_NOTE.md`.
