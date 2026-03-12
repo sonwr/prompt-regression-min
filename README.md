@@ -51,6 +51,8 @@ It compares **baseline** and **candidate** outputs on the same test set and repo
 
 The goal is to become a lightweight quality gate that is easy to adopt in any repo.
 
+If you need the matching reopen-focused report line for status, owner, queue, and reopen reason together, open `docs/CLI_SUMMARY_REPORT_STATUS_OWNER_QUEUE_REOPEN_NOTE.md`.
+
 ## Quick validation loop
 
 When updating CLI summaries, examples, or docs, run the smallest reproducible local check first:
