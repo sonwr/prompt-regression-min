@@ -186,6 +186,7 @@ If you need a ready-to-paste owner note once the priority rank is already decide
 If you need a 30-second owner-ready audit before posting that winner, open `examples/reviewer_queue_priority_rank_owner_ready_check.md`.
 If you need a short owner-ready bridge from the exposed winner to one reviewable handoff sentence, open `examples/reviewer_queue_priority_rank_owner_ready_bridge.md`.
 If you need the shortest owner-facing line after the rank is already exposed, open `examples/reviewer_queue_priority_rank_owner_handoff_line.md`.
+If you need the shortest owner-first handoff once the priority-rank winner is known, open `examples/reviewer_queue_priority_rank_owner_start.md`.
 If you need a compact escalation handoff once the winning queue still needs an explicit owner escalation, open `examples/reviewer_queue_owner_escalation_card.md`.
 If you need a compact last-pass audit before trusting the exposed priority rank in a human handoff, open `examples/reviewer_queue_priority_rank_quick_audit.md`.
 If you need a compact check for whether the visible priority-rank lead is large enough to post without hiding the runner-up, open `examples/reviewer_queue_priority_rank_gap_check.md`.
