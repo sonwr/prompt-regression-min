@@ -1167,3 +1167,5 @@ If you need a compact status cue that names the shared JSON/Markdown/HTML artifa
 If you need a compact note for reopening one saved summary bundle with the same subject, owner, and status line, open `docs/CLI_SUMMARY_REPORT_REOPEN_CARD.md`.
 
 If you need a faster gate for deciding whether one summary JSON/Markdown/HTML trio is actually handoff-ready, open `docs/CLI_SUMMARY_REPORT_ARTIFACT_READY_NOTE.md`.
+
+If you need a compact reminder that `--summary-markdown-title` and `--summary-pr-comment-title` can stay intentionally different for bundle handoff vs PR review, open `docs/CLI_SUMMARY_SEPARATE_TITLES_NOTE.md`.
