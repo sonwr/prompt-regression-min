@@ -77,6 +77,7 @@ If you need a compact reminder that quiet stdout can still keep a different PR-c
 If you need a compact reminder for keeping saved Markdown summaries paired with the same stdout status line, open `docs/CLI_SUMMARY_MARKDOWN_STATUS_NOTE.md`.
 If you need a compact reminder for one summary run that saves JSON, Markdown, and HTML artifacts together, open `docs/CLI_SUMMARY_ONE_BUNDLE_NOTE.md`.
 If you need a compact note for one status line that still names the saved JSON/Markdown/HTML bundle clearly, open `docs/CLI_SUMMARY_OUTPUT_BUNDLE_STATUS_NOTE.md`.
+If you need the shortest reminder that five-repo cron updates should still report one honest status line per repo after validation, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_STATUS_NOTE.md`.
 If you need a compact reminder to keep one saved summary bundle tied to the exact stdout recommendation line, open `docs/CLI_SUMMARY_STDOUT_BUNDLE_PAIR_NOTE.md`.
 If you need a compact reminder to keep the stdout status line and the generated markdown/html/json bundle readable as the same review artifact handoff, open `docs/CLI_SUMMARY_STATUS_ARTIFACT_HANDOFF_NOTE.md`.
 If you need a compact reviewer handoff that keeps recommendation, owner, and the shared JSON/Markdown/HTML bundle together, open `docs/CLI_SUMMARY_RECOMMENDATION_OWNER_BUNDLE_NOTE.md`.
