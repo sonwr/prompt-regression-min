@@ -70,6 +70,7 @@ If you need a compact reminder that `--summary-markdown-title` and `--summary-pr
 For release-wide CLI or summary payload edits, run `python3 -m unittest discover -s tests` so the full regression and rendering contract stays aligned.
 If you need one short note that explains why the reviewer queue priority stays regressions first, open `docs/REVIEWER_QUEUE_PRIORITY_LADDER.md`.
 If you need a compact phrase set for reviewer-queue handoffs, start with `examples/reviewer_queue_priority_labels.md`.
+If you need a compact reviewer note that names the active summary command plus the saved JSON/Markdown/HTML outputs in one line, open `examples/reviewer_queue_summary_output_trio.md`.
 If you need a one-line PR-comment handoff sentence, open `examples/reviewer_queue_priority_handoff_card.md`.
 If you need a compact owner handoff template after queue selection, open `examples/reviewer_queue_owner_handoff_template.md`.
 If you need a compact reviewer note for JSON-exposed scaffold presets, open `examples/reviewer_queue_presets_json_handoff.md`.
