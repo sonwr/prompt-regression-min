@@ -1177,3 +1177,6 @@ If you need a compact note for reopening one saved summary bundle with the same 
 If you need a faster gate for deciding whether one summary JSON/Markdown/HTML trio is actually handoff-ready, open `docs/CLI_SUMMARY_REPORT_ARTIFACT_READY_NOTE.md`.
 
 If you need a compact reminder that `--summary-markdown-title` and `--summary-pr-comment-title` can stay intentionally different for bundle handoff vs PR review, open `docs/CLI_SUMMARY_SEPARATE_TITLES_NOTE.md`.
+
+
+If you want a compact replay note for regex expectations that keep `expected.flags` readable as one string (for example `IGNORECASE|MULTILINE`) instead of a list, open `docs/REGEX_FLAG_STRING_ALIAS_NOTE.md`.
