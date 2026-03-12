@@ -107,6 +107,7 @@ If you need a one-line reviewer update that also names the regenerated JSON/Mark
 If you need a compact note for splitting the progress headline from the saved summary bundle title in reviewer-facing updates, open `examples/reviewer_queue_progress_title_split.md`.
 If you need a compact handoff that keeps the winning reviewer queue, its priority rank, and the shared artifact bundle visible together, open `examples/reviewer_queue_priority_rank_bundle_handoff.md`.
 If you need a compact reminder to keep the saved JSON/Markdown/HTML report paths visible in that same handoff, open `docs/CLI_SUMMARY_REPORT_PATHS_NOTE.md`.
+If you need one compact note for showing status, owner, and artifact paths in the same markdown summary line before pushing, open `docs/CLI_SUMMARY_REPORT_STATUS_PATH_BADGE_NOTE.md`.
 If you need a short reminder to name the intended reviewer audience when sharing that same saved summary bundle, open `docs/CLI_SUMMARY_REPORT_AUDIENCE_NOTE.md`.
 If you need a one-line reminder to keep the summary status and saved artifact paths together, open `docs/CLI_SUMMARY_REPORT_STATUS_AND_PATHS_NOTE.md`.
 If you need the shortest start for one saved JSON/Markdown/HTML summary trio, open `docs/CLI_SUMMARY_REPORT_TRIO_START.md`.
