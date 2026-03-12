@@ -133,6 +133,7 @@ If you need an even smaller basename-first reminder for reopening the same JSON/
 If you need a compact reviewer cue for keeping the saved summary basename visible in that same handoff-ready status line, open `docs/CLI_SUMMARY_REPORT_BASENAME_STATUS_NOTE.md`.
 If you need a compact reminder that one saved summary bundle can still keep a stable report directory visible beside the status line, open `docs/CLI_SUMMARY_REPORT_DIRECTORY_NOTE.md`.
 If you need a compact reminder for the shortest maintainer progress line after that validation pass, open `docs/CLI_SUMMARY_SHORT_PROGRESS_STATUS_NOTE.md`.
+If you need a compact reminder for the required five-line cross-repo short report, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_REPORT_NOTE.md`.
 If you need a compact reviewer note for when that same JSON/Markdown/HTML stack is fully ready under one basename, open `docs/CLI_SUMMARY_REPORT_STACK_READY_NOTE.md`.
 If you need a compact note for keeping one saved summary bundle attached to the exact source dataset path, open `docs/CLI_SUMMARY_SOURCE_DATASET_NOTE.md`.
 If you need a compact reminder for ordering the status line, saved report bundle, and reviewer queue in one deterministic handoff, open `docs/CLI_SUMMARY_REPORT_DECISION_QUEUE_NOTE.md`.
