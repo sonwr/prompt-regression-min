@@ -96,6 +96,7 @@ If you need a compact gate before trusting that HTML-ready handoff, open `exampl
 If you need a compact owner-facing gate before reposting a saved reviewer queue bundle, open `examples/reviewer_queue_report_bundle_owner_gate.md`.
 If you need a quick reopen check before posting that HTML-ready handoff, open `examples/reviewer_queue_html_report_download_gate.md`.
 If you need a quick artifact check before claiming the HTML-ready bundle is reviewable, open `examples/reviewer_queue_html_report_bundle_check.md`.
+If you need a compact owner-facing cue that names the active reviewer queue, the report basename, and the saved JSON / Markdown / HTML trio together, open `examples/reviewer_queue_bundle_owner_handoff.md`.
 If you need a compact note for keeping reviewer-facing bundle filenames stable with `--report-file-stem`, open `examples/reviewer_queue_report_file_stem_note.md`.
 If you need a short reminder that one stable basename should anchor the saved JSON/Markdown/HTML summary trio, open `docs/CLI_SUMMARY_BASENAME_NOTE.md`.
 If you need the shortest reviewer cue for a queue summary that already includes the baseline vs candidate case counts, open `examples/reviewer_queue_case_count_status_line.md`.
