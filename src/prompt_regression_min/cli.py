@@ -638,7 +638,7 @@ def _build_parser() -> argparse.ArgumentParser:
 
 
 def _normalize_heading(value: str, fallback: str) -> str:
-    normalized = value.strip()
+    normalized = " ".join(value.split())
     return normalized or fallback
 
 
