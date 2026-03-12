@@ -139,6 +139,7 @@ If you need a compact reminder for the shortest maintainer progress line after t
 If you need a compact reminder for the required five-line cross-repo short report, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_REPORT_NOTE.md`.
 If you need a compact reviewer note for when that same JSON/Markdown/HTML stack is fully ready under one basename, open `docs/CLI_SUMMARY_REPORT_STACK_READY_NOTE.md`.
 If you need a compact note for keeping one saved summary bundle attached to the exact source dataset path, open `docs/CLI_SUMMARY_SOURCE_DATASET_NOTE.md`.
+If you need a compact reminder to validate one small summary or doc slice before push, open `docs/CLI_SUMMARY_VALIDATE_SMALL_SLICE_NOTE.md`.
 If you need a compact reminder for ordering the status line, saved report bundle, and reviewer queue in one deterministic handoff, open `docs/CLI_SUMMARY_REPORT_DECISION_QUEUE_NOTE.md`.
 If you need a quick one-line note that explains the winning queue using queue share alone, open `examples/reviewer_queue_share_quick_note.md`.
 If you need the matching handoff when queue share and source-case rate should stay visible together, open `examples/reviewer_queue_share_and_source_case_handoff.md`.
