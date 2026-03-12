@@ -135,6 +135,7 @@ If you need the shortest queue-first note that keeps the selected reviewer lane 
 If you need one compact gate that keeps the selected reviewer queue tied to its saved report bundle before sharing the handoff, open `examples/reviewer_queue_report_bundle_gate.md`.
 If you need a compact audit for whether the dominant reviewer queue really deserves the next-focus callout, open `examples/reviewer_queue_dominant_focus_checklist.md`.
 If you need a short reopen handoff for the next reviewer queue plus its saved artifact bundle, open `docs/CLI_REVIEWER_QUEUE_REOPEN_NOTE.md`.
+If you want a compact reminder to keep one CLI command, one summary artifact, and one reviewer-facing drift line in the same proof loop, open `docs/CLI_SUMMARY_REPORT_NOTE.md`.
 If you need a one-line gate note for pairing the next-focus reviewer queue with one saved artifact path, open `examples/reviewer_queue_next_focus_gate_note.md`.
 If you need a compact reminder to keep one explicit owner with that saved summary bundle, open `docs/CLI_SUMMARY_REPORT_OWNER_NOTE.md`.
 If you need a short reviewer cue for keeping the saved summary bundle paired with one named report owner, open `docs/CLI_SUMMARY_BUNDLE_OWNER_NOTE.md`.
