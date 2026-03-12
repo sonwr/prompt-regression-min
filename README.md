@@ -1187,3 +1187,4 @@ If you need a compact reminder that `--summary-markdown-title` and `--summary-pr
 
 
 If you want a compact replay note for regex expectations that keep `expected.flags` readable as one string (for example `IGNORECASE|MULTILINE`) instead of a list, open `docs/REGEX_FLAG_STRING_ALIAS_NOTE.md`.
+If you need a compact follow-up for summary bundles that keeps the machine-readable JSON path and the reviewer-facing markdown path visible together, open `docs/CLI_SUMMARY_BUNDLE_PATHS_NOTE.md`.
