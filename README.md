@@ -125,6 +125,7 @@ If you need a one-line reminder to keep the summary status and saved artifact pa
 If you need the shortest start for one saved JSON/Markdown/HTML summary trio, open `docs/CLI_SUMMARY_REPORT_TRIO_START.md`.
 If you need a compact reviewer cue for when one saved JSON/Markdown/HTML summary trio is actually handoff-ready, open `docs/CLI_SUMMARY_REPORT_TRIO_READY_NOTE.md`.
 If you need a compact reminder to reopen the saved JSON/Markdown/HTML summary bundle together, open `docs/CLI_SUMMARY_REPORT_REOPEN_BUNDLE_NOTE.md`.
+If you need a compact reminder to reopen the same JSON, Markdown, and HTML summary bundle from one reviewer handoff, open `docs/CLI_SUMMARY_HTML_BUNDLE_REOPEN_NOTE.md`.
 If you need an even smaller basename-first reminder for reopening the same JSON/Markdown/HTML summary trio, open `docs/CLI_SUMMARY_ARTIFACT_TRIO_REOPEN_NOTE.md`.
 If you need a compact reviewer cue for keeping the saved summary basename visible in that same handoff-ready status line, open `docs/CLI_SUMMARY_REPORT_BASENAME_STATUS_NOTE.md`.
 If you need a compact reminder that one saved summary bundle can still keep a stable report directory visible beside the status line, open `docs/CLI_SUMMARY_REPORT_DIRECTORY_NOTE.md`.
