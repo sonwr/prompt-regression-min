@@ -62,6 +62,8 @@ REGEX_FLAG_MAP = {
     "S": re.DOTALL,
     "VERBOSE": re.VERBOSE,
     "X": re.VERBOSE,
+    "ASCII": re.ASCII,
+    "A": re.ASCII,
 }
 
 
