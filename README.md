@@ -1051,6 +1051,7 @@ Summary JSON now includes explicit parser metadata:
 - generated summary markdown now includes the same schema marker for human review parity plus the producing tool version
 - summary markdown now also surfaces unchanged-fail budget usage so reviewers can spot watchlist pressure beside regression/changed-case budgets
 - if you need a compact note for keeping the reviewer queue focus in one visible summary-markdown line, open `docs/CLI_SUMMARY_QUEUE_FOCUS_ONE_LINE_NOTE.md`
+- if you need the matching handoff once status, owner queue, and saved artifact path should stay visible together, open `docs/CLI_SUMMARY_REPORT_STATUS_OWNER_QUEUE_PATH_NOTE.md`
 - `tool_version`: package version that produced the JSON artifact
 - `selection_rate`: selected/source dataset ratio for shard-size visibility in CI handoffs
 
