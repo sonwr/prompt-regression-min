@@ -1,3 +1,3 @@
 # CLI summary report subject + owner note
 
-When a saved summary bundle is ready to hand off, keep the report subject and the named owner together in the same reviewer sentence. That avoids reopening the JSON just to recover who owns the next action for that subject-scoped bundle.
+Keep the summary bundle handoff explicit: one report subject plus one report owner should stay visible together across JSON, markdown, and HTML outputs so reviewers know both scope and maintainer at a glance.
