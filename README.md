@@ -98,6 +98,7 @@ If you need a compact note for splitting the progress headline from the saved su
 If you need a compact handoff that keeps the winning reviewer queue, its priority rank, and the shared artifact bundle visible together, open `examples/reviewer_queue_priority_rank_bundle_handoff.md`.
 If you need a compact reminder to keep the saved JSON/Markdown/HTML report paths visible in that same handoff, open `docs/CLI_SUMMARY_REPORT_PATHS_NOTE.md`.
 If you need a one-line reminder to keep the summary status and saved artifact paths together, open `docs/CLI_SUMMARY_REPORT_STATUS_AND_PATHS_NOTE.md`.
+If you need a compact reviewer cue for when one saved JSON/Markdown/HTML summary trio is actually handoff-ready, open `docs/CLI_SUMMARY_REPORT_TRIO_READY_NOTE.md`.
 If you need a quick one-line note that explains the winning queue using queue share alone, open `examples/reviewer_queue_share_quick_note.md`.
 If you need the matching handoff when queue share and source-case rate should stay visible together, open `examples/reviewer_queue_share_and_source_case_handoff.md`.
 If you need a slightly fuller one-card update for the same HTML-ready bundle handoff, open `examples/reviewer_queue_html_bundle_status_card.md`.
