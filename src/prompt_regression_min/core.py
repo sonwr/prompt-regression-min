@@ -32,6 +32,8 @@ SUPPORTED_EXPECTED_TYPES = (
     "contains_any_ci",
     "contains_all_ordered",
     "contains_all_ordered_ci",
+    "contains_sequence",
+    "contains_sequence_ci",
     "not_contains",
     "not_contains_ci",
     "contains_none",
@@ -222,10 +224,10 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
             raise ValueError("contains_any_ci expectation requires a list in expected.values")
         output_lower = output.lower()
         return any(str(v).lower() in output_lower for v in values)
-    if kind == "contains_all_ordered":
+    if kind in {"contains_all_ordered", "contains_sequence"}:
         values = expected.get("values")
         if not isinstance(values, list):
-            raise ValueError("contains_all_ordered expectation requires a list in expected.values")
+            raise ValueError(f"{kind} expectation requires a list in expected.values")
         start = 0
         for value in values:
             needle = str(value)
@@ -234,10 +236,10 @@ def _score(output: str, expected: dict[str, Any]) -> bool:
                 return False
             start = idx + len(needle)
         return True
-    if kind == "contains_all_ordered_ci":
+    if kind in {"contains_all_ordered_ci", "contains_sequence_ci"}:
         values = expected.get("values")
         if not isinstance(values, list):
-            raise ValueError("contains_all_ordered_ci expectation requires a list in expected.values")
+            raise ValueError(f"{kind} expectation requires a list in expected.values")
         output_lower = output.lower()
         start = 0
         for value in values:
@@ -453,7 +455,7 @@ def _validate_expected(expected: dict[str, Any], case_id: str) -> None:
             )
         return
 
-    if kind in {"contains_any", "contains_any_ci", "contains_all_ordered", "contains_all_ordered_ci"}:
+    if kind in {"contains_any", "contains_any_ci", "contains_all_ordered", "contains_all_ordered_ci", "contains_sequence", "contains_sequence_ci"}:
         values = expected.get("values")
         if not isinstance(values, list):
             raise ValueError(
