@@ -1254,3 +1254,5 @@ If you need a short note for keeping queue share and source-case rate readable i
 - Reviewer-queue bundle + queue-mix note: `examples/reviewer_queue_bundle_queue_mix_note.md`
 
 If you need a compact reviewer handoff that keeps the selected priority rank tied to the shared JSON/Markdown/HTML bundle scope, open `examples/reviewer_queue_priority_rank_bundle_scope_note.md`.
+
+If you need a compact maintainer note for keeping one CLI fixture, one generated summary artifact, and one validate-then-push loop aligned, open `docs/CLI_SUMMARY_VALIDATE_ARTIFACT_LOOP_NOTE.md`.
