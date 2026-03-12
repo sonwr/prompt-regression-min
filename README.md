@@ -6,6 +6,8 @@ Minimal, deterministic regression checks for prompt and workflow changes in LLM-
 
 > **Did this prompt/model/workflow change improve quality, or quietly break something?**
 
+If you need one compact owner-facing note for keeping queue focus, status, and the next review action together in the same summary artifact bundle, open `docs/CLI_SUMMARY_QUEUE_FOCUS_OWNER_NOTE.md`.
+
 ---
 
 ## Table of Contents
