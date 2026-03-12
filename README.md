@@ -1155,3 +1155,5 @@ If you need a compact title check before posting one saved reviewer queue bundle
 If you need a shorter reminder to keep reviewer handoff copy pinned to the top priority lane first, open `docs/CLI_REVIEWER_QUEUE_PRIORITY_LANE_NOTE.md`.
 If you need a short contract note for keeping JSON, markdown, and HTML summary artifacts aligned in one handoff, open `docs/CLI_SUMMARY_JSON_MARKDOWN_HTML_NOTE.md`.
 If you want a tiny reviewer-ready stdout example with an explicit owner handoff, open `examples/summary_stdout_owner_handoff.md`.
+
+If you need the shortest reminder for keeping queue share visible in the reviewer follow-up lane, open `docs/CLI_REVIEWER_QUEUE_QUEUE_SHARE_STATUS_NOTE.md`.
