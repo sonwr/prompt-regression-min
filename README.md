@@ -61,6 +61,7 @@ That keeps the README examples, CLI output, and summary payload expectations mov
 If you want the quietest machine-readable handoff for CI logs, open `docs/CLI_SUMMARY_QUIET_STDOUT_NOTE.md` before combining `--quiet` with summary artifact flags.
 If you need the shortest reminder that quiet stdout still pairs cleanly with saved JSON/Markdown/HTML artifacts, open `docs/CLI_SUMMARY_QUIET_BUNDLE_NOTE.md`.
 If you need a compact reminder for keeping saved Markdown summaries paired with the same stdout status line, open `docs/CLI_SUMMARY_MARKDOWN_STATUS_NOTE.md`.
+If you need a compact reminder for one summary run that saves JSON, Markdown, and HTML artifacts together, open `docs/CLI_SUMMARY_ONE_BUNDLE_NOTE.md`.
 For release-wide CLI or summary payload edits, run `python3 -m unittest discover -s tests` so the full regression and rendering contract stays aligned.
 If you need a compact phrase set for reviewer-queue handoffs, start with `examples/reviewer_queue_priority_labels.md`.
 If you need a one-line PR-comment handoff sentence, open `examples/reviewer_queue_priority_handoff_card.md`.
