@@ -61,6 +61,7 @@ That keeps the README examples, CLI output, and summary payload expectations mov
 If you want the quietest machine-readable handoff for CI logs, open `docs/CLI_SUMMARY_QUIET_STDOUT_NOTE.md` before combining `--quiet` with summary artifact flags.
 If you need the shortest reminder that quiet stdout still pairs cleanly with saved JSON/Markdown/HTML artifacts, open `docs/CLI_SUMMARY_QUIET_BUNDLE_NOTE.md`.
 If you need a compact reminder to rerun the smallest deterministic summary check before pushing summary/doc changes, open `docs/CLI_SUMMARY_VALIDATE_THEN_PUSH_NOTE.md`.
+If you need a compact reminder to keep `--require-summary-schema-version` visible whenever a saved summary bundle feeds CI or automation, open `docs/CLI_SUMMARY_SCHEMA_VERSION_NOTE.md`.
 If you need a compact reminder for when a summary/doc change is broad enough to justify the full discovery pass before push, open `docs/CLI_SUMMARY_DISCOVER_THEN_PUSH_NOTE.md`.
 If you need a compact reminder that quiet stdout can still keep a different PR-comment heading from the saved markdown heading, open `docs/CLI_SUMMARY_QUIET_TITLE_SPLIT_NOTE.md`.
 If you need a compact reminder for keeping saved Markdown summaries paired with the same stdout status line, open `docs/CLI_SUMMARY_MARKDOWN_STATUS_NOTE.md`.
