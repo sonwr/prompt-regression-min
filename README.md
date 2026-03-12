@@ -1160,3 +1160,5 @@ If you want a tiny reviewer-ready stdout example with an explicit owner handoff,
 If you need the shortest reminder for keeping queue share visible in the reviewer follow-up lane, open `docs/CLI_REVIEWER_QUEUE_QUEUE_SHARE_STATUS_NOTE.md`.
 
 If you need a compact status cue that names the shared JSON/Markdown/HTML artifact trio in one reviewer-facing line, open `docs/CLI_SUMMARY_REPORT_ARTIFACT_TRIO_NOTE.md`.
+
+If you need a compact note for reopening one saved summary bundle with the same subject, owner, and status line, open `docs/CLI_SUMMARY_REPORT_REOPEN_CARD.md`.
