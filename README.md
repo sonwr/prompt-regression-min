@@ -66,6 +66,7 @@ If you need a compact reminder for keeping saved Markdown summaries paired with 
 If you need a compact reminder for one summary run that saves JSON, Markdown, and HTML artifacts together, open `docs/CLI_SUMMARY_ONE_BUNDLE_NOTE.md`.
 If you need a compact note for one status line that still names the saved JSON/Markdown/HTML bundle clearly, open `docs/CLI_SUMMARY_OUTPUT_BUNDLE_STATUS_NOTE.md`.
 If you need a compact reminder to keep one saved summary bundle tied to the exact stdout recommendation line, open `docs/CLI_SUMMARY_STDOUT_BUNDLE_PAIR_NOTE.md`.
+If you need a compact one-line cue for keeping the reviewer queue owner, status, and saved bundle path together, open `docs/CLI_SUMMARY_QUEUE_OWNER_STATUS_PATH_NOTE.md`.
 If you need a compact note for keeping the same report basename across saved JSON, Markdown, and HTML artifacts, open `docs/CLI_SUMMARY_SHARED_BASENAME_NOTE.md`.
 If you need a compact reviewer note for driving the saved summary bundle from one output slug instead of hand-typed filenames, open `docs/CLI_SUMMARY_OUTPUT_SLUG_NOTE.md`.
 If you need a compact reminder that `--summary-markdown-title` and `--summary-pr-comment-title` can diverge even when quiet stdout stays on, open `docs/CLI_SUMMARY_QUIET_DUAL_TITLE_NOTE.md`.
