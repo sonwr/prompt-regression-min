@@ -144,6 +144,7 @@ If you need a compact note for keeping one reviewer-facing subtitle attached to 
 If you need a compact note for keeping one reviewer-facing subject attached to that same saved summary bundle, open `docs/CLI_SUMMARY_REPORT_SUBJECT_NOTE.md`.
 If you need a compact reviewer note that keeps report subject and report owner paired on the same saved summary bundle, open `docs/CLI_SUMMARY_REPORT_SUBJECT_OWNER_NOTE.md`.
 If you need a compact reviewer note for keeping one summary subject, owner, and markdown bundle aligned after `--summary-report`, open `docs/CLI_SUMMARY_MARKDOWN_OWNER_SUBJECT_NOTE.md`.
+If you need a compact markdown status line that keeps owner and pass/fail state visible together, open `docs/CLI_SUMMARY_MARKDOWN_STATUS_OWNER_NOTE.md`.
 
 If you need a one-line owner-ready handoff that still keeps the active reviewer queue tied to its shared artifact bundle, open `examples/reviewer_queue_bundle_owner_ready_note.md`.
 If you need a short evidence-first review pass before posting the selected queue, open `examples/reviewer_queue_priority_audit.md`.
