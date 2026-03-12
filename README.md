@@ -69,6 +69,7 @@ If you need a compact owner handoff template after queue selection, open `exampl
 If you need a compact reviewer note for JSON-exposed scaffold presets, open `examples/reviewer_queue_presets_json_handoff.md`.
 If you need a compact rule for naming the winning queue, shared report bundle, and owner in that order, open `examples/reviewer_queue_report_bundle_priority_note.md`.
 If you need a compact note for title-ready reviewer bundles that still need deterministic shared artifact naming, open `examples/reviewer_queue_title_and_basename_handoff.md`.
+If you need a compact note for keeping the queue winner, pass-rate trend gate, and saved summary bundle in one reviewer handoff, open `examples/reviewer_queue_trend_bundle_handoff.md`.
 If you need the shortest reviewer handoff that reopens both JSON and markdown artifacts together, open `examples/reviewer_queue_json_bundle_quickstart.md`.
 If you need a one-line note that points reviewers to the full summary artifact bundle, open `examples/reviewer_queue_artifact_bundle_note.md`.
 If you need a shorter queue-plus-bundle status sentence once the winner is already known, open `examples/reviewer_queue_bundle_scope_quick_note.md`.
