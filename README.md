@@ -139,6 +139,7 @@ If you need a compact reminder that one saved summary bundle can still keep a st
 If you need a compact reminder for the shortest maintainer progress line after that validation pass, open `docs/CLI_SUMMARY_SHORT_PROGRESS_STATUS_NOTE.md`.
 If you need a compact reminder for the required five-line cross-repo short report, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_REPORT_NOTE.md`.
 If you need a compact reminder that each short summary line should keep status, validation, and bundle handoff in that order, open `docs/CLI_SUMMARY_SHORT_REPORT_GATE_NOTE.md`.
+If you need a compact reminder that five-repo cron updates should only claim commit/push after validation passes, open `docs/CLI_SUMMARY_FIVE_REPO_VALIDATION_GATE_NOTE.md`.
 If you need a compact reviewer note for when that same JSON/Markdown/HTML stack is fully ready under one basename, open `docs/CLI_SUMMARY_REPORT_STACK_READY_NOTE.md`.
 If you need a compact note for keeping one saved summary bundle attached to the exact source dataset path, open `docs/CLI_SUMMARY_SOURCE_DATASET_NOTE.md`.
 If you need a compact reminder to validate one small summary or doc slice before push, open `docs/CLI_SUMMARY_VALIDATE_SMALL_SLICE_NOTE.md`.
