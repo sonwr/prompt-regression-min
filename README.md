@@ -146,6 +146,7 @@ If you need a compact note for keeping one reviewer-facing subject attached to t
 If you need a compact reviewer note that keeps report subject and report owner paired on the same saved summary bundle, open `docs/CLI_SUMMARY_REPORT_SUBJECT_OWNER_NOTE.md`.
 If you need the narrowest start for that same saved summary bundle with subject + owner metadata, open `docs/CLI_SUMMARY_REPORT_SUBJECT_OWNER_START.md`.
 If you need the shortest start note for that same subject+owner handoff, open `docs/CLI_SUMMARY_REPORT_SUBJECT_OWNER_START_NOTE.md`.
+If you need a compact note for keeping pass-rate delta, recommendation, and saved bundle basename visible in one reviewer-ready status line, open `docs/CLI_SUMMARY_STATUS_TRIO_NOTE.md`.
 If you need a compact reviewer note for keeping one summary subject, owner, and markdown bundle aligned after `--summary-report`, open `docs/CLI_SUMMARY_MARKDOWN_OWNER_SUBJECT_NOTE.md`.
 If you need a compact markdown status line that keeps owner and pass/fail state visible together, open `docs/CLI_SUMMARY_MARKDOWN_STATUS_OWNER_NOTE.md`.
 
