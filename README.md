@@ -104,6 +104,7 @@ If you need a one-line reminder to keep the summary status and saved artifact pa
 - Report trio start: `docs/CLI_SUMMARY_REPORT_TRIO_START.md`
 `.
 If you need a compact reviewer cue for when one saved JSON/Markdown/HTML summary trio is actually handoff-ready, open `docs/CLI_SUMMARY_REPORT_TRIO_READY_NOTE.md`.
+If you need a compact reviewer note for when that same JSON/Markdown/HTML stack is fully ready under one basename, open `docs/CLI_SUMMARY_REPORT_STACK_READY_NOTE.md`.
 If you need a compact note for keeping one saved summary bundle attached to the exact source dataset path, open `docs/CLI_SUMMARY_SOURCE_DATASET_NOTE.md`.
 If you need a compact reminder for ordering the status line, saved report bundle, and reviewer queue in one deterministic handoff, open `docs/CLI_SUMMARY_REPORT_DECISION_QUEUE_NOTE.md`.
 If you need a quick one-line note that explains the winning queue using queue share alone, open `examples/reviewer_queue_share_quick_note.md`.
