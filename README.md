@@ -131,6 +131,7 @@ If you need a short reminder to name the intended reviewer audience when sharing
 If you need a one-line reminder to keep the summary status and saved artifact paths together, open `docs/CLI_SUMMARY_REPORT_STATUS_AND_PATHS_NOTE.md`.
 If you need the shortest start for one saved JSON/Markdown/HTML summary trio, open `docs/CLI_SUMMARY_REPORT_TRIO_START.md`.
 If you need a compact reviewer cue for when one saved JSON/Markdown/HTML summary trio is actually handoff-ready, open `docs/CLI_SUMMARY_REPORT_TRIO_READY_NOTE.md`.
+If you need a compact reminder to drive the saved JSON/Markdown/HTML trio from one deterministic output slug, open `docs/CLI_SUMMARY_REPORT_OUTPUT_SLUG_TRIO_NOTE.md`.
 If you need a compact reminder to reopen the saved JSON/Markdown/HTML summary bundle together, open `docs/CLI_SUMMARY_REPORT_REOPEN_BUNDLE_NOTE.md`.
 If you need a compact reminder to reopen the same JSON, Markdown, and HTML summary bundle from one reviewer handoff, open `docs/CLI_SUMMARY_HTML_BUNDLE_REOPEN_NOTE.md`.
 If you need an even smaller basename-first reminder for reopening the same JSON/Markdown/HTML summary trio, open `docs/CLI_SUMMARY_ARTIFACT_TRIO_REOPEN_NOTE.md`.
