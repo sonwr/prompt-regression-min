@@ -64,6 +64,8 @@ REGEX_FLAG_MAP = {
     "X": re.VERBOSE,
     "ASCII": re.ASCII,
     "A": re.ASCII,
+    "UNICODE": re.UNICODE,
+    "U": re.UNICODE,
 }
 
 
