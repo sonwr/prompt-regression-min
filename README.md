@@ -149,6 +149,7 @@ If you need a compact note for keeping stdout summary text paired with the saved
 If you need a compact reviewer cue for keeping one saved HTML summary paired with the same `--summary-pr-comment` handoff, open `docs/CLI_SUMMARY_HTML_PR_COMMENT_NOTE.md`.
 
 If you need a compact note for keeping one reviewer-facing subtitle attached to the same saved summary bundle, open `docs/CLI_SUMMARY_REPORT_SUBTITLE_NOTE.md`.
+If you need a compact reviewer note for keeping one saved summary description aligned across stdout, Markdown, and HTML, open `docs/CLI_SUMMARY_REPORT_DESCRIPTION_NOTE.md`.
 If you need a compact note for keeping one reviewer-facing subject attached to that same saved summary bundle, open `docs/CLI_SUMMARY_REPORT_SUBJECT_NOTE.md`.
 If you need a compact reviewer note that keeps report subject and report owner paired on the same saved summary bundle, open `docs/CLI_SUMMARY_REPORT_SUBJECT_OWNER_NOTE.md`.
 If you need the narrowest start for that same saved summary bundle with subject + owner metadata, open `docs/CLI_SUMMARY_REPORT_SUBJECT_OWNER_START.md`.
