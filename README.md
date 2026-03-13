@@ -96,6 +96,7 @@ If you need a compact reminder that the same cron summary should end as exactly 
 If you need the matching compact reminder that each of those five lines should claim commit/push only after a passing validation rerun, open `docs/CLI_SUMMARY_FIVE_REPO_VALIDATE_BEFORE_PUSH_LINE_NOTE.md`.
 If you need a compact reviewer-facing export cue for markdown or PR-comment summaries, open `docs/CLI_SUMMARY_REVIEWER_QUEUE_HUD_NOTE.md`.
 If you need a compact reminder to keep one saved summary bundle tied to the exact stdout recommendation line, open `docs/CLI_SUMMARY_STDOUT_BUNDLE_PAIR_NOTE.md`.
+If you need a compact reminder to keep validation state and generated artifact readiness visible in the same maintainer loop, open `docs/CLI_SUMMARY_VALIDATION_EXPORT_READY_NOTE.md`.
 If you need a compact reminder to keep the shortest repo-status line tied to a passing validation command before sharing the saved bundle, open `docs/CLI_SUMMARY_VALIDATE_BUNDLE_STATUS_LINE_NOTE.md`.
 If you need a compact reminder to keep a five-repo status line tied to one explicit hold reason whenever validation blocks commit/push, open `docs/CLI_SUMMARY_FIVE_REPO_HOLD_REASON_STATUS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 must stay visible in that same one-line gate before commit/push claims, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_GATE_NOTE.md`.
