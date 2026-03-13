@@ -97,6 +97,7 @@ If you need a compact reviewer note for keeping one short owner/status line pair
 If you need a compact reminder for the exact five-repo cron line format before commit/push claims, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_PUSH_GATE_NOTE.md`.
 If you need a compact reminder to rerun validation before writing those same five short lines, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_LINE_RECHECK_NOTE.md`.
 If you need the matching compact gate that restates the exact field order for that five-line report, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_RECHECK_GATE.md`.
+If you need the matching compact note that keeps repo 4 and repo 5 explicitly tied to validation state before any commit/push claim, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_VALIDATE_STATUS_NOTE.md`.
 If you need a compact reminder to keep the stdout status line and the generated markdown/html/json bundle readable as the same review artifact handoff, open `docs/CLI_SUMMARY_STATUS_ARTIFACT_HANDOFF_NOTE.md`.
 If you need a compact reviewer handoff that keeps recommendation, owner, and the shared JSON/Markdown/HTML bundle together, open `docs/CLI_SUMMARY_RECOMMENDATION_OWNER_BUNDLE_NOTE.md`.
 If you need a compact reviewer note for keeping the queue-mix summary visible beside the saved summary bundle, open `docs/CLI_SUMMARY_QUEUE_MIX_SUMMARY_NOTE.md`.
