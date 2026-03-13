@@ -66,6 +66,7 @@ That keeps the README examples, CLI output, and summary payload expectations mov
 If you want the quietest machine-readable handoff for CI logs, open `docs/CLI_SUMMARY_QUIET_STDOUT_NOTE.md` before combining `--quiet` with summary artifact flags.
 If you need the shortest reminder that quiet stdout still pairs cleanly with saved JSON/Markdown/HTML artifacts, open `docs/CLI_SUMMARY_QUIET_BUNDLE_NOTE.md`.
 If you need a compact repo-4/repo-5 note for governance-sandbox scenario-source short aliases (`scenario_src`, `source_href`) inside the same one-line summary lane, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SOURCE_SHORT_ALIAS_NOTE.md`.
+If you need a compact reminder that repo-4/repo-5 scenario-source alias proof still needs a fresh validation rerun before any five-line commit/push claim, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SOURCE_VALIDATE_GATE_NOTE.md`.
 If you need a compact reminder that the five-repo cron report still ends as exactly five short lines after validation, open `docs/CLI_SUMMARY_FIVE_REPO_EXACT_FIVE_LINE_STATUS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 still need validation-first push gates inside the same five-line report, open `docs/CLI_SUMMARY_REPO45_VALIDATE_PUSH_GATE_NOTE.md`.
 If you need a compact reminder to rerun the smallest deterministic summary check before pushing summary/doc changes, open `docs/CLI_SUMMARY_VALIDATE_THEN_PUSH_NOTE.md`.
