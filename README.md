@@ -1373,3 +1373,4 @@ If you need a compact review-loop note for keeping one saved summary bundle tied
 docs/CLI_SUMMARY_REPO45_PHASE_ONE_REPORT_PAIR_STATUS_NOTE.md
 
 If you need a compact reminder that the five-line Korean status report should stay validation-first and commit/push-gated, open `docs/CLI_SUMMARY_FIVE_REPO_VALIDATE_STATUS_MICRO_NOTE.md`.
+If you need the adjacent-markdown proposal-file note for that same repo-4/repo-5 lane, open `docs/CLI_SUMMARY_REPO45_PROPOSAL_MARKDOWN_PATH_NOTE.md`.
