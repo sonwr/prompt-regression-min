@@ -1297,3 +1297,5 @@ If you need a compact reminder to recheck the same fixed five-repo order before 
 If you need a compact owner-facing handoff for the next reviewer queue slice, open `examples/reviewer_queue_priority_rank_owner_handoff.md`.
 
 If you need a compact note for keeping queue share visible in a short reviewer status card, open `docs/CLI_SUMMARY_QUEUE_SHARE_STATUS_CARD_NOTE.md`.
+
+- `docs/CLI_REVIEWER_QUEUE_TOP_TWO_HANDOFF_NOTE.md` — keep the top-two reviewer queue handoff short, ordered, and ready for PR comments.
