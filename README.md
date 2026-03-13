@@ -106,6 +106,7 @@ If you need a compact reminder that the five-line repo report should still call 
 If you need a compact reminder that repo 4 and repo 5 should both show real activity before the five-line cron status is posted, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_ALWAYS_ACTIVE_NOTE.md`.
 If you need a compact reminder to keep repo 4 and repo 5 advancing as the same smallest validated pair before widening queue-summary wording, open `docs/CLI_SUMMARY_REPO45_PROGRESS_PAIR_NOTE.md`.
 If you need a compact reminder to keep repo 4 and repo 5 attached to the same validate-or-hold one-line status rule, open `docs/CLI_SUMMARY_REPO45_VALIDATE_HOLD_NOTE.md`.
+If you need the matching compact reminder that repo 4 and repo 5 should both show one validated micro-result whenever the five-repo loop runs, open `docs/CLI_SUMMARY_REPO45_EVERY_PASS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 still stay in the same phase-one pair while repo 5 remains scenario-file/report-first, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_GATE_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping scenario-file progress and report-file alias status together in one validated short line, open `docs/CLI_SUMMARY_REPO45_REPORT_FILE_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping the `report_bundle_ref` alias tied to the same validation-first short line, open `docs/CLI_SUMMARY_REPO45_REPORT_REF_ALIAS_NOTE.md`.
