@@ -1352,3 +1352,5 @@ If you need the shortest reviewer-facing note for one quiet CLI run that still l
 
 
 If you need a compact CLI note for keeping repo 4 and repo 5 moving as one validated micro-slice before the five-line report, open `docs/CLI_SUMMARY_REPO45_PROGRESS_PAIR_SMALL_SLICE_NOTE.md`.
+
+If you need a compact repo-4/repo-5 bridge for keeping the scenario-file/report-first phase-one lane visible in the same validated short pass, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_STATUS_BRIDGE_NOTE.md`.
