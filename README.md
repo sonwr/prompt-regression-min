@@ -69,6 +69,7 @@ If you need a compact repo-4/repo-5 note for governance-sandbox scenario-source 
 If you need a compact reminder that repo-4/repo-5 scenario-source alias proof still needs a fresh validation rerun before any five-line commit/push claim, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SOURCE_VALIDATE_GATE_NOTE.md`.
 If you need a compact reminder that the five-repo cron report still ends as exactly five short lines after validation, open `docs/CLI_SUMMARY_FIVE_REPO_EXACT_FIVE_LINE_STATUS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 still need validation-first push gates inside the same five-line report, open `docs/CLI_SUMMARY_REPO45_VALIDATE_PUSH_GATE_NOTE.md`.
+If you need a compact reminder that repo 4 and repo 5 must still appear as validated-or-held lines even when the five-repo report stays extremely short, open `docs/CLI_SUMMARY_REPO45_SHORT_LINE_PRESENCE_GATE.md`.
 If you need a compact reminder to rerun the smallest deterministic summary check before pushing summary/doc changes, open `docs/CLI_SUMMARY_VALIDATE_THEN_PUSH_NOTE.md`.
 If you need a compact reviewer cue for keeping the next regression pass to one rerun-backed queue slice plus one saved summary, open `docs/CLI_REVIEWER_QUEUE_SMALL_SLICE_NOTE.md`.
 If you need the matching smallest-loop reminder that ends at commit/push only after a green local check, open `docs/CLI_SUMMARY_VALIDATE_SMALL_LOOP_THEN_PUSH_NOTE.md`.
