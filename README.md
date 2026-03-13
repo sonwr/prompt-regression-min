@@ -177,6 +177,7 @@ If you need a compact reminder for the shortest maintainer progress line after t
 If you need a compact reminder for the required five-line cross-repo short report, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_REPORT_NOTE.md`.
 If you need a compact reminder that the same five-repo short report should be written in Korean for the user-facing update, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_KOREAN_REPORT_NOTE.md`.
 If you need a compact repo-4/repo-5 wording cue for that same Korean five-line report, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_SHORT_KR_LINE_NOTE.md`.
+If you need a compact repo-4/repo-5 reminder that those same short user-facing status lines should stay in Korean and end as exactly five lines, open `docs/CLI_SUMMARY_REPO45_SHORT_KR_STATUS_NOTE.md`.
 If you need a compact rule for keeping the user-facing pass to exactly five lines, open `docs/CLI_SUMMARY_FIVE_REPO_EXACT_FIVE_LINE_NOTE.md`.
 If you need the matching one-line reminder for repo name + change + validation + commit gate in a single short status line, open `docs/CLI_SUMMARY_FIVE_REPO_ONE_LINE_STATUS_NOTE.md`.
 If you need a compact reminder to keep the five-line cron summary short while still naming push-hold reasons explicitly, open `docs/CLI_SUMMARY_FIVE_REPO_HOLD_REASON_NOTE.md`.
