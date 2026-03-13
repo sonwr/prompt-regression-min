@@ -103,6 +103,7 @@ If you need a compact reminder to keep repo 4 and repo 5 advancing as the same s
 If you need a compact reminder to keep repo 4 and repo 5 attached to the same validate-or-hold one-line status rule, open `docs/CLI_SUMMARY_REPO45_VALIDATE_HOLD_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 still stay in the same phase-one pair while repo 5 remains scenario-file/report-first, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_GATE_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping scenario-file progress and report-file alias status together in one validated short line, open `docs/CLI_SUMMARY_REPO45_REPORT_FILE_ALIAS_NOTE.md`.
+If you need a compact repo-4/repo-5 cue for keeping the `report_bundle_id` basename alias visible in the same validated short line, open `docs/CLI_SUMMARY_REPO45_REPORT_BUNDLE_ID_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping the `web-app` preset JSON bridge and the first governance result card in the same validated short line, open `docs/CLI_SUMMARY_REPO45_WEB_DEMO_RESULT_CARD_NOTE.md`.
 If you need the matching repo-4/repo-5 cue for `scenario_showcase` wrapper proof plus the first governance result card in the same validated short line, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SHOWCASE_RESULT_CARD_NOTE.md`.
 If you need a compact one-line reminder for repo-4/repo-5 phase-one reporting status, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_STATUS_NOTE.md`.
