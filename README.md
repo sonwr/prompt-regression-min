@@ -1335,3 +1335,6 @@ If you need a compact CLI note for keeping the repo-4/repo-5 one-line summary ti
 
 If you need a compact regression-maintainer note for one validate-owner-queue summary pass before wider formatting work, open `docs/SUMMARY_VALIDATE_OWNER_QUEUE_MINI_LOOP_NOTE.md`.
 - Governance scenario proposal-file aliases: if you need a short reviewer note for `proposal_file` / `proposal_path` coverage before widening repo-5 report work, use `docs/CLI_SUMMARY_GOVERNANCE_PROPOSAL_FILE_ALIAS_NOTE.md`.
+
+
+If you need a compact CLI note for keeping repo 4 and repo 5 moving as one validated micro-slice before the five-line report, open `docs/CLI_SUMMARY_REPO45_PROGRESS_PAIR_SMALL_SLICE_NOTE.md`.
