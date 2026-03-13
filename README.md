@@ -1320,3 +1320,5 @@ If you need the matching compact reminder to keep the five-repo maintainer repor
 If you need the compact five-repo status rule for Korean cron updates, open `docs/CLI_SUMMARY_SHORT_KOREAN_FIVE_REPO_REPORT_NOTE.md`.
 `.
 If you need a compact CLI note for keeping the repo-4/repo-5 one-line summary tied to the same report-output alias proof, open `docs/CLI_SUMMARY_REPO45_REPORT_ALIAS_NOTE.md`.
+
+If you need a compact regression-maintainer note for one validate-owner-queue summary pass before wider formatting work, open `docs/SUMMARY_VALIDATE_OWNER_QUEUE_MINI_LOOP_NOTE.md`.
