@@ -1359,3 +1359,4 @@ If you need a compact repo-4/repo-5 bridge for keeping the scenario-file/report-
 If you need a compact maintainer reminder to keep one reviewer-queue focus plus one generated PR-comment artifact aligned before push, open `docs/CLI_SUMMARY_QUEUE_FOCUS_PR_COMMENT_NOTE.md`.
 
 If you need a compact reminder that the five-repo cron summary can stay short while still naming the exact validation command behind a changed repo, open `docs/CLI_SUMMARY_VALIDATE_COMMAND_SHORT_REPORT_NOTE.md`.
+If you need a compact review-loop note for keeping one saved summary bundle tied to validation status, owner cue, and artifact paths before push, open `docs/CLI_SUMMARY_REPORT_REVIEW_LOOP_NOTE.md`.
