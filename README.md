@@ -117,6 +117,7 @@ If you need the matching compact reminder to spell out the hold reason whenever 
 If you need an even shorter maintainer handoff that keeps owner, status, and the saved bundle reopen path in one sentence, open `docs/CLI_SUMMARY_OWNER_STATUS_BUNDLE_NOTE.md`.
 If you need a compact note for keeping the same report basename across saved JSON, Markdown, and HTML artifacts, open `docs/CLI_SUMMARY_SHARED_BASENAME_NOTE.md`.
 If you need a compact reviewer note for driving the saved summary bundle from one output slug instead of hand-typed filenames, open `docs/CLI_SUMMARY_OUTPUT_SLUG_NOTE.md`.
+If you need a compact reminder that one saved summary bundle should keep the report basename stable across JSON, Markdown, and HTML outputs, open `docs/CLI_SUMMARY_REPORT_BASENAME_STABILITY_NOTE.md`.
 If you need a compact reminder to keep the reviewer queue summary, validation command, and shared output slug visible together, open `docs/CLI_SUMMARY_QUEUE_VALIDATE_OUTPUT_SLUG_NOTE.md`.
 If you need a compact reminder that `--summary-markdown-title` and `--summary-pr-comment-title` can diverge even when quiet stdout stays on, open `docs/CLI_SUMMARY_QUIET_DUAL_TITLE_NOTE.md`.
 For release-wide CLI or summary payload edits, run `python3 -m unittest discover -s tests` so the full regression and rendering contract stays aligned.
