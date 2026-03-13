@@ -145,6 +145,7 @@ If you need a compact note for keeping the same report basename across saved JSO
 If you need a compact reviewer note for driving the saved summary bundle from one output slug instead of hand-typed filenames, open `docs/CLI_SUMMARY_OUTPUT_SLUG_NOTE.md`.
 If you need a compact reminder that one saved summary bundle should keep the report basename stable across JSON, Markdown, and HTML outputs, open `docs/CLI_SUMMARY_REPORT_BASENAME_STABILITY_NOTE.md`.
 If you need a compact reminder to keep the reviewer queue summary, validation command, and shared output slug visible together, open `docs/CLI_SUMMARY_QUEUE_VALIDATE_OUTPUT_SLUG_NOTE.md`.
+If you need a compact handoff that keeps the winning reviewer queue, the validation gate, and the saved output slug in one line, open `docs/CLI_SUMMARY_QUEUE_WINNER_VALIDATE_SLUG_NOTE.md`.
 If you need a compact reminder that `--summary-markdown-title` and `--summary-pr-comment-title` can diverge even when quiet stdout stays on, open `docs/CLI_SUMMARY_QUIET_DUAL_TITLE_NOTE.md`.
 If you need the shortest reminder that quiet stdout can still split saved markdown and PR-comment titles in the same run, open `docs/CLI_SUMMARY_QUIET_MARKDOWN_PR_SPLIT_NOTE.md`.
 For release-wide CLI or summary payload edits, run `python3 -m unittest discover -s tests` so the full regression and rendering contract stays aligned.
