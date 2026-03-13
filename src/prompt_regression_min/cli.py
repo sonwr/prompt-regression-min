@@ -469,7 +469,7 @@ def _build_parser() -> argparse.ArgumentParser:
         ),
     )
     run_cmd.add_argument(
-        "--summary-pr-comment", "--summary-review-md",
+        "--summary-pr-comment", "--summary-review-md", "--summary-review-markdown",
         default=None,
         help=(
             "Write a compact reviewer-note markdown snapshot to file (for PR comments). "
