@@ -98,6 +98,7 @@ If you need a compact reminder that repo 4 and repo 5 should both show real acti
 If you need a compact reminder to keep repo 4 and repo 5 advancing as the same smallest validated pair before widening queue-summary wording, open `docs/CLI_SUMMARY_REPO45_PROGRESS_PAIR_NOTE.md`.
 If you need a compact reminder to keep repo 4 and repo 5 attached to the same validate-or-hold one-line status rule, open `docs/CLI_SUMMARY_REPO45_VALIDATE_HOLD_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 still stay in the same phase-one pair while repo 5 remains scenario-file/report-first, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_GATE_NOTE.md`.
+If you need a compact repo-4/repo-5 cue for keeping scenario-file progress and report-file alias status together in one validated short line, open `docs/CLI_SUMMARY_REPO45_REPORT_FILE_ALIAS_NOTE.md`.
 If you need a compact one-line reminder for repo-4/repo-5 phase-one reporting status, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_STATUS_NOTE.md`.
 If you need a compact PM note for validating the repo-4/repo-5 phase-one pair before writing commit/push status, open `docs/CLI_SUMMARY_VALIDATE_REPO45_PHASE_ONE_PAIR_NOTE.md`.
 If you need a compact reminder that repo 5 scenario-file/report progress can include `.json5` fixtures while still holding the same validation gate before push, open `docs/CLI_SUMMARY_REPO45_JSON5_VALIDATION_NOTE.md`.
