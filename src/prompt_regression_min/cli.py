@@ -626,7 +626,7 @@ def _build_parser() -> argparse.ArgumentParser:
         ),
     )
     run_cmd.add_argument(
-        "--require-pass-rate-trend",
+        "--require-pass-rate-trend", "--require-trend",
         choices=("improving", "flat", "regressing"),
         default=None,
         help=(
