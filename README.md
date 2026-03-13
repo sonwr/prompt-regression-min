@@ -69,6 +69,7 @@ If you need a compact repo-4/repo-5 note for governance-sandbox scenario-source 
 If you need a compact reminder that the five-repo cron report still ends as exactly five short lines after validation, open `docs/CLI_SUMMARY_FIVE_REPO_EXACT_FIVE_LINE_STATUS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 still need validation-first push gates inside the same five-line report, open `docs/CLI_SUMMARY_REPO45_VALIDATE_PUSH_GATE_NOTE.md`.
 If you need a compact reminder to rerun the smallest deterministic summary check before pushing summary/doc changes, open `docs/CLI_SUMMARY_VALIDATE_THEN_PUSH_NOTE.md`.
+If you need the matching smallest-loop reminder that ends at commit/push only after a green local check, open `docs/CLI_SUMMARY_VALIDATE_SMALL_LOOP_THEN_PUSH_NOTE.md`.
 If you need a compact note for keeping one deterministic summary slice tied to status, owner, and artifact paths before push, open `docs/CLI_SUMMARY_STATUS_SLICE_NOTE.md`.
 If you need a compact reminder to keep saved summary bundle status coupled to a passing validation command, open `docs/CLI_SUMMARY_VALIDATED_BUNDLE_STATUS_NOTE.md`.
 If you need the matching compact reminder to validate first and only then reopen the saved bundle for review, open `docs/CLI_SUMMARY_VALIDATE_REOPEN_BUNDLE_NOTE.md`.
