@@ -118,6 +118,7 @@ If you need a compact repo-4/repo-5 cue for keeping scenario-file progress and r
 If you need a compact repo-4/repo-5 cue for one short line that names scenario-file import status, report-bundle regeneration status, and the validate-before-push gate together, open `docs/CLI_SUMMARY_REPO45_SCENARIO_REPORT_PAIR_STATUS_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping the `report_bundle_ref` alias tied to the same validation-first short line, open `docs/CLI_SUMMARY_REPO45_REPORT_REF_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping the `report_bundle_id` basename alias visible in the same validated short line, open `docs/CLI_SUMMARY_REPO45_REPORT_BUNDLE_ID_ALIAS_NOTE.md`.
+If you need a compact repo-4/repo-5 cue for keeping download-oriented governance-sandbox bundles compatible with `report.outputs.downloads` and top-level `report_downloads`, open `docs/CLI_SUMMARY_REPO45_REPORT_DOWNLOADS_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping the `web-app` preset JSON bridge and the first governance result card in the same validated short line, open `docs/CLI_SUMMARY_REPO45_WEB_DEMO_RESULT_CARD_NOTE.md`.
 If you need the matching repo-4/repo-5 cue for `scenario_showcase` wrapper proof plus the first governance result card in the same validated short line, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SHOWCASE_RESULT_CARD_NOTE.md`.
 If you need a compact one-line reminder for repo-4/repo-5 phase-one reporting status, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_STATUS_NOTE.md`.
