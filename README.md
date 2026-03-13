@@ -90,6 +90,7 @@ If you need a compact reminder to keep a five-repo status line tied to one expli
 If you need a compact reminder that repo 4 and repo 5 must stay visible in that same one-line gate before commit/push claims, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_GATE_NOTE.md`.
 
 If you need a compact reviewer note for keeping one short owner/status line paired with the saved summary bundle before posting, open `docs/CLI_SUMMARY_OWNER_STATUS_ONE_LINE_NOTE.md`.
+If you need a compact reminder for the exact five-repo cron line format before commit/push claims, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_PUSH_GATE_NOTE.md`.
 If you need a compact reminder to keep the stdout status line and the generated markdown/html/json bundle readable as the same review artifact handoff, open `docs/CLI_SUMMARY_STATUS_ARTIFACT_HANDOFF_NOTE.md`.
 If you need a compact reviewer handoff that keeps recommendation, owner, and the shared JSON/Markdown/HTML bundle together, open `docs/CLI_SUMMARY_RECOMMENDATION_OWNER_BUNDLE_NOTE.md`.
 If you need a compact one-line cue for keeping the reviewer queue owner, status, and saved bundle path together, open `docs/CLI_SUMMARY_QUEUE_OWNER_STATUS_PATH_NOTE.md`.
