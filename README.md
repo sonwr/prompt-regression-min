@@ -1276,3 +1276,5 @@ If you need a compact reviewer handoff that keeps the selected priority rank tie
 If you need a compact maintainer note for keeping one CLI fixture, one generated summary artifact, and one validate-then-push loop aligned, open `docs/CLI_SUMMARY_VALIDATE_ARTIFACT_LOOP_NOTE.md`.
 
 If you need a compact reminder that repo 4 and repo 5 cannot be skipped in the five-repo loop, open `docs/CLI_SUMMARY_FIVE_REPO_FOUR_FIVE_RULE_NOTE.md`.
+
+If you need a compact owner-facing handoff for the next reviewer queue slice, open `examples/reviewer_queue_priority_rank_owner_handoff.md`.
