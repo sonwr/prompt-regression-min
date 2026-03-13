@@ -87,6 +87,7 @@ If you need a compact reminder to keep the stdout status line and the generated 
 If you need a compact reviewer handoff that keeps recommendation, owner, and the shared JSON/Markdown/HTML bundle together, open `docs/CLI_SUMMARY_RECOMMENDATION_OWNER_BUNDLE_NOTE.md`.
 If you need a compact one-line cue for keeping the reviewer queue owner, status, and saved bundle path together, open `docs/CLI_SUMMARY_QUEUE_OWNER_STATUS_PATH_NOTE.md`.
 If you need a compact one-line repo progress cue that names change state, validation result, and commit/push hold state together, open `docs/CLI_SUMMARY_SHORT_REPO_STATUS_LINE_NOTE.md`.
+If you need the matching compact reminder to spell out the hold reason whenever validation blocks commit/push, open `docs/CLI_SUMMARY_REPO_HOLD_REASON_NOTE.md`.
 If you need an even shorter maintainer handoff that keeps owner, status, and the saved bundle reopen path in one sentence, open `docs/CLI_SUMMARY_OWNER_STATUS_BUNDLE_NOTE.md`.
 If you need a compact note for keeping the same report basename across saved JSON, Markdown, and HTML artifacts, open `docs/CLI_SUMMARY_SHARED_BASENAME_NOTE.md`.
 If you need a compact reviewer note for driving the saved summary bundle from one output slug instead of hand-typed filenames, open `docs/CLI_SUMMARY_OUTPUT_SLUG_NOTE.md`.
