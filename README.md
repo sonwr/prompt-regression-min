@@ -83,6 +83,7 @@ If you need a compact note for one status line that still names the saved JSON/M
 If you need the shortest reminder that five-repo cron updates should still report one honest status line per repo after validation, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_STATUS_NOTE.md`.
 If you need a compact gate for exactly one line per repo with change/validation/commit status, open `docs/CLI_SUMMARY_FIVE_REPO_COMPACT_STATUS_GATE.md`.
 If you need a compact reminder for the exact field order inside those five short lines, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_LINE_ORDER_NOTE.md`.
+If you need a compact reminder that the same cron summary should end as exactly five plain-text lines, open `docs/CLI_SUMMARY_FIVE_REPO_EXACT_FIVE_LINE_NOTE.md`.
 If you need a compact reviewer-facing export cue for markdown or PR-comment summaries, open `docs/CLI_SUMMARY_REVIEWER_QUEUE_HUD_NOTE.md`.
 If you need a compact reminder to keep one saved summary bundle tied to the exact stdout recommendation line, open `docs/CLI_SUMMARY_STDOUT_BUNDLE_PAIR_NOTE.md`.
 If you need a compact reminder to keep the shortest repo-status line tied to a passing validation command before sharing the saved bundle, open `docs/CLI_SUMMARY_VALIDATE_BUNDLE_STATUS_LINE_NOTE.md`.
