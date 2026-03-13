@@ -154,6 +154,7 @@ If you need the matching one-line reminder for repo name + change + validation +
 If you need a compact reminder to keep the five-line cron summary short while still naming push-hold reasons explicitly, open `docs/CLI_SUMMARY_FIVE_REPO_HOLD_REASON_NOTE.md`.
 If you need a compact reminder to keep the same five repos in the same report order every run, open `docs/CLI_SUMMARY_FIVE_REPO_FIXED_ORDER_NOTE.md`.
 If you need a compact gate for the same repo-name -> change -> validation -> commit/push order, open `docs/CLI_SUMMARY_FIVE_REPO_ONE_LINE_STATUS_GATE.md`.
+If you need a compact reminder that repos 4 and 5 must still appear in every five-line short report, open `docs/CLI_SUMMARY_FOUR_FIVE_NON_SKIP_RULE.md`.
 If you need a compact reminder that each short summary line should keep status, validation, and bundle handoff in that order, open `docs/CLI_SUMMARY_SHORT_REPORT_GATE_NOTE.md`.
 If you need a compact reminder that five-repo cron updates should only claim commit/push after validation passes, open `docs/CLI_SUMMARY_FIVE_REPO_VALIDATION_GATE_NOTE.md`.
 If you need the matching reminder to keep failed repos on an explicit no-push hold line in the same five-repo report, open `docs/CLI_SUMMARY_FIVE_REPO_NO_PUSH_HOLD_LINE_NOTE.md`.
