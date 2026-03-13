@@ -68,6 +68,7 @@ If you need the shortest reminder that quiet stdout still pairs cleanly with sav
 If you need a compact repo-4/repo-5 note for governance-sandbox scenario-source short aliases (`scenario_src`, `source_href`) inside the same one-line summary lane, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SOURCE_SHORT_ALIAS_NOTE.md`.
 If you need the matching repo-4/repo-5 note for the neutral `source_location` alias, open `docs/CLI_SUMMARY_REPO45_SOURCE_LOCATION_ALIAS_NOTE.md`.
 If you need a compact reminder that repo-4/repo-5 scenario-source alias proof still needs a fresh validation rerun before any five-line commit/push claim, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SOURCE_VALIDATE_GATE_NOTE.md`.
+If you need a compact repo-4/repo-5 reminder that governance web-demo preset requests can arrive as `governance-sandbox-demo` while still mapping to the same web-app proof lane, open `docs/CLI_SUMMARY_REPO45_GOVERNANCE_SANDBOX_DEMO_ALIAS_NOTE.md`.
 If you need a compact reminder that the five-repo cron report still ends as exactly five short lines after validation, open `docs/CLI_SUMMARY_FIVE_REPO_EXACT_FIVE_LINE_STATUS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 still need validation-first push gates inside the same five-line report, open `docs/CLI_SUMMARY_REPO45_VALIDATE_PUSH_GATE_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder that phase-one progress still starts with one JSON/YAML scenario file plus one regenerated JSON/Markdown/HTML report bundle, open `docs/CLI_SUMMARY_REPO45_JSON_YAML_PHASE_ONE_NOTE.md`.
