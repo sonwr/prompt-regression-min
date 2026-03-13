@@ -1,8 +1,3 @@
-# CLI summary validate-command-bundle status note
+# CLI summary validate-command bundle status note
 
-Keep the smallest summary-proof loop explicit:
-- run one deterministic validation command,
-- regenerate one saved JSON/Markdown/HTML bundle,
-- report one honest status line that matches the saved artifacts.
-
-That keeps reviewer-facing summary wording anchored to reproducible command output.
+Keep the shortest maintainer handoff explicit: one passing validation command should still pair with the saved JSON/Markdown/HTML bundle and the final one-line status update.

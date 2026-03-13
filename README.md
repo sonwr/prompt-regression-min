@@ -108,6 +108,7 @@ If you need a compact reviewer-facing export cue for markdown or PR-comment summ
 If you need a compact reminder to keep one saved summary bundle tied to the exact stdout recommendation line, open `docs/CLI_SUMMARY_STDOUT_BUNDLE_PAIR_NOTE.md`.
 If you need a compact reminder to keep validation state and generated artifact readiness visible in the same maintainer loop, open `docs/CLI_SUMMARY_VALIDATION_EXPORT_READY_NOTE.md`.
 If you need a compact reminder to keep the shortest repo-status line tied to a passing validation command before sharing the saved bundle, open `docs/CLI_SUMMARY_VALIDATE_BUNDLE_STATUS_LINE_NOTE.md`.
+If you need the shortest reminder that one passing validation command should still travel with the saved JSON/Markdown/HTML bundle and one-line status, open `docs/CLI_SUMMARY_VALIDATE_COMMAND_BUNDLE_STATUS_NOTE.md`.
 If you need a compact reminder to keep a five-repo status line tied to one explicit hold reason whenever validation blocks commit/push, open `docs/CLI_SUMMARY_FIVE_REPO_HOLD_REASON_STATUS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 must stay visible in that same one-line gate before commit/push claims, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_GATE_NOTE.md`.
 If you need a compact reminder that the five-line repo report should still call out whether validation blocked commit/push for each repo, open `docs/CLI_SUMMARY_FIVE_REPO_VALIDATE_HOLD_STATUS_NOTE.md`.
