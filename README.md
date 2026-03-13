@@ -139,6 +139,7 @@ If you need a compact reminder for the exact five-repo cron line format before c
 If you need a compact reminder to rerun validation before writing those same five short lines, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_LINE_RECHECK_NOTE.md`.
 If you need the matching compact gate that restates the exact field order for that five-line report, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_RECHECK_GATE.md`.
 If you need the matching compact note that keeps repo 4 and repo 5 explicitly tied to validation state before any commit/push claim, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_VALIDATE_STATUS_NOTE.md`.
+If you need a compact reminder that repo 4 and repo 5 still cannot disappear from that same five-line handoff even on a hold, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_NO_SKIP_STATUS_NOTE.md`.
 If you need a compact repo-4/repo-5 phase-one reminder that nested governance proposal text must beat wrapper titles before any commit/push claim, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_PROPOSAL_PRECEDENCE_NOTE.md`.
 If you need a compact reminder to keep the stdout status line and the generated markdown/html/json bundle readable as the same review artifact handoff, open `docs/CLI_SUMMARY_STATUS_ARTIFACT_HANDOFF_NOTE.md`.
 If you need a compact reviewer handoff that keeps recommendation, owner, and the shared JSON/Markdown/HTML bundle together, open `docs/CLI_SUMMARY_RECOMMENDATION_OWNER_BUNDLE_NOTE.md`.
