@@ -80,6 +80,7 @@ If you need a compact reminder for one summary run that saves JSON, Markdown, an
 If you need a compact note for one status line that still names the saved JSON/Markdown/HTML bundle clearly, open `docs/CLI_SUMMARY_OUTPUT_BUNDLE_STATUS_NOTE.md`.
 If you need the shortest reminder that five-repo cron updates should still report one honest status line per repo after validation, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_STATUS_NOTE.md`.
 If you need a compact gate for exactly one line per repo with change/validation/commit status, open `docs/CLI_SUMMARY_FIVE_REPO_COMPACT_STATUS_GATE.md`.
+If you need a compact reminder for the exact field order inside those five short lines, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_LINE_ORDER_NOTE.md`.
 If you need a compact reviewer-facing export cue for markdown or PR-comment summaries, open `docs/CLI_SUMMARY_REVIEWER_QUEUE_HUD_NOTE.md`.
 If you need a compact reminder to keep one saved summary bundle tied to the exact stdout recommendation line, open `docs/CLI_SUMMARY_STDOUT_BUNDLE_PAIR_NOTE.md`.
 If you need a compact reminder to keep the stdout status line and the generated markdown/html/json bundle readable as the same review artifact handoff, open `docs/CLI_SUMMARY_STATUS_ARTIFACT_HANDOFF_NOTE.md`.
