@@ -86,6 +86,7 @@ If you need a compact reviewer-facing export cue for markdown or PR-comment summ
 If you need a compact reminder to keep one saved summary bundle tied to the exact stdout recommendation line, open `docs/CLI_SUMMARY_STDOUT_BUNDLE_PAIR_NOTE.md`.
 If you need a compact reminder to keep the shortest repo-status line tied to a passing validation command before sharing the saved bundle, open `docs/CLI_SUMMARY_VALIDATE_BUNDLE_STATUS_LINE_NOTE.md`.
 If you need a compact reminder to keep a five-repo status line tied to one explicit hold reason whenever validation blocks commit/push, open `docs/CLI_SUMMARY_FIVE_REPO_HOLD_REASON_STATUS_NOTE.md`.
+If you need a compact reminder that repo 4 and repo 5 must stay visible in that same one-line gate before commit/push claims, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_GATE_NOTE.md`.
 
 If you need a compact reviewer note for keeping one short owner/status line paired with the saved summary bundle before posting, open `docs/CLI_SUMMARY_OWNER_STATUS_ONE_LINE_NOTE.md`.
 If you need a compact reminder to keep the stdout status line and the generated markdown/html/json bundle readable as the same review artifact handoff, open `docs/CLI_SUMMARY_STATUS_ARTIFACT_HANDOFF_NOTE.md`.
