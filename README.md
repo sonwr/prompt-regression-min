@@ -167,6 +167,7 @@ If you need a compact owner-facing cue that names the active reviewer queue, the
 If you need a compact note for keeping reviewer-facing bundle filenames stable with `--report-file-stem`, open `examples/reviewer_queue_report_file_stem_note.md`.
 If you need a short reminder that one stable basename should anchor the saved JSON/Markdown/HTML summary trio, open `docs/CLI_SUMMARY_BASENAME_NOTE.md`.
 If you need the shortest reviewer cue for a queue summary that already includes the baseline vs candidate case counts, open `examples/reviewer_queue_case_count_status_line.md`.
+If you need the matching maintainer reminder for download-oriented JSON/Markdown/HTML summary paths, open `docs/CLI_SUMMARY_DOWNLOAD_NOTE.md`.
 If you need a compact reminder for quiet stdout plus saved JSON artifacts in the same review bundle, open `docs/CLI_SUMMARY_QUIET_JSON_BUNDLE_NOTE.md`.
 If the HTML summary layout changed and you need a visual reviewer pass, open `examples/reviewer_queue_html_report_visual_check.md`.
 If you need a one-line note for the queue that stays next after the current focus, open `examples/reviewer_queue_runner_up_handoff_card.md`.
