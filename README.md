@@ -91,6 +91,7 @@ If you need a compact reminder to keep the shortest repo-status line tied to a p
 If you need a compact reminder to keep a five-repo status line tied to one explicit hold reason whenever validation blocks commit/push, open `docs/CLI_SUMMARY_FIVE_REPO_HOLD_REASON_STATUS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 must stay visible in that same one-line gate before commit/push claims, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_GATE_NOTE.md`.
 If you need a compact reminder to keep repo 4 and repo 5 advancing as the same smallest validated pair before widening queue-summary wording, open `docs/CLI_SUMMARY_REPO45_PROGRESS_PAIR_NOTE.md`.
+If you need a compact reminder to keep repo 4 and repo 5 attached to the same validate-or-hold one-line status rule, open `docs/CLI_SUMMARY_REPO45_VALIDATE_HOLD_NOTE.md`.
 
 If you need a compact reviewer note for keeping one short owner/status line paired with the saved summary bundle before posting, open `docs/CLI_SUMMARY_OWNER_STATUS_ONE_LINE_NOTE.md`.
 If you need a compact reminder for the exact five-repo cron line format before commit/push claims, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_PUSH_GATE_NOTE.md`.
