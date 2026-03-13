@@ -109,6 +109,7 @@ If you need the matching compact gate that restates the exact field order for th
 If you need the matching compact note that keeps repo 4 and repo 5 explicitly tied to validation state before any commit/push claim, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_VALIDATE_STATUS_NOTE.md`.
 If you need a compact reminder to keep the stdout status line and the generated markdown/html/json bundle readable as the same review artifact handoff, open `docs/CLI_SUMMARY_STATUS_ARTIFACT_HANDOFF_NOTE.md`.
 If you need a compact reviewer handoff that keeps recommendation, owner, and the shared JSON/Markdown/HTML bundle together, open `docs/CLI_SUMMARY_RECOMMENDATION_OWNER_BUNDLE_NOTE.md`.
+If you need a compact one-line cue for pairing queue owner, validation result, and commit/push hold state in the same summary handoff, open `docs/CLI_SUMMARY_QUEUE_OWNER_VALIDATE_STATUS_NOTE.md`.
 If you need a compact reviewer note for keeping the queue-mix summary visible beside the saved summary bundle, open `docs/CLI_SUMMARY_QUEUE_MIX_SUMMARY_NOTE.md`.
 If you need a compact one-line cue for keeping the reviewer queue owner, status, and saved bundle path together, open `docs/CLI_SUMMARY_QUEUE_OWNER_STATUS_PATH_NOTE.md`.
 If you need a compact reminder to keep the queue owner, status, and reopened bundle path readable in one reviewer-facing line, open `docs/CLI_SUMMARY_QUEUE_OWNER_STATUS_PATH_NOTE.md`.
