@@ -1342,6 +1342,7 @@ If you need the compact five-repo status rule for Korean cron updates, open `doc
 If you need a compact CLI note for keeping the repo-4/repo-5 one-line summary tied to the same report-output alias proof, open `docs/CLI_SUMMARY_REPO45_REPORT_ALIAS_NOTE.md`.
 
 If you need a compact regression-maintainer note for one validate-owner-queue summary pass before wider formatting work, open `docs/SUMMARY_VALIDATE_OWNER_QUEUE_MINI_LOOP_NOTE.md`.
+If you need the shortest reviewer-facing note for one quiet CLI run that still leaves a saved markdown bundle plus a single honest repo status line, open `docs/CLI_SUMMARY_QUIET_STATUS_BUNDLE_NOTE.md`.
 - Governance scenario proposal-file aliases: if you need a short reviewer note for `proposal_file` / `proposal_path` coverage before widening repo-5 report work, use `docs/CLI_SUMMARY_GOVERNANCE_PROPOSAL_FILE_ALIAS_NOTE.md`.
 
 
