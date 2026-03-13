@@ -461,6 +461,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     run_cmd.add_argument(
         "--summary-markdown-title",
+        "--summary-md-title",
         default="prompt-regression-min summary",
         help=(
             "Heading text used for --summary-markdown output. "
