@@ -1309,4 +1309,6 @@ If you need a compact note for keeping queue share visible in a short reviewer s
 
 - `docs/CLI_REVIEWER_QUEUE_TOP_TWO_HANDOFF_NOTE.md` — keep the top-two reviewer queue handoff short, ordered, and ready for PR comments.
 
-If you need the matching compact reminder to keep the five-repo maintainer report to one short validated status line per repo, open `docs/CLI_SUMMARY_ONE_LINE_STATUS_NOTE.md`.
+If you need the matching compact reminder to keep the five-repo maintainer report to one short validated status line per repo, open `docs/CLI_SUMMARY_ONE_LINE_STATUS_NOTE.md
+If you need the compact five-repo status rule for Korean cron updates, open `docs/CLI_SUMMARY_SHORT_KOREAN_FIVE_REPO_REPORT_NOTE.md`.
+`.
