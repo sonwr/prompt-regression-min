@@ -93,6 +93,7 @@ If you need a compact reminder to keep one saved summary bundle tied to the exac
 If you need a compact reminder to keep the shortest repo-status line tied to a passing validation command before sharing the saved bundle, open `docs/CLI_SUMMARY_VALIDATE_BUNDLE_STATUS_LINE_NOTE.md`.
 If you need a compact reminder to keep a five-repo status line tied to one explicit hold reason whenever validation blocks commit/push, open `docs/CLI_SUMMARY_FIVE_REPO_HOLD_REASON_STATUS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 must stay visible in that same one-line gate before commit/push claims, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_GATE_NOTE.md`.
+If you need a compact reminder that repo 4 and repo 5 should both show real activity before the five-line cron status is posted, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_ALWAYS_ACTIVE_NOTE.md`.
 If you need a compact reminder to keep repo 4 and repo 5 advancing as the same smallest validated pair before widening queue-summary wording, open `docs/CLI_SUMMARY_REPO45_PROGRESS_PAIR_NOTE.md`.
 If you need a compact reminder to keep repo 4 and repo 5 attached to the same validate-or-hold one-line status rule, open `docs/CLI_SUMMARY_REPO45_VALIDATE_HOLD_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 still stay in the same phase-one pair while repo 5 remains scenario-file/report-first, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_GATE_NOTE.md`.
