@@ -149,6 +149,7 @@ If you need a compact reminder to keep the five-line cron summary short while st
 If you need a compact gate for the same repo-name -> change -> validation -> commit/push order, open `docs/CLI_SUMMARY_FIVE_REPO_ONE_LINE_STATUS_GATE.md`.
 If you need a compact reminder that each short summary line should keep status, validation, and bundle handoff in that order, open `docs/CLI_SUMMARY_SHORT_REPORT_GATE_NOTE.md`.
 If you need a compact reminder that five-repo cron updates should only claim commit/push after validation passes, open `docs/CLI_SUMMARY_FIVE_REPO_VALIDATION_GATE_NOTE.md`.
+If you need the matching reminder to keep failed repos on an explicit no-push hold line in the same five-repo report, open `docs/CLI_SUMMARY_FIVE_REPO_NO_PUSH_HOLD_LINE_NOTE.md`.
 If you need the matching short-report reminder that commit/push claims come only after validation clears, open `docs/CLI_SUMMARY_FIVE_REPO_COMMIT_GATE_NOTE.md`.
 If you need a compact reviewer note for when that same JSON/Markdown/HTML stack is fully ready under one basename, open `docs/CLI_SUMMARY_REPORT_STACK_READY_NOTE.md`.
 If you need a compact note for keeping one saved summary bundle attached to the exact source dataset path, open `docs/CLI_SUMMARY_SOURCE_DATASET_NOTE.md`.
