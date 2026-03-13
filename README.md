@@ -159,6 +159,7 @@ If you need a compact reviewer cue for keeping the saved summary basename visibl
 If you need a compact reminder that one saved summary bundle can still keep a stable report directory visible beside the status line, open `docs/CLI_SUMMARY_REPORT_DIRECTORY_NOTE.md`.
 If you need a compact reminder for the shortest maintainer progress line after that validation pass, open `docs/CLI_SUMMARY_SHORT_PROGRESS_STATUS_NOTE.md`.
 If you need a compact reminder for the required five-line cross-repo short report, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_REPORT_NOTE.md`.
+If you need a compact reminder that the same five-repo short report should be written in Korean for the user-facing update, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_KOREAN_REPORT_NOTE.md`.
 If you need a compact rule for keeping the user-facing pass to exactly five lines, open `docs/CLI_SUMMARY_FIVE_REPO_EXACT_FIVE_LINE_NOTE.md`.
 If you need the matching one-line reminder for repo name + change + validation + commit gate in a single short status line, open `docs/CLI_SUMMARY_FIVE_REPO_ONE_LINE_STATUS_NOTE.md`.
 If you need a compact reminder to keep the five-line cron summary short while still naming push-hold reasons explicitly, open `docs/CLI_SUMMARY_FIVE_REPO_HOLD_REASON_NOTE.md`.
