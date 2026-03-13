@@ -89,7 +89,7 @@ def _coerce_regex_flags(raw_flags: Any, kind: str) -> list[str]:
 
 
 def _get_regex_flag_input(expected: dict[str, Any]) -> Any:
-    for key in ("flags", "flag", "regex_flags", "regex_flag"):
+    for key in ("flags", "flag", "regex_flags", "regex_flag", "re_flags", "re_flag"):
         if key in expected:
             return expected.get(key)
     return None
