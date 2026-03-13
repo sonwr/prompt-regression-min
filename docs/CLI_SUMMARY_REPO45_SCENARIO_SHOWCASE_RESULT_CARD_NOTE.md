@@ -1,0 +1,1 @@
+Keep repo 4 and repo 5 aligned on one validated short line: repo 5 proves a `scenario_showcase` or `scenario_showcase_bundle` wrapper can still regenerate the JSON/Markdown/HTML report bundle, while repo 4 keeps the first governance result card small, stable, and validation-backed before push.
