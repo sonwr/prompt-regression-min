@@ -161,6 +161,7 @@ If you need a compact reviewer note that names the active summary command plus t
 If you need a one-line PR-comment handoff sentence, open `examples/reviewer_queue_priority_handoff_card.md`.
 If you need a compact owner handoff template after queue selection, open `examples/reviewer_queue_owner_handoff_template.md`.
 If you need a compact reviewer note for JSON-exposed scaffold presets, open `examples/reviewer_queue_presets_json_handoff.md`.
+If you need a compact reviewer reminder for validating first and only then sharing the saved bundle, open `examples/reviewer_queue_validate_then_share_note.md`.
 If you need a compact rule for naming the winning queue, shared report bundle, and owner in that order, open `examples/reviewer_queue_report_bundle_priority_note.md`.
 If you need a compact note for title-ready reviewer bundles that still need deterministic shared artifact naming, open `examples/reviewer_queue_title_and_basename_handoff.md`.
 If you need a compact reviewer note for one queue handoff that reuses a single output slug across the saved JSON/Markdown/HTML bundle, open `examples/reviewer_queue_output_slug_bundle_note.md`.
