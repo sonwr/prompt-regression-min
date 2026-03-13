@@ -66,6 +66,7 @@ That keeps the README examples, CLI output, and summary payload expectations mov
 If you want the quietest machine-readable handoff for CI logs, open `docs/CLI_SUMMARY_QUIET_STDOUT_NOTE.md` before combining `--quiet` with summary artifact flags.
 If you need the shortest reminder that quiet stdout still pairs cleanly with saved JSON/Markdown/HTML artifacts, open `docs/CLI_SUMMARY_QUIET_BUNDLE_NOTE.md`.
 If you need a compact reminder to rerun the smallest deterministic summary check before pushing summary/doc changes, open `docs/CLI_SUMMARY_VALIDATE_THEN_PUSH_NOTE.md`.
+If you need a compact note for keeping one deterministic summary slice tied to status, owner, and artifact paths before push, open `docs/CLI_SUMMARY_STATUS_SLICE_NOTE.md`.
 If you need a compact reminder to keep saved summary bundle status coupled to a passing validation command, open `docs/CLI_SUMMARY_VALIDATED_BUNDLE_STATUS_NOTE.md`.
 If you need the matching compact reminder to validate first and only then reopen the saved bundle for review, open `docs/CLI_SUMMARY_VALIDATE_REOPEN_BUNDLE_NOTE.md`.
 If you need a compact note for keeping each repo pass to one small validated improvement, open `docs/CLI_SUMMARY_SMALL_VALIDATED_SLICE_NOTE.md`.
