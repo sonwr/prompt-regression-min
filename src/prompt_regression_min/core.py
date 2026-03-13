@@ -81,7 +81,7 @@ def _coerce_regex_flags(raw_flags: Any, kind: str) -> list[str]:
     if raw_flags is None:
         return []
     if isinstance(raw_flags, str):
-        tokens = [token for token in re.split(r"[|,;/\s]+", raw_flags) if token]
+        tokens = [token for token in re.split(r"[|+,;/\s]+", raw_flags) if token]
         return [_normalize_regex_flag_name(token) for token in tokens]
     if isinstance(raw_flags, list):
         return [normalized for token in raw_flags if (normalized := _normalize_regex_flag_name(token))]
