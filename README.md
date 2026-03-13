@@ -1283,3 +1283,5 @@ If you need a compact maintainer note for keeping one CLI fixture, one generated
 If you need a compact reminder that repo 4 and repo 5 cannot be skipped in the five-repo loop, open `docs/CLI_SUMMARY_FIVE_REPO_FOUR_FIVE_RULE_NOTE.md`.
 
 If you need a compact owner-facing handoff for the next reviewer queue slice, open `examples/reviewer_queue_priority_rank_owner_handoff.md`.
+
+If you need a compact note for keeping queue share visible in a short reviewer status card, open `docs/CLI_SUMMARY_QUEUE_SHARE_STATUS_CARD_NOTE.md`.
