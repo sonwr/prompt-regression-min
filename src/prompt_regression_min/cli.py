@@ -452,7 +452,7 @@ def _build_parser() -> argparse.ArgumentParser:
         ),
     )
     run_cmd.add_argument(
-        "--summary-markdown",
+        "--summary-markdown", "--summary-md",
         default=None,
         help=(
             "Write a compact markdown summary to file (for PR comments/release notes). "
