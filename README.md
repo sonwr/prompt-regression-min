@@ -1306,3 +1306,5 @@ If you need a compact owner-facing handoff for the next reviewer queue slice, op
 If you need a compact note for keeping queue share visible in a short reviewer status card, open `docs/CLI_SUMMARY_QUEUE_SHARE_STATUS_CARD_NOTE.md`.
 
 - `docs/CLI_REVIEWER_QUEUE_TOP_TWO_HANDOFF_NOTE.md` — keep the top-two reviewer queue handoff short, ordered, and ready for PR comments.
+
+If you need the matching compact reminder to keep the five-repo maintainer report to one short validated status line per repo, open `docs/CLI_SUMMARY_ONE_LINE_STATUS_NOTE.md`.
