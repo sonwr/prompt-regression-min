@@ -1357,3 +1357,5 @@ If you need a compact CLI note for keeping repo 4 and repo 5 moving as one valid
 
 If you need a compact repo-4/repo-5 bridge for keeping the scenario-file/report-first phase-one lane visible in the same validated short pass, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_STATUS_BRIDGE_NOTE.md`.
 If you need a compact maintainer reminder to keep one reviewer-queue focus plus one generated PR-comment artifact aligned before push, open `docs/CLI_SUMMARY_QUEUE_FOCUS_PR_COMMENT_NOTE.md`.
+
+If you need a compact reminder that the five-repo cron summary can stay short while still naming the exact validation command behind a changed repo, open `docs/CLI_SUMMARY_VALIDATE_COMMAND_SHORT_REPORT_NOTE.md`.
