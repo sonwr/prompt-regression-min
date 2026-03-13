@@ -1371,3 +1371,5 @@ If you need a compact maintainer reminder to keep one reviewer-queue focus plus 
 If you need a compact reminder that the five-repo cron summary can stay short while still naming the exact validation command behind a changed repo, open `docs/CLI_SUMMARY_VALIDATE_COMMAND_SHORT_REPORT_NOTE.md`.
 If you need a compact review-loop note for keeping one saved summary bundle tied to validation status, owner cue, and artifact paths before push, open `docs/CLI_SUMMARY_REPORT_REVIEW_LOOP_NOTE.md`.
 docs/CLI_SUMMARY_REPO45_PHASE_ONE_REPORT_PAIR_STATUS_NOTE.md
+
+If you need a compact reminder that the five-line Korean status report should stay validation-first and commit/push-gated, open `docs/CLI_SUMMARY_FIVE_REPO_VALIDATE_STATUS_MICRO_NOTE.md`.
