@@ -1,0 +1,1 @@
+When five-repo cron work is active, repo 4 and repo 5 cannot disappear from the short report: each run should name their change state, validation result, and commit/push or hold reason in one honest line.

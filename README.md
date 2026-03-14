@@ -1395,3 +1395,4 @@ If you need a compact reminder that the five-line Korean status report should st
 If you need the adjacent-markdown proposal-file note for that same repo-4/repo-5 lane, open `docs/CLI_SUMMARY_REPO45_PROPOSAL_MARKDOWN_PATH_NOTE.md`.
 
 If you need a compact reminder that the five-line Korean status report should stay validation-first and commit/push-gated, open `docs/CLI_SUMMARY_VALIDATE_COMMAND_SHORT_REPORT_NOTE.md`.
+If you need a compact reminder that repo 4 and repo 5 can never be skipped in the five-repo short report, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_NO_SKIP_NOTE.md`.
