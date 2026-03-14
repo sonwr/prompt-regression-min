@@ -1,3 +1,3 @@
-# CLI_SUMMARY_REPO45_REPORT_OUTPUT_KEY_ALIAS_NOTE
+# CLI summary repo45 report_output_key alias note
 
-Keep the five-repo short report honest: when governance-sandbox uses `report_output_key` or `report.outputs.output_key` for the regenerated bundle basename, repo 4 and repo 5 should still land as a paired validated slice before you claim commit/push in the one-line status output.
+For the five-repo short report, repo 5 can call out `report_output_key` as the shared basename for the validated JSON/Markdown/HTML report bundle while repo 4 stays validator-clean in the same one-line status lane.
