@@ -9,6 +9,7 @@ Minimal, deterministic regression checks for prompt and workflow changes in LLM-
 If you need one compact owner-facing note for keeping queue focus, status, and the next review action together in the same summary artifact bundle, open `docs/CLI_SUMMARY_QUEUE_FOCUS_OWNER_NOTE.md`.
 If you need a compact owner-facing cue for pairing queue focus, owner, and one honest status line before posting the saved summary bundle, open `docs/CLI_SUMMARY_QUEUE_FOCUS_OWNER_STATUS_NOTE.md`.
 If you need a compact reminder that the scheduled five-repo report must stay plain-text and one-line-per-repo, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_REPORT_DISCIPLINE_NOTE.md`.
+If you need a compact reminder that repo 5 scenario-file proof can explicitly call out a `proposal_input_file`-backed report bundle in the same short status lane, open `docs/CLI_SUMMARY_REPO45_PROPOSAL_INPUT_FILE_STATUS_NOTE.md`.
 
 ---
 
