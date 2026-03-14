@@ -1,3 +1,1 @@
-# CLI summary report basename stability note
-
-Use one shared basename for JSON, Markdown, and HTML summary outputs so reviewer handoff stays obvious and machine-readable.
+Keep one output slug driving the saved JSON, Markdown, and HTML summary bundle so reviewer handoff names stay stable after each validation rerun.

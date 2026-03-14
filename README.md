@@ -12,6 +12,8 @@ If you need a compact reminder that the scheduled five-repo report must stay pla
 
 ---
 
+If you need a compact reminder to keep the saved JSON/Markdown/HTML summary bundle under one stable basename after validation, open `docs/CLI_SUMMARY_REPORT_BASENAME_STABILITY_NOTE.md`.
+
 ## Table of Contents
 
 - [Project Introduction](#project-introduction)
