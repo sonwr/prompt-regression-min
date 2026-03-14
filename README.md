@@ -163,6 +163,7 @@ If you need the matching compact gate that restates the exact field order for th
 If you need the matching compact note that keeps repo 4 and repo 5 explicitly tied to validation state before any commit/push claim, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_VALIDATE_STATUS_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 still cannot disappear from that same five-line handoff even on a hold, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_NO_SKIP_STATUS_NOTE.md`.
 If you need a compact repo-4/repo-5 phase-one reminder that nested governance proposal text must beat wrapper titles before any commit/push claim, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_PROPOSAL_PRECEDENCE_NOTE.md`.
+If you need the matching repo-4/repo-5 note for scenario fixtures that load long proposal text through `proposal_copy_file`, open `docs/CLI_SUMMARY_REPO45_PROPOSAL_COPY_FILE_NOTE.md`.
 If you need a compact reminder to keep the stdout status line and the generated markdown/html/json bundle readable as the same review artifact handoff, open `docs/CLI_SUMMARY_STATUS_ARTIFACT_HANDOFF_NOTE.md`.
 If you need a compact reviewer handoff that keeps recommendation, owner, and the shared JSON/Markdown/HTML bundle together, open `docs/CLI_SUMMARY_RECOMMENDATION_OWNER_BUNDLE_NOTE.md`.
 If you need a compact one-line cue for pairing queue owner, validation result, and commit/push hold state in the same summary handoff, open `docs/CLI_SUMMARY_QUEUE_OWNER_VALIDATE_STATUS_NOTE.md`.
