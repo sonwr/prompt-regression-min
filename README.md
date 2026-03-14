@@ -1412,3 +1412,5 @@ If you need the adjacent-markdown proposal-file note for that same repo-4/repo-5
 
 If you need a compact reminder that the five-line Korean status report should stay validation-first and commit/push-gated, open `docs/CLI_SUMMARY_VALIDATE_COMMAND_SHORT_REPORT_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 can never be skipped in the five-repo short report, open `docs/CLI_SUMMARY_FIVE_REPO_REPO45_NO_SKIP_NOTE.md`.
+
+- If governance-sandbox surfaces the replay pointer as `scenario_source_uri`, use `docs/CLI_SUMMARY_REPO45_SCENARIO_SOURCE_URI_ALIAS_NOTE.md` so the repo-4/repo-5 five-line status stays tied to one validated scenario/report bundle.
