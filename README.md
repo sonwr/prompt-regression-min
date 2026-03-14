@@ -91,6 +91,7 @@ If you need the matching compact reminder that the same five-line report should 
 If you need a compact repo-4/repo-5 reminder that phase-one progress still starts with one JSON/YAML scenario file plus one regenerated JSON/Markdown/HTML report bundle, open `docs/CLI_SUMMARY_REPO45_JSON_YAML_PHASE_ONE_NOTE.md`.
 If you need a compact summary cue for naming that same repo-4/repo-5 phase-one pair as one scenario file plus one regenerated report bundle in the saved artifact line, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_REPORT_BUNDLE_NOTE.md`.
 If you need a compact reminder that repo 4 and repo 5 must still appear as validated-or-held lines even when the five-repo report stays extremely short, open `docs/CLI_SUMMARY_REPO45_SHORT_LINE_PRESENCE_GATE.md`.
+If you need a compact reminder that the five-line summary still keeps repo 4 and repo 5 visible every run, open `docs/CLI_SUMMARY_FIVE_LINE_REPO45_ALWAYS_PRESENT_NOTE.md`.
 If you need a compact reminder to rerun the smallest deterministic summary check before pushing summary/doc changes, open `docs/CLI_SUMMARY_VALIDATE_THEN_PUSH_NOTE.md`.
 If you need a compact reviewer cue for keeping the next regression pass to one rerun-backed queue slice plus one saved summary, open `docs/CLI_REVIEWER_QUEUE_SMALL_SLICE_NOTE.md`.
 If you need the matching smallest-loop reminder that ends at commit/push only after a green local check, open `docs/CLI_SUMMARY_VALIDATE_SMALL_LOOP_THEN_PUSH_NOTE.md`.
