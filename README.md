@@ -13,6 +13,7 @@ If you need a compact reminder that repo 5 scenario-file proof can explicitly ca
 If you need a compact repo-4/repo-5 reminder that repo 5 may surface stakeholder imports as `stakeholder_types` while keeping the same phase-one validation gate, open `docs/CLI_SUMMARY_REPO45_STAKEHOLDER_TYPES_ALIAS_NOTE.md`.
 If you need the matching governance-sandbox reminder that the same phase-one handoff may also carry the shared bundle name as `report_output_code`, open `docs/GOVERNANCE_SCENARIO_REPORT_OUTPUT_CODE_CHECK.md`.
 If you need a compact note for keeping repo 5 scenario-file proof tied to a `proposal_input_markdown_path` replay before the five-line short report, open `docs/CLI_SUMMARY_PROPOSAL_INPUT_MARKDOWN_PATH_NOTE.md`.
+If you need a compact repo-4/repo-5 reminder for the current scenario-file -> report-bundle replay lane, open `docs/CLI_SUMMARY_REPO45_SCENARIO_REPORT_REPLAY_LANE_NOTE.md`.
 
 ---
 
