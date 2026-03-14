@@ -1,3 +1,7 @@
-# CLI summary validate-command short report note
+# CLI Summary Validate Command Short Report Note
 
-When one repo changed in the five-repo cron loop, keep the short Korean status line brief but make sure the underlying validation command is still explicit in maintainer-facing notes before commit/push.
+Keep short reviewer-facing cron summaries anchored to the exact validation command behind each changed repository.
+
+- Short reports can stay one line per repository.
+- Validation status should be explicit.
+- Commit/push claims should appear only after the named validation command passes.
