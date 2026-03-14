@@ -142,6 +142,7 @@ If you need a compact repo-4/repo-5 cue for keeping the `report_bundle_ref` alia
 If you need a compact repo-4/repo-5 cue for keeping top-level `report_output_ref` tied to the same validation-first short line, open `docs/CLI_SUMMARY_REPO45_REPORT_OUTPUT_REF_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping the `report_bundle_id` basename alias visible in the same validated short line, open `docs/CLI_SUMMARY_REPO45_REPORT_BUNDLE_ID_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping the `report_bundle_stem` basename alias visible in the same validated short line, open `docs/CLI_SUMMARY_REPO45_REPORT_BUNDLE_STEM_ALIAS_NOTE.md`.
+If you need a compact repo-4/repo-5 cue for keeping `report_output_key` / `report.outputs.output_key` visible in the same validated short line, open `docs/CLI_SUMMARY_REPO45_REPORT_OUTPUT_KEY_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping download-oriented governance-sandbox bundles compatible with `report.outputs.downloads` and top-level `report_downloads`, open `docs/CLI_SUMMARY_REPO45_REPORT_DOWNLOADS_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 cue for keeping the `web-app` preset JSON bridge and the first governance result card in the same validated short line, open `docs/CLI_SUMMARY_REPO45_WEB_DEMO_RESULT_CARD_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder that repo 5 web-demo/result-card work stays queued behind the scenario-file and report-bundle phase-one pair, open `docs/CLI_SUMMARY_REPO45_WEB_DEMO_PHASE_QUEUE_NOTE.md`.
