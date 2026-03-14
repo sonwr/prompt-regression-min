@@ -11,6 +11,7 @@ If you need a compact owner-facing cue for pairing queue focus, owner, and one h
 If you need a compact reminder that the scheduled five-repo report must stay plain-text and one-line-per-repo, open `docs/CLI_SUMMARY_FIVE_REPO_SHORT_REPORT_DISCIPLINE_NOTE.md`.
 If you need a compact reminder that repo 5 scenario-file proof can explicitly call out a `proposal_input_file`-backed report bundle in the same short status lane, open `docs/CLI_SUMMARY_REPO45_PROPOSAL_INPUT_FILE_STATUS_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder that repo 5 may surface stakeholder imports as `stakeholder_types` while keeping the same phase-one validation gate, open `docs/CLI_SUMMARY_REPO45_STAKEHOLDER_TYPES_ALIAS_NOTE.md`.
+If you need the matching repo-4/repo-5 reminder for wrapper-shaped scenario files that still carry `stakeholder_types`, open `docs/CLI_SUMMARY_REPO45_STAKEHOLDER_TYPES_WRAPPER_NOTE.md`.
 If you need the matching governance-sandbox reminder that the same phase-one handoff may also carry the shared bundle name as `report_output_code`, open `docs/GOVERNANCE_SCENARIO_REPORT_OUTPUT_CODE_CHECK.md`.
 If you need a compact repo-4/repo-5 reminder that repo 5 may surface the shared report basename as `report_output_key` in the same short validated status lane, open `docs/CLI_SUMMARY_REPO45_REPORT_OUTPUT_KEY_ALIAS_NOTE.md`.
 If you need a compact note for keeping repo 5 scenario-file proof tied to a `proposal_input_markdown_path` replay before the five-line short report, open `docs/CLI_SUMMARY_PROPOSAL_INPUT_MARKDOWN_PATH_NOTE.md`.
