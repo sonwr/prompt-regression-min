@@ -72,6 +72,7 @@ If you need a compact repo-4/repo-5 note for governance-sandbox scenario-source 
 If you need the matching repo-4/repo-5 note for the neutral `source_location` alias, open `docs/CLI_SUMMARY_REPO45_SOURCE_LOCATION_ALIAS_NOTE.md`.
 If you need the matching repo-4/repo-5 note for the file-first `source_path` alias, open `docs/CLI_SUMMARY_REPO45_SOURCE_PATH_ALIAS_NOTE.md`.
 If you need the matching repo-4/repo-5 note for the file-first `scenario_source_file` alias, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SOURCE_FILE_ALIAS_NOTE.md`.
+If you need a compact repo-4/repo-5 status cue for one preset-alias proof plus one scenario-file/report proof in the same saved summary bundle, open `docs/CLI_SUMMARY_REPO45_ALIAS_VALIDATION_PAIR_NOTE.md`.
 If you need a compact reminder that repo-4/repo-5 scenario-source alias proof still needs a fresh validation rerun before any five-line commit/push claim, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SOURCE_VALIDATE_GATE_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder that governance web-demo preset requests can arrive as `governance-sandbox-demo` while still mapping to the same web-app proof lane, open `docs/CLI_SUMMARY_REPO45_GOVERNANCE_SANDBOX_DEMO_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder that the same phase-one handoff can name `reports_directory` as the generated governance report bundle location, open `docs/CLI_SUMMARY_REPO45_REPORTS_DIRECTORY_ALIAS_NOTE.md`.
