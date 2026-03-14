@@ -129,6 +129,7 @@ If you need a compact repo-4/repo-5 cue for keeping download-oriented governance
 If you need a compact repo-4/repo-5 cue for keeping the `web-app` preset JSON bridge and the first governance result card in the same validated short line, open `docs/CLI_SUMMARY_REPO45_WEB_DEMO_RESULT_CARD_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder that repo 5 web-demo/result-card work stays queued behind the scenario-file and report-bundle phase-one pair, open `docs/CLI_SUMMARY_REPO45_WEB_DEMO_PHASE_QUEUE_NOTE.md`.
 If you need the matching repo-4/repo-5 cue for `scenario_showcase` wrapper proof plus the first governance result card in the same validated short line, open `docs/CLI_SUMMARY_REPO45_SCENARIO_SHOWCASE_RESULT_CARD_NOTE.md`.
+If you need the matching repo-4/repo-5 cue for `scenario_journal` or `scenario_journal_bundle` wrapper proof plus the same short governance report line, open `docs/CLI_SUMMARY_REPO45_SCENARIO_JOURNAL_REPORT_NOTE.md`.
 If you need a compact one-line reminder for repo-4/repo-5 phase-one reporting status, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_STATUS_NOTE.md`.
 If you need a compact repo-4/repo-5 bridge that keeps repo 4 result-card progress and repo 5 scenario/report-first progress honest in the same short status lane, open `docs/CLI_SUMMARY_REPO45_PHASE_ONE_RESULT_CARD_STATUS_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder for validate-before-push short lines, open `docs/CLI_SUMMARY_REPO45_VALIDATE_PUSH_SHORT_LINE_NOTE.md`.
