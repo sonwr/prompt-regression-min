@@ -79,6 +79,7 @@ If you need a compact reminder that repo-4/repo-5 scenario-source alias proof st
 If you need a compact repo-4/repo-5 reminder that governance web-demo preset requests can arrive as `governance-sandbox-demo` while still mapping to the same web-app proof lane, open `docs/CLI_SUMMARY_REPO45_GOVERNANCE_SANDBOX_DEMO_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder that the same phase-one handoff can name `reports_directory` as the generated governance report bundle location, open `docs/CLI_SUMMARY_REPO45_REPORTS_DIRECTORY_ALIAS_NOTE.md`.
 If you need the matching compact status cue for that same `reports_directory` handoff, open `docs/CLI_SUMMARY_REPO45_REPORTS_DIRECTORY_STATUS_NOTE.md`.
+If you need the matching compact status cue when the governance report bundle location is surfaced as `report_output_dir`, open `docs/CLI_SUMMARY_REPO45_REPORT_OUTPUT_DIR_STATUS_NOTE.md`.
 If you need the matching compact status cue that ties `reports_directory` to the same validate-before-push gate, open `docs/CLI_SUMMARY_REPO45_REPORTS_DIRECTORY_VALIDATE_STATUS_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder that the same short status can call out `report_bundle_code` when governance-sandbox report basenames come from scenario files, open `docs/CLI_SUMMARY_REPO45_REPORT_BUNDLE_CODE_ALIAS_NOTE.md`.
 If you need a compact repo-4/repo-5 reminder that the same short status can call out `report_output_tag` when governance-sandbox report basenames come from scenario files, open `docs/CLI_SUMMARY_REPO45_REPORT_OUTPUT_TAG_ALIAS_NOTE.md`.
