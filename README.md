@@ -93,6 +93,7 @@ If you need a compact note for keeping one deterministic summary slice tied to s
 If you need a compact reminder to keep saved summary bundle status coupled to a passing validation command, open `docs/CLI_SUMMARY_VALIDATED_BUNDLE_STATUS_NOTE.md`.
 If you need the matching compact reminder to validate first and only then reopen the saved bundle for review, open `docs/CLI_SUMMARY_VALIDATE_REOPEN_BUNDLE_NOTE.md`.
 If you need a compact note for keeping each repo pass to one small validated improvement, open `docs/CLI_SUMMARY_SMALL_VALIDATED_SLICE_NOTE.md`.
+If you need a compact reminder that even summary/doc wording edits should rerun the smallest deterministic local unittest slice before commit/push, open `docs/CLI_SUMMARY_VALIDATE_SMALL_LOOP_THEN_PUSH_NOTE.md`.
 If you need a compact reminder to keep one reviewer-download bundle validated before widening summary formatting, open `docs/CLI_SUMMARY_REPORT_DOWNLOAD_BUNDLE_NOTE.md`.
 If you need the smallest validation-loop note for summary/doc edits, open `docs/CLI_SUMMARY_VALIDATE_SMALLEST_LOOP_NOTE.md`.
 If you need a compact one-line status cue for that same validate-first loop, open `docs/CLI_SUMMARY_VALIDATE_SMALL_LOOP_STATUS_NOTE.md`.
